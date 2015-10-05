@@ -1,0 +1,35 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83" : {
+
+    },
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83" : 0,
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "33E705A9-EEAC-47A1-AF44-854CF411ECC4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83" : "Thesis\/",
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C" : "Thesis\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Thesis",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "client\/Thesis\/Thesis.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/erinbleiweiss\/Thesis.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn.code.sf.net\/p\/sashimi\/code",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83"
+    }
+  ]
+}
