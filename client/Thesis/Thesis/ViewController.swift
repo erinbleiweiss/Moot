@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import Foundation
+
 import Alamofire
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
@@ -99,8 +101,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                     let barcodeObject = metadata as! AVMetadataMachineReadableCodeObject
                     highlightViewRect = barcodeObject.bounds
                     detectionString = (barcodeObject).stringValue
-                    print(detectionString)
-                    getProduct(detectionString)
+//                    print(detectionString)
+                    
                     AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.session.stopRunning()
                     break
@@ -110,29 +112,49 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         
 
-        
+        getProduct(detectionString){ responseObject, error in
+            print("responseObject = \(responseObject); error = \(error)")
+            self.alert(responseObject!)
+        }
         
         self.highlightView.frame = highlightViewRect
         
         self.view.bringSubviewToFront(self.highlightView)
     }
     
-    func getProduct(upc: String){
-        Alamofire.request(.GET,  "http://www.searchupc.com/handlers/upcsearch.ashx", parameters: ["request_type": "3", "access_token": "EDDD50C8-9FC4-48D0-B29A-1E1EF405283A", "upc": upc]).responseJSON {
-            request, response, result in
-                switch (result) {
-                case .Success(let value):
-                    print(value)
-                case .Failure(let data, let error):
-                    if data != nil {
-                        if let string = String(data: data!, encoding: NSUTF8StringEncoding) {
-                            print(string)
-                        }
-                    }
-                    print(error)
-                }
+    func getProduct(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+        Alamofire.request(.GET,  "http://www.searchupc.com/handlers/upcsearch.ashx", parameters: ["request_type": "3", "access_token": "EDDD50C8-9FC4-48D0-B29A-1E1EF405283A", "upc": upc]).responseJSON { (_, _, result) in
+            
+            let json = JSON(result.value!)
+            if let name = json["0"]["productname"].string{
+                completionHandler(responseObject: name, error: result.error as? NSError)
+            } else {
+                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
+            }
+
+        
+            
+            
         }
 
+    }
+    
+    func alert(Code: String){
+        let actionSheet:UIAlertController = UIAlertController(title: "Barcode", message: "\(Code)", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        // for alert add .Alert instead of .Action Sheet
+        // start copy
+        let firstAlertAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:
+            {
+                (alertAction:UIAlertAction!) in
+                // action when pressed
+                self.session.startRunning()
+        })
+        actionSheet.addAction(firstAlertAction)
+        
+        // end copy
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+        
     }
 
     

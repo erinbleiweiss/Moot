@@ -1,21 +1,21 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++C112F4B",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
-    "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83" : {
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++C112F4B" : {
 
     },
-    "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C" : {
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++ED0233E" : {
 
     }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83" : 0,
-    "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C" : 0
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++C112F4B" : 0,
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++ED0233E" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "33E705A9-EEAC-47A1-AF44-854CF411ECC4",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83" : "Thesis\/",
-    "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C" : "Thesis\/"
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++C112F4B" : "Thesis\/",
+    "7704DF836CC75FF36138B89C4F97352CED65F99F+++ED0233E" : "Thesis\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Thesis",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -24,12 +24,12 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/erinbleiweiss\/Thesis.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++35B9B4C"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++C112F4B"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn.code.sf.net\/p\/sashimi\/code",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++9D60F83"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7704DF836CC75FF36138B89C4F97352CED65F99F+++ED0233E"
     }
   ]
 }
