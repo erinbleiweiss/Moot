@@ -1,16 +1,14 @@
 //
-//  TestLevelViewController.swift
+//  TestModalViewController.swift
 //  Thesis
 //
-//  Created by Erin Bleiweiss on 9/28/15.
+//  Created by Erin Bleiweiss on 10/12/15.
 //  Copyright © 2015 Erin Bleiweiss. All rights reserved.
 //
 
 import UIKit
 
-class TestLevelViewController: UIViewController {
-    @IBAction func cancelToLevelViewController(segue:UIStoryboardSegue) {
-    }
+class TestModalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
