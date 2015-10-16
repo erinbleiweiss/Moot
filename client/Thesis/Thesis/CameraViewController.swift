@@ -1,9 +1,9 @@
 //
-//  CameraViewController.swift
+//  ViewController.swift
 //  Thesis
 //
-//  Created by Erin Bleiweiss on 10/11/15.
-//  Copyright © 2015 Erin Bleiweiss. All rights reserved.
+//  Created by Erin Bleiweiss on 9/22/15.
+//  Copyright (c) 2015 Erin Bleiweiss. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ import Alamofire
 class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     let session: AVCaptureSession = AVCaptureSession()
-    var previewLayer: AVCaptureVideoPreviewLayer!
+    var previewLayer: AVCaptureVideoPreviewLayer?
     var highlightView: UIView = UIView()
     
     override func viewDidLoad() {
@@ -28,13 +28,10 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             UIViewAutoresizing.FlexibleRightMargin]
         
         // Select the color you want for the completed scan reticle
-        self.highlightView.layer.borderColor = UIColor.redColor().CGColor
-        
+        self.highlightView.layer.borderColor = UIColor.greenColor().CGColor
         self.highlightView.layer.borderWidth = 3
-        
-        
-        // Add it to our controller's view as a subview
         self.view.addSubview(self.highlightView)
+        self.view.bringSubviewToFront(self.highlightView)
         
         
         // Camera
@@ -43,7 +40,6 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         //        // Nilable NSError to hand off to next method
         //        var error: NSError? = nil
         
-        //        let input: AVCaptureInput? = AVCaptureDeviceInput.deviceInputWithDevice(device, error: &error) as? AVCaptureDeviceInput
         
         do {
             let input = try AVCaptureDeviceInput(device: device) as AVCaptureDeviceInput
@@ -55,22 +51,16 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             print(error)
         }
         
-        //        // If input is not nil then add it to the session
-        //        if input != nil {
-        //            session.addInput(input)
-        //        } else {
-        //            print(error)
-        //        }
         
         let output = AVCaptureMetadataOutput()
         output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
         session.addOutput(output)
         output.metadataObjectTypes = output.availableMetadataObjectTypes
         
-        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer.frame = self.view.bounds
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        self.view.layer.addSublayer(previewLayer)
+        previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer?.frame = view.layer.bounds
+        previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        self.view.layer.addSublayer(previewLayer!)
         
         // Start capture
         session.startRunning()
@@ -98,10 +88,11 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             for barcodeType in barCodeTypes {
                 if metadata.type == barcodeType {
                     
-                    let barcodeObject = metadata as! AVMetadataMachineReadableCodeObject
+                    let barcodeObject = previewLayer?.transformedMetadataObjectForMetadataObject(metadata as! AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
+
                     highlightViewRect = barcodeObject.bounds
                     detectionString = (barcodeObject).stringValue
-                    //                    print(detectionString)
+//                    print(detectionString)
                     
                     AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.session.stopRunning()
@@ -110,16 +101,16 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
         }
         
-        
+        // Show preview rectangle
+        print(highlightViewRect)
+        self.highlightView.frame = highlightViewRect
+        self.view.bringSubviewToFront(self.highlightView)
         
         getProduct(detectionString){ responseObject, error in
             print("responseObject = \(responseObject); error = \(error)")
             self.alert(responseObject!)
         }
         
-        self.highlightView.frame = highlightViewRect
-        
-        self.view.bringSubviewToFront(self.highlightView)
     }
     
     func getProduct(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
@@ -162,6 +153,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
 }
 
