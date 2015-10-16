@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Test Level View Controller-->
@@ -31,10 +32,18 @@
                             <constraint firstItem="czR-Ba-T5l" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="vsU-0J-h0a"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="zUy-Kr-iyx">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="4rY-Rj-s3h">
+                            <connections>
+                                <segue destination="BI5-Kh-Sl2" kind="unwind" unwindAction="cancelToLevelPicker:" id="gbi-sg-Alc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="BI5-Kh-Sl2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="739" y="847"/>
+            <point key="canvasLocation" x="1551" y="935"/>
         </scene>
         <!--Test Modal Navigation Controller-->
         <scene sceneID="48C-Bn-86n">
@@ -50,7 +59,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHy-Rt-HOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1432" y="847"/>
+            <point key="canvasLocation" x="2244" y="935"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="rU6-MS-vO6">
@@ -76,7 +85,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDL-yt-bDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="h88-wQ-kVL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2155" y="847"/>
+            <point key="canvasLocation" x="2967" y="935"/>
         </scene>
         <!--Level Picker View Controller-->
         <scene sceneID="mTs-UA-ous">
@@ -89,12 +98,55 @@
                     <view key="view" contentMode="scaleToFill" id="aEF-rD-81B">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17f-7a-KCK">
+                                <rect key="frame" x="254" y="40" width="93" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-H1-zFk">
+                                <rect key="frame" x="120" y="103" width="47" height="30"/>
+                                <state key="normal" title="Level 1"/>
+                                <connections>
+                                    <segue destination="f7b-pw-HPC" kind="show" id="0mD-cw-Hln"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ol-LH-qd7">
+                                <rect key="frame" x="276" y="103" width="49" height="30"/>
+                                <state key="normal" title="Level 2"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Ol-LH-qd7" firstAttribute="centerX" secondItem="aEF-rD-81B" secondAttribute="centerX" id="4bx-SG-2CQ"/>
+                            <constraint firstItem="17f-7a-KCK" firstAttribute="top" secondItem="aT0-iw-nlm" secondAttribute="bottom" constant="20" id="cze-Cg-qUr"/>
+                            <constraint firstItem="17f-7a-KCK" firstAttribute="centerX" secondItem="aEF-rD-81B" secondAttribute="centerX" id="mTv-U1-TiI"/>
+                            <constraint firstItem="yyx-H1-zFk" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="100" id="xfW-Yy-wCA"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXm-rQ-VKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="739" y="155"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="39w-SJ-Bk6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f7b-pw-HPC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="77L-Ld-67w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="s2J-Mq-6rJ" kind="relationship" relationship="rootViewController" id="pFm-jh-ioe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JzY-p0-TrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="739" y="935"/>
         </scene>
     </scenes>
 </document>

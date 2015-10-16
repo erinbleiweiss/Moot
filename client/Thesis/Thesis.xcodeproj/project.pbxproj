@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3BEFD97890781EEEA9B3737B /* Pods_ThesisTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46743D4C73F6CA78633D7D85 /* Pods_ThesisTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8040314A1BD079270043A603 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804031491BD079270043A603 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		805EFF611BD04DE40057721C /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805EFF601BD04DE40057721C /* LevelPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		809843F21BCC6DF200527CF7 /* TestModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809843F11BCC6DF200527CF7 /* TestModalViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		809843F41BCC8E8400527CF7 /* TestModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809843F31BCC8E8400527CF7 /* TestModalNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		809D64151BCB1BEC00DA8968 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D64141BCB1BEC00DA8968 /* CameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -51,7 +51,7 @@
 		46743D4C73F6CA78633D7D85 /* Pods_ThesisTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThesisTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78960C48BD51DDE0CDF29907 /* Pods-ThesisTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThesisTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThesisTests/Pods-ThesisTests.debug.xcconfig"; sourceTree = "<group>"; };
 		804031491BD079270043A603 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		805EFF601BD04DE40057721C /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
+		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
 		809843F11BCC6DF200527CF7 /* TestModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModalViewController.swift; sourceTree = "<group>"; };
 		809843F31BCC8E8400527CF7 /* TestModalNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModalNavigationController.swift; sourceTree = "<group>"; };
 		809D64141BCB1BEC00DA8968 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				80ED1F071BB25A400011A410 /* AppDelegate.swift */,
-				805EFF601BD04DE40057721C /* LevelPickerViewController.swift */,
+				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
 				809D64141BCB1BEC00DA8968 /* CameraViewController.swift */,
 				804031491BD079270043A603 /* SwiftyJSON.swift */,
 				80DB6C441BB9D5D60082635C /* TestLevelViewController.swift */,
@@ -381,10 +381,10 @@
 				809843F21BCC6DF200527CF7 /* TestModalViewController.swift in Sources */,
 				80DB6C451BB9D5D60082635C /* TestLevelViewController.swift in Sources */,
 				809D64151BCB1BEC00DA8968 /* CameraViewController.swift in Sources */,
+				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
 				809843F41BCC8E8400527CF7 /* TestModalNavigationController.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,
 				8040314A1BD079270043A603 /* SwiftyJSON.swift in Sources */,
-				805EFF611BD04DE40057721C /* LevelPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

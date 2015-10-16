@@ -1,15 +1,17 @@
 //
 //  LevelPickerViewController.swift
-//  Thesis
+//  
 //
 //  Created by Erin Bleiweiss on 10/15/15.
-//  Copyright © 2015 Erin Bleiweiss. All rights reserved.
+//
 //
 
 import UIKit
 
 class LevelPickerViewController: UIViewController {
-
+    @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
