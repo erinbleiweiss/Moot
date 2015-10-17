@@ -114,10 +114,10 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
     
     func getProduct(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        Alamofire.request(.GET,  "http://www.searchupc.com/handlers/upcsearch.ashx", parameters: ["request_type": "3", "access_token": "EDDD50C8-9FC4-48D0-B29A-1E1EF405283A", "upc": upc]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET,  "http://52.88.120.111:5000/v1/get_product_name", parameters: ["upc": upc]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
-            if let name = json["0"]["productname"].string{
+            if let name = json["product_name"].string{
                 completionHandler(responseObject: name, error: result.error as? NSError)
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)
