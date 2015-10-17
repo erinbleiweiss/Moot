@@ -1,14 +1,14 @@
 //
-//  TestModalNavigationController.swift
+//  TestModalNavigationViewController.swift
 //  Thesis
 //
-//  Created by Erin Bleiweiss on 10/12/15.
+//  Created by Erin Bleiweiss on 10/17/15.
 //  Copyright © 2015 Erin Bleiweiss. All rights reserved.
 //
 
 import UIKit
 
-class TestModalNavigationController: UINavigationController {
+class TestModalNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

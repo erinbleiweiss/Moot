@@ -17,6 +17,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     let session: AVCaptureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
     var highlightView: UIView = UIView()
+    var productName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +109,9 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         getProduct(detectionString){ responseObject, error in
             print("responseObject = \(responseObject); error = \(error)")
-            self.alert(responseObject!)
+//            self.alert(responseObject!)
+            self.productName = responseObject!
+            self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
         }
         
     }
@@ -122,8 +125,6 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)
             }
-            
-            
             
             
         }
@@ -146,6 +147,11 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         // end copy
         self.presentViewController(actionSheet, animated: true, completion: nil)
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let destinationVC = segue.destinationViewController as! TestLevelViewController
+        destinationVC.productName = self.productName
     }
     
     

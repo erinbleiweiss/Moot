@@ -9,7 +9,11 @@
 import UIKit
 
 class TestLevelViewController: UIViewController {
+    var productName: String!
+    @IBOutlet weak var productLabel: UILabel!
+    
     @IBAction func cancelToLevelViewController(segue:UIStoryboardSegue) {
+        self.productLabel.text = productName
     }
     
     override func viewDidLoad() {
