@@ -2,12 +2,20 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 import requests
-from pprintpp import pprint
+import logging
+import pprint
 
 search_upc_url = "http://www.searchupc.com/handlers/upcsearch.ashx"
 UPC_REQUEST_TYPE = "3"
 UPC_ACCESS_TOKEN = "EDDD50C8-9FC4-48D0-B29A-1E1EF405283A" #TODO: Read from file
 
+# Create debug logger
+logger = logging.getLogger('info')
+handler = logging.FileHandler('./server/info.log')
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
+# Log flask output to logger
+app.logger.addHandler(handler)
 
 @app.route("/")
 def hello():
@@ -37,7 +45,7 @@ def get_product_name():
     barcode_data = barcode_data.json()
     product_name = barcode_data["0"]["productname"]
 
-    pprint(barcode_data)
+    logger.debug(pprint.pformat(barcode_data))
 
     response = {}
     response["product_name"] = product_name
