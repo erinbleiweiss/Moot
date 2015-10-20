@@ -16,8 +16,11 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     let session: AVCaptureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
-    var highlightView: UIView = UIView()
-    var productName: String!
+    var highlightView: UIView = UIView()                // Rectangle which surrounds detected barcode
+    var productName: String!                            // Name of product scanned
+    
+    var hostname = Networking.networkConfig.hostname
+    var rest_prefix = Networking.networkConfig.rest_prefix
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,21 +40,13 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         // Camera
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        
-        //        // Nilable NSError to hand off to next method
-        //        var error: NSError? = nil
-        
-        
         do {
             let input = try AVCaptureDeviceInput(device: device) as AVCaptureDeviceInput
-            
             // If input is not nil then add it to the session
             session.addInput(input)
-            
         } catch let error as NSError{
             print(error)
         }
-        
         
         let output = AVCaptureMetadataOutput()
         output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
@@ -66,6 +61,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         // Start capture
         session.startRunning()
     }
+    
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         var highlightViewRect = CGRectZero
@@ -93,13 +89,13 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 
                     highlightViewRect = barcodeObject.bounds
                     detectionString = (barcodeObject).stringValue
-//                    print(detectionString)
                     
                     AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                     self.session.stopRunning()
                     break
                 }
             }
+            
         }
         
         // Show preview rectangle
@@ -109,15 +105,17 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         getProduct(detectionString){ responseObject, error in
             print("responseObject = \(responseObject); error = \(error)")
-//            self.alert(responseObject!)
             self.productName = responseObject!
             self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
         }
         
     }
     
+    
+    // Get product name from UPC
     func getProduct(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        Alamofire.request(.GET,  "http://52.88.120.111:5000/v1/get_product_name", parameters: ["upc": upc]).responseJSON { (_, _, result) in
+        let url: String = hostname + rest_prefix + "/get_product_name"
+        Alamofire.request(.GET, url, parameters: ["upc": upc]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
             if let name = json["product_name"].string{
@@ -131,24 +129,8 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
     }
     
-    func alert(Code: String){
-        let actionSheet:UIAlertController = UIAlertController(title: "Barcode", message: "\(Code)", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        // for alert add .Alert instead of .Action Sheet
-        // start copy
-        let firstAlertAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:
-            {
-                (alertAction:UIAlertAction!) in
-                // action when pressed
-                self.session.startRunning()
-        })
-        actionSheet.addAction(firstAlertAction)
-        
-        // end copy
-        self.presentViewController(actionSheet, animated: true, completion: nil)
-        
-    }
-    
+
+    // Send product name back to TestLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let destinationVC = segue.destinationViewController as! TestLevelViewController
         destinationVC.productName = self.productName
