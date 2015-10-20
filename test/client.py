@@ -1,5 +1,6 @@
 import requests
 import json
+import pprint
 
 hostname = "http://thesis-loadbalancer-157482704.us-west-2.elb.amazonaws.com"
 rest_prefix = "/v1"
@@ -24,8 +25,16 @@ def generate_random_word():
     response = r.json()
     print response
 
+def check_letter(upc, target_word, letters_guessed):
+    payload = {'upc': upc, 'target_word':target_word, 'letters_guessed': letters_guessed}
+
+    r = requests.get(hostname + rest_prefix + "/check_letter", params=payload)
+    response = r.json()
+    print response
+
 if __name__ == "__main__":
 
-    generate_random_word()
+    # generate_random_word()
+    check_letter(cliffbarupc, "catch", "_____")
 
 

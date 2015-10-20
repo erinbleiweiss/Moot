@@ -51,7 +51,7 @@ def generate_random_word():
     """
     Generates a random word from searchupc.com
 
-    :return: random word as string
+    :return:    random word as string
     """
 
     # TODO: obfuscate word when passing to client
@@ -79,42 +79,42 @@ def check_letter():
     Checks whether product name first letter is in word
 
     Request parameters
-    upc: product UPC as string
-    target_word: target word as string
-    letters_guessed: state of current game / all letters guessed (array)
+    upc: product        UPC as string
+    target_word:        target word as string
+    letters_guessed:    state of current game / all letters guessed as
+                        string with underscores (_) representing blanks
 
-    return: random word as string
+    return:             random word as string
     """
 
     upc = request.args.get('upc')
-    target_word = request.args.get('target_word')
+    target_word = request.args.get('target_word').upper()
     target_letters = list(target_word)
-    letters_guessed = request.args.get('letters_guessed')
+    letters_guessed = list(request.args.get('letters_guessed'))
 
-    # Get "guess letter" corresponding to current scanned object
+    # Get "current letter" corresponding to first letter of scanned object
     product_name = get_product_name(upc)
-    current_letter = product_name[0]
+    current_letter = product_name[0].upper()
 
     response = {}
 
+    # If character has already been revealed
     if current_letter in letters_guessed:
-        response["status"] = "success"
         response["guess"] = "duplicate"
-        response["letters_guessed"] = letters_guessed
+        response["letters_guessed"] = ''.join(letters_guessed)
+    # If guess is correct
     elif current_letter in target_letters:
-        new_letters = list(letters_guessed)
-        for i in target_letters:
+        new_letters = list(letters_guessed)         # create new list
+        for i in range (0, len(target_letters)-1):  # add new guess to list
             if target_letters[i] == current_letter:
                 new_letters[i] = current_letter
 
-        response["status"] = "success"
         response["guess"] = current_letter
-        response["letters_guessed"] = new_letters
+        response["letters_guessed"] = ''.join(new_letters)
+    # If guess is incorrect
     else:
-        response["status"] = "success"
         response["guess"] = "not in word"
-        response["letters_guessed"] = letters_guessed
-
+        response["letters_guessed"] = ''.join(letters_guessed)
     return jsonify(response)
 
 
@@ -126,9 +126,9 @@ def get_product_nameOLD():
     Gets product name from scanned UPC barcode from searchupc.com
 
     Request parameters
-    upc: product UPC as string
+    upc:        product UPC as string
 
-    return: product name as json
+    return:     product name as json
     """
 
     #TODO: Wrap in try/catch
