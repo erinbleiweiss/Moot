@@ -50,6 +50,11 @@ def get_product_name(upc):
     barcode_data = barcode_data.json()
     product_name = barcode_data["0"]["productname"]
 
+    while product_name == " ":
+        barcode_data = requests.get(SEARCH_UPC_URL, params=params)
+        barcode_data = barcode_data.json()
+        product_name = barcode_data["0"]["productname"]
+
     return product_name
 
 def get_product_img(upc):
@@ -60,6 +65,12 @@ def get_product_img(upc):
     barcode_data = requests.get(SEARCH_UPC_URL, params=params)
     barcode_data = barcode_data.json()
     product_img = barcode_data["0"]["imageurl"]
+
+    while product_img == "N/A":
+        barcode_data = requests.get(SEARCH_UPC_URL, params=params)
+        barcode_data = barcode_data.json()
+        product_img = barcode_data["0"]["imageurl"]
+
 
     return product_img
 
@@ -293,11 +304,12 @@ def image_colors():
     neutral_colors = ["black", "white", "brown"]
 
     colors = find_colors(img)
-
+    for color in colors:
+        logger.debug([int(i) for i in color])
     logger.debug([get_color_name(c) for c in colors])
 
     result = {}
-    for color in find_colors(img):
+    for color in colors:
         color_name = get_color_name(color)
         if color_name not in neutral_colors:
             result["dominant_color"] = color_name
