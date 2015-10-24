@@ -1,19 +1,19 @@
 //
-//  TestLevelViewController.swift
+//  MazeLevelViewController.swift
 //  Thesis
 //
-//  Created by Erin Bleiweiss on 9/28/15.
+//  Created by Erin Bleiweiss on 10/23/15.
 //  Copyright © 2015 Erin Bleiweiss. All rights reserved.
 //
 
 import UIKit
 
-class TestLevelViewController: UIViewController {
-    var productName: String!
-    @IBOutlet weak var productLabel: UILabel!
+class MazeLevelViewController: UIViewController {
+    var color: String!
+    @IBOutlet weak var colorLabel: UILabel!
     
-    @IBAction func cancelToLevelViewController(segue:UIStoryboardSegue) {
-        self.productLabel.text = productName
+    @IBAction func cancelToMazeLevelViewController(segue:UIStoryboardSegue) {
+        self.colorLabel.text = color
     }
     
     override func viewDidLoad() {

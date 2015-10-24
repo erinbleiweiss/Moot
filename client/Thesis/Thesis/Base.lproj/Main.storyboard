@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Test Level View Controller-->
+        <!--Hangman Level View Controller-->
         <scene sceneID="2Pe-vE-o9c">
             <objects>
-                <viewController id="s2J-Mq-6rJ" customClass="TestLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="s2J-Mq-6rJ" customClass="HangmanLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1oy-an-ZFM"/>
                         <viewControllerLayoutGuide type="bottom" id="GhM-h6-dF2"/>
@@ -28,7 +28,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Product" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwC-97-IR5">
                                 <rect key="frame" x="168" y="246" width="264" height="107"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -55,10 +55,26 @@
             </objects>
             <point key="canvasLocation" x="1551" y="935"/>
         </scene>
-        <!--Test Modal Navigation Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="uco-pW-A8E">
+            <objects>
+                <navigationController id="ERG-8u-MVy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4We-2m-oLL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cjl-pC-x5L" kind="relationship" relationship="rootViewController" id="Q20-3o-PyM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bDU-Ll-d6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="739" y="1669"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="48C-Bn-86n">
             <objects>
-                <navigationController id="Tgb-Rn-ozr" customClass="TestModalNavigationController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="Tgb-Rn-ozr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aKO-AI-A1A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -71,10 +87,101 @@
             </objects>
             <point key="canvasLocation" x="2244" y="935"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--Maze Level View Controller-->
+        <scene sceneID="Rah-pw-x0J">
+            <objects>
+                <viewController id="cjl-pC-x5L" customClass="MazeLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qkm-nh-jZp"/>
+                        <viewControllerLayoutGuide type="bottom" id="FEw-Lz-QQM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zxc-nT-jCa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvM-R2-Dce">
+                                <rect key="frame" x="273" y="520" width="54" height="30"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <segue destination="8eb-Af-hHg" kind="show" id="tS0-xo-39y"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVR-8U-b8V">
+                                <rect key="frame" x="196" y="280" width="209" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FEw-Lz-QQM" firstAttribute="top" secondItem="JvM-R2-Dce" secondAttribute="bottom" constant="50" id="SSa-dy-6li"/>
+                            <constraint firstItem="nVR-8U-b8V" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="lKM-yI-Jk0"/>
+                            <constraint firstItem="JvM-R2-Dce" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="nDC-kk-wud"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ad5-PM-k6W">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="zHz-iX-V3Z">
+                            <connections>
+                                <segue destination="vQs-Ah-HF9" kind="unwind" unwindAction="cancelToLevelPicker:" id="t8c-df-YOn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="colorLabel" destination="nVR-8U-b8V" id="DlZ-Gp-rwO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GP3-hy-jiC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vQs-Ah-HF9" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1551" y="1669"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XAE-JQ-y1Q">
+            <objects>
+                <navigationController id="8eb-Af-hHg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9wK-OR-LWz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jOD-4f-iKs" kind="relationship" relationship="rootViewController" id="aZQ-No-Lro"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g2Q-FX-hme" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="1669"/>
+        </scene>
+        <!--Maze Camera View Controller-->
+        <scene sceneID="LZD-dm-P7O">
+            <objects>
+                <viewController id="jOD-4f-iKs" customClass="MazeCameraViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ei0-Kd-Hd6"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZD4-8I-NPF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E89-P5-ZcO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bXE-l0-tcU">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="Ddq-2p-sTU">
+                            <connections>
+                                <segue destination="WmJ-Lx-9B4" kind="unwind" identifier="colorScannedSegue" unwindAction="cancelToMazeLevelViewController:" id="kbZ-zx-zRT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rIA-tP-UdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WmJ-Lx-9B4" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2967" y="1669"/>
+        </scene>
+        <!--Hangman Camera View Controller-->
         <scene sceneID="rU6-MS-vO6">
             <objects>
-                <viewController id="oQd-xS-Y4W" customClass="CameraViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oQd-xS-Y4W" customClass="HangmanCameraViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TcP-Bz-FBd"/>
                         <viewControllerLayoutGuide type="bottom" id="GsN-la-RM4"/>
@@ -87,7 +194,7 @@
                     <navigationItem key="navigationItem" id="R2M-YJ-vmM">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="4Ra-ba-zD7">
                             <connections>
-                                <segue destination="h88-wQ-kVL" kind="unwind" identifier="barcodeScannedSegue" unwindAction="cancelToLevelViewController:" id="PzC-qd-xUR"/>
+                                <segue destination="h88-wQ-kVL" kind="unwind" identifier="barcodeScannedSegue" unwindAction="cancelToHangmanLevelViewController:" id="PzC-qd-xUR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -112,7 +219,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17f-7a-KCK">
                                 <rect key="frame" x="254" y="40" width="93" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-H1-zFk">
@@ -125,6 +232,9 @@
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ol-LH-qd7">
                                 <rect key="frame" x="276" y="103" width="49" height="30"/>
                                 <state key="normal" title="Level 2"/>
+                                <connections>
+                                    <segue destination="ERG-8u-MVy" kind="show" id="KUY-Q0-eOk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

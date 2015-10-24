@@ -12,7 +12,7 @@ import Foundation
 
 import Alamofire
 
-class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class HangmanCameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     let session: AVCaptureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -86,7 +86,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 if metadata.type == barcodeType {
                     
                     let barcodeObject = previewLayer?.transformedMetadataObjectForMetadataObject(metadata as! AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
-
+                    
                     highlightViewRect = barcodeObject.bounds
                     detectionString = (barcodeObject).stringValue
                     
@@ -129,7 +129,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
     }
     
-
+    
     // Send product name back to TestLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let destinationVC = segue.destinationViewController as! HangmanLevelViewController

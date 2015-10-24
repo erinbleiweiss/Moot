@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3BEFD97890781EEEA9B3737B /* Pods_ThesisTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46743D4C73F6CA78633D7D85 /* Pods_ThesisTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		80131A8C1BD2EA58004D1247 /* TestModalNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80131A8B1BD2EA58004D1247 /* TestModalNavigationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBA81BDB40D6003F038E /* HangmanCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80131A8D1BD2F1E6004D1247 /* Networking.swift */; settings = {ASSET_TAGS = (); }; };
 		8040314A1BD079270043A603 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804031491BD079270043A603 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		809843F21BCC6DF200527CF7 /* TestModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809843F11BCC6DF200527CF7 /* TestModalViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		809D64151BCB1BEC00DA8968 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D64141BCB1BEC00DA8968 /* CameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		80DB6C451BB9D5D60082635C /* TestLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB6C441BB9D5D60082635C /* TestLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ED1F071BB25A400011A410 /* AppDelegate.swift */; };
 		80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F0B1BB25A400011A410 /* Main.storyboard */; };
 		80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F0E1BB25A400011A410 /* Images.xcassets */; };
@@ -51,13 +52,14 @@
 		287B7F28FA5DDB590A29F535 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46743D4C73F6CA78633D7D85 /* Pods_ThesisTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThesisTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78960C48BD51DDE0CDF29907 /* Pods-ThesisTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThesisTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThesisTests/Pods-ThesisTests.debug.xcconfig"; sourceTree = "<group>"; };
-		80131A8B1BD2EA58004D1247 /* TestModalNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModalNavigationViewController.swift; sourceTree = "<group>"; };
+		8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanLevelViewController.swift; sourceTree = "<group>"; };
+		8008EBA81BDB40D6003F038E /* HangmanCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanCameraViewController.swift; sourceTree = "<group>"; };
+		8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeLevelViewController.swift; sourceTree = "<group>"; };
+		8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeCameraViewController.swift; sourceTree = "<group>"; };
 		80131A8D1BD2F1E6004D1247 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		804031491BD079270043A603 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
-		809843F11BCC6DF200527CF7 /* TestModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModalViewController.swift; sourceTree = "<group>"; };
 		809D64141BCB1BEC00DA8968 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		80DB6C441BB9D5D60082635C /* TestLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLevelViewController.swift; sourceTree = "<group>"; };
 		80ED1F021BB25A400011A410 /* Thesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80ED1F061BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80ED1F071BB25A400011A410 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,11 +133,12 @@
 				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
 				809D64141BCB1BEC00DA8968 /* CameraViewController.swift */,
 				804031491BD079270043A603 /* SwiftyJSON.swift */,
-				80DB6C441BB9D5D60082635C /* TestLevelViewController.swift */,
-				809843F11BCC6DF200527CF7 /* TestModalViewController.swift */,
-				80131A8B1BD2EA58004D1247 /* TestModalNavigationViewController.swift */,
+				8008EBA81BDB40D6003F038E /* HangmanCameraViewController.swift */,
+				8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */,
 				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
 				80ED1F0B1BB25A400011A410 /* Main.storyboard */,
+				8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */,
+				8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */,
 				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
 				80ED1F101BB25A400011A410 /* LaunchScreen.xib */,
 				80ED1F051BB25A400011A410 /* Supporting Files */,
@@ -381,12 +384,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80131A8C1BD2EA58004D1247 /* TestModalNavigationViewController.swift in Sources */,
-				809843F21BCC6DF200527CF7 /* TestModalViewController.swift in Sources */,
-				80DB6C451BB9D5D60082635C /* TestLevelViewController.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
+				8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */,
 				809D64151BCB1BEC00DA8968 /* CameraViewController.swift in Sources */,
 				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
+				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
+				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
+				8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,
 				8040314A1BD079270043A603 /* SwiftyJSON.swift in Sources */,
 			);

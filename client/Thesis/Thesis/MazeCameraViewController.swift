@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
+//  MazeCameraViewController.swift
 //  Thesis
 //
-//  Created by Erin Bleiweiss on 9/22/15.
-//  Copyright (c) 2015 Erin Bleiweiss. All rights reserved.
+//  Created by Erin Bleiweiss on 10/23/15.
+//  Copyright © 2015 Erin Bleiweiss. All rights reserved.
 //
 
 import UIKit
@@ -12,12 +12,12 @@ import Foundation
 
 import Alamofire
 
-class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class MazeCameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     let session: AVCaptureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
     var highlightView: UIView = UIView()                // Rectangle which surrounds detected barcode
-    var productName: String!                            // Name of product scanned
+    var color: String!                                  // Color of product scanned
     
     var hostname = Networking.networkConfig.hostname
     var rest_prefix = Networking.networkConfig.rest_prefix
@@ -86,7 +86,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 if metadata.type == barcodeType {
                     
                     let barcodeObject = previewLayer?.transformedMetadataObjectForMetadataObject(metadata as! AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
-
+                    
                     highlightViewRect = barcodeObject.bounds
                     detectionString = (barcodeObject).stringValue
                     
@@ -103,23 +103,23 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         self.highlightView.frame = highlightViewRect
         self.view.bringSubviewToFront(self.highlightView)
         
-        getProduct(detectionString){ responseObject, error in
+        getColor(detectionString){ responseObject, error in
             print("responseObject = \(responseObject); error = \(error)")
-            self.productName = responseObject!
-            self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
+            self.color = responseObject!
+            self.performSegueWithIdentifier("colorScannedSegue", sender: nil)
         }
         
     }
     
     
-    // Get product name from UPC
-    func getProduct(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        let url: String = hostname + rest_prefix + "/get_product_nameOLD"
+    // Get color name from UPC
+    func getColor(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/image_colors"
         Alamofire.request(.GET, url, parameters: ["upc": upc]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
-            if let name = json["product_name"].string{
-                completionHandler(responseObject: name, error: result.error as? NSError)
+            if let color = json["dominant_color"].string{
+                completionHandler(responseObject: color, error: result.error as? NSError)
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)
             }
@@ -129,11 +129,11 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
     }
     
-
+    
     // Send product name back to TestLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let destinationVC = segue.destinationViewController as! HangmanLevelViewController
-        destinationVC.productName = self.productName
+        let destinationVC = segue.destinationViewController as! MazeLevelViewController
+        destinationVC.color = self.color
     }
     
     
