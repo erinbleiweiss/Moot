@@ -4,6 +4,15 @@ app = Flask(__name__)
 import requests
 import logging
 import pprint
+import Image
+import math
+from math import sqrt
+import random
+import numpy
+from StringIO import StringIO
+import pdb
+from collections import namedtuple
+
 
 #TODO: Read from file
 SEARCH_UPC_URL = "http://www.searchupc.com/handlers/upcsearch.ashx"
@@ -73,8 +82,8 @@ def generate_random_word():
 
     return jsonify(response)
 
-@app.route('/v1/check_letter', methods=["GET"])
-def check_letter():
+@app.route('/v1/play_hangman', methods=["GET"])
+def play_hangman():
     """
     Checks whether product name first letter is in word
 
@@ -146,6 +155,130 @@ def get_product_nameOLD():
 
     return jsonify(response)
 
+
+
+###########################################################
+# Level 2: Maze                                           #
+###########################################################
+Point = namedtuple('Point', ('coords', 'n', 'ct'))
+Cluster = namedtuple('Cluster', ('points', 'center', 'n'))
+
+def get_points(img):
+    points = []
+    w, h = img.size
+    for count, color in img.getcolors(w * h):
+        points.append(Point(color, 3, count))
+    return points
+
+rtoh = lambda rgb: '#%s' % ''.join(('%02x' % p for p in rgb))
+
+
+def euclidean(p1, p2):
+    return sqrt(sum([
+        (p1.coords[i] - p2.coords[i]) ** 2 for i in range(p1.n)
+    ]))
+
+def calculate_center(points, n):
+    vals = [0.0 for i in range(n)]
+    plen = 0
+    for p in points:
+        plen += p.ct
+        for i in range(n):
+            vals[i] += (p.coords[i] * p.ct)
+    return Point([(v / plen) for v in vals], n, 1)
+
+def kmeans(points, k, min_diff):
+    clusters = [Cluster([p], p, p.n) for p in random.sample(points, k)]
+
+    while 1:
+        plists = [[] for i in range(k)]
+
+        for p in points:
+            smallest_distance = float('Inf')
+            for i in range(k):
+                distance = euclidean(p, clusters[i].center)
+                if distance < smallest_distance:
+                    smallest_distance = distance
+                    idx = i
+            plists[idx].append(p)
+
+        diff = 0
+        for i in range(k):
+            old = clusters[i]
+            center = calculate_center(plists[i], old.n)
+            new = Cluster(plists[i], center, old.n)
+            clusters[i] = new
+            diff = max(diff, euclidean(old.center, new.center))
+
+        if diff < min_diff:
+            break
+
+    return clusters
+
+def find_nearest_color(input_color):
+    colors = [(209, 0, 0),
+              (255, 102, 34),
+              (255, 218, 33),
+              (51, 221, 0),
+              (17, 51, 204),
+              (51, 0, 68),
+              (0, 0, 0),
+              (255, 255, 255)]
+
+    min_distance = 10000000
+    min_index = 0
+
+    for i in range (len(colors)):
+        distance = math.sqrt( ((colors[i][0] - input_color[0])**2) +
+                              ((colors[i][1] - input_color[1])**2) +
+                              ((colors[i][2] - input_color[2])**2) )
+        if distance < min_distance:
+            min_distance = distance
+            min_index = i
+
+    if min_index == 0:
+        return "Red"
+    elif min_index == 1:
+        return "Orange"
+    elif min_index == 2:
+        return "Yellow"
+    elif min_index == 3:
+        return "Green"
+    elif min_index == 4:
+        return "Blue"
+    elif min_index == 5:
+        return "Purple"
+    elif min_index == 6:
+        return "Black"
+    elif min_index == 7:
+        return "White"
+
+
+def find_colors(img, n=3):
+    img.thumbnail((200, 200))
+    w, h = img.size
+
+    points = get_points(img)
+    clusters = kmeans(points, n, 1)
+
+    rgb_values = [c.center.coords for c in clusters]
+    return rgb_values
+
+
+@app.route('/v1/image_colors', methods=["GET"])
+def image_colors():
+    url = request.args.get('url')
+    response = requests.get(url)
+    img = Image.open(StringIO(response.content))
+
+
+    print find_colors(img, 3)
+
+    # print result
+
+    fakeResult = {}
+    fakeResult["ran"] = "yes"
+    return jsonify(fakeResult)
 
 
 if __name__ == "__main__":

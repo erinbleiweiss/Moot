@@ -2,7 +2,7 @@ import requests
 import json
 import pprint
 
-hostname = "http://thesis-loadbalancer-157482704.us-west-2.elb.amazonaws.com"
+hostname = "http://52.26.94.97:5000"
 rest_prefix = "/v1"
 
 upc_host = 'http://www.searchupc.com/handlers/upcsearch.ashx'
@@ -28,13 +28,20 @@ def generate_random_word():
 def check_letter(upc, target_word, letters_guessed):
     payload = {'upc': upc, 'target_word':target_word, 'letters_guessed': letters_guessed}
 
-    r = requests.get(hostname + rest_prefix + "/check_letter", params=payload)
+    r = requests.get(hostname + rest_prefix + "/play_hangman", params=payload)
+    response = r.json()
+    print response
+
+def image_colors(url):
+    payload = {'url': url}
+
+    r = requests.get(hostname + rest_prefix + "/image_colors", params=payload)
     response = r.json()
     print response
 
 if __name__ == "__main__":
 
     # generate_random_word()
-    check_letter(cliffbarupc, "catch", "_____")
+    # check_letter(cliffbarupc, "catch", "_____")
 
-
+    image_colors("http://ecx.images-amazon.com/images/I/51k%2BSIgoMjL._SL160_.jpg")
