@@ -52,6 +52,17 @@ def get_product_name(upc):
 
     return product_name
 
+def get_product_img(upc):
+    #TODO: Wrap in try/catch
+    params = {'request_type': UPC_REQUEST_TYPE,
+              'access_token': UPC_ACCESS_TOKEN,
+              'upc': upc}
+    barcode_data = requests.get(SEARCH_UPC_URL, params=params)
+    barcode_data = barcode_data.json()
+    product_img = barcode_data["0"]["imageurl"]
+
+    return product_img
+
 ###########################################################
 # Level 1: Hangman                                        #
 ###########################################################
@@ -215,7 +226,7 @@ def kmeans(points, k, min_diff):
 
     return clusters
 
-def find_nearest_color(input_color):
+def get_color_name(input_color):
               # Light           # Medium        # Dark
     colors = [[255, 153, 153],  [255, 0, 0],    [113, 0, 0],    # Red
               [255, 111, 168],  [255, 123, 51], [156, 68, 0],   # Orange
@@ -226,9 +237,9 @@ def find_nearest_color(input_color):
               [131, 184, 255],  [0, 0, 255],    [0, 0, 165],    # Blue
               [166, 131, 199],  [102, 0, 102],  [56, 22, 56],   # Purple
               [244, 131, 225],  [204, 0, 153],  [116, 0, 71],   # Magenta
+              [199, 168, 131],  [102, 51, 0],   [36, 13, 0],    # Brown
               [0, 0, 0],                                        # Black
-              [255, 255, 255],                                  # White
-              [199, 168, 131],  [102, 51, 0],   [36, 13, 0]]    # Brown
+              [255, 255, 255]]                                  # White
 
     min_distance = 10000000
     color_match = 0
@@ -241,26 +252,24 @@ def find_nearest_color(input_color):
             min_distance = distance
             color_match = i
 
-    print color_match
-
     if color_match in range (0, 3):
-        return "Red"
+        return "red"
     elif color_match in range (3, 6):
-        return "Orange"
+        return "orange"
     elif color_match in range (6, 9):
-        return "Yellow"
+        return "yellow"
     elif color_match in range (9, 15):
-        return "Green"
+        return "green"
     elif color_match in range (15, 21):
-        return "Blue"
+        return "blue"
     elif color_match in range (21, 27):
-        return "Purple"
-    elif color_match == 27:
-        return "Black"
-    elif color_match == 28:
-        return "White"
-    elif color_match in range (29, 32):
-        return "Brown"
+        return "purple"
+    elif color_match in range (27, 30):
+        return "brown"
+    elif color_match == 30:
+        return "black"
+    elif color_match == 31:
+        return "white"
 
 
 def find_colors(img, n=3):
@@ -276,29 +285,26 @@ def find_colors(img, n=3):
 
 @app.route('/v1/image_colors', methods=["GET"])
 def image_colors():
-    url = request.args.get('url')
+    upc = request.args.get('upc')
+    url = get_product_img(upc)
     response = requests.get(url)
     img = Image.open(StringIO(response.content))
 
-    neutral_colors = ["Black", "White", "Brown"]
+    neutral_colors = ["black", "white", "brown"]
 
+    colors = find_colors(img)
 
-    # print [find_nearest_color(i) for i in find_colors(img)]
+    logger.debug([get_color_name(c) for c in colors])
 
-    for color in find_colors(img, 3):
-        color_name = find_nearest_color(color)
-        print("{}: {}").format(color_name, [int(i) for i in color])
+    result = {}
+    for color in find_colors(img):
+        color_name = get_color_name(color)
+        if color_name not in neutral_colors:
+            result["dominant_color"] = color_name
+            return jsonify(result)
 
-    # n = 1
-    # while (find_colors(img, n)[n-1] in neutral_colors):
-    #     n += 1
-    #
-    # print n
-    # print find_colors(img, n)[n-1]
-
-    fakeResult = {}
-    fakeResult["ran"] = "yes"
-    return jsonify(fakeResult)
+    result["dominant_color"] = "none"
+    return jsonify(result)
 
 
 if __name__ == "__main__":

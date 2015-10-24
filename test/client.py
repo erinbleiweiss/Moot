@@ -32,8 +32,8 @@ def check_letter(upc, target_word, letters_guessed):
     response = r.json()
     print response
 
-def image_colors(url):
-    payload = {'url': url}
+def image_colors(upc):
+    payload = {'upc': upc}
 
     r = requests.get(hostname + rest_prefix + "/image_colors", params=payload)
     response = r.json()
@@ -41,8 +41,7 @@ def image_colors(url):
 
 if __name__ == "__main__":
 
-    # generate_random_word()
-    # check_letter(cliffbarupc, "catch", "_____")
+    generate_random_word()
+    check_letter(cliffbarupc, "catch", "_____")
 
-    image_colors("http://ecx.images-amazon.com/images/I/51k%2BSIgoMjL._SL160_.jpg")
-#    image_colors("http://www.clickertraining.com/images/Butterfly%2001.jpg")
+    image_colors(cliffbarupc)
