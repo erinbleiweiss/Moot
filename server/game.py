@@ -216,17 +216,22 @@ def kmeans(points, k, min_diff):
     return clusters
 
 def find_nearest_color(input_color):
-    colors = [(209, 0, 0),
-              (255, 102, 34),
-              (255, 218, 33),
-              (51, 221, 0),
-              (17, 51, 204),
-              (51, 0, 68),
-              (0, 0, 0),
-              (255, 255, 255)]
+              # Light           # Medium        # Dark
+    colors = [[255, 153, 153],  [255, 0, 0],    [113, 0, 0],    # Red
+              [255, 111, 168],  [255, 123, 51], [156, 68, 0],   # Orange
+              [255, 255, 131],  [255, 255, 0],  [211, 167, 0],  # Yellow
+              [166, 196, 113],  [112, 153, 0],  [53, 71, 0],    # Green-Yellow
+              [126, 228, 126],  [0, 153, 0],    [0, 60, 0],     # Green
+              [130, 222, 231],  [0, 134, 153],  [0, 53, 60],    # Blue-Green
+              [131, 184, 255],  [0, 0, 255],    [0, 0, 165],    # Blue
+              [166, 131, 199],  [102, 0, 102],  [56, 22, 56],   # Purple
+              [244, 131, 225],  [204, 0, 153],  [116, 0, 71],   # Magenta
+              [0, 0, 0],                                        # Black
+              [255, 255, 255],                                  # White
+              [199, 168, 131],  [102, 51, 0],   [36, 13, 0]]    # Brown
 
     min_distance = 10000000
-    min_index = 0
+    color_match = 0
 
     for i in range (len(colors)):
         distance = math.sqrt( ((colors[i][0] - input_color[0])**2) +
@@ -234,24 +239,28 @@ def find_nearest_color(input_color):
                               ((colors[i][2] - input_color[2])**2) )
         if distance < min_distance:
             min_distance = distance
-            min_index = i
+            color_match = i
 
-    if min_index == 0:
+    print color_match
+
+    if color_match in range (0, 3):
         return "Red"
-    elif min_index == 1:
+    elif color_match in range (3, 6):
         return "Orange"
-    elif min_index == 2:
+    elif color_match in range (6, 9):
         return "Yellow"
-    elif min_index == 3:
+    elif color_match in range (9, 15):
         return "Green"
-    elif min_index == 4:
+    elif color_match in range (15, 21):
         return "Blue"
-    elif min_index == 5:
+    elif color_match in range (21, 27):
         return "Purple"
-    elif min_index == 6:
+    elif color_match == 27:
         return "Black"
-    elif min_index == 7:
+    elif color_match == 28:
         return "White"
+    elif color_match in range (29, 32):
+        return "Brown"
 
 
 def find_colors(img, n=3):
@@ -271,10 +280,21 @@ def image_colors():
     response = requests.get(url)
     img = Image.open(StringIO(response.content))
 
+    neutral_colors = ["Black", "White", "Brown"]
 
-    print find_colors(img, 3)
 
-    # print result
+    # print [find_nearest_color(i) for i in find_colors(img)]
+
+    for color in find_colors(img, 3):
+        color_name = find_nearest_color(color)
+        print("{}: {}").format(color_name, [int(i) for i in color])
+
+    # n = 1
+    # while (find_colors(img, n)[n-1] in neutral_colors):
+    #     n += 1
+    #
+    # print n
+    # print find_colors(img, n)[n-1]
 
     fakeResult = {}
     fakeResult["ran"] = "yes"

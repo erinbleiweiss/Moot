@@ -45,3 +45,4 @@ if __name__ == "__main__":
     # check_letter(cliffbarupc, "catch", "_____")
 
     image_colors("http://ecx.images-amazon.com/images/I/51k%2BSIgoMjL._SL160_.jpg")
+#    image_colors("http://www.clickertraining.com/images/Butterfly%2001.jpg")
