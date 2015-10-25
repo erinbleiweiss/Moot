@@ -41,7 +41,7 @@ def image_colors(upc):
 
 if __name__ == "__main__":
 
-    generate_random_word()
-    check_letter(cliffbarupc, "catch", "_____")
+    # generate_random_word()
+    # check_letter(cliffbarupc, "catch", "_____")
 
-    image_colors(cliffbarupc)
+    image_colors("722776200100")

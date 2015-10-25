@@ -11,7 +11,7 @@ import random
 import numpy
 from StringIO import StringIO
 import pdb
-from collections import namedtuple
+from collections import namedtuple, Counter
 
 
 #TODO: Read from file
@@ -115,7 +115,8 @@ def play_hangman():
     letters_guessed:    state of current game / all letters guessed as
                         string with underscores (_) representing blanks
 
-    return:             random word as string
+    return:             {"guess": letter guessed (or "not in word")
+                         "letters_guessed": state of current game}
     """
 
     upc = request.args.get('upc')
@@ -283,7 +284,7 @@ def get_color_name(input_color):
         return "white"
 
 
-def find_colors(img, n=3):
+def find_colors(img, n=7):
     img.thumbnail((200, 200))
     w, h = img.size
 
@@ -309,11 +310,16 @@ def image_colors():
     logger.debug([get_color_name(c) for c in colors])
 
     result = {}
+    dominant_colors = []
     for color in colors:
         color_name = get_color_name(color)
         if color_name not in neutral_colors:
-            result["dominant_color"] = color_name
-            return jsonify(result)
+            dominant_colors.append(color_name)
+
+    if len(dominant_colors) > 0:
+        count = Counter(dominant_colors)
+        result["dominant_color"] = count.most_common()[0][0]
+        return jsonify(result)
 
     result["dominant_color"] = "none"
     return jsonify(result)

@@ -7,20 +7,70 @@
 //
 
 import UIKit
+import Alamofire
 
-class HangmanLevelViewController: UIViewController {
+class HangmanLevelViewController: GenericLevelViewController {
     var productName: String!
     @IBOutlet weak var productLabel: UILabel!
+    var targetWord: String!
+    var currentGame: String!
+    var guess: String!
     
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
         self.productLabel.text = productName
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        getRandomWord(){ responseObject, error in
+            print("responseObject = \(responseObject); error = \(error)")
+            self.targetWord = responseObject!
+        }
+        
+//        playHangman(detectionString){ responseObject, error in
+//            print("responseObject = \(responseObject); error = \(error)")
+//            self.productName = responseObject!
+//            self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
+//        }
+    
     }
+    
+    // Get random word from DB
+    func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/generate_random_word"
+        Alamofire.request(.GET, url).responseJSON { (_, _, result) in
+            
+            let json = JSON(result.value!)
+            if let word = json["word"].string{
+                completionHandler(responseObject: word, error: result.error as? NSError)
+            } else {
+                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
+            }
+            
+        }
+    }
+    
+    
+    func playHangman(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/play_hangman"
+        Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame]).responseJSON { (_, _, result) in
+            
+            let json = JSON(result.value!)
+            if let guess = json["guess"].string{
+                completionHandler(responseObject: guess, error: result.error as? NSError)
+            } else {
+                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
