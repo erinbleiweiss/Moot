@@ -10,31 +10,62 @@ import UIKit
 import Alamofire
 
 class HangmanLevelViewController: GenericLevelViewController {
-    var productName: String!
-    @IBOutlet weak var productLabel: UILabel!
-    var targetWord: String!
-    var currentGame: String!
+    
+    @IBOutlet weak var currentGameLabel: UILabel!
+    var upc: String = ""
+    var productName: String = ""
+    var targetWord: String = ""
+    var currentGame: String = ""
     var guess: String!
     
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
-        self.productLabel.text = productName
+//        self.currentGameLabel.text = productName
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getRandomWord(){ responseObject, error in
-            print("responseObject = \(responseObject); error = \(error)")
-            self.targetWord = responseObject!
-        }
         
-//        playHangman(detectionString){ responseObject, error in
-//            print("responseObject = \(responseObject); error = \(error)")
-//            self.productName = responseObject!
-//            self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
-//        }
+        // Initial load, no target word
+        if (targetWord == "") {
+            // Generate target word
+            getRandomWord(){ responseObject, error in
+                print("responseObject = \(responseObject); error = \(error)")
+                self.targetWord = responseObject!
+                self.currentGame = ""
+                
+                // On load, generate blank game
+                for _ in 1...self.targetWord.characters.count {
+                    self.currentGame += "_"
+                }
+                
+                let attributes = [
+                    NSKernAttributeName: 1.5
+                ]
+                
+                self.currentGameLabel.attributedText = NSMutableAttributedString(string: "", attributes: attributes)
+            }
+            
+        }
+        else {
+            playHangman(self.upc){ responseObject, error in
+                self.currentGame = responseObject!
+                self.currentGameLabel.text = responseObject!
+            }
+        }
+
     
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        if (self.targetWord != "" && self.upc != ""){
+            playHangman(self.upc){ responseObject, error in
+                self.currentGame = responseObject!
+                self.currentGameLabel.text = responseObject!
+            }
+        }
     }
     
     // Get random word from DB
@@ -58,8 +89,8 @@ class HangmanLevelViewController: GenericLevelViewController {
         Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
-            if let guess = json["guess"].string{
-                completionHandler(responseObject: guess, error: result.error as? NSError)
+            if let letters_guessed = json["letters_guessed"].string{
+                completionHandler(responseObject: letters_guessed, error: result.error as? NSError)
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)
             }

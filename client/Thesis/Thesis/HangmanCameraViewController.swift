@@ -14,18 +14,27 @@ import Alamofire
 
 class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
     
+    var productName: String!  // Name of product scanned
+    var upc: String?          // UPC of product scanned
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+        
     
     override func doAfterScan(upc: String){
-        getProduct(upc){ responseObject, error in
-            print("responseObject = \(responseObject); error = \(error)")
-            self.productName = responseObject!
-            print(self.productName)
-            self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
-        }
+//        getProduct(upc){ responseObject, error in
+//            print("responseObject = \(responseObject); error = \(error)")
+//            self.productName = responseObject!
+//            print(self.productName)
+//            self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
+//        }
+        
+        // Assign read upc to class
+        self.upc = upc
+        self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
+        
+        
     }
     
     
@@ -47,10 +56,15 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
     }
     
     
-    // Send product name back to TestLevelViewController via segue
+    // Send data back to TestLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let destinationVC = segue.destinationViewController as! HangmanLevelViewController
-        destinationVC.productName = self.productName
+        
+        // If UPC defined
+        if let _ = upc{
+            let destinationVC = segue.destinationViewController as! HangmanLevelViewController
+            destinationVC.upc = self.upc!
+        }
+        
     }
     
     

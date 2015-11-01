@@ -25,7 +25,7 @@
                                     <segue destination="Tgb-Rn-ozr" kind="presentation" id="4iu-AR-M5d"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Product" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwC-97-IR5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Hangman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwC-97-IR5">
                                 <rect key="frame" x="168" y="246" width="264" height="107"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,7 +47,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="productLabel" destination="SwC-97-IR5" id="uqP-Ra-kmf"/>
+                        <outlet property="currentGameLabel" destination="SwC-97-IR5" id="1Tn-KM-Gc2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>

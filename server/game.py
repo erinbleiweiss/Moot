@@ -50,10 +50,14 @@ def get_product_name(upc):
     barcode_data = barcode_data.json()
     product_name = barcode_data["0"]["productname"]
 
-    while product_name == " ":
+    MAX_ATTEMPTS = 10
+    attempts = 0
+
+    while product_name == " " and attempts < MAX_ATTEMPTS:
         barcode_data = requests.get(SEARCH_UPC_URL, params=params)
         barcode_data = barcode_data.json()
         product_name = barcode_data["0"]["productname"]
+        attempts += 1
 
     return product_name
 

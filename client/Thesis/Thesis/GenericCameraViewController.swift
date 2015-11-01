@@ -21,7 +21,6 @@ class GenericCameraViewController: UIViewController, AVCaptureMetadataOutputObje
     let session: AVCaptureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer?
     var highlightView: UIView = UIView()                // Rectangle which surrounds detected barcode
-    var productName: String!                            // Name of product scanned
 
     var hostname = Networking.networkConfig.hostname
     var rest_prefix = Networking.networkConfig.rest_prefix
