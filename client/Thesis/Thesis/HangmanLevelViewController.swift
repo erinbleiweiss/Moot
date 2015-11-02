@@ -20,6 +20,22 @@ class HangmanLevelViewController: GenericLevelViewController {
     var currentGame: String = ""
     var guess: String!
     
+    let fontAttributes = [
+        NSFontAttributeName: UIFont(
+            name: "Anonymous",
+            size: 50.0
+            )!,
+        NSKernAttributeName: 15
+    ]
+    
+    let guessAttributes = [
+        NSFontAttributeName: UIFont(
+            name: "Anonymous",
+            size: 75.0
+            )!,
+        NSKernAttributeName: 15
+    ]
+    
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
 //        self.currentGameLabel.text = productName
     }
@@ -41,17 +57,9 @@ class HangmanLevelViewController: GenericLevelViewController {
                     self.currentGame += "_"
                 }
                 
-                let attributes = [
-                    NSFontAttributeName: UIFont(
-                                            name: "Anonymous",
-                                            size: 50.0
-                                        )!,
-                    NSKernAttributeName: 15
-                ]
-                self.currentGameLabel.attributedText = NSMutableAttributedString(string: self.currentGame, attributes: attributes)
-             
-                self.currentGuessLabel.text = ""
-                
+
+                self.currentGameLabel.attributedText = NSMutableAttributedString(string: self.currentGame, attributes: self.fontAttributes)
+                self.currentGuessLabel.attributedText = NSMutableAttributedString(string: self.currentGuess, attributes: self.fontAttributes)
             }
             
         }
@@ -71,15 +79,7 @@ class HangmanLevelViewController: GenericLevelViewController {
             playHangman(self.upc){ responseObject, error in
                 
                 self.currentGame = responseObject!
-
-                let attributes = [
-                    NSFontAttributeName: UIFont(
-                        name: "Anonymous",
-                        size: 50.0
-                        )!,
-                    NSKernAttributeName: 15
-                ]
-                self.currentGameLabel.attributedText = NSMutableAttributedString(string: self.currentGame, attributes: attributes)
+                self.currentGameLabel.attributedText = NSMutableAttributedString(string: self.currentGame, attributes: self.fontAttributes)
                 
             }
         }
@@ -107,7 +107,8 @@ class HangmanLevelViewController: GenericLevelViewController {
             
             let json = JSON(result.value!)
             if let letters_guessed = json["letters_guessed"].string{
-                self.currentGuessLabel.text = json["guess"].string
+                self.currentGuessLabel.attributedText = NSMutableAttributedString(string: json["guess"].string!, attributes: self.guessAttributes)
+
                 completionHandler(responseObject: letters_guessed, error: result.error as? NSError)
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)

@@ -141,7 +141,7 @@ def play_hangman():
     # If guess is correct
     elif current_letter in target_letters:
         new_letters = list(letters_guessed)         # create new list
-        for i in range (0, len(target_letters)-1):  # add new guess to list
+        for i in range (0, len(target_letters)):  # add new guess to list
             if target_letters[i] == current_letter:
                 new_letters[i] = current_letter
 

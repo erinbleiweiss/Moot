@@ -11,6 +11,8 @@ request_type = '3'
 
 cliffbarupc = "722252660091"
 
+h = "071100210453"
+
 def lookupBarcode(upc):
     payload = {'request_type': request_type, 'access_token': upc_access_token, 'upc': upc}
     # payload = (('request_type', request_type), ('access_token', access_token), ('upc', upc))
@@ -42,6 +44,6 @@ def image_colors(upc):
 if __name__ == "__main__":
 
     # generate_random_word()
-    # check_letter(cliffbarupc, "catch", "_____")
+    check_letter(h, "catch", "_____")
 
-    image_colors("722776200100")
+    # image_colors("722776200100")
