@@ -13,28 +13,13 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     @IBOutlet weak var currentGameLabel: UILabel!
     @IBOutlet weak var currentGuessLabel: UILabel!
+    @IBOutlet weak var gameMessageLabel: UILabel!
     var upc: String = ""
     var productName: String = ""
     var targetWord: String = ""
     var currentGuess: String = ""
     var currentGame: String = ""
     var guess: String!
-    
-    let fontAttributes = [
-        NSFontAttributeName: UIFont(
-            name: "Anonymous",
-            size: 50.0
-            )!,
-        NSKernAttributeName: 15
-    ]
-    
-    let guessAttributes = [
-        NSFontAttributeName: UIFont(
-            name: "Anonymous",
-            size: 75.0
-            )!,
-        NSKernAttributeName: 15
-    ]
     
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
 //        self.currentGameLabel.text = productName
@@ -58,8 +43,9 @@ class HangmanLevelViewController: GenericLevelViewController {
                 }
                 
 
-                self.currentGameLabel.attributedText = NSMutableAttributedString(string: self.currentGame, attributes: self.fontAttributes)
-                self.currentGuessLabel.attributedText = NSMutableAttributedString(string: self.currentGuess, attributes: self.fontAttributes)
+                self.currentGameLabel.attributedText = self.letterStyles(self.currentGame)
+                self.currentGuessLabel.attributedText = self.guessStyles(self.currentGuess)
+                
             }
             
         }
@@ -79,10 +65,49 @@ class HangmanLevelViewController: GenericLevelViewController {
             playHangman(self.upc){ responseObject, error in
                 
                 self.currentGame = responseObject!
-                self.currentGameLabel.attributedText = NSMutableAttributedString(string: self.currentGame, attributes: self.fontAttributes)
+                self.currentGameLabel.attributedText = self.letterStyles(self.currentGame)
                 
             }
         }
+    }
+    
+    func letterStyles(currentGame: String) -> NSMutableAttributedString{
+        let fontAttributes = [
+            NSFontAttributeName: UIFont(
+                name: "Anonymous",
+                size: 50.0
+                )!,
+            NSKernAttributeName: 15
+        ]
+
+        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .Center
+        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
+        
+        
+        return returnString
+        
+    }
+    
+    func guessStyles(currentGame: String) -> NSMutableAttributedString{
+        let fontAttributes = [
+            NSFontAttributeName: UIFont(
+                name: "Anonymous",
+                size: 75.0
+                )!
+        ]
+        
+        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .Center
+        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
+        
+        
+        return returnString
+        
     }
     
     // Get random word from DB
@@ -107,8 +132,13 @@ class HangmanLevelViewController: GenericLevelViewController {
             
             let json = JSON(result.value!)
             if let letters_guessed = json["letters_guessed"].string{
-                self.currentGuessLabel.attributedText = NSMutableAttributedString(string: json["guess"].string!, attributes: self.guessAttributes)
-
+                self.currentGuessLabel.attributedText = self.guessStyles(json["guess"].string!)
+                if (json["status"] == 2){
+                    self.gameMessageLabel.text = "Not in word"
+                }
+                else{
+                    self.gameMessageLabel.text = ""
+                }
                 completionHandler(responseObject: letters_guessed, error: result.error as? NSError)
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)

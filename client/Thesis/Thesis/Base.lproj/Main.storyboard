@@ -31,8 +31,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLW-WZ-f9R">
+                                <rect key="frame" x="212" y="347" width="177" height="53"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbt-Wq-LQe">
-                                <rect key="frame" x="215" y="237" width="170" height="133"/>
+                                <rect key="frame" x="178" y="237" width="243" height="133"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -41,7 +47,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="czR-Ba-T5l" firstAttribute="top" secondItem="wbt-Wq-LQe" secondAttribute="bottom" constant="150" id="09h-ks-NK4"/>
+                            <constraint firstItem="czR-Ba-T5l" firstAttribute="top" secondItem="xLW-WZ-f9R" secondAttribute="bottom" constant="120" id="7bW-5r-5fj"/>
                             <constraint firstItem="GhM-h6-dF2" firstAttribute="top" secondItem="czR-Ba-T5l" secondAttribute="bottom" constant="50" id="8jM-NU-qiL"/>
+                            <constraint firstItem="xLW-WZ-f9R" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="MOA-qy-2nz"/>
                             <constraint firstItem="wbt-Wq-LQe" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="UF3-aa-Juf"/>
                             <constraint firstItem="SwC-97-IR5" firstAttribute="top" secondItem="1oy-an-ZFM" secondAttribute="bottom" constant="75" id="aDK-WX-cN7"/>
                             <constraint firstItem="SwC-97-IR5" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="meC-KS-BUk"/>
@@ -58,6 +66,7 @@
                     <connections>
                         <outlet property="currentGameLabel" destination="SwC-97-IR5" id="1Tn-KM-Gc2"/>
                         <outlet property="currentGuessLabel" destination="wbt-Wq-LQe" id="jnR-rm-Qlj"/>
+                        <outlet property="gameMessageLabel" destination="xLW-WZ-f9R" id="Uh7-pP-JFh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>

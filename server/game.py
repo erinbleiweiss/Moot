@@ -136,7 +136,8 @@ def play_hangman():
 
     # If character has already been revealed
     if current_letter in letters_guessed:
-        response["guess"] = "duplicate"
+        response["guess"] = current_letter
+        response["status"] = 0
         response["letters_guessed"] = ''.join(letters_guessed)
     # If guess is correct
     elif current_letter in target_letters:
@@ -146,10 +147,12 @@ def play_hangman():
                 new_letters[i] = current_letter
 
         response["guess"] = current_letter
+        response["status"] = 1
         response["letters_guessed"] = ''.join(new_letters)
     # If guess is incorrect
     else:
-        response["guess"] = "not in word"
+        response["guess"] = current_letter
+        response["status"] = 2
         response["letters_guessed"] = ''.join(letters_guessed)
     return jsonify(response)
 
