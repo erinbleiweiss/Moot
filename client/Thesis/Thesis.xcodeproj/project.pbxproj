@@ -17,6 +17,7 @@
 		8040314A1BD079270043A603 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804031491BD079270043A603 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		809D64151BCB1BEC00DA8968 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D64141BCB1BEC00DA8968 /* CameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
 		80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ED1F071BB25A400011A410 /* AppDelegate.swift */; };
 		80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F0B1BB25A400011A410 /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		804031491BD079270043A603 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
 		809D64141BCB1BEC00DA8968 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
 		80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewController.swift; sourceTree = "<group>"; };
 		80ED1F021BB25A400011A410 /* Thesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80ED1F061BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		80B0EABD1BE702CE00639ADC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80B0EABE1BE7030800639ADC /* Anonymous.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		80ED1EF91BB25A400011A410 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 		80ED1F041BB25A400011A410 /* Thesis */ = {
 			isa = PBXGroup;
 			children = (
+				80B0EABD1BE702CE00639ADC /* Resources */,
 				80ED1F071BB25A400011A410 /* AppDelegate.swift */,
 				809D64141BCB1BEC00DA8968 /* CameraViewController.swift */,
 				80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */,
@@ -277,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */,
 				80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */,
 				80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */,
 				80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */,
