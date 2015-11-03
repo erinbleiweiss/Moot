@@ -41,9 +41,18 @@ def image_colors(upc):
     response = r.json()
     print response
 
+
+
+def test_my_thing():
+    r = requests.get(hostname + rest_prefix + "/test_my_thing")
+    response = r.json()
+    print response
+
 if __name__ == "__main__":
 
     # generate_random_word()
-    check_letter(h, "catch", "_____")
+    # check_letter(h, "catch", "_____")
 
     # image_colors("722776200100")
+
+    test_my_thing()

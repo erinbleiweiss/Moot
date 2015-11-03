@@ -96,7 +96,7 @@ def generate_random_word():
               'excludePartOfSpeech': 'proper-noun',
               'minCorpusCount': 100000,
               'minLength': 5,
-              'maxLength': 8,
+              'maxLength': 6,
               'api_key': WORDNIK_API_KEY
               }
     word_data = requests.get(WORDNIK_URL, params=params)
@@ -332,5 +332,98 @@ def image_colors():
     return jsonify(result)
 
 
+class Tile (object):
+    def __init__(self, north, west, east, south):
+        self.north = north
+        self.west = west
+        self.south = south
+        self.east = east
+
+    @classmethod
+    def preset_tile(cls, preset):
+        # Initialize a tile with preset walls
+
+        # Convert preset integer to 4 digit binary
+        binary = list("{0:04b}".format(preset))
+
+        # Positions 0, 1, 2, 3 in array correspond to N, W, S, E directions
+        # Value of 0 = no wall, 1 = wall
+
+        # 0  = ____     4  = _W__     8  = N___     12 = NW__
+        # 1  = ___E     5  = _W_E     9  = N__E     13 = NW_E
+        # 2  = __S_     6  = _WS_     10 = N_S_     14 = NWS_
+        # 3  = __SE     7  = _WSE     11 = N_SE     15 = NWSE
+
+        # Convert 0/1 values to True/False
+        walls = [i=="1" for i in binary]
+
+        north = walls[0]
+        west = walls[1]
+        south = walls[2]
+        east = walls[3]
+        return cls(north, west, south, east)
+
+    def __repr__(self):
+        # Print tile as preset number (from above)
+        self.north = 1 if self.north else 0
+        self.west = 1 if self.west else 0
+        self.south = 1 if self.south else 0
+        self.east = 1 if self.east else 0
+
+        binary = ("{}{}{}{}").format(self.north, self.west, self.south, self.east)
+        return str(int(binary, 2))
+
+class Maze (object):
+    def __init__(self, width, height, tiles=None):
+        self.width = width
+        self.height = height
+        self.maze = []
+
+        if tiles is None:
+            # Initialize maze as grid of tiles with all walls filled
+            for row in range (0, self.width):
+                current_row = []
+                for col in range (0, self.height):
+                    current_tile = Tile(True, True, True, True)
+                    current_row.append(current_tile)
+                self.maze.append(current_row)
+        else:
+            # 1D to square 2D list
+            self.maze = [tiles[i:i+self.width] for i in range(0, len(tiles), self.width)]
+
+
+    def __str__(self):
+        return str(self.maze)
+
+
+    def carve_passages (self):
+        return
+
+
+
+@app.route('/v1/test_my_thing', methods=["GET"])
+def test_my_thing():
+    tiles = [12, 8, 10, 10, 9,
+             7,  5, 12, 9,  5,
+             14, 3, 5,  6,  3,
+             12, 9, 6,  9,  13,
+             7,  6, 10, 2,  3]
+
+
+    myMaze = Maze(5, 5, tiles)
+    print(myMaze)
+
+
+    response = {}
+    response["status"] = "ok"
+    return jsonify(response)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
+
