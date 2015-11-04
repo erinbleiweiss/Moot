@@ -16,6 +16,7 @@
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8040314A1BD079270043A603 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804031491BD079270043A603 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866611BE9BE9C00B3FE9D /* MazeTile.swift */; settings = {ASSET_TAGS = (); }; };
 		809D64151BCB1BEC00DA8968 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D64141BCB1BEC00DA8968 /* CameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
 		80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -63,6 +64,7 @@
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804031491BD079270043A603 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
+		809866611BE9BE9C00B3FE9D /* MazeTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTile.swift; sourceTree = "<group>"; };
 		809D64141BCB1BEC00DA8968 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
 		80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */,
 				8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */,
 				8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */,
+				809866611BE9BE9C00B3FE9D /* MazeTile.swift */,
 				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
 				804031491BD079270043A603 /* SwiftyJSON.swift */,
 				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
@@ -402,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
 				8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */,
 				8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */,

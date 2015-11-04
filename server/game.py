@@ -333,7 +333,7 @@ def image_colors():
 
 
 class Tile (object):
-    def __init__(self, north, west, east, south):
+    def __init__(self, north, west, south, east):
         self.north = north
         self.west = west
         self.south = south
@@ -361,7 +361,7 @@ class Tile (object):
         west = walls[1]
         south = walls[2]
         east = walls[3]
-        return cls(north, west, south, east)
+        return cls(north, east, south, west)
 
     def __repr__(self):
         # Print tile as preset number (from above)
@@ -401,6 +401,7 @@ class Maze (object):
 
 
 
+
 @app.route('/v1/test_my_thing', methods=["GET"])
 def test_my_thing():
     tiles = [12, 8, 10, 10, 9,
@@ -418,6 +419,80 @@ def test_my_thing():
     response["status"] = "ok"
     return jsonify(response)
 
+
+
+@app.route('/v1/maze_move', methods=["GET"])
+def move():
+    """
+    Checks whether a move in a maze is valid, and returns
+    new position
+
+    Request parameters
+    dir:                direction indicated (north, east, south, or west)
+    maze:               tile presets as underscore_delineated_string
+                        ex: 12_8_10_10_9_7_5_12_9_5...
+    row:                row (y) of location in 2D maze grid
+    col:                column (x) of location in 2D maze grid
+    return:             {"success": true or false
+                        }
+    """
+
+    dir = request.args.get('dir')
+    maze = request.args.get('maze')
+    row = int(request.args.get('row'))
+    col = int(request.args.get('col'))
+
+    logger.debug("********************")
+    logger.debug(maze)
+
+    maze = maze.split('_')
+    size = int(len(maze) ** .5)
+    maze = [maze[i:i+size] for i in range(0, len(maze), size)]
+
+    response = {}
+
+    current_tile = Tile.preset_tile(int(maze[row][col]))
+    logger.debug(current_tile)
+
+    if dir == "north":
+        if current_tile.north:
+            response["success"] = "false"
+            return jsonify(response)
+
+        response["success"] = "true"
+        response["row"] = row - 1
+        response["col"] = col
+        return jsonify(response)
+
+    if dir == "west":
+        if current_tile.east:
+            response["success"] = "false"
+            return jsonify(response)
+
+        response["success"] = "true"
+        response["row"] = row
+        response["col"] = col - 1
+        return jsonify(response)
+
+    if dir == "south":
+        if current_tile.south:
+            response["success"] = "false"
+            return jsonify(response)
+
+        response["success"] = "true"
+        response["row"] = row + 1
+        response["col"] = col
+        return jsonify(response)
+
+    if dir == "east":
+        if current_tile.west:
+            response["success"] = "false"
+            return jsonify(response)
+
+        response["success"] = "true"
+        response["row"] = row
+        response["col"] = col + 1
+        return jsonify(response)
 
 if __name__ == "__main__":
     app.run(debug=True)

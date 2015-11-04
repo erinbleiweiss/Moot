@@ -48,6 +48,14 @@ def test_my_thing():
     response = r.json()
     print response
 
+
+def maze_test(dir, maze, row, col):
+    payload = {'dir': dir, 'maze': maze, 'row': row, 'col': col}
+
+    r = requests.get(hostname + rest_prefix + "/maze_move", params=payload)
+    response = r.json()
+    print response
+
 if __name__ == "__main__":
 
     # generate_random_word()
@@ -55,4 +63,12 @@ if __name__ == "__main__":
 
     # image_colors("722776200100")
 
-    test_my_thing()
+
+    dir = "west"
+    maze = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
+    row = 2
+    col = 1
+
+    maze_test(dir, maze, row, col)
+
+
