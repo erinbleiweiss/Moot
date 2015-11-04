@@ -7,6 +7,20 @@
 //
 
 import UIKit
+extension String {
+    
+    subscript (i: Int) -> Character {
+        return self[self.startIndex.advancedBy(i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
+    }
+}
 
 class MazeLevelViewController: UIViewController {
     var color: String!
@@ -25,25 +39,24 @@ class MazeLevelViewController: UIViewController {
                      12, 9, 6,  9,  13,
                       7,  6, 10, 2,  3]
         
-        let size = tiles.count
+        let length = tiles.count
+        let size_double = sqrt(Double(length))
+        let size = Int(size_double)
+        
         var row = 0
         var col = 0
         
         for tile in tiles{
             let walls = self.getWalls(tile)
             
-//            let north = Int(walls[0]) == 0 ? false : true
-//            let west = Int(walls[1]) == 0 ? false : true
-//            let south = Int(walls[2]) == 0 ? false : true
-//            let east = Int(walls[3]) == 0 ? false : true
             
-            let north = true
-            let south = true
-            let east = true
-            let west = true
-            
-            let frame = CGRect(x: 100 + (100 * (col+1)), y: (100 * row), width: 100, height: 100)
-            let customView = MazeTile(frame: frame, north: north, west: west, south: south, east: east)
+            let north = evaluateWall(walls[0])
+            let west = evaluateWall(walls[1])
+            let south = evaluateWall(walls[2])
+            let east = evaluateWall(walls[3])
+
+            let frame = CGRect(x: 100 + (100 * (col+1)), y: 200 + (100 * row), width: 100, height: 100)
+            let customView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
             customView.backgroundColor = UIColor(white: 1, alpha: 0.5)
             
             self.view.addSubview(customView)
@@ -58,13 +71,17 @@ class MazeLevelViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func getWalls(num: Int) -> [String] {
+    func getWalls(num: Int) -> String {
         var str = String(num, radix: 2)         // Decimal to binary
-        str = String(format: "%4d", str)        // Pad with zeroes
-        let result = Array(arrayLiteral: str)   // String to array
-    
-        return result
+        let binaryInt = Int(str)
+        str = String(format: "%04d", binaryInt!)        // Pad with zeroes
+        return str
     }
+    
+    func evaluateWall (ch: Character) -> Bool{
+        return (ch == "1")
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -14,11 +14,14 @@ class MazeTile: UIView {
     var west: Bool?
     var south: Bool?
     var east: Bool?
+    
+    var tileSize: Int!
 
-    init(frame: CGRect, north: Bool, west: Bool, south: Bool, east: Bool) {
+    init(north: Bool, west: Bool, south: Bool, east: Bool, frame: CGRect) {
         self.north = north
         self.west = west
         self.south = south
+        self.east = east
         super.init(frame: frame)
     }
     
@@ -27,17 +30,46 @@ class MazeTile: UIView {
     }
     
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.tileSize = Int(self.frame.width)
+    }
+    
     override func drawRect(rect: CGRect) {
+        
         let borderWidth: CGFloat = 5.0
         
         let path = UIBezierPath()
         path.lineWidth = borderWidth
         
-        path.moveToPoint(CGPoint(x: 0, y: 0))
-        path.addLineToPoint(CGPoint(x: 100, y: 0))
+        // Draw North
+        if (self.north!){
+            path.moveToPoint(CGPoint(x: 0, y: 0))
+            path.addLineToPoint(CGPoint(x: tileSize, y: 0))
+        }
+
         
-        path.moveToPoint(CGPoint(x: 0, y: 0))
-        path.addLineToPoint(CGPoint(x: 0, y: 100))
+        // Draw West
+        if (self.west!){
+            path.moveToPoint(CGPoint(x: 0, y: 0))
+            path.addLineToPoint(CGPoint(x: 0, y: tileSize))
+        }
+
+
+        // Draw South
+        if (self.south!){
+            path.moveToPoint(CGPoint(x: 0, y: tileSize))
+            path.addLineToPoint(CGPoint(x: tileSize, y: tileSize))
+        }
+
+        
+        // Draw East
+        if (self.east!){
+            path.moveToPoint(CGPoint(x: tileSize, y: 0))
+            path.addLineToPoint(CGPoint(x: tileSize, y: tileSize))
+        }
+
 
         UIColor.blueColor().setStroke()
         
