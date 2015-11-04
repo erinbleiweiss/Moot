@@ -98,6 +98,7 @@ class MazeLevelViewController: GenericLevelViewController {
     @IBAction func moveUp(sender: AnyObject) {
         mazeMove("north"){ responseObject, error in
             print(responseObject!)
+            self.updateToken()
             
             print(self.pos_row)
             print(self.pos_col)
@@ -107,6 +108,7 @@ class MazeLevelViewController: GenericLevelViewController {
     @IBAction func moveLeft(sender: AnyObject) {
         mazeMove("west"){ responseObject, error in
             print(responseObject!)
+            self.updateToken()
             
             print(self.pos_row)
             print(self.pos_col)
@@ -116,6 +118,7 @@ class MazeLevelViewController: GenericLevelViewController {
     @IBAction func moveDown(sender: AnyObject) {
         mazeMove("south"){ responseObject, error in
             print(responseObject!)
+            self.updateToken()
             
             print(self.pos_row)
             print(self.pos_col)
@@ -125,11 +128,17 @@ class MazeLevelViewController: GenericLevelViewController {
     @IBAction func moveRight(sender: AnyObject) {
         mazeMove("east"){ responseObject, error in
             print(responseObject!)
+            self.updateToken()
             
             print(self.pos_row)
             print(self.pos_col)
             
         }
+    }
+    
+    func updateToken(){
+        self.tokenView.frame = CGRect(x: 50 + (100 * (self.pos_col+1)), y: 200 + (100 * self.pos_row), width: 100, height: 100)
+        self.tokenView.setNeedsDisplay()
     }
 
     func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
@@ -145,7 +154,7 @@ class MazeLevelViewController: GenericLevelViewController {
                     
                     self.pos_row = Int(new_row)!
                     self.pos_col = Int(new_col)!
-                    self.tokenView.setNeedsDisplay()
+                    
                     print("moved")
                 } else{
                     print("hit wall")
