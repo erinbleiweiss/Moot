@@ -8,6 +8,7 @@ import Image
 import math
 from math import sqrt
 import random
+from random import shuffle
 import numpy
 from StringIO import StringIO
 import pdb
@@ -348,17 +349,13 @@ class Tile (object):
         # 3  = __SE     7  = _WSE     11 = N_SE     15 = NWSE
 
         # Convert 0/1 values to True/False
-        walls = [i=="1" for i in binary]
+        walls = [(i=="1") for i in binary]
 
-        north = walls[0]
-        west = walls[1]
-        south = walls[2]
-        east = walls[3]
-
-        self.north = north
-        self.west = west
-        self.south = south
-        self.east = east
+        self.north = walls[0]
+        self.west = walls[1]
+        self.south = walls[2]
+        self.east = walls[3]
+        self.visited = 0
 
     def __repr__(self):
         # Print tile as preset number (from above)
@@ -378,7 +375,7 @@ class Maze (object):
         self.maze = []
 
         if tiles is None:
-            # Initialize maze as grid of tiles with all walls filled
+            # Initialize maze as grid (2D list) of tiles with all walls filled
             for row in range (0, self.width):
                 current_row = []
                 for col in range (0, self.height):
@@ -394,29 +391,54 @@ class Maze (object):
         return str(self.maze)
 
 
-    def carve_passages (self):
-        return
+@app.route('/v1/generate_maze', methods=["GET"])
+def generate_maze():
+    """
+    Generates a random maze given a specified grid, using a recursive
+    backtracking algorithm
 
+    Uses helper function carve_passages for recursion
 
+    return:         Maze with tile presets as underscore_delineated_string
+                    ex: 12_8_10_10_9_7_5_12_9_5...
+    """
 
+    row = 0          # Starting x coordinate
+    col = 0          # Starting y coordinate
 
-@app.route('/v1/test_my_thing', methods=["GET"])
-def test_my_thing():
-    tiles = [12, 8, 10, 10, 9,
-             7,  5, 12, 9,  5,
-             14, 3, 5,  6,  3,
-             12, 9, 6,  9,  13,
-             7,  6, 10, 2,  3]
+    grid = Maze(5, 5)
 
-
-    myMaze = Maze(5, 5, tiles)
-    print(myMaze)
-
+    carve_passages(row, col, grid)
+    logger.debug(grid)
 
     response = {}
-    response["status"] = "ok"
     return jsonify(response)
 
+
+def carve_passages(row, col, grid):
+
+    directions = ['north', 'east', 'south', 'west']
+    shuffle(directions)
+    dx = {'north': 0, 'east': 1, 'south': 0, 'west': -1}
+    dy = {'north': -1, 'east': 0, 'south': 1, 'west': 0}
+    opposite = {'north': 'south', 'east': 'west', 'south': 'north', 'west': 'east'}
+
+    width = len(grid.maze[0])
+    height = len(grid.maze)
+
+    for dir in directions:
+        row_new = row + dy[dir]
+        col_new = col + dx[dir]
+
+
+        row_valid = (0 <= row_new < height)
+        col_valid = (0  <= col_new < width)
+
+        if row_valid and col_valid and grid.maze[row_new][col_new].visited == 0:
+            setattr(grid.maze[row][col], dir, 0)
+            setattr(grid.maze[row_new][col_new], opposite[dir], 0)
+            grid.maze[row_new][col_new].visited = 1
+            carve_passages(row_new, col_new, grid)
 
 
 @app.route('/v1/maze_move', methods=["GET"])
@@ -442,74 +464,77 @@ def move():
     row = int(request.args.get('row'))
     col = int(request.args.get('col'))
 
-    logger.debug("********************")
     logger.debug(maze)
 
     maze = maze.split('_')
     size = int(len(maze) ** .5)
 
+    # 1D to square 2D list
     maze = [maze[i:i+size] for i in range(0, len(maze), size)]
     print(maze)
 
     response = {}
 
     current_tile = Tile(int(maze[row][col]))
-    logger.debug(current_tile)
-    logger.debug(("Started at: {}").format(current_tile))
+    logger.info(("Started at: {}").format(current_tile))
+
+    logger.critical(getattr(current_tile, dir))
+
 
     if dir == "north":
         if current_tile.north:
             response["success"] = "false"
-            logger.debug("Hit a wall moving north")
+            logger.info("Hit a wall moving north")
             return jsonify(response)
 
         response["success"] = "true"
         response["row"] = row - 1
         response["col"] = col
         new_tile = Tile(int(maze[row-1][col]))
-        logger.debug(("Moved north to: {}").format(new_tile))
+        logger.info(("Moved north to: {}").format(new_tile))
 
         return jsonify(response)
 
     if dir == "east":
         if current_tile.east:
+            logger.debug(current_tile.east)
             response["success"] = "false"
-            logger.debug("Hit a wall moving west")
+            logger.info("Hit a wall moving west")
             return jsonify(response)
 
         response["success"] = "true"
         response["row"] = row
         response["col"] = col + 1
         new_tile = Tile(int(maze[row][col+1]))
-        logger.debug(("Moved east to: {}").format(new_tile))
+        logger.info(("Moved east to: {}").format(new_tile))
 
         return jsonify(response)
 
     if dir == "south":
         if current_tile.south:
             response["success"] = "false"
-            logger.debug("Hit a wall moving south")
+            logger.info("Hit a wall moving south")
             return jsonify(response)
 
         response["success"] = "true"
         response["row"] = row + 1
         response["col"] = col
         new_tile = Tile(int(maze[row+1][col]))
-        logger.debug(("Moved south to: {}").format(new_tile))
+        logger.info(("Moved south to: {}").format(new_tile))
 
         return jsonify(response)
 
     if dir == "west":
         if current_tile.west:
             response["success"] = "false"
-            logger.debug("Hit a wall moving east")
+            logger.info("Hit a wall moving east")
             return jsonify(response)
 
         response["success"] = "true"
         response["row"] = row
         response["col"] = col - 1
         new_tile = Tile(int(maze[row][col-1]))
-        logger.debug(("Moved west to: {}").format(new_tile))
+        logger.info(("Moved west to: {}").format(new_tile))
 
         return jsonify(response)
 

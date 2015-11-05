@@ -42,9 +42,8 @@ def image_colors(upc):
     print response
 
 
-
-def test_my_thing():
-    r = requests.get(hostname + rest_prefix + "/test_my_thing")
+def generate_maze():
+    r = requests.get(hostname + rest_prefix + "/generate_maze")
     response = r.json()
     print response
 
@@ -69,6 +68,6 @@ if __name__ == "__main__":
     row = 2
     col = 1
 
-    maze_test(dir, maze, row, col)
+    # maze_test(dir, maze, row, col)
 
-
+    generate_maze()
