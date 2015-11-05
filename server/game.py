@@ -357,7 +357,7 @@ class Tile (object):
         self.east = walls[3]
         self.visited = 0
 
-    def __repr__(self):
+    def get_preset(self):
         # Print tile as preset number (from above)
         self.north = 1 if self.north else 0
         self.west = 1 if self.west else 0
@@ -366,6 +366,9 @@ class Tile (object):
 
         binary = ("{}{}{}{}").format(self.north, self.west, self.south, self.east)
         return str(int(binary, 2))
+
+    def __repr__(self):
+        return self.get_preset()
 
 
 class Maze (object):
@@ -399,19 +402,40 @@ def generate_maze():
 
     Uses helper function carve_passages for recursion
 
+    Request parameters
+    width:          Desired width of maze
+    height:         Desired height of maze
+
     return:         Maze with tile presets as underscore_delineated_string
                     ex: 12_8_10_10_9_7_5_12_9_5...
     """
 
+    width = int(request.args.get('width'))
+    height = int(request.args.get('height'))
+
     row = 0          # Starting x coordinate
     col = 0          # Starting y coordinate
 
-    grid = Maze(5, 5)
-
+    grid = Maze(width, height)
     carve_passages(row, col, grid)
     logger.debug(grid)
 
+    flat_grid = []
+    for row in grid.maze:
+        for col in row:
+            flat_grid.append(col.get_preset())
+
+    maze_string = ''
+    for i in flat_grid:
+        maze_string += str(i)
+        maze_string += '_'
+    maze_string = maze_string[:-1]
+
+    logger.debug(maze_string)
+
     response = {}
+    response['maze'] = maze_string
+
     return jsonify(response)
 
 
@@ -449,8 +473,6 @@ def move():
 
     Request parameters
     dir:                direction indicated (north, east, south, or west)
-    maze:               tile presets as underscore_delineated_string
-                        ex: 12_8_10_10_9_7_5_12_9_5...
     row:                row (y) of location in 2D maze grid
     col:                column (x) of location in 2D maze grid
     return:             {"success": true or false
