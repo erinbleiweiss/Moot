@@ -413,11 +413,8 @@ def generate_maze():
     width = int(request.args.get('width'))
     height = int(request.args.get('height'))
 
-    row = 0          # Starting x coordinate
-    col = 0          # Starting y coordinate
-
     grid = Maze(width, height)
-    carve_passages(row, col, grid)
+    carve_passages(0, 0, grid)
     logger.debug(grid)
 
     flat_grid = []
