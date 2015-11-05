@@ -33,7 +33,9 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     
-    let tilesString = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
+//    let tilesString = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
+    
+    var tileString: String!
     
     var pos_row = 0
     var pos_col = 0
@@ -41,45 +43,56 @@ class MazeLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let tiles = [12, 8, 10, 10, 9,
-                      7, 5, 12, 9,  5,
-                     14, 3, 5,  6,  3,
-                     12, 9, 6,  9,  13,
-                      7, 6, 10, 2,  3]
         
-        let length = tiles.count
-        let size_double = sqrt(Double(length))
-        let size = Int(size_double)
+        var tiles = [String]!()
         
-        var row = 0
-        var col = 0
+//        let tiles = [12, 8, 10, 10, 9,
+//                      7, 5, 12, 9,  5,
+//                     14, 3, 5,  6,  3,
+//                     12, 9, 6,  9,  13,
+//                      7, 6, 10, 2,  3]
         
-        for tile in tiles{
-            let walls = self.getWalls(tile)
+        generateMaze(5, height: 5){ responseObject, error in
+            self.tileString = responseObject!
+            tiles = self.tileString.componentsSeparatedByString("_")
             
+            let length = tiles.count
+            let size_double = sqrt(Double(length))
+            let size = Int(size_double)
             
-            let north = evaluateWall(walls[0])
-            let west = evaluateWall(walls[1])
-            let south = evaluateWall(walls[2])
-            let east = evaluateWall(walls[3])
-
-            let frame = CGRect(x: 50 + (100 * (col+1)), y: 200 + (100 * row), width: 100, height: 100)
-            let customView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
-            customView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+            var row = 0
+            var col = 0
             
-            self.view.addSubview(customView)
-            col++
-            if (col >= size){
-                col=0
-                row++
+            for tile in tiles{
+                
+                let walls = self.getWalls(Int(tile)!)
+                
+                let north = self.evaluateWall(walls[0])
+                let west = self.evaluateWall(walls[1])
+                let south = self.evaluateWall(walls[2])
+                let east = self.evaluateWall(walls[3])
+                
+                let frame = CGRect(x: 50 + (100 * (col+1)), y: 200 + (100 * row), width: 100, height: 100)
+                let customView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
+                customView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+                
+                self.view.addSubview(customView)
+                col++
+                if (col >= size){
+                    col=0
+                    row++
+                }
             }
+         
+            
+            let tokenFrame = CGRect(x: 50 + (100 * (self.pos_col+1)), y: 200 + (100 * self.pos_row), width: 100, height: 100)
+            self.tokenView = MazeToken(frame: tokenFrame)
+            self.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
+            self.view.addSubview(self.tokenView)
+            
         }
-        
-        let tokenFrame = CGRect(x: 50 + (100 * (pos_col+1)), y: 200 + (100 * pos_row), width: 100, height: 100)
-        tokenView = MazeToken(frame: tokenFrame)
-        tokenView.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        self.view.addSubview(tokenView)
+
+
         
     }
     
@@ -140,10 +153,25 @@ class MazeLevelViewController: GenericLevelViewController {
         self.tokenView.frame = CGRect(x: 50 + (100 * (self.pos_col+1)), y: 200 + (100 * self.pos_row), width: 100, height: 100)
         self.tokenView.setNeedsDisplay()
     }
+    
+    func generateMaze(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/generate_maze"
+        Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in
+            
+            let json = JSON(result.value!)
+            if let maze = json["maze"].string{
+                completionHandler(responseObject: maze, error: result.error as? NSError)
+            } else {
+                completionHandler(responseObject: "Could not generate maze", error: result.error as? NSError)
+            }
+            
+            
+        }
+    }
 
     func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/maze_move"
-        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": tilesString, "row": String(self.pos_row), "col": String(self.pos_col)]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": tileString, "row": String(self.pos_row), "col": String(self.pos_col)]).responseJSON { (_, _, result) in
             
             
             let json = JSON(result.value!)
