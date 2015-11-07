@@ -501,6 +501,7 @@ def move():
     dx = {'north': 0, 'east': 1, 'south': 0, 'west': -1}
     dy = {'north': -1, 'east': 0, 'south': 1, 'west': 0}
 
+    # If wall exists
     if getattr(current_tile, dir):
         response["success"] = "false"
         logger.info(("Hit a wall moving {}").format(dir))
