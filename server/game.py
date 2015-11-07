@@ -440,6 +440,7 @@ def carve_passages(row, col, grid):
 
     directions = ['north', 'east', 'south', 'west']
     shuffle(directions)
+
     dx = {'north': 0, 'east': 1, 'south': 0, 'west': -1}
     dy = {'north': -1, 'east': 0, 'south': 1, 'west': 0}
     opposite = {'north': 'south', 'east': 'west', 'south': 'north', 'west': 'east'}
@@ -450,7 +451,6 @@ def carve_passages(row, col, grid):
     for dir in directions:
         row_new = row + dy[dir]
         col_new = col + dx[dir]
-
 
         row_valid = (0 <= row_new < height)
         col_valid = (0  <= col_new < width)
@@ -469,7 +469,9 @@ def move():
     new position
 
     Request parameters
-    dir:                direction indicated (north, east, south, or west)
+    dir:                direction indicated (north, east, south, or west)'
+    maze:               Maze with tile presets as underscore_delineated_string
+                        ex: 12_8_10_10_9_7_5_12_9_5...
     row:                row (y) of location in 2D maze grid
     col:                column (x) of location in 2D maze grid
     return:             {"success": true or false
@@ -490,72 +492,27 @@ def move():
 
     # 1D to square 2D list
     maze = [maze[i:i+size] for i in range(0, len(maze), size)]
-    print(maze)
 
     response = {}
 
     current_tile = Tile(int(maze[row][col]))
     logger.info(("Started at: {}").format(current_tile))
 
-    logger.critical(getattr(current_tile, dir))
+    dx = {'north': 0, 'east': 1, 'south': 0, 'west': -1}
+    dy = {'north': -1, 'east': 0, 'south': 1, 'west': 0}
 
+    if getattr(current_tile, dir):
+        response["success"] = "false"
+        logger.info(("Hit a wall moving {}").format(dir))
+        return jsonify (response)
 
-    if dir == "north":
-        if current_tile.north:
-            response["success"] = "false"
-            logger.info("Hit a wall moving north")
-            return jsonify(response)
+    response["success"] = "true"
+    response["row"] = row + dy[dir]
+    response["col"] = col + dx[dir]
+    new_tile = Tile(int(maze[row + dy[dir]][col + dx[dir]]))
+    logger.info(("Moved {} to: {}").format(dir, new_tile))
 
-        response["success"] = "true"
-        response["row"] = row - 1
-        response["col"] = col
-        new_tile = Tile(int(maze[row-1][col]))
-        logger.info(("Moved north to: {}").format(new_tile))
-
-        return jsonify(response)
-
-    if dir == "east":
-        if current_tile.east:
-            logger.debug(current_tile.east)
-            response["success"] = "false"
-            logger.info("Hit a wall moving west")
-            return jsonify(response)
-
-        response["success"] = "true"
-        response["row"] = row
-        response["col"] = col + 1
-        new_tile = Tile(int(maze[row][col+1]))
-        logger.info(("Moved east to: {}").format(new_tile))
-
-        return jsonify(response)
-
-    if dir == "south":
-        if current_tile.south:
-            response["success"] = "false"
-            logger.info("Hit a wall moving south")
-            return jsonify(response)
-
-        response["success"] = "true"
-        response["row"] = row + 1
-        response["col"] = col
-        new_tile = Tile(int(maze[row+1][col]))
-        logger.info(("Moved south to: {}").format(new_tile))
-
-        return jsonify(response)
-
-    if dir == "west":
-        if current_tile.west:
-            response["success"] = "false"
-            logger.info("Hit a wall moving east")
-            return jsonify(response)
-
-        response["success"] = "true"
-        response["row"] = row
-        response["col"] = col - 1
-        new_tile = Tile(int(maze[row][col-1]))
-        logger.info(("Moved west to: {}").format(new_tile))
-
-        return jsonify(response)
+    return jsonify(response)
 
 if __name__ == "__main__":
     app.run(debug=True)

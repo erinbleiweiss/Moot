@@ -50,7 +50,7 @@ def generate_maze(width, height):
     print response
 
 
-def maze_test(dir, maze, row, col):
+def maze_move(dir, maze, row, col):
     payload = {'dir': dir, 'maze': maze, 'row': row, 'col': col}
 
     r = requests.get(hostname + rest_prefix + "/maze_move", params=payload)
@@ -70,6 +70,8 @@ if __name__ == "__main__":
     row = 2
     col = 1
 
-    # maze_test(dir, maze, row, col)
+
+
+    maze_move(dir, maze, row, col)
 
     generate_maze(5, 5)
