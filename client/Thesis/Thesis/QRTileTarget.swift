@@ -36,11 +36,15 @@ class QRTileTarget: UIView {
         let rectangle = CGRect(x: 0, y:0, width: width, height: height)
         let path = UIBezierPath(rect: rectangle)
         
-        UIColor.blueColor().setFill()
+        UIColor.blackColor().setStroke()
+        path.lineWidth = 3
         path.stroke()
         
     }
     
     
 
+    
+    
+    
 }

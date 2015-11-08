@@ -20,6 +20,7 @@ class DragAndDropLevelViewController: GenericLevelViewController {
         let frame2 = CGRect(x: 0, y: 0, width: 100, height: 100)
         let targetView = QRTileTarget(sideLength: 100, id: 0, frame: frame2)
         targetView.center = CGPointMake(300, 300)
+        targetView.backgroundColor = UIColor(white: 1, alpha: 0.5)
         targets.append(targetView)
         self.view.addSubview(targetView)
         
