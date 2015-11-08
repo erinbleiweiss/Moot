@@ -1,0 +1,76 @@
+//
+//  QRTile.swift
+//  Thesis
+//
+//  Created by Erin Bleiweiss on 11/8/15.
+//  Copyright © 2015 Erin Bleiweiss. All rights reserved.
+//
+
+import UIKit
+
+class QRTile: UIView {
+
+    /*
+    // Only override drawRect: if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func drawRect(rect: CGRect) {
+        // Drawing code
+    }
+    */
+    
+    private var xOffset: CGFloat = 0.0
+    private var yOffset: CGFloat = 0.0
+    
+    init(sideLength: CGFloat, frame: CGRect) {
+        super.init(frame: frame)
+        
+        let scale = sideLength / frame.width
+        self.frame = CGRect(x: 0, y: 0, width: frame.width * scale, height: frame.height * scale)
+        
+        self.userInteractionEnabled = true
+    }
+    
+    required init(coder aDecoder:NSCoder){
+        fatalError("use init(sideLength:)")
+    }
+    
+    
+    override func drawRect(rect: CGRect) {
+        
+        let height = rect.height
+        let width = rect.width
+        
+        let rectangle = CGRect(x: 0, y:0, width: width, height: height)
+        let path = UIBezierPath(rect: rectangle)
+        
+        UIColor.blueColor().setFill()
+        path.fill()
+        
+    }
+    
+    // Get location of first touch
+    // Calculate distance from touch to tile's center
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
+            let point = touch.locationInView(self.superview)
+            xOffset = point.x - self.center.x
+            yOffset = point.y - self.center.y
+        }
+    }
+    
+    // Relocate tile to location which finger moved
+    // Adjust location by xOffset, yOffset, so tile doesn't center under finger
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
+            let point = touch.locationInView(self.superview)
+            self.center = CGPointMake(point.x - xOffset, point.y - yOffset)
+        }
+    }
+    
+    
+    // When touch ends (finger is lifted), move tile to final location
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.touchesMoved(touches, withEvent: event)
+    }
+
+}

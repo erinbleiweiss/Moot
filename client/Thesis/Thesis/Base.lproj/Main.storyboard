@@ -122,7 +122,7 @@
                                 <rect key="frame" x="273" y="520" width="54" height="30"/>
                                 <state key="normal" title="Camera"/>
                                 <connections>
-                                    <segue destination="8eb-Af-hHg" kind="show" id="tS0-xo-39y"/>
+                                    <segue destination="8eb-Af-hHg" kind="presentation" id="UoD-C7-xF4"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVR-8U-b8V">
@@ -198,6 +198,57 @@
             </objects>
             <point key="canvasLocation" x="1551" y="1669"/>
         </scene>
+        <!--Drag And Drop Level View Controller-->
+        <scene sceneID="KaS-BI-lkE">
+            <objects>
+                <viewController id="lXw-5a-cOg" customClass="DragAndDropLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5j9-vq-aHd"/>
+                        <viewControllerLayoutGuide type="bottom" id="wPP-x3-9kk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gfi-bz-KYW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5U-sq-BGJ">
+                                <rect key="frame" x="273" y="539" width="54" height="30"/>
+                                <state key="normal" title="Camera"/>
+                                <connections>
+                                    <segue destination="vvG-nh-eYh" kind="presentation" id="S0t-Hu-WMN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zKX-Ja-hYc">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="dEX-Nz-iBk">
+                            <connections>
+                                <segue destination="4sZ-RF-yCw" kind="unwind" unwindAction="cancelToLevelPicker:" id="JiX-Ls-N6N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJe-nj-7AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4sZ-RF-yCw" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1551" y="2443"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bag-BL-CSf">
+            <objects>
+                <navigationController id="yEc-8Y-sKB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0PQ-nV-8Hx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lXw-5a-cOg" kind="relationship" relationship="rootViewController" id="oLy-am-bfA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dls-49-x1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="739" y="2443"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="XAE-JQ-y1Q">
             <objects>
@@ -239,6 +290,48 @@
                 <exit id="WmJ-Lx-9B4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2967" y="1669"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zot-HT-Szs">
+            <objects>
+                <navigationController id="vvG-nh-eYh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r3Q-Ns-Mgd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ah2-6R-rKC" kind="relationship" relationship="rootViewController" id="iDd-WG-b0K"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ivd-2b-Xkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="2443"/>
+        </scene>
+        <!--Drag And Drop Camera View Controller-->
+        <scene sceneID="pIG-vp-vI6">
+            <objects>
+                <viewController id="ah2-6R-rKC" customClass="DragAndDropCameraViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lhk-cE-Anp"/>
+                        <viewControllerLayoutGuide type="bottom" id="RXV-a8-9bJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hiv-sL-baw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YoF-X1-g5N">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="GBo-kO-mLU">
+                            <connections>
+                                <segue destination="lT8-vv-92n" kind="unwind" unwindAction="cancelToDragAndDropLevelViewController:" id="K37-ep-Kkx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGX-lt-RTn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lT8-vv-92n" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2967" y="2443"/>
         </scene>
         <!--Hangman Camera View Controller-->
         <scene sceneID="rU6-MS-vO6">
@@ -298,6 +391,13 @@
                                     <segue destination="ERG-8u-MVy" kind="show" id="KUY-Q0-eOk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MML-dE-S9Z">
+                                <rect key="frame" x="427" y="103" width="49" height="30"/>
+                                <state key="normal" title="Level 3"/>
+                                <connections>
+                                    <segue destination="yEc-8Y-sKB" kind="show" id="umb-dE-Ma3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -329,6 +429,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JzY-p0-TrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="739" y="935"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bVs-j6-QSF">
+            <objects>
+                <viewController id="LOm-aV-YxL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eeE-j2-jPw"/>
+                        <viewControllerLayoutGuide type="bottom" id="bhP-OU-tzA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hgl-Vg-Pb4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="guK-q2-3xA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>
