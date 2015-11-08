@@ -13,7 +13,7 @@ protocol TileDragDelegateProtocol {
 }
 
 
-class QRTile: UIView {
+class QRTile: UIImageView {
 
     var id: Int
     var isMatched: Bool = false
@@ -24,13 +24,13 @@ class QRTile: UIView {
     var dragDelegate: TileDragDelegateProtocol?
     
     
-    init(sideLength: CGFloat, id: Int, frame: CGRect) {
+    init(sideLength: CGFloat, id: Int, image: UIImage) {
         self.id = id
         
-        super.init(frame: frame)
+        super.init(image: image)
         
-        let scale = sideLength / frame.width
-        self.frame = CGRect(x: 0, y: 0, width: frame.width * scale, height: frame.height * scale)
+//        let scale = sideLength / image.width
+//        self.frame = CGRect(x: 0, y: 0, width: frame.width * scale, height: frame.height * scale)
         
         self.userInteractionEnabled = true
     }

@@ -24,12 +24,27 @@ class DragAndDropLevelViewController: GenericLevelViewController {
         targets.append(targetView)
         self.view.addSubview(targetView)
         
-        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let tileView = QRTile(sideLength: 100, id: 0, frame: frame)
+//        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let image: UIImage = cropImage(UIImage(named: "qr")!)
+        let tileView = QRTile(sideLength: 100, id: 2, image: image)
         tileView.center = CGPointMake(500, 500)
         tileView.dragDelegate = self
         self.view.addSubview(tileView)
     
+    }
+    
+    
+    
+    func cropImage(qr: UIImage) -> UIImage {
+        let imgSize = qr.size
+        
+        let crop = CGRectMake(0, 0, imgSize.width / 5, imgSize.height / 5)
+        
+        let cgImage = CGImageCreateWithImageInRect(qr.CGImage, crop)
+        let image: UIImage = UIImage(CGImage: cgImage!)
+        
+        return image
+
     }
     
     
