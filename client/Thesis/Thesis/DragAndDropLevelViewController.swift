@@ -11,21 +11,55 @@ import Alamofire
 
 class DragAndDropLevelViewController: GenericLevelViewController {
 
-    @IBAction func cancelToDragAndDropLevelViewController(segue:UIStoryboardSegue) {
-        
-    }
+    private var targets = [QRTileTarget]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let frame2 = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let targetView = QRTileTarget(sideLength: 100, id: 0, frame: frame2)
+        targetView.center = CGPointMake(300, 300)
+        targets.append(targetView)
+        self.view.addSubview(targetView)
         
-        let frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-        let customView = QRTile(sideLength: 100, frame: frame)
-        
-        self.view.addSubview(customView)
+        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let tileView = QRTile(sideLength: 100, id: 0, frame: frame)
+        tileView.center = CGPointMake(500, 500)
+        tileView.dragDelegate = self
+        self.view.addSubview(tileView)
     
     }
+    
+    
+    func placeTile(tileView: QRTile, targetView: QRTileTarget) {
+        
+        targetView.isMatched = true
+        tileView.isMatched = true
+        
+        // Disable user interactions for tile
+        tileView.userInteractionEnabled = false
+        
+        // Animation
+        UIView.animateWithDuration(0.35,
+            delay: 0.00,
+            options: UIViewAnimationOptions.CurveEaseOut,
+            // During animation:
+                // Move tile to target center
+                // Set transform to "none" (straighten tile)
+            animations: {
+                tileView.center = targetView.center
+                tileView.transform = CGAffineTransformIdentity
+        },
+            // After animation:
+                // Hide targetView
+            completion: {
+                (value: Bool) in
+                targetView.hidden = true
+        })
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -33,14 +67,39 @@ class DragAndDropLevelViewController: GenericLevelViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelToDragAndDropLevelViewController(segue:UIStoryboardSegue) {
+        
     }
-    */
 
 }
+
+extension DragAndDropLevelViewController: TileDragDelegateProtocol {
+    // A tile was dragged, check if matches target
+    
+    func tileView(tileView: QRTile, didDragToPoint point: CGPoint) {
+        var targetView: QRTileTarget?
+        for tv in targets {
+            if tv.frame.contains(point) && !tv.isMatched {
+                targetView = tv
+                break
+            }
+        }
+        
+        // Check if target was found
+        if let targetView = targetView {
+            // Check if is match
+            if targetView.id == tileView.id {
+                self.placeTile(tileView, targetView: targetView)
+            }
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+

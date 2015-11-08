@@ -8,20 +8,25 @@
 
 import UIKit
 
+protocol TileDragDelegateProtocol {
+    func tileView(tileView: QRTile, didDragToPoint: CGPoint)
+}
+
+
 class QRTile: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
+    var id: Int
+    var isMatched: Bool = false
     
     private var xOffset: CGFloat = 0.0
     private var yOffset: CGFloat = 0.0
     
-    init(sideLength: CGFloat, frame: CGRect) {
+    var dragDelegate: TileDragDelegateProtocol?
+    
+    
+    init(sideLength: CGFloat, id: Int, frame: CGRect) {
+        self.id = id
+        
         super.init(frame: frame)
         
         let scale = sideLength / frame.width
@@ -71,6 +76,9 @@ class QRTile: UIView {
     // When touch ends (finger is lifted), move tile to final location
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.touchesMoved(touches, withEvent: event)
+        dragDelegate?.tileView(self, didDragToPoint: self.center)
     }
 
 }
+
+

@@ -9,30 +9,11 @@
 import UIKit
 import Alamofire
 
-extension String {
-    
-    subscript (i: Int) -> Character {
-        return self[self.startIndex.advancedBy(i)]
-    }
-    
-    subscript (i: Int) -> String {
-        return String(self[i] as Character)
-    }
-    
-    subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
-    }
-}
-
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
     @IBOutlet weak var colorLabel: UILabel!
     
-    @IBAction func cancelToMazeLevelViewController(segue:UIStoryboardSegue) {
-        self.colorLabel.text = color
-    }
-    
-    
+
 //    let tilesString = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
     
     var tileString: String!
@@ -202,15 +183,25 @@ class MazeLevelViewController: GenericLevelViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelToMazeLevelViewController(segue:UIStoryboardSegue) {
+        self.colorLabel.text = color
     }
-    */
+    
 
+}
+
+
+extension String {
+    
+    subscript (i: Int) -> Character {
+        return self[self.startIndex.advancedBy(i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
+    }
 }
