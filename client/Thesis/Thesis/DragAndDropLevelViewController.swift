@@ -16,35 +16,18 @@ class DragAndDropLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let frame2 = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let targetView = QRTileTarget(sideLength: 100, id: 0, frame: frame2)
-        targetView.center = CGPointMake(300, 300)
-        targetView.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        targets.append(targetView)
-        self.view.addSubview(targetView)
         
-//        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let image: UIImage = UIImage(named: "qr")!
-        
-        let rows = 5
-        let cols = 5
+        let rows = 3
+        let cols = 3
         let tileMargin = 10
         
+        let image: UIImage = UIImage(named: "qr")!
         generateTiles(image, rows: rows, cols: cols)
+        generateTargets(rows, cols: cols)
         
-        var idx = 0
-        for row in 0...rows-1 {
-            for col in 0...cols-1 {
-                self.tiles[idx].center = CGPointMake(100 + CGFloat(col) * self.tiles[idx].frame.width
-                                            + (CGFloat(col) * CGFloat(tileMargin)),
-                                            500 + CGFloat(row) * self.tiles[idx].frame.height
-                                            + (CGFloat(row) * CGFloat(tileMargin)))
-                self.tiles[idx].dragDelegate = self
-                self.view.addSubview(self.tiles[idx])
-                idx++
-            }
-        }
+        self.tiles = self.tiles.shuffle()
+        displayTiles(tileMargin, rows: rows, cols: cols)
+
         
     
     }
@@ -72,6 +55,42 @@ class DragAndDropLevelViewController: GenericLevelViewController {
         }
     
     }
+    
+    func displayTiles(tileMargin: Int, rows: Int, cols: Int){
+        var idx = 0
+        for row in 0...rows-1 {
+            for col in 0...cols-1 {
+                self.tiles[idx].center = CGPointMake(100 + CGFloat(col) * self.tiles[idx].frame.width
+                    + (CGFloat(col) * CGFloat(tileMargin)),
+                    500 + CGFloat(row) * self.tiles[idx].frame.height
+                        + (CGFloat(row) * CGFloat(tileMargin)))
+                self.tiles[idx].dragDelegate = self
+                self.view.addSubview(self.tiles[idx])
+                idx++
+            }
+        }
+    }
+    
+    func generateTargets(rows: Int, cols: Int){
+        
+        let width = self.tiles[0].frame.width
+        let height = self.tiles[0].frame.height
+        
+        var id = 0
+        for row in 0...rows-1{
+            for col in 0...cols-1{
+                let frame = CGRect(x: 0, y: 0, width: width, height: height)
+                let targetView = QRTileTarget(id: id, frame: frame)
+                targetView.center = CGPointMake(100 + CGFloat(col) * width, 150 + CGFloat(row) * height)
+                targetView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+                self.targets.append(targetView)
+                self.view.addSubview(targetView)
+                id++
+            }
+        }
+        
+    }
+    
     
     
     func placeTile(tileView: QRTile, targetView: QRTileTarget) {
@@ -138,9 +157,28 @@ extension DragAndDropLevelViewController: TileDragDelegateProtocol {
     
 }
 
+extension CollectionType {
+    /// Return a copy of `self` with its elements shuffled
+    func shuffle() -> [Generator.Element] {
+        var list = Array(self)
+        list.shuffleInPlace()
+        return list
+    }
+}
 
-
-
+extension MutableCollectionType where Index == Int {
+    /// Shuffle the elements of `self` in-place.
+    mutating func shuffleInPlace() {
+        // empty and single-element collections don't shuffle
+        if count < 2 { return }
+        
+        for i in 0..<count - 1 {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            guard i != j else { continue }
+            swap(&self[i], &self[j])
+        }
+    }
+}
 
 
 
