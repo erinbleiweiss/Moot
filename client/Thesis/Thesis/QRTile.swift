@@ -24,7 +24,7 @@ class QRTile: UIImageView {
     var dragDelegate: TileDragDelegateProtocol?
     
     
-    init(sideLength: CGFloat, id: Int, image: UIImage) {
+    init(id: Int, image: UIImage) {
         self.id = id
         
         super.init(image: image)

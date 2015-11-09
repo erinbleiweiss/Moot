@@ -11,8 +11,8 @@ import Alamofire
 
 class DragAndDropLevelViewController: GenericLevelViewController {
 
+    private var tiles = [QRTile]()
     private var targets = [QRTileTarget]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,26 +25,50 @@ class DragAndDropLevelViewController: GenericLevelViewController {
         self.view.addSubview(targetView)
         
 //        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let image: UIImage = cropImage(UIImage(named: "qr")!)
-        let tileView = QRTile(sideLength: 100, id: 2, image: image)
-        tileView.center = CGPointMake(500, 500)
-        tileView.dragDelegate = self
-        self.view.addSubview(tileView)
+        let image: UIImage = UIImage(named: "qr")!
+        
+        let rows = 5
+        let cols = 5
+        let tileMargin = 10
+        
+        generateTiles(image, rows: rows, cols: cols)
+        
+        var idx = 0
+        for row in 0...rows-1 {
+            for col in 0...cols-1 {
+                self.tiles[idx].center = CGPointMake(100 + CGFloat(col) * self.tiles[idx].frame.width + CGFloat(tileMargin),
+                                                    100 + CGFloat(row) * self.tiles[idx].frame.height + CGFloat(tileMargin))
+                self.tiles[idx].dragDelegate = self
+                self.view.addSubview(self.tiles[idx])
+                idx++
+            }
+        }
+        
     
     }
     
     
     
-    func cropImage(qr: UIImage) -> UIImage {
-        let imgSize = qr.size
+    func generateTiles(qr: UIImage, rows: Int, cols: Int) {
+        let cols = CGFloat(cols)
+        let rows = CGFloat(rows)
         
-        let crop = CGRectMake(0, 0, imgSize.width / 5, imgSize.height / 5)
-        
-        let cgImage = CGImageCreateWithImageInRect(qr.CGImage, crop)
-        let image: UIImage = UIImage(CGImage: cgImage!)
-        
-        return image
-
+        let width = qr.size.width / cols
+        let height = qr.size.height / rows
+    
+        var id = 0
+        for row in 0...Int(rows)-1 {
+            for col in 0...Int(cols)-1 {
+                let crop = CGRectMake(CGFloat(col) * width, CGFloat(row) * height, width, height)
+                let cgImage = CGImageCreateWithImageInRect(qr.CGImage, crop)
+                let image: UIImage = UIImage(CGImage: cgImage!)
+                
+                let tile = QRTile(id: id, image: image)
+                self.tiles.append(tile)
+                id++
+            }
+        }
+    
     }
     
     
