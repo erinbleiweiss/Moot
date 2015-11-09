@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 app = Flask(__name__)
 
 import requests
@@ -21,6 +21,7 @@ UPC_REQUEST_TYPE = "3"
 UPC_ACCESS_TOKEN = "EDDD50C8-9FC4-48D0-B29A-1E1EF405283A"
 WORDNIK_URL = "http://api.wordnik.com:80/v4/words.json/randomWord"
 WORDNIK_API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
 
 # Create debug logger
 logger = logging.getLogger('info')
@@ -514,6 +515,40 @@ def move():
     logger.info(("Moved {} to: {}").format(dir, new_tile))
 
     return jsonify(response)
+
+
+###########################################################
+# Level 3: Jigsaw                                         #
+###########################################################
+@app.route('/v1/get_qr_code', methods=["GET"])
+def get_qr_code():
+    """
+    Returns a qr code image from api.qrserver.com
+
+    Request parameters
+    width:                  desired qr code width
+    height:                 desired qr code height
+
+    return:                 A QR code image as .png
+    """
+
+    base_url = QR_CODE_URL
+    width = request.args.get('width')
+    height = request.args.get('height')
+    target_url = 'http://www.google.com'
+
+    request_url = ("{}?size={}x{}&data={}").format(base_url,
+                                                   width,
+                                                   height,
+                                                   target_url)
+
+    logger.debug(request_url)
+
+    r = requests.get(request_url)
+    response = make_response(r.content)
+    response.content_type = "image/png"
+    return response
+
 
 if __name__ == "__main__":
     app.run(debug=True)

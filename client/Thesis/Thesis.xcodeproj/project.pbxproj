@@ -15,8 +15,8 @@
 		80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80131A8D1BD2F1E6004D1247 /* Networking.swift */; settings = {ASSET_TAGS = (); }; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8040314A1BD079270043A603 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804031491BD079270043A603 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		804EF5541BEFE1610091ED22 /* DragAndDropLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5531BEFE1610091ED22 /* DragAndDropLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		804EF5561BEFE1920091ED22 /* DragAndDropCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5551BEFE1920091ED22 /* DragAndDropCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55A1BEFEDA00091ED22 /* QRTile.swift */; settings = {ASSET_TAGS = (); }; };
 		804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55C1BF001580091ED22 /* QRTileTarget.swift */; settings = {ASSET_TAGS = (); }; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -68,8 +68,8 @@
 		80131A8D1BD2F1E6004D1247 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804031491BD079270043A603 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		804EF5531BEFE1610091ED22 /* DragAndDropLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropLevelViewController.swift; sourceTree = "<group>"; };
-		804EF5551BEFE1920091ED22 /* DragAndDropCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropCameraViewController.swift; sourceTree = "<group>"; };
+		804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawLevelViewController.swift; sourceTree = "<group>"; };
+		804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawCameraViewController.swift; sourceTree = "<group>"; };
 		804EF55A1BEFEDA00091ED22 /* QRTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTile.swift; sourceTree = "<group>"; };
 		804EF55C1BF001580091ED22 /* QRTileTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTileTarget.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -144,15 +144,15 @@
 			name = Maze;
 			sourceTree = "<group>";
 		};
-		804EF5591BEFED8A0091ED22 /* Drag And Drop */ = {
+		804EF5591BEFED8A0091ED22 /* Jigsaw */ = {
 			isa = PBXGroup;
 			children = (
-				804EF5551BEFE1920091ED22 /* DragAndDropCameraViewController.swift */,
-				804EF5531BEFE1610091ED22 /* DragAndDropLevelViewController.swift */,
+				804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */,
+				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
 				804EF55A1BEFEDA00091ED22 /* QRTile.swift */,
 				804EF55C1BF001580091ED22 /* QRTileTarget.swift */,
 			);
-			name = "Drag And Drop";
+			name = Jigsaw;
 			sourceTree = "<group>";
 		};
 		80B0EABD1BE702CE00639ADC /* Resources */ = {
@@ -195,7 +195,7 @@
 				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
 				804EF5571BEFED620091ED22 /* Hangman */,
 				804EF5581BEFED6D0091ED22 /* Maze */,
-				804EF5591BEFED8A0091ED22 /* Drag And Drop */,
+				804EF5591BEFED8A0091ED22 /* Jigsaw */,
 				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
 				804031491BD079270043A603 /* SwiftyJSON.swift */,
 				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
@@ -445,8 +445,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */,
-				804EF5541BEFE1610091ED22 /* DragAndDropLevelViewController.swift in Sources */,
-				804EF5561BEFE1920091ED22 /* DragAndDropCameraViewController.swift in Sources */,
+				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
+				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
 				809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */,
 				8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */,

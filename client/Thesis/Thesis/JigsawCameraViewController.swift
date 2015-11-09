@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DragAndDropCameraViewController: GenericCameraViewController, CameraDelegate {
+class JigsawCameraViewController: GenericCameraViewController, CameraDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

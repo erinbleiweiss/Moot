@@ -9,25 +9,29 @@
 import UIKit
 import Alamofire
 
-class DragAndDropLevelViewController: GenericLevelViewController {
+class JigsawLevelViewController: GenericLevelViewController {
 
     private var tiles = [QRTile]()
     private var targets = [QRTileTarget]()
     
+    var QRImage: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rows = 3
-        let cols = 3
-        let tileMargin = 10
-        
-        let image: UIImage = UIImage(named: "qr")!
-        generateTiles(image, rows: rows, cols: cols)
-        generateTargets(rows, cols: cols)
-        
-        self.tiles = self.tiles.shuffle()
-        displayTiles(tileMargin, rows: rows, cols: cols)
-
+        getQRCode(300, height: 300){ responseObject, error in
+            let rows = 3
+            let cols = 3
+            let tileMargin = 10
+            
+//            let image: UIImage = UIImage(named: "qr2")!
+            self.generateTiles(self.QRImage, rows: rows, cols: cols)
+            self.generateTargets(rows, cols: cols)
+            
+            self.tiles = self.tiles.shuffle()
+            self.displayTiles(tileMargin, rows: rows, cols: cols)
+            
+        }
         
     
     }
@@ -90,7 +94,7 @@ class DragAndDropLevelViewController: GenericLevelViewController {
         }
         
     }
-    
+
     
     
     func placeTile(tileView: QRTile, targetView: QRTileTarget) {
@@ -121,6 +125,19 @@ class DragAndDropLevelViewController: GenericLevelViewController {
         
     }
     
+    func getQRCode(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/get_qr_code"
+        Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in
+            
+            if let img = result.data{
+                self.QRImage = UIImage(data: img)
+                completionHandler(responseObject: "Success", error: result.error as? NSError)
+            } else {
+                completionHandler(responseObject: "Error", error: result.error as? NSError)
+            }
+            
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -128,13 +145,13 @@ class DragAndDropLevelViewController: GenericLevelViewController {
     }
     
 
-    @IBAction func cancelToDragAndDropLevelViewController(segue:UIStoryboardSegue) {
+    @IBAction func cancelToJigsawLevelViewController(segue:UIStoryboardSegue) {
         
     }
 
 }
 
-extension DragAndDropLevelViewController: TileDragDelegateProtocol {
+extension JigsawLevelViewController: TileDragDelegateProtocol {
     // A tile was dragged, check if matches target
     
     func tileView(tileView: QRTile, didDragToPoint point: CGPoint) {
