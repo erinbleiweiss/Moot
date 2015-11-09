@@ -36,8 +36,10 @@ class DragAndDropLevelViewController: GenericLevelViewController {
         var idx = 0
         for row in 0...rows-1 {
             for col in 0...cols-1 {
-                self.tiles[idx].center = CGPointMake(100 + CGFloat(col) * self.tiles[idx].frame.width + CGFloat(tileMargin),
-                                                    100 + CGFloat(row) * self.tiles[idx].frame.height + CGFloat(tileMargin))
+                self.tiles[idx].center = CGPointMake(100 + CGFloat(col) * self.tiles[idx].frame.width
+                                            + (CGFloat(col) * CGFloat(tileMargin)),
+                                            500 + CGFloat(row) * self.tiles[idx].frame.height
+                                            + (CGFloat(row) * CGFloat(tileMargin)))
                 self.tiles[idx].dragDelegate = self
                 self.view.addSubview(self.tiles[idx])
                 idx++
