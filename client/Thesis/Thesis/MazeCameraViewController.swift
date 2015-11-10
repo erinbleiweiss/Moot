@@ -48,7 +48,7 @@ class MazeCameraViewController: GenericCameraViewController, CameraDelegate {
     }
     
     
-    // Send product name back to TestLevelViewController via segue
+    // Send product name back to MazeLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let destinationVC = segue.destinationViewController as! MazeLevelViewController
         destinationVC.color = self.color

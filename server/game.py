@@ -535,7 +535,8 @@ def get_qr_code():
     base_url = QR_CODE_URL
     width = request.args.get('width')
     height = request.args.get('height')
-    target_url = 'http://www.google.com'
+    # target_url = 'http://www.google.com'
+    target_url = "http://52.26.94.97:5000/v1/check_qr_code"
 
     request_url = ("{}?size={}x{}&data={}").format(base_url,
                                                    width,
@@ -548,6 +549,22 @@ def get_qr_code():
     response = make_response(r.content)
     response.content_type = "image/png"
     return response
+
+
+@app.route('/v1/check_qr_code', methods=["GET"])
+def check_qr_code():
+    """
+    Returns true for a unique identifier
+
+    return:                 true
+    """
+
+    response = {}
+    # Totally unique, definitely obfuscated identification string
+    response["correcthorsebatterystaple"] = "true"
+
+    return jsonify(response)
+
 
 
 if __name__ == "__main__":

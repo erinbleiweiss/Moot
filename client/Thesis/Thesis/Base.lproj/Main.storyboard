@@ -217,11 +217,19 @@
                                     <segue destination="vvG-nh-eYh" kind="presentation" id="S0t-Hu-WMN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4x-jI-bR0">
+                                <rect key="frame" x="230" y="453" width="139" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="z4x-jI-bR0" firstAttribute="centerX" secondItem="gfi-bz-KYW" secondAttribute="centerX" id="e3D-Zv-idv"/>
                             <constraint firstItem="wPP-x3-9kk" firstAttribute="top" secondItem="i5U-sq-BGJ" secondAttribute="bottom" constant="50" id="fkD-iw-Nh7"/>
                             <constraint firstItem="i5U-sq-BGJ" firstAttribute="centerX" secondItem="gfi-bz-KYW" secondAttribute="centerX" id="h0g-ZX-vDB"/>
+                            <constraint firstItem="i5U-sq-BGJ" firstAttribute="top" secondItem="z4x-jI-bR0" secondAttribute="bottom" constant="20" id="wDX-QQ-Z5l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zKX-Ja-hYc">
@@ -231,6 +239,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="successLabel" destination="z4x-jI-bR0" id="VvN-dN-yqo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJe-nj-7AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4sZ-RF-yCw" userLabel="Exit" sceneMemberID="exit"/>
@@ -327,7 +338,7 @@
                     <navigationItem key="navigationItem" id="YoF-X1-g5N">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="GBo-kO-mLU">
                             <connections>
-                                <segue destination="lT8-vv-92n" kind="unwind" unwindAction="cancelToJigsawLevelViewController:" id="A7B-6S-nHz"/>
+                                <segue destination="lT8-vv-92n" kind="unwind" identifier="jigsawScannedSegue" unwindAction="cancelToJigsawLevelViewController:" id="A7B-6S-nHz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

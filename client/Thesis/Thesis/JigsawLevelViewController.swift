@@ -16,6 +16,9 @@ class JigsawLevelViewController: GenericLevelViewController {
     
     var QRImage: UIImage!
     
+    var response: String!
+    @IBOutlet weak var successLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,8 +38,6 @@ class JigsawLevelViewController: GenericLevelViewController {
         
     
     }
-    
-    
     
     func generateTiles(qr: UIImage, rows: Int, cols: Int) {
         let cols = CGFloat(cols)
@@ -146,7 +147,7 @@ class JigsawLevelViewController: GenericLevelViewController {
     
 
     @IBAction func cancelToJigsawLevelViewController(segue:UIStoryboardSegue) {
-        
+        self.successLabel.text = response
     }
 
 }
