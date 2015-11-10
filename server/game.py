@@ -415,6 +415,7 @@ def generate_maze():
     height = int(request.args.get('height'))
 
     grid = Maze(width, height)
+    # TODO: start maze generation from a random tile
     carve_passages(0, 0, grid)
     logger.debug(grid)
 
@@ -536,6 +537,7 @@ def get_qr_code():
     width = request.args.get('width')
     height = request.args.get('height')
     # target_url = 'http://www.google.com'
+    # TODO: Obtain endpoint URL (and route?) dynamically
     target_url = "http://52.26.94.97:5000/v1/check_qr_code"
 
     request_url = ("{}?size={}x{}&data={}").format(base_url,
