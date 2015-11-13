@@ -11,6 +11,7 @@ import AVFoundation
 import Foundation
 
 import Alamofire
+import SwiftyJSON
 
 class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
     
@@ -62,7 +63,7 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
         // If UPC defined
         if let _ = upc{
             let destinationVC = segue.destinationViewController as! HangmanLevelViewController
-            destinationVC.upc = self.upc!
+            destinationVC.controller.upc = self.upc!
         }
         
     }

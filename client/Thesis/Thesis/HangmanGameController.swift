@@ -9,10 +9,18 @@
 import Foundation
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class HangmanGameController {
     var gameView: UIView!
     var level: Level!
+    
+    var upc: String = ""
+    var productName: String = ""
+    var targetWord: String = ""
+    var currentGuess: String = ""
+    var currentGame: String = ""
+    var guess: String!
     
     init() {
     }
@@ -31,6 +39,35 @@ class HangmanGameController {
                 
         }
     }
+    
+    
+    func playHangman(upc: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/play_hangman"
+        Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame]).responseJSON { (_, _, result) in
+            
+            let json = JSON(result.value!)
+            completionHandler(responseObject: json, error: result.error as? NSError)
+            
+//            if(error == nil) {
+//                NSLog("Success: \(url)")
+//                var json = JSON(result.value)
+//                completionHandler(responseObject: {"result": "Not Found"}, error: result.error as? NSError)
+//
+//            }
+//            else {
+//                NSLog("Error: \(error)")
+//                print(result)
+//                completionHandler(responseObject: json, error: result.error as? NSError)
+//            }
+            
+        }
+        
+    }
+    
+    
+
+    
+    
     
 }
 

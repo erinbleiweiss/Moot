@@ -11,6 +11,7 @@ import AVFoundation
 import Foundation
 
 import Alamofire
+import SwiftyJSON
 
 class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -133,7 +134,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     // Send product name back to TestLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let destinationVC = segue.destinationViewController as! HangmanLevelViewController
-        destinationVC.productName = self.productName
+        destinationVC.controller.productName = self.productName
     }
     
     

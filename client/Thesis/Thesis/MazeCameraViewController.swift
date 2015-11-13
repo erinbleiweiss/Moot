@@ -11,6 +11,7 @@ import AVFoundation
 import Foundation
 
 import Alamofire
+import SwiftyJSON
 
 class MazeCameraViewController: GenericCameraViewController, CameraDelegate {
     

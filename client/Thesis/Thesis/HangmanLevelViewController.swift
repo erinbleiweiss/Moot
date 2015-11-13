@@ -8,21 +8,15 @@
 
 import UIKit
 import Alamofire
-
+import SwiftyJSON
 
 class HangmanLevelViewController: GenericLevelViewController {
     
     @IBOutlet weak var currentGameLabel: UILabel!
     @IBOutlet weak var currentGuessLabel: UILabel!
     @IBOutlet weak var gameMessageLabel: UILabel!
-    var upc: String = ""
-    var productName: String = ""
-    var targetWord: String = ""
-    var currentGuess: String = ""
-    var currentGame: String = ""
-    var guess: String!
-    
-    private let controller: HangmanGameController
+
+    let controller: HangmanGameController
     required init?(coder aDecoder: NSCoder) {
         controller = HangmanGameController()
         super.init(coder: aDecoder)
@@ -41,31 +35,31 @@ class HangmanLevelViewController: GenericLevelViewController {
         let level1 = Level(levelNumber: 1)
 
         //add one layer for all game elements
-        let gameView = UIView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
+        let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
-//        controller.gameView = gameView
+        self.controller.gameView = gameView
         
 
         // Initial load, no target word
-        if (targetWord == "") {
+        if (self.controller.targetWord == "") {
             // Generate target word
-            controller.getRandomWord(){ responseObject, error in
+            self.controller.getRandomWord(){ responseObject, error in
                 print("responseObject = \(responseObject); error = \(error)")
-                self.targetWord = responseObject!
-                self.currentGame = ""
+                self.controller.targetWord = responseObject!
+                self.controller.currentGame = ""
                 
                 //calculate the tile size
-                let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.targetWord.characters.count)) - self.TileMargin
+                let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
                 
                 //get the left margin for first tile
-                var xOffset = (ScreenWidth - CGFloat(self.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
+                var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
                 
                 //adjust for tile center (instead of the tile's origin)
                 xOffset += tileSide / 2.0
                 
                 // On load, generate blank game
-                for (index, _) in self.targetWord.characters.enumerate() {
-                    self.currentGame += "_"
+                for (index, _) in self.controller.targetWord.characters.enumerate() {
+                    self.controller.currentGame += "_"
                     let tile = HangmanTile(letter: "_", sideLength: tileSide)
                     tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
                     
@@ -74,29 +68,41 @@ class HangmanLevelViewController: GenericLevelViewController {
                     
                 }
 
-                self.currentGameLabel.attributedText = self.letterStyles(self.currentGame)
-                self.currentGuessLabel.attributedText = self.guessStyles(self.currentGuess)
+                self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
+                self.currentGuessLabel.attributedText = self.guessStyles(self.controller.currentGuess)
                 
             }
             
         }
         else {
-            playHangman(self.upc){ responseObject, error in
-                self.currentGame = responseObject!
-                self.currentGameLabel.text = responseObject!
+            self.controller.playHangman(self.controller.upc){ responseObject, error in
+                
+                self.controller.currentGame = responseObject!["letters_guessed"].stringValue
+                self.currentGameLabel.text = responseObject!["letters_guessed"].stringValue
             }
         }
 
     
     }
     
-    
     override func viewDidAppear(animated: Bool) {
-        if (self.targetWord != "" && self.upc != ""){
-            playHangman(self.upc){ responseObject, error in
+        if (controller.targetWord != "" && controller.upc != ""){
+            controller.playHangman(controller.upc){ responseObject, error in
                 
-                self.currentGame = responseObject!
-                self.currentGameLabel.attributedText = self.letterStyles(self.currentGame)
+                self.controller.currentGame = responseObject!["letters_guessed"].stringValue
+                self.currentGuessLabel.attributedText = self.guessStyles(responseObject!["guess"].stringValue)
+                if (responseObject!["status"] == 2){
+                    self.gameMessageLabel.text = "Not in word"
+                }
+                else{
+                    self.gameMessageLabel.text = ""
+                    for (index, letter) in responseObject!["letters_guessed"].stringValue.characters.enumerate() {
+                        print(letter)
+                        self.gameTiles[index].updateLetter(letter)
+                    }
+                    self.controller.gameView.setNeedsDisplay()
+                }
+                self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
                 
             }
         }
@@ -110,7 +116,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                 )!,
             NSKernAttributeName: 15
         ]
-
+        
         let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -140,48 +146,7 @@ class HangmanLevelViewController: GenericLevelViewController {
         return returnString
         
     }
-    
-//    // Get random word from DB
-//    func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-//        let url: String = hostname + rest_prefix + "/generate_random_word"
-//        Alamofire.request(.GET, url).responseJSON { (_, _, result) in
-//            
-//            let json = JSON(result.value!)
-//            if let word = json["word"].string{
-//                completionHandler(responseObject: word, error: result.error as? NSError)
-//            } else {
-//                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
-//            }
-//            
-//        }
-//    }
-    
-    
-    func playHangman(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        let url: String = hostname + rest_prefix + "/play_hangman"
-        Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame]).responseJSON { (_, _, result) in
-            
-            let json = JSON(result.value!)
-            if let letters_guessed = json["letters_guessed"].string{
-                self.currentGuessLabel.attributedText = self.guessStyles(json["guess"].string!)
-                if (json["status"] == 2){
-                    self.gameMessageLabel.text = "Not in word"
-                }
-                else{
-                    self.gameMessageLabel.text = ""
-                }
-                completionHandler(responseObject: letters_guessed, error: result.error as? NSError)
-            } else {
-                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
-            }
-            
-            
-        }
-        
-    }
-    
-    
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

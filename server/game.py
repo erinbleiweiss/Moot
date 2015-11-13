@@ -133,7 +133,10 @@ def play_hangman():
 
     # Get "current letter" corresponding to first letter of scanned object
     product_name = get_product_name(upc)
+    logger.debug(product_name)
+
     current_letter = product_name[0].upper()
+    logger.debug(current_letter)
 
     response = {}
 

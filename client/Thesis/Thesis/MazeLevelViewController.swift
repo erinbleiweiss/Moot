@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!

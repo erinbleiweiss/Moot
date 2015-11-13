@@ -11,6 +11,7 @@ import UIKit
 class HangmanTile: UIImageView {
     
     var letter: Character?
+    var letterLabel: UILabel!
     var isFilled: Bool = false
     
     init(letter:Character , sideLength:CGFloat) {
@@ -21,12 +22,12 @@ class HangmanTile: UIImageView {
         let scale = sideLength / image.size.width
         self.frame = CGRect(x: 0, y: 0, width: image.size.width * scale, height: image.size.height * scale)
         
-        let letterLabel = UILabel(frame: self.bounds)
-        letterLabel.textAlignment = NSTextAlignment.Center
-        letterLabel.textColor = UIColor.blueColor()
-        letterLabel.backgroundColor = UIColor.clearColor()
-        letterLabel.text = String(letter).uppercaseString
-        letterLabel.font = UIFont(name: "Verdana-Bold", size: 78.0 * scale)
+        self.letterLabel = UILabel(frame: self.bounds)
+        self.letterLabel.textAlignment = NSTextAlignment.Center
+        self.letterLabel.textColor = UIColor.blueColor()
+        self.letterLabel.backgroundColor = UIColor.clearColor()
+        self.letterLabel.text = String(letter).uppercaseString
+        self.letterLabel.font = UIFont(name: "Verdana-Bold", size: 78.0 * scale)
         self.addSubview(letterLabel)
     }
     
@@ -34,6 +35,11 @@ class HangmanTile: UIImageView {
         super.init(coder: aDecoder)
     }
     
+    func updateLetter(letter: Character){
+        self.letter = letter
+        self.letterLabel.text = String(letter).uppercaseString
+    }
+
 
     /*
     // Only override drawRect: if you perform custom drawing.
