@@ -13,6 +13,7 @@ import numpy
 from StringIO import StringIO
 import pdb
 from collections import namedtuple, Counter
+from colorama import init, Fore, Back, Style
 
 
 #TODO: Read from file
@@ -293,7 +294,7 @@ def get_color_name(input_color):
         return "white"
 
 
-def find_colors(img, n=7):
+def find_colors(img, n=4):
     img.thumbnail((200, 200))
     w, h = img.size
 
@@ -317,6 +318,9 @@ def image_colors():
     for color in colors:
         logger.debug([int(i) for i in color])
     logger.debug([get_color_name(c) for c in colors])
+
+    print(Fore.RED + 'some red text')
+    print(Style.RESET_ALL)
 
     result = {}
     dominant_colors = []
@@ -415,8 +419,9 @@ def generate_maze():
     height = int(request.args.get('height'))
 
     grid = Maze(width, height)
-    # TODO: start maze generation from a random tile
-    carve_passages(0, 0, grid)
+    starting_row = random.randint(0, height-1)
+    starting_col = random.randint(0, width-1)
+    carve_passages(starting_row, starting_col, grid)
     logger.debug(grid)
 
     flat_grid = []
@@ -439,9 +444,17 @@ def generate_maze():
 
 
 def carve_passages(row, col, grid):
+    """
+    Uses recursive backtracking to carve passages from a maze grid
+    Completes when all tiles in grid have been visited
+
+    row:        Current row in grid
+    col:        Current col in grid
+    grid:       Grid as Maze object
+    """
 
     directions = ['north', 'east', 'south', 'west']
-    shuffle(directions)
+    random.shuffle(directions)
 
     dx = {'north': 0, 'east': 1, 'south': 0, 'west': -1}
     dy = {'north': -1, 'east': 0, 'south': 1, 'west': 0}
@@ -460,6 +473,7 @@ def carve_passages(row, col, grid):
         if row_valid and col_valid and grid.maze[row_new][col_new].visited == 0:
             setattr(grid.maze[row][col], dir, 0)
             setattr(grid.maze[row_new][col_new], opposite[dir], 0)
+            grid.maze[row][col].visited = 1
             grid.maze[row_new][col_new].visited = 1
             carve_passages(row_new, col_new, grid)
 

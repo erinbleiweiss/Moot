@@ -1,6 +1,7 @@
 import requests
 import json
 import pprint
+from colored import fg, bg, attr
 
 hostname = "http://52.26.94.97:5000"
 rest_prefix = "/v1"
@@ -64,14 +65,19 @@ if __name__ == "__main__":
 
     # image_colors("722776200100")
 
+    color = fg('#ff0000')
+    res = attr('reset')
+    print (color + "Hello World !!!" + res)
 
-    dir = "west"
-    maze = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
-    row = 2
-    col = 1
+    # print(x256.from_rgb(220, 40, 150))
 
+    # dir = "west"
+    # maze = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
+    # row = 2
+    # col = 1
+    #
+    #
+    #
+    # maze_move(dir, maze, row, col)
 
-
-    maze_move(dir, maze, row, col)
-
-    generate_maze(5, 5)
+    # generate_maze(5, 5)
