@@ -18,6 +18,7 @@
 		804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55A1BEFEDA00091ED22 /* QRTile.swift */; settings = {ASSET_TAGS = (); }; };
 		804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55C1BF001580091ED22 /* QRTileTarget.swift */; settings = {ASSET_TAGS = (); }; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */; settings = {ASSET_TAGS = (); }; };
 		809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866611BE9BE9C00B3FE9D /* MazeTile.swift */; settings = {ASSET_TAGS = (); }; };
 		809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866631BE9DC6400B3FE9D /* MazeToken.swift */; settings = {ASSET_TAGS = (); }; };
 		809D64151BCB1BEC00DA8968 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D64141BCB1BEC00DA8968 /* CameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -33,7 +34,7 @@
 		80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F0E1BB25A400011A410 /* Images.xcassets */; };
 		80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F101BB25A400011A410 /* LaunchScreen.xib */; };
 		80ED1F1E1BB25A400011A410 /* ThesisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ED1F1D1BB25A400011A410 /* ThesisTests.swift */; };
-		D25535E7CE531B4FDEB88348 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0E432790B86DDDF9FF2648 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D25535E7CE531B4FDEB88348 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0E432790B86DDDF9FF2648 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		804EF55A1BEFEDA00091ED22 /* QRTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTile.swift; sourceTree = "<group>"; };
 		804EF55C1BF001580091ED22 /* QRTileTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTileTarget.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
+		8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawGameController.swift; sourceTree = "<group>"; };
 		809866611BE9BE9C00B3FE9D /* MazeTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTile.swift; sourceTree = "<group>"; };
 		809866631BE9DC6400B3FE9D /* MazeToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeToken.swift; sourceTree = "<group>"; };
 		809D64141BCB1BEC00DA8968 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */,
+				8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */,
 				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
 				804EF55A1BEFEDA00091ED22 /* QRTile.swift */,
 				804EF55C1BF001580091ED22 /* QRTileTarget.swift */,
@@ -207,6 +210,7 @@
 				80B0EABD1BE702CE00639ADC /* Resources */,
 				80ED1F071BB25A400011A410 /* AppDelegate.swift */,
 				80B195021BF5685F00B5C3CE /* Config.swift */,
+				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
 				809D64141BCB1BEC00DA8968 /* CameraViewController.swift */,
 				80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */,
 				8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */,
@@ -216,7 +220,6 @@
 				804EF5571BEFED620091ED22 /* Hangman */,
 				804EF5581BEFED6D0091ED22 /* Maze */,
 				804EF5591BEFED8A0091ED22 /* Jigsaw */,
-				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
 				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
 				80ED1F101BB25A400011A410 /* LaunchScreen.xib */,
 				80ED1F051BB25A400011A410 /* Supporting Files */,
@@ -418,6 +421,7 @@
 				80B195051BF56C4500B5C3CE /* HangmanGameController.swift in Sources */,
 				804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */,
 				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
+				8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */,
 				80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */,
 				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,

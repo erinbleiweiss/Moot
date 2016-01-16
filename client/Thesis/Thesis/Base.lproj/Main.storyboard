@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tzp-To-mNT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tzp-To-mNT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -20,6 +20,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czR-Ba-T5l">
                                 <rect key="frame" x="273" y="520" width="54" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Camera"/>
                                 <connections>
                                     <segue destination="Tgb-Rn-ozr" kind="presentation" id="4iu-AR-M5d"/>
@@ -27,23 +28,27 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwC-97-IR5">
                                 <rect key="frame" x="168" y="139" width="264" height="107"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLW-WZ-f9R">
                                 <rect key="frame" x="212" y="347" width="177" height="53"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbt-Wq-LQe">
                                 <rect key="frame" x="178" y="237" width="243" height="133"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="czR-Ba-T5l" firstAttribute="top" secondItem="wbt-Wq-LQe" secondAttribute="bottom" constant="150" id="09h-ks-NK4"/>
@@ -81,6 +86,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4We-2m-oLL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="cjl-pC-x5L" kind="relationship" relationship="rootViewController" id="Q20-3o-PyM"/>
@@ -97,6 +103,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aKO-AI-A1A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="oQd-xS-Y4W" kind="relationship" relationship="rootViewController" id="VJp-Ko-3df"/>
@@ -120,6 +127,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvM-R2-Dce">
                                 <rect key="frame" x="273" y="520" width="54" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Camera"/>
                                 <connections>
                                     <segue destination="8eb-Af-hHg" kind="presentation" id="UoD-C7-xF4"/>
@@ -127,6 +135,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVR-8U-b8V">
                                 <rect key="frame" x="196" y="72" width="209" height="67"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="209" id="XIT-wz-z7I"/>
                                     <constraint firstAttribute="height" constant="67" id="pSb-gj-hS5"/>
@@ -137,6 +146,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgn-1y-PWX">
                                 <rect key="frame" x="285" y="386" width="30" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Up"/>
                                 <connections>
                                     <action selector="moveUp:" destination="cjl-pC-x5L" eventType="touchUpInside" id="DG8-fJ-Y2P"/>
@@ -144,6 +154,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbP-8w-Cux">
                                 <rect key="frame" x="338" y="422" width="36" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Right"/>
                                 <connections>
                                     <action selector="moveRight:" destination="cjl-pC-x5L" eventType="touchUpInside" id="jeq-XG-8w1"/>
@@ -151,6 +162,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeU-Ch-qtI">
                                 <rect key="frame" x="281" y="462" width="39" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Down"/>
                                 <connections>
                                     <action selector="moveDown:" destination="cjl-pC-x5L" eventType="touchUpInside" id="smx-fR-e1j"/>
@@ -158,12 +170,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spk-hh-odu">
                                 <rect key="frame" x="224" y="422" width="30" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Left"/>
                                 <connections>
                                     <action selector="moveLeft:" destination="cjl-pC-x5L" eventType="touchUpInside" id="2fg-U8-ZVO"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Spk-hh-odu" firstAttribute="leading" secondItem="Zxc-nT-jCa" secondAttribute="leadingMargin" constant="204" id="0AJ-pK-BA4"/>
@@ -212,6 +226,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5U-sq-BGJ">
                                 <rect key="frame" x="273" y="520" width="54" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Camera"/>
                                 <connections>
                                     <segue destination="vvG-nh-eYh" kind="presentation" id="S0t-Hu-WMN"/>
@@ -219,11 +234,13 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4x-jI-bR0">
                                 <rect key="frame" x="230" y="453" width="139" height="47"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="z4x-jI-bR0" firstAttribute="centerX" secondItem="gfi-bz-KYW" secondAttribute="centerX" id="e3D-Zv-idv"/>
@@ -255,6 +272,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0PQ-nV-8Hx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="lXw-5a-cOg" kind="relationship" relationship="rootViewController" id="oLy-am-bfA"/>
@@ -271,6 +289,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9wK-OR-LWz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="jOD-4f-iKs" kind="relationship" relationship="rootViewController" id="aZQ-No-Lro"/>
@@ -291,6 +310,7 @@
                     <view key="view" contentMode="scaleToFill" id="E89-P5-ZcO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="bXE-l0-tcU">
@@ -313,6 +333,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r3Q-Ns-Mgd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="ah2-6R-rKC" kind="relationship" relationship="rootViewController" id="iDd-WG-b0K"/>
@@ -333,6 +354,7 @@
                     <view key="view" contentMode="scaleToFill" id="hiv-sL-baw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="YoF-X1-g5N">
@@ -359,6 +381,7 @@
                     <view key="view" contentMode="scaleToFill" id="rdd-VW-fcN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="R2M-YJ-vmM">
@@ -388,12 +411,14 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17f-7a-KCK">
                                 <rect key="frame" x="254" y="40" width="93" height="21"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-H1-zFk">
                                 <rect key="frame" x="120" y="103" width="47" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Level 1"/>
                                 <connections>
                                     <segue destination="f7b-pw-HPC" kind="show" id="0mD-cw-Hln"/>
@@ -401,6 +426,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ol-LH-qd7">
                                 <rect key="frame" x="276" y="103" width="49" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Level 2"/>
                                 <connections>
                                     <segue destination="ERG-8u-MVy" kind="show" id="KUY-Q0-eOk"/>
@@ -408,12 +434,14 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MML-dE-S9Z">
                                 <rect key="frame" x="431" y="103" width="49" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Level 3"/>
                                 <connections>
                                     <segue destination="yEc-8Y-sKB" kind="show" id="umb-dE-Ma3"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6Ol-LH-qd7" firstAttribute="centerX" secondItem="aEF-rD-81B" secondAttribute="centerX" id="4bx-SG-2CQ"/>
@@ -436,6 +464,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="77L-Ld-67w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

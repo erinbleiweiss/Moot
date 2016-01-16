@@ -10,11 +10,17 @@ import UIKit
 import Alamofire
 
 class JigsawLevelViewController: GenericLevelViewController {
-
+    
+    
+    let controller: JigsawGameController
+    required init?(coder aDecoder: NSCoder){
+        controller = JigsawGameController()
+        super.init(coder: aDecoder)
+    }
+    
     private var tiles = [QRTile]()
     private var targets = [QRTileTarget]()
     
-    var QRImage: UIImage!
     
     var response: String!
     @IBOutlet weak var successLabel: UILabel!
@@ -22,13 +28,17 @@ class JigsawLevelViewController: GenericLevelViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getQRCode(300, height: 300){ responseObject, error in
+        let gameView = UIView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
+        self.view.addSubview(gameView)
+        self.controller.gameView = gameView
+        
+        self.controller.getQRCode(300, height: 300){ responseObject, error in
             let rows = 3
             let cols = 3
             let tileMargin = 10
             
 //            let image: UIImage = UIImage(named: "qr2")!
-            self.generateTiles(self.QRImage, rows: rows, cols: cols)
+            self.generateTiles(self.controller.QRImage, rows: rows, cols: cols)
             self.generateTargets(rows, cols: cols)
             
             self.tiles = self.tiles.shuffle()
@@ -126,19 +136,7 @@ class JigsawLevelViewController: GenericLevelViewController {
         
     }
     
-    func getQRCode(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        let url: String = hostname + rest_prefix + "/get_qr_code"
-        Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in
-            
-            if let img = result.data{
-                self.QRImage = UIImage(data: img)
-                completionHandler(responseObject: "Success", error: result.error as? NSError)
-            } else {
-                completionHandler(responseObject: "Error", error: result.error as? NSError)
-            }
-            
-        }
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
