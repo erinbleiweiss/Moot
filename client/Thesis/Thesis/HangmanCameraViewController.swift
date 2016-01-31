@@ -24,7 +24,7 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
         
     
     override func doAfterScan(upc: String){
-//        getProduct(upc){ responseObject, error in
+//        getProduct(upc){ responseObject, error in3
 //            print("responseObject = \(responseObject); error = \(error)")
 //            self.productName = responseObject!
 //            print(self.productName)
