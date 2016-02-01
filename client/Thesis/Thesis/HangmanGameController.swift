@@ -11,9 +11,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class HangmanGameController {
+class HangmanGameController: GenericGameController {
     var gameView: UIView!
-    var level: Level!
     
     var upc: String = ""
     var productName: String = ""
@@ -22,8 +21,6 @@ class HangmanGameController {
     var currentGame: String = ""
     var guess: String!
     
-    init() {
-    }
     
     // Get random word from DB
     func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
