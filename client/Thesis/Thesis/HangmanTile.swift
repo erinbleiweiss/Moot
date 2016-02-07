@@ -38,6 +38,9 @@ class HangmanTile: UIImageView {
     func updateLetter(letter: Character){
         self.letter = letter
         self.letterLabel.text = String(letter).uppercaseString
+        if (String(letter) != "_") {
+            self.isFilled = true
+        }
     }
 
 
