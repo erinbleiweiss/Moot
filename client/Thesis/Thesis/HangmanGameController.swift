@@ -23,21 +23,37 @@ class HangmanGameController: GenericGameController {
     /// Array containing tile objects, each containing a letter
     var gameTiles = [HangmanTile]()
     
-    /// Get random word from DB
+    /**
+        Generate a random word via the Wordnik API, and set up constants for game
+        
+        - Parameters: none
+    
+        - Returns: a responseObject (JSON), containing the target word for the current game
+        { word: "randomword" }
+    
+    */
     func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_random_word"
         Alamofire.request(.GET, url).responseJSON { (_, _, result) in
     
-            let json = JSON(result.value!)
-            if let word = json["word"].string{
-                print(word)
-                completionHandler(responseObject: word, error: result.error as? NSError)
-            } else {
-                // There was a problem retrieving a word from the database
-                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
+            switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                    let word = json["word"].stringValue
+                    print(word)
+                    self.targetWord = word
+                    self.currentGame = ""
+                    completionHandler(responseObject: word, error: result.error as? NSError)
+                case .Failure(_):
+                    // There was a problem retrieving a word from the database
+                    completionHandler(responseObject: "Request failed with error: \(result.error)", error: result.error as? NSError)
             }
                 
         }
+    }
+    
+    func setUpGame(){
+        
     }
     
     
@@ -69,10 +85,15 @@ class HangmanGameController: GenericGameController {
             switch result {
                 case .Success(let data):
                     let json = JSON(data)
-                    // let lettersGuessed = json["letters_guessed"].stringValue
+                    // Update state of current game
+                    let game_state = json["letters_guessed"].stringValue
+                    self.currentGame = game_state
+                    for (index, letter) in game_state.characters.enumerate() {
+                        self.gameTiles[index].updateLetter(letter)
+                    }
                     completionHandler(responseObject: json, error: result.error as? NSError)
-                case .Failure(_, let error):
-                    NSLog("Request failed with error: \(error)")
+                case .Failure(_):
+                    NSLog("Request failed with error: \(result.error)")
             }
             
         }

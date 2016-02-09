@@ -50,27 +50,12 @@ class HangmanLevelViewController: GenericLevelViewController {
             // Generate target word
             self.controller.getRandomWord(){ responseObject, error in
                 print("responseObject = \(responseObject); error = \(error)")
-                self.controller.targetWord = responseObject!
-                self.controller.currentGame = ""
-                
-                //calculate the tile size
-                let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
-                
-                //get the left margin for first tile
-                var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
-                
-                //adjust for tile center (instead of the tile's origin)
-                xOffset += tileSide / 2.0
-                
+
                 // On load, generate blank game
+                self.layoutTiles()
+                
                 for (index, _) in self.controller.targetWord.characters.enumerate() {
                     self.controller.currentGame += "_"
-                    let tile = HangmanTile(letter: "_", sideLength: tileSide)
-                    tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
-                    
-                    gameView.addSubview(tile)
-                    self.controller.gameTiles.append(tile)
-                    
                 }
 
                 self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
@@ -82,8 +67,6 @@ class HangmanLevelViewController: GenericLevelViewController {
         else {
             self.controller.playHangman(self.controller.upc){ responseObject, error in
                 
-                self.controller.currentGame = responseObject!["letters_guessed"].stringValue
-                self.currentGameLabel.text = responseObject!["letters_guessed"].stringValue
                 self.controller.checkForSuccess()
             }
             
@@ -96,23 +79,47 @@ class HangmanLevelViewController: GenericLevelViewController {
     override func viewDidAppear(animated: Bool) {
         if (controller.targetWord != "" && controller.upc != ""){
             controller.playHangman(controller.upc){ responseObject, error in
-                
-                self.controller.currentGame = responseObject!["letters_guessed"].stringValue
-                self.currentGuessLabel.attributedText = self.guessStyles(responseObject!["guess"].stringValue)
+                // Display feedback message if letter is an incorrect guess
                 if (responseObject!["status"] == 2){
                     self.gameMessageLabel.text = "Not in word"
                 }
                 else{
                     self.gameMessageLabel.text = ""
-                    for (index, letter) in responseObject!["letters_guessed"].stringValue.characters.enumerate() {
-                        print(letter)
-                        self.controller.gameTiles[index].updateLetter(letter)
-                    }
-                    self.controller.gameView.setNeedsDisplay()
                 }
                 self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
                 self.controller.checkForSuccess()
             }
+        }
+    }
+    
+    
+    /**
+        On load, create and display one tile for each letter in the target word.
+        This function also calculates the appropriate size for the tiles based on the device's screen
+        width, as well as the margin size between tiles.
+    
+        - Parameters: none
+        - Returns: none
+    
+    */
+    func layoutTiles(){
+        
+        // Calculate the tile size
+        let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
+        
+        //get the left margin for first tile
+        var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
+        
+        //adjust for tile center (instead of the tile's origin)
+        xOffset += tileSide / 2.0
+        
+        // For each letter in the target word, create a new tile object (initialized with a blank "_" by default)
+        // Add each tile to the view, and append the tile to the controller's list of tile objects
+        for (index, _) in self.controller.targetWord.characters.enumerate(){
+            let tile = HangmanTile(letter: "_", sideLength: tileSide)
+            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
+            self.controller.gameView.addSubview(tile)
+            self.controller.gameTiles.append(tile)
         }
     }
     
