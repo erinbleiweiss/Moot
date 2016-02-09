@@ -7,7 +7,7 @@
 //
 
 class Networking {
-    var hostname: String = "http://thesis-loadbalancer-157482704.us-west-2.elb.amazonaws.com"
+    var hostname: String = "http://108.84.181.177:5000"
     var rest_prefix: String = "/v1"
     
     static let networkConfig = Networking()

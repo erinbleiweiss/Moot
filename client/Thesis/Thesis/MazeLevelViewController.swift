@@ -17,14 +17,21 @@ class MazeLevelViewController: GenericLevelViewController {
 
 //    let tilesString = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
     
-    var tileString: String!
-    
-    var pos_row = 0
-    var pos_col = 0
-    var tokenView = MazeToken!()
-    
+
+    let controller: MazeGameController
+    required init?(coder aDecoder: NSCoder){
+        controller = MazeGameController()
+        super.init(coder: aDecoder)
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        let level = Level(levelNumber: 2)
+        
+        let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
+        self.view.addSubview(gameView)
+        self.controller.gameView = gameView
         
         var tiles = [String]!()
         
@@ -34,9 +41,9 @@ class MazeLevelViewController: GenericLevelViewController {
 //                     12, 9, 6,  9,  13,
 //                      7, 6, 10, 2,  3]
         
-        generateMaze(5, height: 5){ responseObject, error in
-            self.tileString = responseObject!
-            tiles = self.tileString.componentsSeparatedByString("_")
+        self.controller.generateMaze(5, height: 5){ responseObject, error in
+            self.controller.tileString = responseObject!
+            tiles = self.controller.tileString.componentsSeparatedByString("_")
             
             let length = tiles.count
             let size_double = sqrt(Double(length))
@@ -67,10 +74,10 @@ class MazeLevelViewController: GenericLevelViewController {
             }
          
             
-            let tokenFrame = CGRect(x: 50 + (100 * (self.pos_col+1)), y: 200 + (100 * self.pos_row), width: 100, height: 100)
-            self.tokenView = MazeToken(frame: tokenFrame)
-            self.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
-            self.view.addSubview(self.tokenView)
+            let tokenFrame = CGRect(x: 50 + (100 * (self.controller.pos_col+1)), y: 200 + (100 * self.controller.pos_row), width: 100, height: 100)
+            self.controller.tokenView = MazeToken(frame: tokenFrame)
+            self.controller.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
+            self.view.addSubview(self.controller.tokenView)
             
         }
 
@@ -95,8 +102,8 @@ class MazeLevelViewController: GenericLevelViewController {
             print(responseObject!)
             self.updateToken()
             
-            print(self.pos_row)
-            print(self.pos_col)
+            print(self.controller.pos_row)
+            print(self.controller.pos_col)
         }
     }
     
@@ -105,8 +112,8 @@ class MazeLevelViewController: GenericLevelViewController {
             print(responseObject!)
             self.updateToken()
             
-            print(self.pos_row)
-            print(self.pos_col)
+            print(self.controller.pos_row)
+            print(self.controller.pos_col)
         }
     }
     
@@ -115,8 +122,8 @@ class MazeLevelViewController: GenericLevelViewController {
             print(responseObject!)
             self.updateToken()
             
-            print(self.pos_row)
-            print(self.pos_col)
+            print(self.controller.pos_row)
+            print(self.controller.pos_col)
         }
     }
     
@@ -125,35 +132,22 @@ class MazeLevelViewController: GenericLevelViewController {
             print(responseObject!)
             self.updateToken()
             
-            print(self.pos_row)
-            print(self.pos_col)
+            print(self.controller.pos_row)
+            print(self.controller.pos_col)
             
         }
     }
     
     func updateToken(){
-        self.tokenView.frame = CGRect(x: 50 + (100 * (self.pos_col+1)), y: 200 + (100 * self.pos_row), width: 100, height: 100)
-        self.tokenView.setNeedsDisplay()
+        self.controller.tokenView.frame = CGRect(x: 50 + (100 * (self.controller.pos_col+1)), y: 200 + (100 * self.controller.pos_row), width: 100, height: 100)
+        self.controller.tokenView.setNeedsDisplay()
     }
     
-    func generateMaze(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        let url: String = hostname + rest_prefix + "/generate_maze"
-        Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in
-            
-            let json = JSON(result.value!)
-            if let maze = json["maze"].string{
-                completionHandler(responseObject: maze, error: result.error as? NSError)
-            } else {
-                completionHandler(responseObject: "Could not generate maze", error: result.error as? NSError)
-            }
-            
-            
-        }
-    }
+
 
     func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/maze_move"
-        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": tileString, "row": String(self.pos_row), "col": String(self.pos_col)]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.controller.tileString, "row": String(self.controller.pos_row), "col": String(self.controller.pos_col)]).responseJSON { (_, _, result) in
             
             
             let json = JSON(result.value!)
@@ -162,8 +156,8 @@ class MazeLevelViewController: GenericLevelViewController {
                     let new_row = String(json["row"])
                     let new_col = String(json["col"])
                     
-                    self.pos_row = Int(new_row)!
-                    self.pos_col = Int(new_col)!
+                    self.controller.pos_row = Int(new_row)!
+                    self.controller.pos_col = Int(new_col)!
                     
                     print("moved")
                 } else{

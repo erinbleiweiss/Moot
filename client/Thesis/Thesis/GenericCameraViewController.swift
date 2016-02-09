@@ -106,6 +106,7 @@ class GenericCameraViewController: UIViewController, AVCaptureMetadataOutputObje
         self.highlightView.frame = highlightViewRect
         self.view.bringSubviewToFront(self.highlightView)
         
+        // TODO: If detection string is nil
         doAfterScan(detectionString)
         
     }

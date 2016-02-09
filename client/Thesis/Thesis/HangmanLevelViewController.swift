@@ -10,6 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
+/// View controller for the hangman scanning level
+
 class HangmanLevelViewController: GenericLevelViewController {
     
     @IBOutlet weak var currentGameLabel: UILabel!
@@ -22,7 +25,9 @@ class HangmanLevelViewController: GenericLevelViewController {
         super.init(coder: aDecoder)
     }
     
-    private var gameTiles = [HangmanTile]()
+    
+    /// Display margin between tiles
+    // TODO: adapt margin based on screen size
     let TileMargin: CGFloat = 20.0
     
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
@@ -34,7 +39,7 @@ class HangmanLevelViewController: GenericLevelViewController {
         super.viewDidLoad()
         let level1 = Level(levelNumber: 1)
 
-        //add one layer for all game elements
+        // Add one layer for all game elements
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
@@ -64,7 +69,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                     tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
                     
                     gameView.addSubview(tile)
-                    self.gameTiles.append(tile)
+                    self.controller.gameTiles.append(tile)
                     
                 }
 
@@ -79,7 +84,10 @@ class HangmanLevelViewController: GenericLevelViewController {
                 
                 self.controller.currentGame = responseObject!["letters_guessed"].stringValue
                 self.currentGameLabel.text = responseObject!["letters_guessed"].stringValue
+                self.controller.checkForSuccess()
             }
+            
+
         }
 
     
@@ -98,12 +106,12 @@ class HangmanLevelViewController: GenericLevelViewController {
                     self.gameMessageLabel.text = ""
                     for (index, letter) in responseObject!["letters_guessed"].stringValue.characters.enumerate() {
                         print(letter)
-                        self.gameTiles[index].updateLetter(letter)
+                        self.controller.gameTiles[index].updateLetter(letter)
                     }
                     self.controller.gameView.setNeedsDisplay()
                 }
                 self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
-                
+                self.controller.checkForSuccess()
             }
         }
     }

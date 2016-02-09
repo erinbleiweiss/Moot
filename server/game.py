@@ -26,7 +26,7 @@ QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
 
 # Create debug logger
 logger = logging.getLogger('info')
-handler = logging.FileHandler('./server/info.log')
+handler = logging.FileHandler('/home/ec2-user/Thesis/server/info.log')
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 # Log flask output to logger

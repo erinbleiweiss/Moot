@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftHEXColors
 
 class GenericLevelViewController: UIViewController {
 
@@ -16,6 +17,8 @@ class GenericLevelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let color: UIColor = UIColor(hexString: "#2ecc71")!
+        self.view.backgroundColor = color
         // Do any additional setup after loading the view.
     }
 

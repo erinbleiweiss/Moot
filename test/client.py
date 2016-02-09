@@ -3,7 +3,7 @@ import json
 import pprint
 from colored import fg, bg, attr
 
-hostname = "http://52.26.94.97:5000"
+hostname = "http://108.84.181.177:5000"
 rest_prefix = "/v1"
 
 upc_host = 'http://www.searchupc.com/handlers/upcsearch.ashx'

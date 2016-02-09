@@ -11,9 +11,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class HangmanGameController {
-    var gameView: UIView!
-    var level: Level!
+class HangmanGameController: GenericGameController {
     
     var upc: String = ""
     var productName: String = ""
@@ -22,8 +20,8 @@ class HangmanGameController {
     var currentGame: String = ""
     var guess: String!
     
-    init() {
-    }
+    /// Array containing tile objects, each containing a letter
+    var gameTiles = [HangmanTile]()
     
     // Get random word from DB
     func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
@@ -32,6 +30,7 @@ class HangmanGameController {
     
             let json = JSON(result.value!)
             if let word = json["word"].string{
+                print(word)
                 completionHandler(responseObject: word, error: result.error as? NSError)
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)
@@ -46,7 +45,9 @@ class HangmanGameController {
         Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
+
             completionHandler(responseObject: json, error: result.error as? NSError)
+            
             
 //            if(error == nil) {
 //                NSLog("Success: \(url)")
@@ -64,7 +65,19 @@ class HangmanGameController {
         
     }
     
-    
+    /// Called after each "move" to determine whether the game is complete (all tiles are filled)
+    func checkForSuccess() -> Bool{
+        print("checking for success")
+        for tile in gameTiles{
+            if !tile.isFilled{
+                print("no")
+                return false
+            }
+        }
+        print("yes")
+        return true
+    }
+
 
     
     
