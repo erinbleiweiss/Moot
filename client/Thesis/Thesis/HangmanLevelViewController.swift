@@ -12,7 +12,7 @@ import SwiftyJSON
 
 
 /// View controller for the hangman scanning level
-
+    
 class HangmanLevelViewController: GenericLevelViewController {
     
     @IBOutlet weak var currentGameLabel: UILabel!

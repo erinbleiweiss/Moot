@@ -12,6 +12,7 @@
 		8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80131A8D1BD2F1E6004D1247 /* Networking.swift */; settings = {ASSET_TAGS = (); }; };
+		801E76D51C6805D40077A379 /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E76D41C6805D40077A379 /* level1.plist */; settings = {ASSET_TAGS = (); }; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -68,6 +69,7 @@
 		8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeLevelViewController.swift; sourceTree = "<group>"; };
 		8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeCameraViewController.swift; sourceTree = "<group>"; };
 		80131A8D1BD2F1E6004D1247 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		801E76D41C6805D40077A379 /* level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level1.plist; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawLevelViewController.swift; sourceTree = "<group>"; };
 		804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawCameraViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		80F0DD551C5EEE19002A8037 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				801E76D41C6805D40077A379 /* level1.plist */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			files = (
 				80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */,
 				80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */,
+				801E76D51C6805D40077A379 /* level1.plist in Resources */,
 				80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */,
 				80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */,
 			);

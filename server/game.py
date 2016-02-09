@@ -9,7 +9,6 @@ import math
 from math import sqrt
 import random
 from random import shuffle
-import numpy
 from StringIO import StringIO
 import pdb
 from collections import namedtuple, Counter
