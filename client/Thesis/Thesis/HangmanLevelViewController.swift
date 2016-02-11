@@ -19,12 +19,6 @@ class HangmanLevelViewController: GenericLevelViewController {
     @IBOutlet weak var currentGuessLabel: UILabel!
     @IBOutlet weak var gameMessageLabel: UILabel!
 
-    let controller: HangmanGameController
-    required init?(coder aDecoder: NSCoder) {
-        controller = HangmanGameController()
-        super.init(coder: aDecoder)
-    }
-    
     
     /// Display margin between tiles
     // TODO: adapt margin based on screen size
@@ -34,17 +28,20 @@ class HangmanLevelViewController: GenericLevelViewController {
 //        self.currentGameLabel.text = productName
     }
     
-
+    let controller: HangmanGameController
+    required init?(coder aDecoder: NSCoder) {
+        controller = HangmanGameController()
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let level1 = Level(levelNumber: 1)
-
-        // Add one layer for all game elements
-        let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
+        
+        let gameView = UIView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
         
-
         // Initial load, no target word
         if (self.controller.targetWord == "") {
             // Generate target word
@@ -54,7 +51,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                 // On load, generate blank game
                 self.layoutTiles()
                 
-                for (index, _) in self.controller.targetWord.characters.enumerate() {
+                for (_, _) in self.controller.targetWord.characters.enumerate() {
                     self.controller.currentGame += "_"
                 }
 
@@ -66,11 +63,7 @@ class HangmanLevelViewController: GenericLevelViewController {
         }
         else {
             self.controller.playHangman(self.controller.upc){ responseObject, error in
-                
-                self.controller.checkForSuccess()
             }
-            
-
         }
 
     
@@ -103,15 +96,10 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     */
     func layoutTiles(){
-        
-        // Calculate the tile size
+        // Calculate the tile size and left margin (xOffset)
         let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
-        
-        //get the left margin for first tile
         var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
-        
-        //adjust for tile center (instead of the tile's origin)
-        xOffset += tileSide / 2.0
+        xOffset += tileSide / 2.0 //adjust for tile center (instead of the tile's origin)
         
         // For each letter in the target word, create a new tile object (initialized with a blank "_" by default)
         // Add each tile to the view, and append the tile to the controller's list of tile objects

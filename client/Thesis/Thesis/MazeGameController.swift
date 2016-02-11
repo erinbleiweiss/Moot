@@ -11,9 +11,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class MazeGameController {
-    var gameView: UIView!
-    var level: Level!
+class MazeGameController: GenericGameController {
     
     var tileString: String!
 
@@ -22,9 +20,6 @@ class MazeGameController {
 
     var tokenView = MazeToken!()
 
-    init(){
-    }
-    
     func generateMaze(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_maze"
         Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in

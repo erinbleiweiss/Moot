@@ -91,6 +91,7 @@ class HangmanGameController: GenericGameController {
                     for (index, letter) in game_state.characters.enumerate() {
                         self.gameTiles[index].updateLetter(letter)
                     }
+                    self.checkForSuccess()
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
                     NSLog("Request failed with error: \(result.error)")
@@ -100,17 +101,25 @@ class HangmanGameController: GenericGameController {
         
     }
     
-    /// Called after each "move" to determine whether the game is complete (all tiles are filled)
+    /** 
+        Called after each "move" to determine whether the game is complete (all tiles are filled)
+        
+        - Parameters: none
+        - Returns: boolean indicating whether or not the game has been won
+    
+    */
     func checkForSuccess() -> Bool{
         print("checking for success")
         for tile in gameTiles{
             if !tile.isFilled{
-                print("no")
                 return false
             }
         }
-        print("yes")
         return true
+    }
+    
+    func succeed() {
+        setLevelProgress(1)
     }
 
 

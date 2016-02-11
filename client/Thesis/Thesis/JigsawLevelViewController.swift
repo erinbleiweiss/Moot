@@ -11,7 +11,6 @@ import Alamofire
 
 class JigsawLevelViewController: GenericLevelViewController {
     
-    
     let controller: JigsawGameController
     required init?(coder aDecoder: NSCoder){
         controller = JigsawGameController()

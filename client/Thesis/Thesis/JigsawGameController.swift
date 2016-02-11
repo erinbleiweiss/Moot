@@ -11,14 +11,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class JigsawGameController{
-    var gameView: UIView!
+class JigsawGameController: GenericGameController{
+    
     var QRImage: UIImage!
 
-    init() {
-        
-    }
-    
     func getQRCode(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_qr_code"
         Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in

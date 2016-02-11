@@ -16,4 +16,15 @@ class GenericGameController{
     init() {
     }
     
+    func setLevelProgress(level: Int) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(level, forKey: "highest_level")
+    }
+    
+    func getLevelProgress() -> Int{
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let highestLevel = defaults.integerForKey("highest_level")
+        return highestLevel
+    }
+    
 }

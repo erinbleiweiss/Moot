@@ -13,10 +13,16 @@ class GenericLevelViewController: UIViewController {
 
     var hostname = Networking.networkConfig.hostname
     var rest_prefix = Networking.networkConfig.rest_prefix
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        // Add one layer for all game elements (-200 accounts for height of top bar)
+//        let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
+//        self.view.addSubview(gameView)
+//        self.controller!.gameView = gameView
+        
         let color: UIColor = UIColor(hexString: "#2ecc71")!
         self.view.backgroundColor = color
         // Do any additional setup after loading the view.
