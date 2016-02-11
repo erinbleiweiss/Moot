@@ -29,6 +29,7 @@ class MazeLevelViewController: GenericLevelViewController {
         super.viewDidLoad()
         let level = Level(levelNumber: 2)
         
+        // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
@@ -98,7 +99,7 @@ class MazeLevelViewController: GenericLevelViewController {
     
     
     @IBAction func moveUp(sender: AnyObject) {
-        mazeMove("north"){ responseObject, error in
+        self.controller.mazeMove("north"){ responseObject, error in
             print(responseObject!)
             self.updateToken()
             
@@ -108,7 +109,7 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     @IBAction func moveLeft(sender: AnyObject) {
-        mazeMove("west"){ responseObject, error in
+        self.controller.mazeMove("west"){ responseObject, error in
             print(responseObject!)
             self.updateToken()
             
@@ -118,7 +119,7 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     @IBAction func moveDown(sender: AnyObject) {
-        mazeMove("south"){ responseObject, error in
+        self.controller.mazeMove("south"){ responseObject, error in
             print(responseObject!)
             self.updateToken()
             
@@ -128,7 +129,7 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     @IBAction func moveRight(sender: AnyObject) {
-        mazeMove("east"){ responseObject, error in
+        self.controller.mazeMove("east"){ responseObject, error in
             print(responseObject!)
             self.updateToken()
             
@@ -145,32 +146,7 @@ class MazeLevelViewController: GenericLevelViewController {
     
 
 
-    func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        let url: String = hostname + rest_prefix + "/maze_move"
-        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.controller.tileString, "row": String(self.controller.pos_row), "col": String(self.controller.pos_col)]).responseJSON { (_, _, result) in
-            
-            
-            let json = JSON(result.value!)
-            if let success = json["success"].string{
-                if success == "true" {
-                    let new_row = String(json["row"])
-                    let new_col = String(json["col"])
-                    
-                    self.controller.pos_row = Int(new_row)!
-                    self.controller.pos_col = Int(new_col)!
-                    
-                    print("moved")
-                } else{
-                    print("hit wall")
-                }
-                completionHandler(responseObject: "Success", error: result.error as? NSError)
-            } else {
-                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
-            }
-            
-            
-        }
-    }
+
     
     
     override func didReceiveMemoryWarning() {

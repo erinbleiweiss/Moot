@@ -38,10 +38,11 @@ class HangmanLevelViewController: GenericLevelViewController {
         super.viewDidLoad()
         let level1 = Level(levelNumber: 1)
         
-        let gameView = UIView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
+        // Add one layer for all game elements (-200 accounts for height of top bar)
+        let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
-        
+
         // Initial load, no target word
         if (self.controller.targetWord == "") {
             // Generate target word
