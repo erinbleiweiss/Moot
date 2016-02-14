@@ -19,6 +19,7 @@ class HangmanGameController: GenericGameController {
     var currentGuess: String = ""
     var currentGame: String = ""
     var guess: String!
+    var loading: Bool = false;
     
     /// Array containing tile objects, each containing a letter
     var gameTiles = [HangmanTile]()
@@ -79,6 +80,7 @@ class HangmanGameController: GenericGameController {
     
     */
     func playHangman(upc: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+        self.loading = true;
         let url: String = hostname + rest_prefix + "/play_hangman"
         Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame]).responseJSON { (_, _, result) in
             

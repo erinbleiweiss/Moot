@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SwiftSpinner
 
 
 /// View controller for the hangman scanning level
@@ -72,13 +73,15 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     override func viewDidAppear(animated: Bool) {
         if (controller.targetWord != "" && controller.upc != ""){
+            SwiftSpinner.show("Scanning")
             controller.playHangman(controller.upc){ responseObject, error in
                 // Display feedback message if letter is an incorrect guess
                 if (responseObject!["status"] == 2){
-                    self.gameMessageLabel.text = "Not in word"
+                    SwiftSpinner.show("Not in word")
+                    SwiftSpinner.hide()
                 }
                 else{
-                    self.gameMessageLabel.text = ""
+                    SwiftSpinner.hide()
                 }
                 self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
                 self.controller.checkForSuccess()
