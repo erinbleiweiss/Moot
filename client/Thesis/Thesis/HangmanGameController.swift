@@ -88,6 +88,7 @@ class HangmanGameController: GenericGameController {
                 case .Success(let data):
                     let json = JSON(data)
                     // Update state of current game
+                    self.currentGuess = json["guess"].stringValue
                     let game_state = json["letters_guessed"].stringValue
                     self.currentGame = game_state
                     for (index, letter) in game_state.characters.enumerate() {

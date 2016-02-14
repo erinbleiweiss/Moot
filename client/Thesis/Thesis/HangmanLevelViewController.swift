@@ -77,11 +77,16 @@ class HangmanLevelViewController: GenericLevelViewController {
             controller.playHangman(controller.upc){ responseObject, error in
                 // Display feedback message if letter is an incorrect guess
                 if (responseObject!["status"] == 2){
-                    SwiftSpinner.show("Not in word")
-                    SwiftSpinner.hide()
+                    SwiftSpinner.show("Not in word", animated: false)
+                    self.delay(1.5){
+                        SwiftSpinner.hide()
+                    }
                 }
                 else{
-                    SwiftSpinner.hide()
+                    SwiftSpinner.show(self.controller.currentGuess, animated: false)
+                    self.delay(1.5){
+                        SwiftSpinner.hide()
+                    }
                 }
                 self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
                 self.controller.checkForSuccess()
