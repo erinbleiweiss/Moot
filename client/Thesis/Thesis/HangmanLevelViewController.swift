@@ -83,6 +83,8 @@ class HangmanLevelViewController: GenericLevelViewController {
                     }
                 }
                 else{
+                    SwiftSpinner.show("", animated: false)
+                    SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
                     SwiftSpinner.show(self.controller.currentGuess, animated: false)
                     self.delay(1.5){
                         SwiftSpinner.hide()
