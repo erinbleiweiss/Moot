@@ -53,10 +53,6 @@ class HangmanGameController: GenericGameController {
         }
     }
     
-    func setUpGame(){
-        
-    }
-    
     
     /** 
         Using the letter from the most recently scanned UPC, verify whether the

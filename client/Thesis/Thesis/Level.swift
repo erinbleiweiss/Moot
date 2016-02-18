@@ -7,10 +7,28 @@
 //
 
 import Foundation
+import UIKit
 
 struct Level {
 
-    init (levelNumber: Int){
+    var levelNumber: Int?
+    var VC: String?
+    
+    init (levelNumber: Int, VC: String){
+        self.levelNumber = levelNumber
+        self.VC = VC
+    }
+    
+    func getVC() -> UIViewController{
+        var viewControllerType = ""
+        if let vc = self.VC{
+            viewControllerType = vc
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as? UIViewController
+        return newVC!
         
     }
+    
 }

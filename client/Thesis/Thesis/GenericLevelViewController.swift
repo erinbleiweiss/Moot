@@ -52,6 +52,11 @@ class GenericLevelViewController: UIViewController {
     }
 
 
+    func provideVCClass() -> UIViewController.Type {
+        return GenericLevelViewController.self
+    }
+    
+    
     /*
     // MARK: - Navigation
 

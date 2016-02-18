@@ -14,7 +14,7 @@ class HangmanTile: UIImageView {
     var letterLabel: UILabel!
     var isFilled: Bool = false
     
-    init(letter:Character , sideLength:CGFloat) {
+    init(letter:Character, sideLength:CGFloat) {
         self.letter = "_"
         let image = UIImage(named: "slot")!
         super.init(image: image)

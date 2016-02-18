@@ -27,7 +27,7 @@ class MazeLevelViewController: GenericLevelViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let level = Level(levelNumber: 2)
+//        let level = Level(levelNumber: 2)
         
         // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))

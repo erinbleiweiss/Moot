@@ -37,7 +37,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let level1 = Level(levelNumber: 1)
+//        let level1 = Level(levelNumber: 1)
         
         // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
