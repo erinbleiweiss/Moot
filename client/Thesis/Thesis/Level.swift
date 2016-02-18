@@ -9,19 +9,34 @@
 import Foundation
 import UIKit
 
+/**
+    Used in LevelManager to hold information about each level in the game
+ 
+    Class Attributes:
+        - levelNumber: (Int) Each level should have a unique level number, which defines the order that levels should be played
+        - rootVC: (String) corresponds to an identifier on the storyboard that identifies the level's root view controller
+ 
+ */
 struct Level {
-
-    var levelNumber: Int?
-    var VC: String?
     
-    init (levelNumber: Int, VC: String){
+    var levelNumber: Int?
+    var rootVC: String?
+    
+    init (levelNumber: Int, rootVC: String){
         self.levelNumber = levelNumber
-        self.VC = VC
+        self.rootVC = rootVC
     }
     
-    func getVC() -> UIViewController{
+    /**
+        Returns the level's root view from the Main storyboard
+     
+        - Parameters: none
+        - Returns: UIViewController
+     
+    */
+    func getRootVC() -> UIViewController{
         var viewControllerType = ""
-        if let vc = self.VC{
+        if let vc = self.rootVC{
             viewControllerType = vc
         }
         

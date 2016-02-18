@@ -77,7 +77,7 @@
         <!--Navigation Controller-->
         <scene sceneID="uco-pW-A8E">
             <objects>
-                <navigationController id="ERG-8u-MVy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MazeRootVC" id="ERG-8u-MVy" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4We-2m-oLL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -109,7 +109,7 @@
         <!--Maze Level View Controller-->
         <scene sceneID="Rah-pw-x0J">
             <objects>
-                <viewController storyboardIdentifier="MazeLevelViewController" id="cjl-pC-x5L" customClass="MazeLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cjl-pC-x5L" customClass="MazeLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qkm-nh-jZp"/>
                         <viewControllerLayoutGuide type="bottom" id="FEw-Lz-QQM"/>
@@ -201,7 +201,7 @@
         <!--Jigsaw Level View Controller-->
         <scene sceneID="KaS-BI-lkE">
             <objects>
-                <viewController storyboardIdentifier="JigsawLevelViewController" id="lXw-5a-cOg" customClass="JigsawLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lXw-5a-cOg" customClass="JigsawLevelViewController" customModule="Thesis" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5j9-vq-aHd"/>
                         <viewControllerLayoutGuide type="bottom" id="wPP-x3-9kk"/>
@@ -251,7 +251,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bag-BL-CSf">
             <objects>
-                <navigationController id="yEc-8Y-sKB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="JigsawRootVC" id="yEc-8Y-sKB" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0PQ-nV-8Hx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -439,7 +439,7 @@
         <!--Navigation Controller-->
         <scene sceneID="39w-SJ-Bk6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f7b-pw-HPC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HangmanRootVC" automaticallyAdjustsScrollViewInsets="NO" id="f7b-pw-HPC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="77L-Ld-67w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

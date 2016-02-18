@@ -43,15 +43,22 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
     @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
     }
     
-
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view = UIView.loadFromNib("LevelPicker")
+    
+        self.displayLevelTiles()
         
+    }
+    
+    
+    /**
+        Using LevelManager singleton, display grid of UIButtons (custom class LevelTile). Add targets that respond to clickPressed()
+     
+        - Parameters: none
+    */
+    func displayLevelTiles(){
         let allLevels = LevelManager.sharedInstance.listLevels()
-
+        
         let length = allLevels.count
         let size = 3
         
@@ -60,12 +67,12 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
         
         for level in allLevels{
             let frame = CGRect(x: 50 + (100 * (col+1)), y: 200 + (100 * row), width: 100, height: 100)
-//            let button = UIButton(frame: frame)
+            //            let button = UIButton(frame: frame)
             
             let levelView = LevelTile(level: level, frame: frame)
             levelView.addTarget(self, action: "clickPressed:", forControlEvents: .TouchUpInside)
-
-//            levelView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+            
+            //            levelView.backgroundColor = UIColor(white: 1, alpha: 0.5)
             levelView.backgroundColor = UIColor.blueColor()
             
             self.view.addSubview(levelView)
@@ -76,23 +83,29 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
             }
             
         }
-        
-        
-        // Do any additional setup after loading the view.
     }
 
+
+    
+    
+    /**
+        Target action, called for each of the LevelTile buttons.  Presents root view controller, defined in Level object
+     
+        - Parameters:
+            - sender: LevelTile (UIButton subclass)
+    
+    */
+    func clickPressed(sender: LevelTile!){
+        presentViewController(sender.rootVC!, animated: true, completion: nil)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func clickPressed(sender: LevelTile!){
-        print("this button was pressed")
-        presentViewController(sender.vc!, animated: true, completion: nil)
-    }
     
-    
-
     /*
     // MARK: - Navigation
 

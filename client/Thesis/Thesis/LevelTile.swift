@@ -14,7 +14,7 @@ class LevelTile: UIButton{
     var level: Level?
     var levelLabel: UILabel!
     var tileSize: Int!
-    var vc: UIViewController?
+    var rootVC: UIViewController?
     
     init(level: Level?, frame: CGRect){
         super.init(frame: frame)
@@ -28,8 +28,8 @@ class LevelTile: UIButton{
         }
         self.addSubview(levelLabel)
         
-        if let _ = level?.VC{
-            self.vc = level!.getVC()
+        if let _ = level?.rootVC{
+            self.rootVC = level!.getRootVC()
         }
         
     }

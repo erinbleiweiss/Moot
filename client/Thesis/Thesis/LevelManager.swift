@@ -13,9 +13,9 @@ class LevelManager{
     static let sharedInstance = LevelManager()
     
     var allLevels: [Level] = [
-        Level(levelNumber: 1, VC: "HangmanLevelViewController"),
-        Level(levelNumber: 2, VC: "MazeLevelViewController"),
-        Level(levelNumber: 3, VC: "JigsawLevelViewController")
+        Level(levelNumber: 1, rootVC: "HangmanRootVC"),
+        Level(levelNumber: 2, rootVC: "MazeRootVC"),
+        Level(levelNumber: 3, rootVC: "JigsawRootVC")
     ]
     
     /// Methods
