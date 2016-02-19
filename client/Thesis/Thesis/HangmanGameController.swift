@@ -13,6 +13,8 @@ import SwiftyJSON
 
 class HangmanGameController: GenericGameController {
     
+    var level = LevelManager.sharedInstance.getLevel(1)
+    
     var upc: String = ""
     var productName: String = ""
     var targetWord: String = ""
@@ -118,7 +120,7 @@ class HangmanGameController: GenericGameController {
     }
     
     func succeed() {
-        setLevelProgress(1)
+        LevelManager.sharedInstance.unlockNextLevel(level.getLevelNum())
     }
 
 

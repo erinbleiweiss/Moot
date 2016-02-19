@@ -11,7 +11,6 @@ import UIKit
 
 class GenericGameController{
     var gameView: UIView!
-    var level: Level!
 
     init() {
     }

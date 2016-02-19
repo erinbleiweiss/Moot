@@ -392,27 +392,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-H1-zFk">
-                                <rect key="frame" x="120" y="103" width="47" height="30"/>
-                                <state key="normal" title="Level 1"/>
-                                <connections>
-                                    <segue destination="f7b-pw-HPC" kind="show" id="0mD-cw-Hln"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ol-LH-qd7">
-                                <rect key="frame" x="276" y="103" width="49" height="30"/>
-                                <state key="normal" title="Level 2"/>
-                                <connections>
-                                    <segue destination="ERG-8u-MVy" kind="show" id="KUY-Q0-eOk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MML-dE-S9Z">
-                                <rect key="frame" x="431" y="103" width="49" height="30"/>
-                                <state key="normal" title="Level 3"/>
-                                <connections>
-                                    <segue destination="yEc-8Y-sKB" kind="show" id="umb-dE-Ma3"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEI-9G-nWs">
                                 <rect key="frame" x="252" y="285" width="97" height="30"/>
                                 <state key="normal" title="Achievements"/>
@@ -423,12 +402,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6Ol-LH-qd7" firstAttribute="centerX" secondItem="aEF-rD-81B" secondAttribute="centerX" id="4bx-SG-2CQ"/>
                             <constraint firstItem="17f-7a-KCK" firstAttribute="top" secondItem="aT0-iw-nlm" secondAttribute="bottom" constant="50" id="6Pw-aX-qwz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MML-dE-S9Z" secondAttribute="trailing" constant="100" id="9g9-ha-VDE"/>
                             <constraint firstItem="17f-7a-KCK" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="30" id="SZa-rI-Glt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="17f-7a-KCK" secondAttribute="trailing" constant="30" id="U9U-iR-pTC"/>
-                            <constraint firstItem="yyx-H1-zFk" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="100" id="xfW-Yy-wCA"/>
                         </constraints>
                     </view>
                 </viewController>

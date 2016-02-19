@@ -23,8 +23,9 @@ class LevelTile: UIButton{
         
         self.levelLabel = UILabel(frame: self.bounds)
         self.levelLabel.textAlignment = NSTextAlignment.Center
-        if let l = level?.levelNumber{
-            self.levelLabel.text = String(l)
+        self.levelLabel.textColor = UIColor.whiteColor()
+        if let num = level?.levelNumber{
+            self.levelLabel.text = String(num)
         }
         self.addSubview(levelLabel)
         

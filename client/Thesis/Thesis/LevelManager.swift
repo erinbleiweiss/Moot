@@ -25,4 +25,19 @@ class LevelManager{
         return allLevels
     }
     
+    func getLevel(currentLevel: Int) -> Level{
+        return allLevels[currentLevel - 1]
+    }
+    
+    func unlockLevel(currentLevel: Int){
+        allLevels[currentLevel - 1].unlock()
+    }
+    
+    func unlockNextLevel(currentLevel: Int){
+        let numLevels = allLevels.count
+        if (currentLevel <= numLevels){
+            allLevels[currentLevel].unlock()
+        }
+    }
+    
 }

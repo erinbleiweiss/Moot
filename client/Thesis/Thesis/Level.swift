@@ -21,6 +21,7 @@ struct Level {
     
     var levelNumber: Int?
     var rootVC: String?
+    var locked: Bool = true
     
     init (levelNumber: Int, rootVC: String){
         self.levelNumber = levelNumber
@@ -44,6 +45,18 @@ struct Level {
         let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as? UIViewController
         return newVC!
         
+    }
+    
+    func getLevelNum() -> Int{
+        return self.levelNumber!
+    }
+    
+    func isLocked() -> Bool{
+        return self.locked
+    }
+    
+    mutating func unlock(){
+        self.locked = false
     }
     
 }

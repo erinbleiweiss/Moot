@@ -46,6 +46,7 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        LevelManager.sharedInstance.unlockLevel(1)
         self.displayLevelTiles()
         
     }
@@ -64,16 +65,23 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
         
         var row = 0
         var col = 0
+        let margin = 20
         
-        for level in allLevels{
-            let frame = CGRect(x: 50 + (100 * (col+1)), y: 200 + (100 * row), width: 100, height: 100)
+        for (index, level) in allLevels.enumerate(){
+            let frame = CGRect(x: 50 + (100 * (col+1) + (margin * index)), y: 200 + (100 * row), width: 100, height: 100)
             //            let button = UIButton(frame: frame)
             
             let levelView = LevelTile(level: level, frame: frame)
             levelView.addTarget(self, action: "clickPressed:", forControlEvents: .TouchUpInside)
             
             //            levelView.backgroundColor = UIColor(white: 1, alpha: 0.5)
-            levelView.backgroundColor = UIColor.blueColor()
+            
+            if (level.locked) {
+                levelView.backgroundColor = UIColor.redColor()
+            } else{
+                levelView.backgroundColor = UIColor.blueColor()
+            }
+            
             
             self.view.addSubview(levelView)
             col++
@@ -89,14 +97,17 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
     
     
     /**
-        Target action, called for each of the LevelTile buttons.  Presents root view controller, defined in Level object
+        Target action, called for each of the LevelTile buttons.  If unlocked, presents root view controller, defined in Level object
      
         - Parameters:
             - sender: LevelTile (UIButton subclass)
     
     */
     func clickPressed(sender: LevelTile!){
-        presentViewController(sender.rootVC!, animated: true, completion: nil)
+        if (!sender.level!.isLocked()){
+            presentViewController(sender.rootVC!, animated: true, completion: nil)
+        }
+        
     }
     
     
