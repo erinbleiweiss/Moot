@@ -29,6 +29,11 @@ class LevelManager{
         return allLevels[currentLevel - 1]
     }
     
+    func isLocked(level: Int) -> Bool {
+        let level = allLevels[level - 1]
+        return level.isLocked()
+    }
+    
     func unlockLevel(currentLevel: Int){
         allLevels[currentLevel - 1].unlock()
     }

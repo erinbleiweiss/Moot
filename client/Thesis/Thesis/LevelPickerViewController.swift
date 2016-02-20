@@ -43,12 +43,18 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
     @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
     }
     
+    var levelTiles: [LevelTile] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         LevelManager.sharedInstance.unlockLevel(1)
         self.displayLevelTiles()
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.updateTiles()
     }
     
     
@@ -72,6 +78,7 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
             //            let button = UIButton(frame: frame)
             
             let levelView = LevelTile(level: level, frame: frame)
+            levelTiles.append(levelView)
             levelView.addTarget(self, action: "clickPressed:", forControlEvents: .TouchUpInside)
             
             //            levelView.backgroundColor = UIColor(white: 1, alpha: 0.5)
@@ -108,6 +115,24 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
             presentViewController(sender.rootVC!, animated: true, completion: nil)
         }
         
+    }
+    
+    /**
+        For use in ViewDidLoad, update status of level tiles
+     
+        - Parameters: none
+     
+    */
+    func updateTiles(){
+        for (idx, tile) in self.levelTiles.enumerate() {
+            let level = LevelManager.sharedInstance.getLevel(idx + 1)
+            if (level.isLocked()) {
+                tile.backgroundColor = UIColor.redColor()
+            } else{
+                tile.backgroundColor = UIColor.blueColor()
+                tile.level = level
+            }
+        }
     }
     
     

@@ -116,6 +116,8 @@ class HangmanGameController: GenericGameController {
                 return false
             }
         }
+        print("game complete")
+        succeed()
         return true
     }
     

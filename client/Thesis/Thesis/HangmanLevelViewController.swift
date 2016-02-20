@@ -93,6 +93,12 @@ class HangmanLevelViewController: GenericLevelViewController {
                 self.controller.checkForSuccess()
             }
         }
+        
+        let allLevels = LevelManager.sharedInstance.listLevels()
+        for l in allLevels {
+            print(String(l.levelNumber) + " - locked: " + String(l.isLocked()))
+        }
+        
     }
     
     
