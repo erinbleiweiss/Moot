@@ -12,7 +12,7 @@ class LevelManager{
     
     static let sharedInstance = LevelManager()
     
-    var allLevels: [Level] = [
+    private var allLevels: [Level] = [
         Level(levelNumber: 1, rootVC: "HangmanRootVC"),
         Level(levelNumber: 2, rootVC: "MazeRootVC"),
         Level(levelNumber: 3, rootVC: "JigsawRootVC")

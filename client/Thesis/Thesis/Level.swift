@@ -21,7 +21,7 @@ struct Level {
     
     var levelNumber: Int?
     var rootVC: String?
-    var locked: Bool = true
+    private var locked: Bool = true
     
     init (levelNumber: Int, rootVC: String){
         self.levelNumber = levelNumber

@@ -66,7 +66,7 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
     func displayLevelTiles(){
         let allLevels = LevelManager.sharedInstance.listLevels()
         
-        let length = allLevels.count
+//        let length = allLevels.count
         let size = 3
         
         var row = 0
@@ -83,7 +83,7 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
             
             //            levelView.backgroundColor = UIColor(white: 1, alpha: 0.5)
             
-            if (level.locked) {
+            if (level.isLocked()) {
                 levelView.backgroundColor = UIColor.redColor()
             } else{
                 levelView.backgroundColor = UIColor.blueColor()
@@ -118,7 +118,7 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
     }
     
     /**
-        For use in ViewDidLoad, update status of level tiles
+        For use in ViewDidLoad, update status of level tiles.  If tile is unlocked, change background color and update tile in self.levelTiles
      
         - Parameters: none
      
