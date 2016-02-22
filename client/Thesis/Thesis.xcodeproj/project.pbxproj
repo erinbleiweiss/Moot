@@ -20,6 +20,7 @@
 		804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */; };
 		804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55A1BEFEDA00091ED22 /* QRTile.swift */; };
 		804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55C1BF001580091ED22 /* QRTileTarget.swift */; };
+		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
 		8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */; };
 		809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866611BE9BE9C00B3FE9D /* MazeTile.swift */; };
@@ -83,6 +84,7 @@
 		804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawCameraViewController.swift; sourceTree = "<group>"; };
 		804EF55A1BEFEDA00091ED22 /* QRTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTile.swift; sourceTree = "<group>"; };
 		804EF55C1BF001580091ED22 /* QRTileTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTileTarget.swift; sourceTree = "<group>"; };
+		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
 		8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawGameController.swift; sourceTree = "<group>"; };
 		809866611BE9BE9C00B3FE9D /* MazeTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTile.swift; sourceTree = "<group>"; };
@@ -97,13 +99,13 @@
 		80CBB5BC1C79926400D705A7 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		80CBB5BE1C79952900D705A7 /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
 		80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
-		80ED1F021BB25A400011A410 /* Thesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80ED1F021BB25A400011A410 /* Moot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80ED1F061BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80ED1F071BB25A400011A410 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80ED1F0C1BB25A400011A410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80ED1F0E1BB25A400011A410 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80ED1F111BB25A400011A410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		80ED1F171BB25A400011A410 /* ThesisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThesisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80ED1F171BB25A400011A410 /* Moot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Moot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80ED1F1C1BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80ED1F1D1BB25A400011A410 /* ThesisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisTests.swift; sourceTree = "<group>"; };
 		80F0DD4E1C5EBBB2002A8037 /* GenericGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericGameController.swift; sourceTree = "<group>"; };
@@ -169,8 +171,8 @@
 		80ED1F031BB25A400011A410 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80ED1F021BB25A400011A410 /* Thesis.app */,
-				80ED1F171BB25A400011A410 /* ThesisTests.xctest */,
+				80ED1F021BB25A400011A410 /* Moot.app */,
+				80ED1F171BB25A400011A410 /* Moot.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,6 +233,7 @@
 				809866611BE9BE9C00B3FE9D /* MazeTile.swift */,
 				804EF55A1BEFEDA00091ED22 /* QRTile.swift */,
 				804EF55C1BF001580091ED22 /* QRTileTarget.swift */,
+				80685A041C7A7873000AAB9E /* ScoreBox.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -292,9 +295,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80ED1F011BB25A400011A410 /* Thesis */ = {
+		80ED1F011BB25A400011A410 /* Moot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Thesis" */;
+			buildConfigurationList = 80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Moot" */;
 			buildPhases = (
 				9992ACD523008C63D1DD3D6C /* Check Pods Manifest.lock */,
 				80ED1EFE1BB25A400011A410 /* Sources */,
@@ -308,14 +311,14 @@
 			);
 			dependencies = (
 			);
-			name = Thesis;
+			name = Moot;
 			productName = Thesis;
-			productReference = 80ED1F021BB25A400011A410 /* Thesis.app */;
+			productReference = 80ED1F021BB25A400011A410 /* Moot.app */;
 			productType = "com.apple.product-type.application";
 		};
-		80ED1F161BB25A400011A410 /* ThesisTests */ = {
+		80ED1F161BB25A400011A410 /* MootTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "ThesisTests" */;
+			buildConfigurationList = 80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "MootTests" */;
 			buildPhases = (
 				80ED1F131BB25A400011A410 /* Sources */,
 				80ED1F141BB25A400011A410 /* Frameworks */,
@@ -326,9 +329,9 @@
 			dependencies = (
 				80ED1F191BB25A400011A410 /* PBXTargetDependency */,
 			);
-			name = ThesisTests;
+			name = MootTests;
 			productName = ThesisTests;
-			productReference = 80ED1F171BB25A400011A410 /* ThesisTests.xctest */;
+			productReference = 80ED1F171BB25A400011A410 /* Moot.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -364,8 +367,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80ED1F011BB25A400011A410 /* Thesis */,
-				80ED1F161BB25A400011A410 /* ThesisTests */,
+				80ED1F011BB25A400011A410 /* Moot */,
+				80ED1F161BB25A400011A410 /* MootTests */,
 			);
 		};
 /* End PBXProject section */
@@ -468,6 +471,7 @@
 				80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */,
 				80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */,
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
+				80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
 				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
@@ -489,7 +493,7 @@
 /* Begin PBXTargetDependency section */
 		80ED1F191BB25A400011A410 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 80ED1F011BB25A400011A410 /* Thesis */;
+			target = 80ED1F011BB25A400011A410 /* Moot */;
 			targetProxy = 80ED1F181BB25A400011A410 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -604,8 +608,8 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Thesis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bleiweiss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bleiweiss.Thesis;
+				PRODUCT_NAME = Moot;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -620,8 +624,8 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Thesis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bleiweiss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bleiweiss.Thesis;
+				PRODUCT_NAME = Moot;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -642,8 +646,8 @@
 				INFOPLIST_FILE = ThesisTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bleiweiss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thesis.app/Thesis";
+				PRODUCT_NAME = Moot;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moot.app/Moot";
 			};
 			name = Debug;
 		};
@@ -659,8 +663,8 @@
 				INFOPLIST_FILE = ThesisTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bleiweiss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thesis.app/Thesis";
+				PRODUCT_NAME = Moot;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moot.app/Moot";
 			};
 			name = Release;
 		};
@@ -676,7 +680,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Thesis" */ = {
+		80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Moot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80ED1F221BB25A400011A410 /* Debug */,
@@ -685,7 +689,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "ThesisTests" */ = {
+		80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "MootTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80ED1F251BB25A400011A410 /* Debug */,

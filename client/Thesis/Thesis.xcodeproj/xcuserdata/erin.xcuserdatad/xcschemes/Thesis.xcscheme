@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "80ED1F011BB25A400011A410"
-               BuildableName = "Thesis.app"
-               BlueprintName = "Thesis"
+               BuildableName = "Moot.app"
+               BlueprintName = "Moot"
                ReferencedContainer = "container:Thesis.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "80ED1F161BB25A400011A410"
-               BuildableName = "ThesisTests.xctest"
-               BlueprintName = "ThesisTests"
+               BuildableName = "Moot.xctest"
+               BlueprintName = "MootTests"
                ReferencedContainer = "container:Thesis.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "80ED1F161BB25A400011A410"
-               BuildableName = "ThesisTests.xctest"
-               BlueprintName = "ThesisTests"
+               BuildableName = "Moot.xctest"
+               BlueprintName = "MootTests"
                ReferencedContainer = "container:Thesis.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80ED1F011BB25A400011A410"
-            BuildableName = "Thesis.app"
-            BlueprintName = "Thesis"
+            BuildableName = "Moot.app"
+            BlueprintName = "Moot"
             ReferencedContainer = "container:Thesis.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -80,8 +80,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80ED1F011BB25A400011A410"
-            BuildableName = "Thesis.app"
-            BlueprintName = "Thesis"
+            BuildableName = "Moot.app"
+            BlueprintName = "Moot"
             ReferencedContainer = "container:Thesis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -99,8 +99,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80ED1F011BB25A400011A410"
-            BuildableName = "Thesis.app"
-            BlueprintName = "Thesis"
+            BuildableName = "Moot.app"
+            BlueprintName = "Moot"
             ReferencedContainer = "container:Thesis.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
