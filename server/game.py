@@ -27,14 +27,6 @@ WORDNIK_URL = "http://api.wordnik.com:80/v4/words.json/randomWord"
 WORDNIK_API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
 
-# # Create debug logger
-# logger = logging.getLogger('info')
-# # handler = logging.FileHandler('/home/ec2-user/Thesis/server/info.log')
-# handler = logging.FileHandler('/home/erin/Thesis/server/info.log')
-# logger.addHandler(handler)
-# logger.setLevel(logging.DEBUG)
-# # Log flask output to logger
-# app.logger.addHandler(handler)
 
 fileConfig('logging_config.ini')
 logger = logging.getLogger(__name__)

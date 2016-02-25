@@ -5,15 +5,16 @@ import ConfigParser
 import logging
 from logging.config import fileConfig
 
-# fileConfig('logging_config.ini')
-# logger = logging.getLogger()
 
 class MootDao:
 
     def __init__(self):
-        # logger.debug("MOOT DAO")
+        fileConfig('logging_config.ini')
+        self.logger = logging.getLogger(__name__)
+
         config = ConfigParser.ConfigParser()
         config.read('config.ini')
+
         self.dbname = config.get('psql', 'dbname')
         self.pgusername = config.get('psql', 'pgusername')
         self.pgpassword = config.get('psql', 'pgpassword')
@@ -41,4 +42,4 @@ class MootDao:
                           'VALUES (%s, %s, %s)', (username, hashedpass, avatar))
                 conn.commit()
             else:
-                print ('User already exists')
+                self.logger.warn(('User "{}" already exists').format(username))
