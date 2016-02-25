@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, make_response
 app = Flask(__name__)
 
+from mootdao import MootDao
+
 import requests
 import logging
 import pprint
@@ -14,6 +16,8 @@ import pdb
 from collections import namedtuple, Counter
 from colorama import init, Fore, Back, Style
 
+import logging
+from logging.config import fileConfig
 
 #TODO: Read from file
 SEARCH_UPC_URL = "http://www.searchupc.com/handlers/upcsearch.ashx"
@@ -23,13 +27,17 @@ WORDNIK_URL = "http://api.wordnik.com:80/v4/words.json/randomWord"
 WORDNIK_API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
 
-# Create debug logger
-logger = logging.getLogger('info')
-handler = logging.FileHandler('/home/ec2-user/Thesis/server/info.log')
-logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
-# Log flask output to logger
-app.logger.addHandler(handler)
+# # Create debug logger
+# logger = logging.getLogger('info')
+# # handler = logging.FileHandler('/home/ec2-user/Thesis/server/info.log')
+# handler = logging.FileHandler('/home/erin/Thesis/server/info.log')
+# logger.addHandler(handler)
+# logger.setLevel(logging.DEBUG)
+# # Log flask output to logger
+# app.logger.addHandler(handler)
+
+fileConfig('logging_config.ini')
+logger = logging.getLogger(__name__)
 
 @app.route("/")
 def hello():
@@ -79,6 +87,32 @@ def get_product_img(upc):
 
 
     return product_img
+
+###########################################################
+# Global Utilities                                        #
+###########################################################
+def moot_points(str, size):
+    sum = 0
+    for i in str:
+        sum += ord(i)
+    return sum % size
+
+@app.route('/v1/register', methods=["POST"])
+def create_user():
+    logger.debug('creating user')
+    username = request.form['username']
+    password = request.form['password']
+    avatar = request.form['avatar']
+
+    db = MootDao()
+
+    response = {}
+    db.create_user(username, password, avatar)
+    response["status"] = "success"
+    response["message"] = "created user"
+
+    return jsonify(response)
+
 
 ###########################################################
 # Level 1: Hangman                                        #

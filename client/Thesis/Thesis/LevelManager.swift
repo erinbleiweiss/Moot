@@ -12,6 +12,8 @@ class LevelManager{
     
     static let sharedInstance = LevelManager()
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     private var allLevels: [Level] = [
         Level(levelNumber: 1, rootVC: "HangmanRootVC"),
         Level(levelNumber: 2, rootVC: "MazeRootVC"),
@@ -43,6 +45,10 @@ class LevelManager{
         if (currentLevel <= numLevels){
             allLevels[currentLevel].unlock()
         }
+    }
+    
+    func saveLevels(){
+        
     }
     
 }

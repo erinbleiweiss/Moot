@@ -1,7 +1,7 @@
 import requests
 import json
 import pprint
-from colored import fg, bg, attr
+# from colored import fg, bg, attr
 
 hostname = "http://108.84.181.177:5000"
 rest_prefix = "/v1"
@@ -13,6 +13,14 @@ request_type = '3'
 cliffbarupc = "722252660091"
 
 h = "071100210453"
+
+def create_user():
+    payload = {'username': 'ebleiweiss', 'password': 'testpw', 'avatar': ''}
+    url = "{}{}{}".format(hostname, rest_prefix, "/register")
+    r = requests.post(url, data=payload)
+
+    response = r.json()
+    print response
 
 def lookupBarcode(upc):
     payload = {'request_type': request_type, 'access_token': upc_access_token, 'upc': upc}
@@ -65,9 +73,9 @@ if __name__ == "__main__":
 
     # image_colors("722776200100")
 
-    color = fg('#ff0000')
-    res = attr('reset')
-    print (color + "Hello World !!!" + res)
+    # color = fg('#ff0000')
+    # res = attr('reset')
+    # print (color + "Hello World !!!" + res)
 
     # print(x256.from_rgb(220, 40, 150))
 
@@ -81,3 +89,7 @@ if __name__ == "__main__":
     # maze_move(dir, maze, row, col)
 
     # generate_maze(5, 5)
+
+    # generate_random_word()
+
+    create_user()

@@ -1,4 +1,4 @@
-//
+///Users/erin/Dropbox/UT (15-16)/Thesis/client/Thesis/Thesis
 //  ScoreManager.swift
 //  Thesis
 //
@@ -11,6 +11,8 @@ import Foundation
 class ScoreManager{
     
     static let sharedInstance = ScoreManager()
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     private var currentScore: Int
     
@@ -25,6 +27,10 @@ class ScoreManager{
     
     func addPoints(points: Int){
         currentScore += points
+    }
+    
+    func saveScore() {
+        defaults.setInteger(currentScore, forKey: "currentScore")
     }
     
     
