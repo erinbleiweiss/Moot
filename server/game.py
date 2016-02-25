@@ -83,12 +83,6 @@ def get_product_img(upc):
 ###########################################################
 # Global Utilities                                        #
 ###########################################################
-def moot_points(str, size):
-    sum = 0
-    for i in str:
-        sum += ord(i)
-    return sum % size
-
 @app.route('/v1/register', methods=["POST"])
 def create_user():
     logger.debug('creating user')
@@ -105,6 +99,15 @@ def create_user():
 
     return jsonify(response)
 
+def moot_points(str, size):
+    sum = 0
+    for i in str:
+        sum += ord(i)
+    return sum % size
+
+
+def increment_score(username, points):
+    db = MootDao()
 
 ###########################################################
 # Level 1: Hangman                                        #

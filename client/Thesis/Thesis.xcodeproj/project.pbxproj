@@ -12,6 +12,9 @@
 		8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */; };
 		8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */; };
 		80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80131A8D1BD2F1E6004D1247 /* Networking.swift */; };
+		801590EC1C7FC0A70011872B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801590EB1C7FC0A70011872B /* LoginViewController.swift */; };
+		801590EE1C7FC1390011872B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801590ED1C7FC1390011872B /* RegisterViewController.swift */; };
+		801590F21C7FC7F50011872B /* UIMaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801590F11C7FC7F50011872B /* UIMaterialTextField.swift */; };
 		801E76D51C6805D40077A379 /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E76D41C6805D40077A379 /* level1.plist */; };
 		802369451C73859100840D30 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802369441C73859100840D30 /* AchievementsViewController.swift */; };
 		802369471C73BEDE00840D30 /* LevelPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802369461C73BEDE00840D30 /* LevelPicker.xib */; };
@@ -76,6 +79,9 @@
 		8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeLevelViewController.swift; sourceTree = "<group>"; };
 		8008EBAC1BDB4181003F038E /* MazeCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeCameraViewController.swift; sourceTree = "<group>"; };
 		80131A8D1BD2F1E6004D1247 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		801590EB1C7FC0A70011872B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		801590ED1C7FC1390011872B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		801590F11C7FC7F50011872B /* UIMaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMaterialTextField.swift; sourceTree = "<group>"; };
 		801E76D41C6805D40077A379 /* level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level1.plist; sourceTree = "<group>"; };
 		802369441C73859100840D30 /* AchievementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
 		802369461C73BEDE00840D30 /* LevelPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LevelPicker.xib; sourceTree = "<group>"; };
@@ -234,6 +240,7 @@
 				804EF55A1BEFEDA00091ED22 /* QRTile.swift */,
 				804EF55C1BF001580091ED22 /* QRTileTarget.swift */,
 				80685A041C7A7873000AAB9E /* ScoreBox.swift */,
+				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -242,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				80F0DD531C5EE969002A8037 /* Camera Views */,
+				801590EB1C7FC0A70011872B /* LoginViewController.swift */,
+				801590ED1C7FC1390011872B /* RegisterViewController.swift */,
 				802369441C73859100840D30 /* AchievementsViewController.swift */,
 				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
 				80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */,
@@ -454,8 +463,10 @@
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
 				80B195031BF5685F00B5C3CE /* Config.swift in Sources */,
+				801590EC1C7FC0A70011872B /* LoginViewController.swift in Sources */,
 				809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */,
 				8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */,
+				801590F21C7FC7F50011872B /* UIMaterialTextField.swift in Sources */,
 				80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */,
 				8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */,
 				804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */,
@@ -469,6 +480,7 @@
 				80FD13871C73D2A60085BB50 /* LevelTile.swift in Sources */,
 				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
 				80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */,
+				801590EE1C7FC1390011872B /* RegisterViewController.swift in Sources */,
 				80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */,
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
 				80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */,

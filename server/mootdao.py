@@ -41,5 +41,55 @@ class MootDao:
                 c.execute('INSERT INTO gameuser (username, password, avatar) '
                           'VALUES (%s, %s, %s)', (username, hashedpass, avatar))
                 conn.commit()
+                self.setup_points(username)
             else:
                 self.logger.warn(('User "{}" already exists').format(username))
+
+    def setup_points(self, username):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('INSERT INTO user_score (user_id, score_value) values '
+                   '((select user_id from gameuser where username=%s), 0)')
+            c.execute(cmd, (username,))
+            conn.commit()
+
+
+    def award_points(self, username, points):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('update user_score set score_value = score_value+%s where '
+                 'user_id = (select user_id from gameuser where username=%s)')
+            c.execute(cmd, (points, username))
+            conn.commit()
+
+    def award_achievement(self, username, achievementname):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('insert into user_achievement (user_id, achievement_id, created_at) '
+                   'values ((select user_id from gameuser where username=%s), '
+                   '(select achievement_id from achievement where name=%s), now());')
+            c.execute(cmd, (username, achievementname))
+            conn.commit()
+
+
+
+    def get_achievements(self, username):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('select name, description, created_at from achievement, user_achievement '
+                   'where achievement.achievement_id = user_achievement.achievement_id '
+                   'and user_achievement.user_id = '
+                   '(select user_id from gameuser where username=%s);')
+            c.execute(cmd, (username,))
+            achievements = []
+            for row in c.fetchall():
+                d = {}
+                d["name"] = row[0]
+                d["description"] = row[1]
+                d["created_at"] = row[2]
+                achievements.append(d)
+        return achievements

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tzp-To-mNT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tlx-cy-dgz">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -373,6 +373,133 @@
                 <exit id="h88-wQ-kVL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2967" y="935"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="goZ-rI-tQJ">
+            <objects>
+                <viewController id="Tlx-cy-dgz" customClass="LoginViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IaT-bB-Ja3"/>
+                        <viewControllerLayoutGuide type="bottom" id="eqC-e8-PlR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9zC-r5-Koj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRW-X3-7aF">
+                                <rect key="frame" x="82" y="228" width="239" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A0v-Oi-9P7">
+                                <rect key="frame" x="82" y="266" width="239" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-B9-hHA">
+                                <rect key="frame" x="82" y="301" width="239" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEb-lx-vpX">
+                                <rect key="frame" x="82" y="339" width="108" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Forgot Password?"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frw-fO-qnl">
+                                <rect key="frame" x="260" y="339" width="61" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <segue destination="5Ao-pO-s5v" kind="presentation" id="zGN-hg-7V2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="A0v-Oi-9P7" id="im6-qN-evf"/>
+                        <outlet property="usernameTextField" destination="aRW-X3-7aF" id="VGF-Pg-3mA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1p3-u0-upw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="739" y="-589"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wOc-P3-Yem">
+            <objects>
+                <navigationController id="5Ao-pO-s5v" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gXn-fi-O7t">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FQm-Z2-eqX" kind="relationship" relationship="rootViewController" id="ulD-Wq-ez1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R6C-Jd-f8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1551" y="-589"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="Tfu-dD-2rj">
+            <objects>
+                <viewController id="FQm-Z2-eqX" customClass="RegisterViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zmF-BN-nOI"/>
+                        <viewControllerLayoutGuide type="bottom" id="W23-p2-InJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a5k-tD-eNY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imU-cm-31w" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
+                                <rect key="frame" x="72" y="145" width="331" height="40"/>
+                                <accessibility key="accessibilityConfiguration" hint="Username">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Frc-qy-aYx" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
+                                <rect key="frame" x="72" y="218" width="331" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICw-Sn-aqZ" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
+                                <rect key="frame" x="72" y="287" width="331" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Lp-bd-dna" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
+                                <rect key="frame" x="72" y="357" width="331" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zmS-CK-KT3">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="9pH-b8-IQa">
+                            <connections>
+                                <segue destination="aAF-sR-aGh" kind="unwind" unwindAction="cancelToLogin:" id="WyT-n0-VGH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="0Lp-bd-dna" id="QQv-xm-h9T"/>
+                        <outlet property="emailTextField" destination="Frc-qy-aYx" id="cbS-gx-Xva"/>
+                        <outlet property="passwordTextField" destination="ICw-Sn-aqZ" id="Cy0-uI-Ijh"/>
+                        <outlet property="usernameTextField" destination="imU-cm-31w" id="e9I-tj-etV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATW-yL-SA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aAF-sR-aGh" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="-589"/>
         </scene>
         <!--Level Picker View Controller-->
         <scene sceneID="mTs-UA-ous">

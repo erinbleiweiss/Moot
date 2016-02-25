@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS gameuser cascade;
 DROP TABLE IF EXISTS achievement cascade;
 DROP TABLE IF EXISTS user_achievement cascade;
+DROP TABLE IF EXISTS user_score cascade;
 
 CREATE TABLE gameuser (
 	user_id 	serial primary key,
@@ -22,6 +23,11 @@ CREATE TABLE user_achievement (
 	user_id	INTEGER references gameuser,
 	achievement_id	INTEGER references achievement,
 	created_at	timestamp
+);
+
+CREATE TABLE user_score (
+	user_id	INTEGER UNIQUE references gameuser,
+	score_value	INTEGER NOT NULL
 );
 
 CREATE INDEX username ON gameuser(username);
