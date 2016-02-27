@@ -85,19 +85,43 @@ def get_product_img(upc):
 ###########################################################
 @app.route('/v1/register', methods=["POST"])
 def create_user():
-    logger.debug('creating user')
+    print('Creating user')
     username = request.form['username']
     password = request.form['password']
-    avatar = request.form['avatar']
+    email = request.form['email']
+
+    print('username: "{}", password: "{}", email: "{}"'.format(
+        username, password, email))
 
     db = MootDao()
 
     response = {}
-    db.create_user(username, password, avatar)
+    db.create_user(username, password, email)
     response["status"] = "success"
     response["message"] = "created user"
 
     return jsonify(response)
+
+
+@app.route('/v1/login', methods=["GET"])
+def login():
+    db = MootDao()
+    auth = request.authorization
+
+    username = auth.username
+    password = auth.password
+    #
+    response = {}
+    if db.login(username, password):
+        response["status"] = "success"
+    else:
+        response["status"] = "failure"
+
+    print("Attempting to login user '{}' with password '{}' - {}".format(
+        username, password, response["status"]))
+
+    return jsonify(response)
+
 
 def moot_points(str, size):
     sum = 0

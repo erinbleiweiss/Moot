@@ -15,9 +15,17 @@ cliffbarupc = "722252660091"
 h = "071100210453"
 
 def create_user():
-    payload = {'username': 'ebleiweiss', 'password': 'testpw', 'avatar': ''}
+    payload = {'username': 'ebleiweiss', 'password': 'testpw',
+               'email': 'erinbleiweiss@gmail.com'}
     url = "{}{}{}".format(hostname, rest_prefix, "/register")
     r = requests.post(url, data=payload)
+
+    response = r.json()
+    print response
+
+def login(username, password):
+    url = "{}{}{}".format(hostname, rest_prefix, "/login")
+    r = requests.get(url, auth=(username, password))
 
     response = r.json()
     print response
