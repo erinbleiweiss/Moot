@@ -22,6 +22,13 @@ def create_user():
     response = r.json()
     print response
 
+def login(username, password):
+    url = "{}{}{}".format(hostname, rest_prefix, "/login")
+    r = requests.get(url, auth=(username, password))
+
+    response = r.json()
+    print response
+
 def lookupBarcode(upc):
     payload = {'request_type': request_type, 'access_token': upc_access_token, 'upc': upc}
     # payload = (('request_type', request_type), ('access_token', access_token), ('upc', upc))
@@ -92,4 +99,7 @@ if __name__ == "__main__":
 
     # generate_random_word()
 
-    create_user()
+    # create_user()
+
+    login('ebleiweiss', 'testpw')
+

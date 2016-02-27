@@ -99,6 +99,27 @@ def create_user():
 
     return jsonify(response)
 
+
+@app.route('/v1/login', methods=["GET"])
+def login():
+    db = MootDao()
+    auth = request.authorization
+
+    username = auth.username
+    password = auth.password
+    #
+    response = {}
+    if db.login(username, password):
+        response["status"] = "success"
+    else:
+        response["status"] = "failure"
+
+    print("Attempting to login user '{}' with password '{}' - {}".format(
+        username, password, response["status"]))
+
+    return jsonify(response)
+
+
 def moot_points(str, size):
     sum = 0
     for i in str:

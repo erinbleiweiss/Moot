@@ -5,6 +5,24 @@ import ConfigParser
 import logging
 from logging.config import fileConfig
 
+class UserAlreadyExistsException(Exception):
+    def __init__(self, err):
+        self.err = err
+    def __str__(self):
+        return 'Exception: ' + self.err
+
+class NoUserExistsException(Exception):
+    def __init__(self, err):
+        self.err = err
+    def __str__(self):
+        return 'Exception: ' + self.err
+
+class BadArgumentsException(Exception):
+    """Exception for entering bad arguments"""
+    def __init__(self, err):
+        self.err = err
+    def __str__(self):
+        return 'Exception: ' + self.err
 
 class MootDao:
 
@@ -44,6 +62,20 @@ class MootDao:
                 self.setup_points(username)
             else:
                 self.logger.warn(('User "{}" already exists').format(username))
+
+    def login(self, username, password):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('select password from gameuser where username=%s')
+            c.execute(cmd, (username,))
+            hashedpass = md5.new(password).hexdigest()
+            u = c.fetchone()
+            if u == None:
+                raise NoUserExistsException(u)
+            self.logger.debug('database contains {}, entered password was '
+                         '{}'.format(u[0],hashedpass))
+            return u[0] == hashedpass
 
     def setup_points(self, username):
         conn = self.get_db()
