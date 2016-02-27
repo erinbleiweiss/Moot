@@ -304,9 +304,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80ED1F011BB25A400011A410 /* Moot */ = {
+		80ED1F011BB25A400011A410 /* Thesis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Moot" */;
+			buildConfigurationList = 80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Thesis" */;
 			buildPhases = (
 				9992ACD523008C63D1DD3D6C /* Check Pods Manifest.lock */,
 				80ED1EFE1BB25A400011A410 /* Sources */,
@@ -320,14 +320,14 @@
 			);
 			dependencies = (
 			);
-			name = Moot;
+			name = Thesis;
 			productName = Thesis;
 			productReference = 80ED1F021BB25A400011A410 /* Moot.app */;
 			productType = "com.apple.product-type.application";
 		};
-		80ED1F161BB25A400011A410 /* MootTests */ = {
+		80ED1F161BB25A400011A410 /* ThesisTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "MootTests" */;
+			buildConfigurationList = 80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "ThesisTests" */;
 			buildPhases = (
 				80ED1F131BB25A400011A410 /* Sources */,
 				80ED1F141BB25A400011A410 /* Frameworks */,
@@ -338,7 +338,7 @@
 			dependencies = (
 				80ED1F191BB25A400011A410 /* PBXTargetDependency */,
 			);
-			name = MootTests;
+			name = ThesisTests;
 			productName = ThesisTests;
 			productReference = 80ED1F171BB25A400011A410 /* Moot.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -376,8 +376,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80ED1F011BB25A400011A410 /* Moot */,
-				80ED1F161BB25A400011A410 /* MootTests */,
+				80ED1F011BB25A400011A410 /* Thesis */,
+				80ED1F161BB25A400011A410 /* ThesisTests */,
 			);
 		};
 /* End PBXProject section */
@@ -505,7 +505,7 @@
 /* Begin PBXTargetDependency section */
 		80ED1F191BB25A400011A410 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 80ED1F011BB25A400011A410 /* Moot */;
+			target = 80ED1F011BB25A400011A410 /* Thesis */;
 			targetProxy = 80ED1F181BB25A400011A410 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -692,7 +692,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Moot" */ = {
+		80ED1F211BB25A400011A410 /* Build configuration list for PBXNativeTarget "Thesis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80ED1F221BB25A400011A410 /* Debug */,
@@ -701,7 +701,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "MootTests" */ = {
+		80ED1F241BB25A400011A410 /* Build configuration list for PBXNativeTarget "ThesisTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80ED1F251BB25A400011A410 /* Debug */,

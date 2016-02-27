@@ -41,12 +41,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
     
     func register(username: String, password: String, email: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/register"
-        Alamofire.request(.POST, url, parameters: ["username": username, "password": password, "email": email]).responseJSON { (request, response, result) in
-            
-            print(request)
-            print(response)
-            print(result)
-            
+        Alamofire.request(.POST, url, parameters: ["username": username, "password": password, "email": email]).responseJSON { (_, _, result) in
             switch result {
             case .Success(let data):
                 let json = JSON(data)
