@@ -10,7 +10,7 @@ CREATE TABLE gameuser (
 	created_at	timestamp DEFAULT CURRENT_TIMESTAMP,
 	username	varchar(80) UNIQUE NOT NULL,
 	password	varchar(128) NOT NULL,
-	avatar varchar(80) NOT NULL
+	email varchar(80) NOT NULL
 );
 
 CREATE TABLE achievement (

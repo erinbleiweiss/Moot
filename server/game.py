@@ -85,15 +85,18 @@ def get_product_img(upc):
 ###########################################################
 @app.route('/v1/register', methods=["POST"])
 def create_user():
-    logger.debug('creating user')
+    print('Creating user')
     username = request.form['username']
     password = request.form['password']
-    avatar = request.form['avatar']
+    email = request.form['email']
+
+    print('username: "{}", password: "{}", email: "{}"'.format(
+        username, password, email))
 
     db = MootDao()
 
     response = {}
-    db.create_user(username, password, avatar)
+    db.create_user(username, password, email)
     response["status"] = "success"
     response["message"] = "created user"
 

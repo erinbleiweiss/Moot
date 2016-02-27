@@ -46,7 +46,7 @@ class MootDao:
                                 host=self.pghostname)
 
 
-    def create_user(self, username, password, avatar):
+    def create_user(self, username, password, email):
         conn = self.get_db()
         with conn:
             c = conn.cursor()
@@ -56,8 +56,8 @@ class MootDao:
 
             if n == 0:
                 hashedpass = md5.new(password).hexdigest()
-                c.execute('INSERT INTO gameuser (username, password, avatar) '
-                          'VALUES (%s, %s, %s)', (username, hashedpass, avatar))
+                c.execute('INSERT INTO gameuser (username, password, email) '
+                          'VALUES (%s, %s, %s)', (username, hashedpass, email))
                 conn.commit()
                 self.setup_points(username)
             else:

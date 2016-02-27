@@ -15,7 +15,8 @@ cliffbarupc = "722252660091"
 h = "071100210453"
 
 def create_user():
-    payload = {'username': 'ebleiweiss', 'password': 'testpw', 'avatar': ''}
+    payload = {'username': 'ebleiweiss', 'password': 'testpw',
+               'email': 'erinbleiweiss@gmail.com'}
     url = "{}{}{}".format(hostname, rest_prefix, "/register")
     r = requests.post(url, data=payload)
 
@@ -99,7 +100,4 @@ if __name__ == "__main__":
 
     # generate_random_word()
 
-    # create_user()
-
-    login('ebleiweiss', 'testpw')
-
+    create_user()
