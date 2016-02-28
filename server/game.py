@@ -1,5 +1,12 @@
 from flask import Flask, request, jsonify, make_response
+from flask_mail import Mail, Message
+from flask_wtf import Form
+from WTForms import StringField, PasswordField, validators, ValidationError
+
 app = Flask(__name__)
+mail = Mail(app)
+
+
 
 from mootdao import MootDao
 
@@ -30,6 +37,11 @@ QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
 
 fileConfig('logging_config.ini')
 logger = logging.getLogger(__name__)
+
+class RegistrationForm(Form):
+    email = StringField('Email address', [validators.DataRequired(), validators.Email()])
+    # username = StringField('Username', validators=[Required(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, 'numbers, dots or underscores')])
+    # password = PasswordField('Password', validators=[Required()])
 
 @app.route("/")
 def hello():
@@ -122,6 +134,16 @@ def login():
 
     return jsonify(response)
 
+
+@app.route('/v1/forgot_password', methods=["GET"])
+def forgot_password():
+    msg = Message()
+    msg.recipients = ["erin.bleiweiss@utexas.edu"]
+    msg.body = "Moot test email"
+    msg.subject = "Moot Password Reset"
+    # msg.sender = ("Moot", "moot@erinbleiweiss.com")
+    mail.send(msg)
+    return "Message sent"
 
 def moot_points(str, size):
     sum = 0

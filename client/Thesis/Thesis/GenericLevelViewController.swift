@@ -8,12 +8,9 @@
 
 import UIKit
 import SwiftHEXColors
+import SWRevealViewController
 
-class GenericLevelViewController: UIViewController {
-
-    var hostname = Networking.networkConfig.hostname
-    var rest_prefix = Networking.networkConfig.rest_prefix
-
+class GenericLevelViewController: MootViewController {
 
     
     override func viewDidLoad() {
@@ -29,6 +26,8 @@ class GenericLevelViewController: UIViewController {
         let customView = ScoreBox(frame: frame)
         customView.backgroundColor = UIColor(white: 1, alpha: 1)
         self.view.addSubview(customView)
+        
+        
         
     }
 

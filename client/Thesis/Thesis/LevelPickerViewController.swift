@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SWRevealViewController
+
 
 protocol UIViewLoading {}
 extension UIView : UIViewLoading {}
@@ -39,7 +41,7 @@ extension UIViewLoading where Self : UIView {
 }
 
 
-class LevelPickerViewController: UIViewController, UIViewLoading {
+class LevelPickerViewController: GenericLevelViewController, UIViewLoading {
     @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
     }
     
@@ -112,7 +114,7 @@ class LevelPickerViewController: UIViewController, UIViewLoading {
     */
     func clickPressed(sender: LevelTile!){
         if (!sender.level!.isLocked()){
-            presentViewController(sender.rootVC!, animated: true, completion: nil)
+            self.revealViewController().pushFrontViewController(sender.rootVC!, animated: true)
         }
         
     }
