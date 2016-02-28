@@ -532,10 +532,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEI-9G-nWs">
-                                <rect key="frame" x="252" y="285" width="97" height="30"/>
-                                <state key="normal" title="Achievements"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -601,6 +597,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Gbc-nx-zOK" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="1mB-6R-8FK"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="n1K-y0-RnY">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
@@ -617,6 +616,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="MPW-ve-gKH" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="9Y9-jr-Tg3"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Bxf-H8-PIH">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
@@ -689,10 +691,10 @@
             </objects>
             <point key="canvasLocation" x="739" y="935"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Achievement Table View Controller-->
         <scene sceneID="ekL-6N-XhH">
             <objects>
-                <tableViewController id="REQ-JS-4sW" sceneMemberID="viewController">
+                <tableViewController id="REQ-JS-4sW" customClass="AchievementTableViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="G0i-7c-wts">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -712,16 +714,9 @@
                             <outlet property="delegate" destination="REQ-JS-4sW" id="W7N-g6-rpv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ULZ-IC-G9G">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="s3N-88-SS5">
-                            <connections>
-                                <segue destination="Con-vr-Nfk" kind="unwind" unwindAction="cancelToLevelPicker:" id="CeH-dc-PaW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ULZ-IC-G9G"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6e-sX-q05" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Con-vr-Nfk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3056" y="-451"/>
         </scene>
@@ -744,4 +739,7 @@
             <point key="canvasLocation" x="739" y="-451"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1mB-6R-8FK"/>
+    </inferredMetricsTieBreakers>
 </document>

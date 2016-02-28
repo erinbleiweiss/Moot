@@ -10,11 +10,7 @@ import UIKit
 import SwiftHEXColors
 import SWRevealViewController
 
-class GenericLevelViewController: UIViewController {
-
-    var hostname = Networking.networkConfig.hostname
-    var rest_prefix = Networking.networkConfig.rest_prefix
-
+class GenericLevelViewController: MootViewController {
 
     
     override func viewDidLoad() {
@@ -32,24 +28,6 @@ class GenericLevelViewController: UIViewController {
         self.view.addSubview(customView)
         
         
-        let btnName = UIButton()
-        btnName.setImage(UIImage(named: "menu"), forState: .Normal)
-        btnName.frame = CGRectMake(0, 0, 30, 30)
-//        btnName.addTarget(self, action: Selector("action"), forControlEvents: .TouchUpInside)
-        
-        
-        if self.revealViewController() != nil {            
-            btnName.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: .TouchUpInside)
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-        
-        //.... Set Left Bar Button item
-        let leftBarButton = UIBarButtonItem()
-        leftBarButton.customView = btnName
-        self.navigationItem.leftBarButtonItem = leftBarButton
-        
-        
-
         
     }
 
