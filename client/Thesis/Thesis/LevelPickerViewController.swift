@@ -39,7 +39,7 @@ extension UIViewLoading where Self : UIView {
 }
 
 
-class LevelPickerViewController: UIViewController, UIViewLoading {
+class LevelPickerViewController: GenericLevelViewController, UIViewLoading {
     @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
     }
     

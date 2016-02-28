@@ -1,5 +1,14 @@
 from flask import Flask, request, jsonify, make_response
+from flask_mail import Mail, Message
 app = Flask(__name__)
+mail = Mail(app)
+
+MAIL_SERVER='smtp.gmail.com'
+MAIL_PORT=25
+MAIL_USE_TLS = False
+MAIL_USE_SSL= True
+MAIL_USERNAME = 'erinbleiweiss@gmail.com'
+MAIL_PASSWORD = 'Falcons021294*!'
 
 from mootdao import MootDao
 
@@ -122,6 +131,16 @@ def login():
 
     return jsonify(response)
 
+
+@app.route('/v1/forgot_password', methods=["GET"])
+def forgot_password():
+    msg = Message()
+    msg.recipients = ["erin.bleiweiss@utexas.edu"]
+    msg.body = "Moot test email"
+    msg.subject = "Moot Password Reset"
+    # msg.sender = ("Moot", "moot@erinbleiweiss.com")
+    mail.send(msg)
+    return "Message sent"
 
 def moot_points(str, size):
     sum = 0
