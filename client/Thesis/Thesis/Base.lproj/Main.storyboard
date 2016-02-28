@@ -565,7 +565,10 @@
                     </view>
                     <connections>
                         <segue destination="a4M-G0-yK1" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="ofB-hZ-VPn"/>
-                        <segue destination="Gbc-nx-zOK" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="bJP-7G-Skg"/>
+                        <segue destination="Gbc-nx-zOK" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="0Lb-s8-S6Z"/>
+                        <segue destination="f7b-pw-HPC" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="TmD-DU-DNe"/>
+                        <segue destination="ERG-8u-MVy" kind="custom" customClass="SWRevealViewControllerSegueSetController" id="51Q-cl-Pa6"/>
+                        <segue destination="yEc-8Y-sKB" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="ClB-sH-3jC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smp-Bf-gsr" userLabel="First Responder" sceneMemberID="firstResponder"/>
