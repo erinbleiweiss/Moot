@@ -48,8 +48,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
 //                print(json["status"])
 //                print(json["errors"])
                 
-                let errors = json["errors"]
-                self.displayErrorMeessages(errors)
+                for (item, subJson):(String, JSON) in json{
+                    if (item == "errors"){
+                        self.displayErrorMeessages(subJson)
+                    }
+                }
+                
                 completionHandler(responseObject: json, error: result.error as? NSError)
             case .Failure(_):
                 NSLog("Request failed with error: \(result.error)")

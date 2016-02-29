@@ -272,16 +272,7 @@ class UIMaterialTextField: UITextField, UITextFieldDelegate {
     func initializeMaterialDesign() {
         self.placeHolderString = String(super.placeholder!)
         super.placeholder = ""
-        
-        Line = UIView(frame: CGRect(x: padding.left/2, y: self.frame.height-2, width: self.frame.width, height: 1))
-        Line.backgroundColor = lineColor
-        
-        PlaceHolderText = UILabel(frame: CGRect(x: padding.left, y: padding.top + 10, width: self.frame.width, height: self.frame.height-padding.top))
-        PlaceHolderText.text = self.placeHolderString
-        PlaceHolderText.font = self.font
-        PlaceHolderText.textColor = self.placeHolderColor
-        PlaceHolderText.alpha = self.initialPlaceHolderAlpha
-        PlaceHolderText.sizeToFit()
+    
         
         TitleText = UILabel(frame: CGRect(x: padding.left, y:14, width: self.frame.width, height: self.frame.height))
         TitleText.text = self.placeHolderString
@@ -290,12 +281,27 @@ class UIMaterialTextField: UITextField, UITextFieldDelegate {
         TitleText.sizeToFit()
         TitleText.alpha = 0.0
         
-        ErrorMessageText = UILabel(frame: CGRect(x: padding.left, y:42, width: self.frame.width, height: self.frame.height))
+        var errorMessageFontHeight = ErrorMessageText.font.lineHeight
+//        let errorMessageY = self.frame.height - errorMessageFontHeight
+        ErrorMessageText = UILabel(frame: CGRect(x: padding.left, y:44, width: self.frame.width, height: self.frame.height))
         ErrorMessageText.text = ""
         ErrorMessageText.font = UIFont(name: PlaceHolderText.font.familyName, size: 10)
         ErrorMessageText.textColor = UIColor.redColor()
-//        ErrorMessageText.sizeToFit()
+        ErrorMessageText.sizeToFit()
         ErrorMessageText.alpha = 0.0
+        
+        errorMessageFontHeight = ErrorMessageText.font.lineHeight
+        let lineY = self.frame.height - errorMessageFontHeight
+        Line = UIView(frame: CGRect(x: padding.left/2, y: lineY, width: self.frame.width, height: 1))
+        Line.backgroundColor = lineColor
+        
+        let placeHolderY = lineY - self.font!.lineHeight
+        PlaceHolderText = UILabel(frame: CGRect(x: padding.left, y: placeHolderY, width: self.frame.width, height: self.frame.height-padding.top))
+        PlaceHolderText.text = self.placeHolderString
+        PlaceHolderText.font = self.font
+        PlaceHolderText.textColor = self.placeHolderColor
+        PlaceHolderText.alpha = self.initialPlaceHolderAlpha
+        PlaceHolderText.sizeToFit()
         
         self.addSubview(Line)
         self.addSubview(PlaceHolderText)
