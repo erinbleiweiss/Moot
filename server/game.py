@@ -67,6 +67,12 @@ class RegistrationForm(Form):
     def getValue(self, param):
         return getattr(self, param)._value()
 
+    def validate_username(form, field):
+        db = MootDao()
+        available = db.check_username_available(field.data)
+        if not available:
+            raise ValidationError("Username unavailable")
+
 
 @app.route("/")
 def hello():

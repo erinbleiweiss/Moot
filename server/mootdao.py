@@ -68,6 +68,18 @@ class MootDao:
             else:
                 self.logger.warn(('User "{}" already exists').format(username))
 
+    def check_username_available(self, username):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            c.execute('SELECT COUNT(*) from gameuser WHERE username=%s',
+                      (username,))
+            n = int(c.fetchone()[0])
+
+        available = n == 0
+        self.logger.debug("Username available: {}".format(available))
+        return (available)
+
     def login(self, username, password):
         conn = self.get_db()
         with conn:
