@@ -1,12 +1,12 @@
 from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
+from tornado import options
 from game import app
 
 import logging
-from logging.config import fileConfig
 
-fileConfig('logging_config.ini')
+options.log_file_prefix = "info.log"
 logger = logging.getLogger('server')
 
 http_server = HTTPServer(WSGIContainer(app))
