@@ -73,6 +73,9 @@ class UIMaterialTextField: UITextField, UITextFieldDelegate {
     private var _placeHolderColor = UIColor.darkGrayColor()
     // Private variable used to store the value of placeHolderColor property
     
+    private var ErrorMessageText = UILabel()
+    // The label to display optional error message text
+    
     
     enum MaterialTextFieldState {
         case inactiveNotEdited
@@ -287,9 +290,17 @@ class UIMaterialTextField: UITextField, UITextFieldDelegate {
         TitleText.sizeToFit()
         TitleText.alpha = 0.0
         
+        ErrorMessageText = UILabel(frame: CGRect(x: padding.left, y:42, width: self.frame.width, height: self.frame.height))
+        ErrorMessageText.text = ""
+        ErrorMessageText.font = UIFont(name: PlaceHolderText.font.familyName, size: 10)
+        ErrorMessageText.textColor = UIColor.redColor()
+//        ErrorMessageText.sizeToFit()
+        ErrorMessageText.alpha = 0.0
+        
         self.addSubview(Line)
         self.addSubview(PlaceHolderText)
         self.addSubview(TitleText)
+        self.addSubview(ErrorMessageText)
         self.backgroundColor = UIColor.clearColor()
         self.borderStyle = UITextBorderStyle.None
         self.layer.borderWidth = 0
@@ -434,6 +445,19 @@ class UIMaterialTextField: UITextField, UITextFieldDelegate {
     // ---------------------------------------------------------------------------
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return materialDelegate?.materialTextFieldShouldClear?(textField) ?? true
+    }
+    
+    
+    
+    func displayErrorText(errorText: String) {
+        self.ErrorMessageText.text = errorText
+        self.ErrorMessageText.alpha = 1
+        self.ErrorMessageText.sizeToFit()
+    }
+    
+    func hideErrorText(){
+        self.ErrorMessageText.text = ""
+        self.ErrorMessageText.alpha = 0.0
     }
     
     

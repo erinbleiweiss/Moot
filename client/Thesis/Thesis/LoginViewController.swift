@@ -14,13 +14,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     @IBAction func cancelToLogin(segue:UIStoryboardSegue) {
     }
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UIMaterialTextField!
+    @IBOutlet weak var passwordTextField: UIMaterialTextField!
         
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+//        usernameTextField.displayErrorText("Username cannot be blank")
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,10 +12,10 @@ import SwiftyJSON
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialTextFieldDelegate {
 
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UIMaterialTextField!
+    @IBOutlet weak var emailTextField: UIMaterialTextField!
+    @IBOutlet weak var passwordTextField: UIMaterialTextField!
+    @IBOutlet weak var confirmPasswordTextField: UIMaterialTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +24,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
     }
     
     func validateData() -> Bool {
-//        if let username: String = usernameTextField.text! {
-//            if let email: String = emailTextField.text!{
-//                if let password: String = passwordTextField.text! {
-//                    if let confirmPassword: String = confirmPasswordTextField.text!{
-//                        if username != "" && email != "" && password != "" && password == confirmPassword {
-//                            return true
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return false
-        return true
+        if let username: String = usernameTextField.text! {
+            if let email: String = emailTextField.text!{
+                if let password: String = passwordTextField.text! {
+                    if let confirmPassword: String = confirmPasswordTextField.text!{
+                        if username != "" && email != "" && password != "" && password == confirmPassword {
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        return false
     }
     
     
@@ -46,7 +45,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
             switch result {
             case .Success(let data):
                 let json = JSON(data)
-                print(json["status"])
+//                print(json["status"])
+//                print(json["errors"])
+                
+                let errors = json["errors"]
+                self.displayErrorMeessages(errors)
                 completionHandler(responseObject: json, error: result.error as? NSError)
             case .Failure(_):
                 NSLog("Request failed with error: \(result.error)")
@@ -58,16 +61,38 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
     
     
     @IBAction func registerButton(sender: AnyObject) {
-        if validateData(){
-            let username: String = usernameTextField.text!
-            let password: String = passwordTextField.text!
-            let confirmPassword: String = confirmPasswordTextField.text!
-            let email: String = emailTextField.text!
+        let username: String = usernameTextField.text!
+        let password: String = passwordTextField.text!
+        let confirmPassword: String = confirmPasswordTextField.text!
+        let email: String = emailTextField.text!
             
-            self.register(username, password: password, confirmPassword: confirmPassword, email: email){ responseObject, error in
+        self.register(username, password: password, confirmPassword: confirmPassword, email: email){ responseObject, error in
                 
+        }
+        
+        
+    }
+    
+    func displayErrorMeessages(errors: JSON) {
+        self.clearAllErrorMeesages()
+        for (item,subJson):(String, JSON) in errors {
+            let text = subJson[0].string
+            if (item == "username"){
+                self.usernameTextField.displayErrorText(text!)
+            } else if (item == "email") {
+                self.emailTextField.displayErrorText(text!)
+            } else if (item == "password") {
+                self.passwordTextField.displayErrorText(text!)
+            } else if (item == "confirmPassword") {
+                self.confirmPasswordTextField.displayErrorText(text!)
             }
-            
+        }
+    }
+    
+    func clearAllErrorMeesages() {
+        let allFields: [UIMaterialTextField] = [usernameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
+        for field in allFields{
+            field.hideErrorText()
         }
         
     }

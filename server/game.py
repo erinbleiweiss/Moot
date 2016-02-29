@@ -11,6 +11,7 @@ from werkzeug.datastructures import MultiDict
 from mootdao import MootDao
 
 import requests
+import json
 import logging
 import pprint
 import Image
@@ -141,12 +142,15 @@ def register():
             logger.debug('it worked?')
             return jsonify(response)
         else:
-            for fieldName, errorMessages in form.errors.iteritems():
-                for err in errorMessages:
-                    logger.debug("{}: {}".format(fieldName, err))
-
-            logger.debug('validation failure')
             response = {}
+            response["errors"] = {}
+            for fieldName, errorMessages in form.errors.iteritems():
+                errors_in_field = []
+                for err in errorMessages:
+                    logger.debug("{} error: {}".format(fieldName, err))
+                    errors_in_field.append(err)
+                response["errors"][fieldName] = errors_in_field
+
             response["status"] = "failure"
             return jsonify(response)
 
