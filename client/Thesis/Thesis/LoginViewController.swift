@@ -48,6 +48,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
             
         self.checkPassword(username, password: password){ responseObject, error in
             if responseObject!["status"] == "success"{
+                
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(username, forKey: "username")
+                defaults.setObject(password, forKey: "password")
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
                 let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("RevealVC") as UIViewController
                 self.presentViewController(revealViewController, animated: true, completion: nil)

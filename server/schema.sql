@@ -22,7 +22,7 @@ CREATE TABLE achievement (
 CREATE TABLE user_achievement (
 	user_id	INTEGER references gameuser,
 	achievement_id	INTEGER references achievement,
-	created_at	timestamp
+	created_at	timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE user_score (
@@ -31,3 +31,7 @@ CREATE TABLE user_score (
 );
 
 CREATE INDEX username ON gameuser(username);
+
+
+INSERT INTO achievement VALUES (1, 'New Moot on the Block', 'Create a new Moot account');
+INSERT INTO achievement VALUES (2, 'Savings Account', 'Accumulate 1000 Moot Points');

@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class AchievementTableViewController: UITableViewController {
 
+    var allAchievements: [Achievement] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +39,16 @@ class AchievementTableViewController: UITableViewController {
         leftBarButton.customView = btnName
         self.navigationItem.leftBarButtonItem = leftBarButton
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let username = defaults.stringForKey("username")
+        {
+            let password = defaults.stringForKey("password")
+            self.getAchievements(username, password: password!){ responseObject, error in
+                
+            }
+        }
+    
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,27 +65,75 @@ class AchievementTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return 1
+        return self.allAchievements.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AchievementCell", forIndexPath: indexPath) as! AchievementTableViewCell
         
         // Configure the cell...
-        if indexPath.row == 0 {
-            cell.achievementImage.image = UIImage(named: "medal")
-            cell.achievementNameLabel.text = "My First Achievement"
-            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
-            cell.achievementDateLabel.text = "Earned 2/2/2016"
-        } else {
-            cell.achievementImage.image = UIImage(named: "medal")
-            cell.achievementNameLabel.text = "My First Achievement"
-            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
-            cell.achievementDateLabel.text = "Earned 2/2/2016"
-        }
+//        if indexPath.row == 0 {
+//            cell.achievementImage.image = UIImage(named: "medal")
+//            cell.achievementNameLabel.text = "My First Achievement"
+//            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
+//            cell.achievementDateLabel.text = "Earned 2/2/2016"
+//        } else {
+//            cell.achievementImage.image = UIImage(named: "medal")
+//            cell.achievementNameLabel.text = "My First Achievement"
+//            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
+//            cell.achievementDateLabel.text = "Earned 2/2/2016"
+//        }
+        
+        let achievement = self.allAchievements[indexPath.row]
+        cell.achievementImage.image = UIImage(named: "medal")
+        cell.achievementNameLabel.text = achievement.getName()
+        cell.achievementDescriptionLabel.text = achievement.getDescription()
+        cell.achievementDateLabel.text = "Earned 2/2/2016"
     
         return cell
     }
+    
+    
+    func getAchievements(user: String, password: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+        
+        let url: String = hostname + rest_prefix + "/get_achievements"
+        
+        let credentialData = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
+        let headers = ["Authorization": "Basic \(base64Credentials)"]
+        
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
+            .responseJSON { (_, _, result) in
+                switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                    print(json["status"])
+                    
+                    for (item, subJson):(String, JSON) in json{
+                        if (item == "achievements"){
+                            self.createAchievements(subJson)
+                        }
+                    }
+                    completionHandler(responseObject: json, error: result.error as? NSError)
+                case .Failure(_):
+                    NSLog("Request failed with error: \(result.error)")
+                }
+                
+        }
+        
+    }
+    
+    
+    func createAchievements(achievements: JSON){
+        for (item, subJson):(String, JSON) in achievements {
+            let name = subJson["name"].string
+            let description = subJson["description"].string
+            let new_ach = Achievement(name: name!, description: description!)
+            allAchievements.append(new_ach)
+        }
+        self.tableView.reloadData()
+    }
+    
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -270,6 +270,23 @@ def forgot_password():
     mail.send(msg)
     return "Message sent"
 
+
+@app.route('/v1/get_achievements', methods=["GET"])
+def get_achievements():
+    db = MootDao()
+    auth = request.authorization
+    username = auth.username
+    password = auth.password
+
+    achievements = db.get_achievements(username)
+    logger.debug(achievements)
+
+    response = {}
+    response["achievements"] = achievements
+    response["status"] = "success"
+    return jsonify(response)
+
+
 def moot_points(str, size):
     sum = 0
     for i in str:
