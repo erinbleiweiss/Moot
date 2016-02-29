@@ -69,9 +69,44 @@ class RegistrationForm(Form):
 
     def validate_username(form, field):
         db = MootDao()
-        available = db.check_username_available(field.data)
-        if not available:
+        exists = db.check_username_exists(field.data)
+        if exists:
             raise ValidationError("Username unavailable")
+
+
+class LoginForm(Form):
+    username = StringField('Username', [
+        validators.DataRequired(message="Username cannot be blank")
+    ])
+    password = PasswordField('Password', [
+        validators.DataRequired(message="Password cannot be blank")
+    ])
+
+    def getValue(self, param):
+        return getattr(self, param)._value()
+
+    def validate_username(form, field):
+        db = MootDao()
+        exists = db.check_username_exists(field.data)
+        if not exists:
+            raise ValidationError("No account with this username exists")
+
+    def validate(self, extra_validators=None):
+        if not Form.validate(self):
+            return False
+
+        logger.debug("wat")
+        print('wat')
+        username = self.username._value()
+        password = self.password._value()
+
+        logger.debug("Attempting to login user '{}' with password '{}'"
+                     .format(username, password))
+
+        db = MootDao()
+        login = db.login(username, password)
+        if not login:
+            raise ValidationError("Username or password is invalid")
 
 
 @app.route("/")
@@ -170,6 +205,43 @@ def register():
 
 @app.route('/v1/login', methods=["GET"])
 def login():
+    logger.debug('login()')
+
+    # try:
+    #     data = MultiDict(mapping=request.authorization)
+    #     form = LoginForm(data, csrf_enabled=False)
+    #     logger.debug("checkpoint 3")
+    #
+    #     if form.validate():
+    #         logger.debug("success")
+    #
+    #         response = {}
+    #         response["status"] = "success"
+    #         return jsonify(response)
+    #     else:
+    #         logger.debug("did not validate")
+    #
+    #         response = {}
+    #         response["errors"] = {}
+    #         for fieldName, errorMessages in form.errors.iteritems():
+    #             errors_in_field = []
+    #             for err in errorMessages:
+    #                 logger.debug("{} error: {}".format(fieldName, err))
+    #                 errors_in_field.append(err)
+    #             response["errors"][fieldName] = errors_in_field
+    #
+    #
+    #         logger.debug(response["errors"])
+    #         response["status"] = "failure"
+    #         return jsonify(response)
+    #
+    # except Exception as e:
+    #     logger.debug('Exception: {}'.format(e))
+    #     response = {}
+    #     response["status"] = "failure"
+    #     return jsonify(response)
+
+
     db = MootDao()
     auth = request.authorization
 

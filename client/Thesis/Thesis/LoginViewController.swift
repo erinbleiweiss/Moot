@@ -43,15 +43,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        if validateData(){
-            let username: String = usernameTextField.text!
-            let password: String = passwordTextField.text!
+        let username: String = usernameTextField.text!
+        let password: String = passwordTextField.text!
             
-            self.checkPassword(username, password: password){ responseObject, error in
-                
+        self.checkPassword(username, password: password){ responseObject, error in
+            if responseObject!["status"] == "success"{
+                let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("RevealVC") as UIViewController
+                self.presentViewController(revealViewController, animated: true, completion: nil)
             }
-            
         }
+        
     }
     
     
@@ -69,6 +71,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
             case .Success(let data):
                 let json = JSON(data)
                     print(json["status"])
+                
+                    for (item, subJson):(String, JSON) in json{
+                        if (item == "errors"){
+                            self.displayErrorMessages(subJson)
+                        }
+                    }
                 completionHandler(responseObject: json, error: result.error as? NSError)
             case .Failure(_):
                 NSLog("Request failed with error: \(result.error)")
@@ -76,6 +84,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
             
         }
         
+    }
+    
+    func displayErrorMessages(errors: JSON) {
+        self.clearAllErrorMessages()
+        for (item, subJson): (String, JSON) in errors{
+            let text = subJson[0].string
+            if (item == "username"){
+                self.usernameTextField.displayErrorText(text!)
+            } else if (item == "password") {
+                self.passwordTextField.displayErrorText(text!)
+            }
+        }
+    }
+    
+    
+    func clearAllErrorMessages() {
+        let allFields: [UIMaterialTextField] = [usernameTextField, passwordTextField]
+        for field in allFields{
+            field.hideErrorText()
+        }
     }
     
 

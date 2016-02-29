@@ -50,7 +50,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
                 
                 for (item, subJson):(String, JSON) in json{
                     if (item == "errors"){
-                        self.displayErrorMeessages(subJson)
+                        self.displayErrorMessages(subJson)
                     }
                 }
                 
@@ -71,14 +71,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
         let email: String = emailTextField.text!
             
         self.register(username, password: password, confirmPassword: confirmPassword, email: email){ responseObject, error in
-                
+            
+            if responseObject!["status"] == "success"{
+                let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                let loginViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("LoginVC") as UIViewController
+                self.presentViewController(loginViewController, animated: true, completion: nil)
+            }
+            
         }
         
         
     }
     
-    func displayErrorMeessages(errors: JSON) {
-        self.clearAllErrorMeesages()
+    func displayErrorMessages(errors: JSON) {
+        self.clearAllErrorMessages()
         for (item,subJson):(String, JSON) in errors {
             let text = subJson[0].string
             if (item == "username"){
@@ -93,7 +99,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
         }
     }
     
-    func clearAllErrorMeesages() {
+    func clearAllErrorMessages() {
         let allFields: [UIMaterialTextField] = [usernameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
         for field in allFields{
             field.hideErrorText()

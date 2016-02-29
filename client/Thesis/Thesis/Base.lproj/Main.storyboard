@@ -377,7 +377,7 @@
         <!--Login View Controller-->
         <scene sceneID="goZ-rI-tQJ">
             <objects>
-                <viewController id="Tlx-cy-dgz" customClass="LoginViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="Tlx-cy-dgz" customClass="LoginViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IaT-bB-Ja3"/>
                         <viewControllerLayoutGuide type="bottom" id="eqC-e8-PlR"/>
@@ -549,7 +549,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="FtD-vH-zfk">
             <objects>
-                <viewController id="rCN-88-7dS" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RevealVC" id="rCN-88-7dS" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CZO-iG-bip"/>
                         <viewControllerLayoutGuide type="bottom" id="75Y-jv-BBz"/>
@@ -740,6 +740,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1mB-6R-8FK"/>
+        <segue reference="0Lb-s8-S6Z"/>
     </inferredMetricsTieBreakers>
 </document>
