@@ -46,12 +46,31 @@ class AchievementTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // Return the number of rows in the section.
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("AchievementCell", forIndexPath: indexPath) as! AchievementTableViewCell
+        
+        // Configure the cell...
+        if indexPath.row == 0 {
+            cell.achievementImage.image = UIImage(named: "medal")
+            cell.achievementNameLabel.text = "My First Achievement"
+            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
+            cell.achievementDateLabel.text = "Earned 2/2/2016"
+        } else {
+            cell.achievementImage.image = UIImage(named: "medal")
+            cell.achievementNameLabel.text = "My First Achievement"
+            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
+            cell.achievementDateLabel.text = "Earned 2/2/2016"
+        }
+    
+        return cell
     }
 
     /*
