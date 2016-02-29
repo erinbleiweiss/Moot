@@ -24,24 +24,25 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
     }
     
     func validateData() -> Bool {
-        if let username: String = usernameTextField.text! {
-            if let email: String = emailTextField.text!{
-                if let password: String = passwordTextField.text! {
-                    if let confirmPassword: String = confirmPasswordTextField.text!{
-                        if username != "" && email != "" && password != "" && password == confirmPassword {
-                            return true
-                        }
-                    }
-                }
-            }
-        }
-        return false
+//        if let username: String = usernameTextField.text! {
+//            if let email: String = emailTextField.text!{
+//                if let password: String = passwordTextField.text! {
+//                    if let confirmPassword: String = confirmPasswordTextField.text!{
+//                        if username != "" && email != "" && password != "" && password == confirmPassword {
+//                            return true
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return false
+        return true
     }
     
     
-    func register(username: String, password: String, email: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+    func register(username: String, password: String, confirmPassword: String, email: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/register"
-        Alamofire.request(.POST, url, parameters: ["username": username, "password": password, "email": email]).responseJSON { (_, _, result) in
+        Alamofire.request(.POST, url, parameters: ["username": username, "password": password, "confirmPassword": confirmPassword, "email": email]).responseJSON { (_, _, result) in
             switch result {
             case .Success(let data):
                 let json = JSON(data)
@@ -60,9 +61,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIMaterialT
         if validateData(){
             let username: String = usernameTextField.text!
             let password: String = passwordTextField.text!
+            let confirmPassword: String = confirmPasswordTextField.text!
             let email: String = emailTextField.text!
             
-            self.register(username, password: password, email: email){ responseObject, error in
+            self.register(username, password: password, confirmPassword: confirmPassword, email: email){ responseObject, error in
                 
             }
             

@@ -47,6 +47,11 @@ class MootDao:
 
 
     def create_user(self, username, password, email):
+        self.logger.debug("create_user()")
+        self.logger.debug("Parameters: \n"
+                          "\tusername: '{}'\n"
+                          "\tpassword: '{}'\n"
+                          "\temail: '{}'".format(username, password, email))
         conn = self.get_db()
         with conn:
             c = conn.cursor()

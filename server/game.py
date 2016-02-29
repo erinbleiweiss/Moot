@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify, make_response
 from flask_mail import Mail, Message
 from flask_wtf import Form
-from WTForms import StringField, PasswordField, validators, ValidationError
+from wtforms import StringField, PasswordField, validators, ValidationError
 
 app = Flask(__name__)
 mail = Mail(app)
 
-
+from werkzeug.datastructures import MultiDict
 
 from mootdao import MootDao
 
@@ -39,9 +39,33 @@ fileConfig('logging_config.ini')
 logger = logging.getLogger(__name__)
 
 class RegistrationForm(Form):
-    email = StringField('Email address', [validators.DataRequired(), validators.Email()])
-    # username = StringField('Username', validators=[Required(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, 'Usernames must have only letters, 'numbers, dots or underscores')])
-    # password = PasswordField('Password', validators=[Required()])
+    username = StringField('Username', [
+        validators.DataRequired(message="Username cannot be blank"),
+        validators.Length(4, 20,
+                          message="Username must be between "
+                                  "4 and 20 characters"),
+        validators.regexp('^[A-Za-z][A-Za-z0-9_.]*$',
+                          message="Usernames may contain only letters, "
+                                  "numbers, periods or underscores")
+    ])
+    password = PasswordField('Password', [
+        validators.DataRequired(message="Password cannot be blank"),
+        validators.Length(4, 20,
+                          message="Password must be between "
+                                  "4 and 20 characters"),
+    ])
+    confirmPassword = PasswordField('Confirm password', [
+        validators.equal_to('password',
+                            message="Passwords must match")
+    ])
+    email = StringField('Email address', [
+        validators.DataRequired(message="Email cannot be blank."),
+        validators.Email(message="Email address is not valid")
+    ])
+
+    def getValue(self, param):
+        return getattr(self, param)._value()
+
 
 @app.route("/")
 def hello():
@@ -96,23 +120,42 @@ def get_product_img(upc):
 # Global Utilities                                        #
 ###########################################################
 @app.route('/v1/register', methods=["POST"])
-def create_user():
-    print('Creating user')
-    username = request.form['username']
-    password = request.form['password']
-    email = request.form['email']
+def register():
+    logger.debug('register()')
+    try:
+        data = MultiDict(mapping=request.form)
+        form = RegistrationForm(data, csrf_enabled=False)
 
-    print('username: "{}", password: "{}", email: "{}"'.format(
-        username, password, email))
+        if form.validate():
+            username = form.getValue("username")
+            password = form.getValue("password")
+            email = form.getValue("email")
 
-    db = MootDao()
+            db = MootDao()
+            db.create_user(username, password, email)
 
-    response = {}
-    db.create_user(username, password, email)
-    response["status"] = "success"
-    response["message"] = "created user"
+            response = {}
+            response["status"] = "success"
+            response["message"] = "created user"
 
-    return jsonify(response)
+            logger.debug('it worked?')
+            return jsonify(response)
+        else:
+            for fieldName, errorMessages in form.errors.iteritems():
+                for err in errorMessages:
+                    logger.debug("{}: {}".format(fieldName, err))
+
+            logger.debug('validation failure')
+            response = {}
+            response["status"] = "failure"
+            return jsonify(response)
+
+    except Exception as e:
+        logger.debug('Exception: {}'.format(e))
+        response = {}
+        response["status"] = "failure"
+        return jsonify(response)
+
 
 
 @app.route('/v1/login', methods=["GET"])
@@ -129,7 +172,7 @@ def login():
     else:
         response["status"] = "failure"
 
-    print("Attempting to login user '{}' with password '{}' - {}".format(
+    logger.debug("Attempting to login user '{}' with password '{}' - {}".format(
         username, password, response["status"]))
 
     return jsonify(response)
