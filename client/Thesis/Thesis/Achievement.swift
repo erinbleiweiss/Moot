@@ -13,10 +13,14 @@ struct Achievement{
     
     private var name: String
     private var description: String
+    private var earned: Bool
+    private var visible: Bool
     
-    init (name: String, description: String){
+    init (name: String, description: String, earned: Bool, visible: Bool){
         self.name = name
         self.description = description
+        self.earned = earned
+        self.visible = visible
     }
     
     func getName() -> String{
@@ -25,6 +29,14 @@ struct Achievement{
     
     func getDescription() -> String{
         return self.description
+    }
+    
+    func isEarned() -> Bool{
+        return self.earned
+    }
+    
+    func isVisible() -> Bool{
+        return self.visible
     }
     
     

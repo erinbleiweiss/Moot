@@ -75,24 +75,21 @@ class AchievementTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AchievementCell", forIndexPath: indexPath) as! AchievementTableViewCell
         
-        // Configure the cell...
-//        if indexPath.row == 0 {
-//            cell.achievementImage.image = UIImage(named: "medal")
-//            cell.achievementNameLabel.text = "My First Achievement"
-//            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
-//            cell.achievementDateLabel.text = "Earned 2/2/2016"
-//        } else {
-//            cell.achievementImage.image = UIImage(named: "medal")
-//            cell.achievementNameLabel.text = "My First Achievement"
-//            cell.achievementDescriptionLabel.text = "This is the first achievement that you will earn in the game. This description has a clever tagline explaining more"
-//            cell.achievementDateLabel.text = "Earned 2/2/2016"
-//        }
-        
         let achievement = self.allAchievements[indexPath.row]
-        cell.achievementImage.image = UIImage(named: "medal")
-        cell.achievementNameLabel.text = achievement.getName()
-        cell.achievementDescriptionLabel.text = achievement.getDescription()
-        cell.achievementDateLabel.text = "Earned 2/2/2016"
+        if achievement.isEarned(){
+            cell.achievementImage.image = UIImage(named: "medal")
+            cell.achievementNameLabel.text = achievement.getName()
+            cell.achievementDescriptionLabel.text = achievement.getDescription()
+            cell.achievementDateLabel.text = "Earned 2/2/2016"
+        } else {
+            cell.achievementImage.image = UIImage(named: "locked")
+            cell.achievementNameLabel.text = achievement.getName()
+            cell.achievementNameLabel.textColor = UIColor.grayColor()
+            cell.achievementDescriptionLabel.text = achievement.getDescription()
+            cell.achievementDescriptionLabel.textColor = UIColor.grayColor()
+            cell.achievementDateLabel.text = ""
+        }
+
     
         return cell
     }
@@ -161,7 +158,7 @@ class AchievementTableViewController: UITableViewController {
         for (_, subJson):(String, JSON) in achievements {
             let name = subJson["name"].string
             let description = subJson["description"].string
-            let new_ach = Achievement(name: name!, description: description!)
+            let new_ach = Achievement(name: name!, description: description!, earned: true, visible: true)
             allAchievements.append(new_ach)
         }
 //        self.tableView.reloadData()
@@ -171,7 +168,7 @@ class AchievementTableViewController: UITableViewController {
         for (_, subJson):(String, JSON) in achievements {
             let name = subJson["name"].string
             let description = subJson["description"].string
-            let new_ach = Achievement(name: name!, description: description!)
+            let new_ach = Achievement(name: name!, description: description!, earned: false, visible: true)
             allAchievements.append(new_ach)
         }
         self.tableView.reloadData()
