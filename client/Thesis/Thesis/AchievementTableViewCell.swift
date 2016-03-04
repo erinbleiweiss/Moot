@@ -10,12 +10,10 @@ import UIKit
 
 class AchievementTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var achievementImage: UIImageView!
     @IBOutlet weak var achievementNameLabel: UILabel!
     @IBOutlet weak var achievementDescriptionLabel: UILabel!
     @IBOutlet weak var achievementDateLabel: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

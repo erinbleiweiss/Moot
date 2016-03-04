@@ -38,10 +38,10 @@
 		80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BE1C79952900D705A7 /* AchievementManager.swift */; };
 		80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */; };
 		80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB858E1C83ABC700AC37A7 /* MootViewController.swift */; };
-		80EB85911C83AED600AC37A7 /* AchievementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB85901C83AED600AC37A7 /* AchievementTableViewController.swift */; };
 		80EB85931C8462C700AC37A7 /* AchievementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */; };
 		80EB85951C8479F400AC37A7 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB85941C8479F400AC37A7 /* Achievement.swift */; };
 		80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ECB47D1C891CBC007559A8 /* AchievementDataController.swift */; };
+		80ECB4801C896722007559A8 /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ECB47F1C896722007559A8 /* AchievementViewController.swift */; };
 		80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ED1F071BB25A400011A410 /* AppDelegate.swift */; };
 		80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F0B1BB25A400011A410 /* Main.storyboard */; };
 		80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F0E1BB25A400011A410 /* Images.xcassets */; };
@@ -109,10 +109,10 @@
 		80CBB5BE1C79952900D705A7 /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
 		80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		80EB858E1C83ABC700AC37A7 /* MootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootViewController.swift; sourceTree = "<group>"; };
-		80EB85901C83AED600AC37A7 /* AchievementTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementTableViewController.swift; sourceTree = "<group>"; };
 		80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementTableViewCell.swift; sourceTree = "<group>"; };
 		80EB85941C8479F400AC37A7 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		80ECB47D1C891CBC007559A8 /* AchievementDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementDataController.swift; sourceTree = "<group>"; };
+		80ECB47F1C896722007559A8 /* AchievementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementViewController.swift; sourceTree = "<group>"; };
 		80ED1F021BB25A400011A410 /* Moot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80ED1F061BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80ED1F071BB25A400011A410 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 			children = (
 				80F0DD531C5EE969002A8037 /* Camera Views */,
 				80EB858E1C83ABC700AC37A7 /* MootViewController.swift */,
-				80EB85901C83AED600AC37A7 /* AchievementTableViewController.swift */,
+				80ECB47F1C896722007559A8 /* AchievementViewController.swift */,
 				801590EB1C7FC0A70011872B /* LoginViewController.swift */,
 				801590ED1C7FC1390011872B /* RegisterViewController.swift */,
 				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
@@ -496,6 +496,7 @@
 				80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */,
 				801590EE1C7FC1390011872B /* RegisterViewController.swift in Sources */,
 				80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */,
+				80ECB4801C896722007559A8 /* AchievementViewController.swift in Sources */,
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
 				80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
@@ -504,7 +505,6 @@
 				8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,
 				80EB85931C8462C700AC37A7 /* AchievementTableViewCell.swift in Sources */,
-				80EB85911C83AED600AC37A7 /* AchievementTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

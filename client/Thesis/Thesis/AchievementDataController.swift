@@ -11,7 +11,88 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class AchievementDataController{
+class AchievementDataController: GenericGameController{
+
+    var allAchievements: [Achievement] = []
+
+    func getAchievements(user: String, password: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+        
+        let url: String = hostname + rest_prefix + "/get_achievements"
+        
+        let credentialData = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
+        let headers = ["Authorization": "Basic \(base64Credentials)"]
+        
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
+            .responseJSON { (_, _, result) in
+                switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                    print(json["status"])
+                    
+                    for (item, subJson):(String, JSON) in json{
+                        if (item == "achievements"){
+                            print(subJson)
+                            self.createAchievements(subJson)
+                        }
+                    }
+                    completionHandler(responseObject: json, error: result.error as? NSError)
+                case .Failure(_):
+                    NSLog("Request failed with error: \(result.error)")
+                }
+        }
+    }
+    
+    
+    func getUnearnedAchievements(user: String, password: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+        
+        let url: String = hostname + rest_prefix + "/get_unearned_achievements"
+        
+        let credentialData = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
+        let headers = ["Authorization": "Basic \(base64Credentials)"]
+        
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
+            .responseJSON { (_, _, result) in
+                switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                    print(json["status"])
+                    
+                    for (item, subJson):(String, JSON) in json{
+                        if (item == "achievements"){
+                            print(subJson)
+                            self.createUnearnedAchievements(subJson)
+                        }
+                    }
+                    completionHandler(responseObject: json, error: result.error as? NSError)
+                case .Failure(_):
+                    NSLog("Request failed with error: \(result.error)")
+                }
+        }
+    }
+    
+    func createAchievements(achievements: JSON){
+        for (_, subJson):(String, JSON) in achievements {
+            let name = subJson["name"].string
+            let description = subJson["description"].string
+            let created_at = subJson["created_at"].string
+            let dateString = self.convertDate(created_at!)
+            let new_ach = Achievement(name: name!, description: description!, date: dateString, earned: true, visible: true)
+            allAchievements.append(new_ach)
+        }
+    }
+    
+    func createUnearnedAchievements(achievements: JSON){
+        for (_, subJson):(String, JSON) in achievements {
+            let name = subJson["name"].string
+            let description = subJson["description"].string
+            let new_ach = Achievement(name: name!, description: description!, date: "", earned: false, visible: true)
+            allAchievements.append(new_ach)
+        }
+    }
+    
+  
     
     
 }

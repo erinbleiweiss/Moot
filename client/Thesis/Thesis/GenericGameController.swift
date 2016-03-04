@@ -26,4 +26,16 @@ class GenericGameController{
         return highestLevel
     }
     
+    func convertDate(jsonDate: String) -> String{
+        let dateFromStringFormatter = NSDateFormatter()
+        dateFromStringFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss zzz"
+        let date = dateFromStringFormatter.dateFromString(jsonDate) as NSDate!
+        
+        let stringFromDateFormatter = NSDateFormatter()
+        stringFromDateFormatter.dateFormat = "MMMM dd, yyyy"
+        let dateString = stringFromDateFormatter.stringFromDate(date)
+        
+        return dateString
+    }
+    
 }
