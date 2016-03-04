@@ -23,7 +23,7 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
-                
+        
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -68,14 +68,15 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
             cell.achievementImage.image = UIImage(named: "medal")
             cell.achievementNameLabel.text = achievement.getName()
             cell.achievementDescriptionLabel.text = achievement.getDescription()
-            cell.achievementDateLabel.text = achievement.getDate()
+            cell.achievementDateLabel.text = "Earned " + achievement.getDate()
         } else {
             cell.achievementImage.image = UIImage(named: "locked")
             cell.achievementNameLabel.text = achievement.getName()
             cell.achievementNameLabel.textColor = UIColor.grayColor()
             cell.achievementDescriptionLabel.text = achievement.getDescription()
             cell.achievementDescriptionLabel.textColor = UIColor.grayColor()
-            cell.achievementDateLabel.text = ""
+            cell.achievementDateLabel.text = "Locked"
+            cell.achievementDateLabel.textColor = UIColor.grayColor()
         }
         
         

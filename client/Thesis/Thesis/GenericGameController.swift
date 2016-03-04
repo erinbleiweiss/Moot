@@ -32,7 +32,7 @@ class GenericGameController{
         let date = dateFromStringFormatter.dateFromString(jsonDate) as NSDate!
         
         let stringFromDateFormatter = NSDateFormatter()
-        stringFromDateFormatter.dateFormat = "MMMM dd, yyyy"
+        stringFromDateFormatter.dateFormat = "MMMM d, yyyy"
         let dateString = stringFromDateFormatter.stringFromDate(date)
         
         return dateString
