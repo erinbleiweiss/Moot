@@ -80,7 +80,7 @@ class AchievementTableViewController: UITableViewController {
             cell.achievementImage.image = UIImage(named: "medal")
             cell.achievementNameLabel.text = achievement.getName()
             cell.achievementDescriptionLabel.text = achievement.getDescription()
-            cell.achievementDateLabel.text = "Earned 2/2/2016"
+            cell.achievementDateLabel.text = achievement.getDate()
         } else {
             cell.achievementImage.image = UIImage(named: "locked")
             cell.achievementNameLabel.text = achievement.getName()
@@ -158,7 +158,17 @@ class AchievementTableViewController: UITableViewController {
         for (_, subJson):(String, JSON) in achievements {
             let name = subJson["name"].string
             let description = subJson["description"].string
-            let new_ach = Achievement(name: name!, description: description!, earned: true, visible: true)
+            let created_at = subJson["created_at"].string
+            let dateFromStringFormatter = NSDateFormatter()
+            dateFromStringFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss zzz"
+            let date = dateFromStringFormatter.dateFromString(created_at!) as NSDate!
+            
+            let stringFromDateFormatter = NSDateFormatter()
+            stringFromDateFormatter.dateFormat = "MMMM dd, yyyy"
+            let dateString = stringFromDateFormatter.stringFromDate(date)
+            
+            print(date)
+            let new_ach = Achievement(name: name!, description: description!, date: dateString, earned: true, visible: true)
             allAchievements.append(new_ach)
         }
 //        self.tableView.reloadData()
@@ -168,7 +178,7 @@ class AchievementTableViewController: UITableViewController {
         for (_, subJson):(String, JSON) in achievements {
             let name = subJson["name"].string
             let description = subJson["description"].string
-            let new_ach = Achievement(name: name!, description: description!, earned: false, visible: true)
+            let new_ach = Achievement(name: name!, description: description!, date: "", earned: false, visible: true)
             allAchievements.append(new_ach)
         }
         self.tableView.reloadData()
