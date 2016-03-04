@@ -113,6 +113,16 @@ class MootDao:
             c.execute(cmd, (points, username))
             conn.commit()
 
+    def get_points(self, username):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('select score_value from user_score where user_id = '
+                   '(select user_id from gameuser where username=%s)')
+            c.execute(cmd, (username,))
+            points = c.fetchone()[0]
+        return points
+
     def award_achievement(self, username, achievementname):
         conn = self.get_db()
         with conn:
@@ -140,5 +150,23 @@ class MootDao:
                 d["name"] = row[0]
                 d["description"] = row[1]
                 d["created_at"] = row[2]
+                achievements.append(d)
+        return achievements
+
+    def get_unearned_achievements(self, username):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('SELECT name, description FROM achievement a WHERE NOT '
+                   'EXISTS (SELECT 1 FROM user_achievement u '
+                   'WHERE u.user_id=(select user_id from gameuser '
+                   'where username=%s) and '
+                   'a.achievement_id = u.achievement_id );')
+            c.execute(cmd, (username,))
+            achievements = []
+            for row in c.fetchall():
+                d = {}
+                d["name"] = row[0]
+                d["description"] = row[1]
                 achievements.append(d)
         return achievements

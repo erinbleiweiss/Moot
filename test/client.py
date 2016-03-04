@@ -3,6 +3,11 @@ import json
 import pprint
 # from colored import fg, bg, attr
 
+import logging
+from logging.config import fileConfig
+fileConfig('/home/erin/Thesis/server/logging_config.ini')
+logger = logging.getLogger(__name__)
+
 hostname = "http://108.84.181.177:5000"
 rest_prefix = "/v1"
 
@@ -15,9 +20,9 @@ cliffbarupc = "722252660091"
 h = "071100210453"
 
 def create_user():
+    url = "{}{}{}".format(hostname, rest_prefix, "/register")
     payload = {'username': 'ebleiweiss', 'password': 'testpw',
                'email': 'erinbleiweiss@gmail.com'}
-    url = "{}{}{}".format(hostname, rest_prefix, "/register")
     r = requests.post(url, data=payload)
 
     response = r.json()
@@ -27,6 +32,37 @@ def login(username, password):
     url = "{}{}{}".format(hostname, rest_prefix, "/login")
     r = requests.get(url, auth=(username, password))
 
+    response = r.json()
+    print response
+
+def award_points(username, password, points):
+    url = "{}{}{}".format(hostname, rest_prefix, "/award_points")
+    payload = {'points': points}
+
+    r = requests.post(url, auth=(username, password), data=payload)
+    response = r.json()
+    print response
+
+def get_points(username, password):
+    url = "{}{}{}".format(hostname, rest_prefix, "/get_points")
+
+    r = requests.get(url, auth=(username, password))
+    response = r.json()
+    print response
+
+
+def get_achievements(username, password):
+    url = "{}{}{}".format(hostname, rest_prefix, "/get_achievements")
+
+    r = requests.get(url, auth=(username, password))
+    response = r.json()
+    print response
+
+
+def get_unearned_achievements(username, password):
+    url = "{}{}{}".format(hostname, rest_prefix, "/get_unearned_achievements")
+
+    r = requests.get(url, auth=(username, password))
     response = r.json()
     print response
 
@@ -100,4 +136,13 @@ if __name__ == "__main__":
 
     # generate_random_word()
 
-    create_user()
+    # create_user()
+
+    # award_points('ebleiweiss', 'testpw', 150)
+    # get_points('ebleiweiss', 'testpw')
+
+
+    get_achievements('ebleiweiss', 'testpw')
+    print('\n\n')
+    get_unearned_achievements('ebleiweiss', 'testpw')
+

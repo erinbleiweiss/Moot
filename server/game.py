@@ -287,15 +287,58 @@ def get_achievements():
     return jsonify(response)
 
 
+@app.route('/v1/get_unearned_achievements', methods=["GET"])
+def get_unearned_achievements():
+    db = MootDao()
+    auth = request.authorization
+    username = auth.username
+    password = auth.password
+
+    achievements = db.get_unearned_achievements(username)
+    logger.debug(achievements)
+
+    response = {}
+    response["achievements"] = achievements
+    response["status"] = "success"
+    return jsonify(response)
+
 def moot_points(str, size):
     sum = 0
     for i in str:
         sum += ord(i)
     return sum % size
 
+@app.route('/v1/award_points', methods=["POST"])
+def award_points():
+    auth = request.authorization
+    username = auth.username
+    points = request.form["points"]
 
-def increment_score(username, points):
     db = MootDao()
+    response = {}
+    try:
+        db.award_points(username, points)
+        response["status"] = "success"
+    except Exception:
+        response["status"] = "failure"
+
+    return jsonify(response)
+
+@app.route('/v1/get_points', methods=["GET"])
+def get_points():
+    auth = request.authorization
+    username = auth.username
+
+    db = MootDao()
+    response = {}
+    try:
+        points = db.get_points(username)
+        response["points"] = points
+        response["status"] = "success"
+    except Exception:
+        response["status"] = "failure"
+    return jsonify(response)
+
 
 ###########################################################
 # Level 1: Hangman                                        #
