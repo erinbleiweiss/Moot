@@ -38,10 +38,10 @@ class HangmanGameController: GenericGameController {
     func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_random_word"
         Alamofire.request(.GET, url).responseJSON { (_, _, result) in
-    
             switch result {
                 case .Success(let data):
                     let json = JSON(data)
+                    print(json)
                     let word = json["word"].stringValue
                     print(word)
                     self.targetWord = word
@@ -49,6 +49,7 @@ class HangmanGameController: GenericGameController {
                     completionHandler(responseObject: word, error: result.error as? NSError)
                 case .Failure(_):
                     // There was a problem retrieving a word from the database
+                    NSLog("getRandomWord failed with error: \(result.error)")
                     completionHandler(responseObject: "Request failed with error: \(result.error)", error: result.error as? NSError)
             }
                 

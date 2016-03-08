@@ -170,3 +170,15 @@ class MootDao:
                 d["description"] = row[1]
                 achievements.append(d)
         return achievements
+
+
+    def save_product(self, username, upc, product_name, color, type):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('insert into scanned_product (user_id, upc, product_name, '
+                   'color, type, created_at) values ((select user_id from '
+                   'gameuser where username=%s), %s, %s, %s, %s, now())')
+            c.execute(cmd, (username, upc, product_name, color, type))
+            conn.commit()
+

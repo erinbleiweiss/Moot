@@ -1,8 +1,7 @@
 -- schema for the Moot game
 
-/*
-DROP TABLE IF EXISTS gameuser cascade;
-*/
+
+-- DROP TABLE IF EXISTS gameuser cascade;
 DROP TABLE IF EXISTS achievement cascade;
 -- DROP TABLE IF EXISTS user_achievement cascade;
 -- DROP TABLE IF EXISTS user_score cascade;
@@ -24,12 +23,22 @@ CREATE TABLE achievement (
 CREATE TABLE user_achievement (
 	user_id	INTEGER references gameuser,
 	achievement_id	INTEGER references achievement,
+  type varchar(80) NOT NULL,
 	created_at	timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE user_score (
 	user_id	INTEGER UNIQUE references gameuser,
 	score_value	INTEGER NOT NULL
+);
+
+CREATE TABLE scanned_product (
+  user_id INTEGER UNIQUE REFERENCES gameuser,
+  upc varchar(20) NOT NULL,
+  product_name varchar(120) NOT NULL,
+  color varchar(80),
+  type varchar(80) NOT NULL,
+  created_at timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE INDEX username ON gameuser(username);

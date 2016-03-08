@@ -340,6 +340,57 @@ def get_points():
     return jsonify(response)
 
 
+# @app.route('/v1/get_product_info', methods=["GET"])
+# def get_product_info():
+#     auth = request.authorization
+#     username = auth.username
+#
+#     upc = requests.get["upc"]
+#     product_name = get_product_name(upc)
+#
+#
+#     db = MootDao()
+#     response = {}
+#     try:
+#         db.get_product_info()
+#         response["status"] = "success"
+#     except Exception:
+#         response["status"] = "failure"
+#
+#     return jsonify(response)
+
+
+@app.route('/v1/save_product', methods=["POST"])
+def save_product():
+    logger.debug("save_product()")
+    auth = request.authorization
+    username = auth.username
+
+    upc = request.form["upc"]
+    try:
+        product_name = request.form["product_name"]
+    except KeyError:
+        product_name = ""
+
+    try:
+        color = request.form["color"]
+    except KeyError:
+        color = ""
+
+    try:
+        type = request.form["type"]
+    except KeyError:
+        type = ""
+
+    db = MootDao()
+    response = {}
+    try:
+        db.save_product(username, upc, product_name, color, type)
+        response["status"] = "success"
+    except Exception:
+        response["status"] = "failure"
+    return jsonify(response)
+
 ###########################################################
 # Level 1: Hangman                                        #
 ###########################################################
@@ -350,6 +401,9 @@ def generate_random_word():
 
     :return:    random word as string
     """
+    logger.debug("generate_random_word()")
+    auth = request.authorization
+    username = auth.username
 
     # TODO: obfuscate word when passing to client
     # TODO: wrap in try/catch
@@ -361,12 +415,18 @@ def generate_random_word():
               'maxLength': 6,
               'api_key': WORDNIK_API_KEY
               }
-    word_data = requests.get(WORDNIK_URL, params=params)
-    word_data = word_data.json()
-    random_word = word_data["word"]
-
     response = {}
-    response["word"] = random_word
+    try:
+        word_data = requests.get(WORDNIK_URL, params=params)
+        word_data = word_data.json()
+        random_word = word_data["word"]
+        logger.debug("Game data for user '{}': Hangman Word = '{}'".format(
+            username, random_word))
+        response["word"] = random_word
+        response["status"] = "Success"
+    except Exception as e:
+        response["status"] = "Failure - Problem retrieving word from " \
+                             "Wordnik API"
 
     return jsonify(response)
 
@@ -384,6 +444,9 @@ def play_hangman():
     return:             {"guess": letter guessed (or "not in word")
                          "letters_guessed": state of current game}
     """
+    logger.debug("play_hangman()")
+    auth = request.authorization
+    username = auth.username
 
     upc = request.args.get('upc')
     target_word = request.args.get('target_word').upper()
@@ -398,6 +461,14 @@ def play_hangman():
     logger.debug(current_letter)
 
     response = {}
+
+    db = MootDao()
+    try:
+        db.save_product(username, upc, product_name, "", "")
+    except Exception:
+        response["status"] = "failure"
+        return jsonify(response)
+
 
     # If character has already been revealed
     if current_letter in letters_guessed:
