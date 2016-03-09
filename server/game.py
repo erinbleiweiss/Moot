@@ -929,7 +929,7 @@ def check_for_achievements():
     # param = requests.get["param"]
 
     ach = Achievements(username)
-    ach.util()
+    ach.check_all_achievements()
 
     response = {}
     response["status"] = "success"
