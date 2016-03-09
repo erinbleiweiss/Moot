@@ -22,6 +22,7 @@ xcuserdata
 profile
 *.moved-aside
 DerivedData
+*.xcuserstate
 .idea/
 # Pods - for those of you who use CocoaPods
 Pods
@@ -30,3 +31,6 @@ Pods
 *.log
 restart.sh
 
+server/.cache/*
+server/.tox/*
+config.ini
