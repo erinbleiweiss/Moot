@@ -37,7 +37,7 @@ WORDNIK_API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
 
 
-fileConfig('logging_config.ini')
+fileConfig('logging_config.ini', disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 
 class RegistrationForm(Form):
