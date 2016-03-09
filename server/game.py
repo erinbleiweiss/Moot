@@ -9,6 +9,7 @@ mail = Mail(app)
 from werkzeug.datastructures import MultiDict
 
 from mootdao import MootDao
+from achievements import Achievements
 
 import requests
 import json
@@ -420,7 +421,7 @@ def generate_random_word():
         word_data = requests.get(WORDNIK_URL, params=params)
         word_data = word_data.json()
         random_word = word_data["word"]
-        logger.debug("Game data for user '{}': Hangman Word = '{}'".format(
+        logger.info("Game data for user '{}': Hangman Word = '{}'".format(
             username, random_word))
         response["word"] = random_word
         response["status"] = "Success"
@@ -913,6 +914,32 @@ def check_qr_code():
     response["correcthorsebatterystaple"] = "true"
 
     return jsonify(response)
+
+
+
+###########################################################
+# Achievements                                            #
+###########################################################
+@app.route('/v1/check_for_achievements', methods=["GET"])
+def check_for_achievements():
+    logger.debug("check_for_achievements()")
+    auth = request.authorization
+    username = auth.username
+
+    # param = requests.get["param"]
+
+    ach = Achievements(username)
+    ach.util()
+
+    response = {}
+    response["status"] = "success"
+    return jsonify(response)
+
+    # try:
+    #     db.check_for_achievements()
+    #     response["status"] = "success"
+    # except Exception:
+    #     response["status"] = "failure"
 
 
 

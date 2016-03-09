@@ -5,6 +5,8 @@ import ConfigParser
 import logging
 from logging.config import fileConfig
 
+from base import Base
+
 class UserAlreadyExistsException(Exception):
     def __init__(self, err):
         self.err = err
@@ -24,19 +26,21 @@ class BadArgumentsException(Exception):
     def __str__(self):
         return 'Exception: ' + self.err
 
-class MootDao:
+class MootDao(Base):
 
     def __init__(self):
-        fileConfig('logging_config.ini')
-        self.logger = logging.getLogger(__name__)
+        # fileConfig('logging_config.ini')
+        # logger = logging.getLogger(__name__)
 
-        config = ConfigParser.ConfigParser()
-        config.read('config.ini')
+        Base.__init__(self, __name__)
 
-        self.dbname = config.get('psql', 'dbname')
-        self.pgusername = config.get('psql', 'pgusername')
-        self.pgpassword = config.get('psql', 'pgpassword')
-        self.pghostname = config.get('psql', 'pghostname')
+        self.config = ConfigParser.ConfigParser()
+        self.config.read('config.ini')
+
+        self.dbname = self.config.get('psql', 'dbname')
+        self.pgusername = self.config.get('psql', 'pgusername')
+        self.pgpassword = self.config.get('psql', 'pgpassword')
+        self.pghostname = self.config.get('psql', 'pghostname')
 
 
     def get_db(self):
@@ -105,6 +109,8 @@ class MootDao:
 
 
     def award_points(self, username, points):
+        self.logger.debug("Awarding {0} points to user '{1}'".format(
+            points, username))
         conn = self.get_db()
         with conn:
             c = conn.cursor()
@@ -114,6 +120,7 @@ class MootDao:
             conn.commit()
 
     def get_points(self, username):
+        self.logger.debug("Getting points for {0}".format(username))
         conn = self.get_db()
         with conn:
             c = conn.cursor()
@@ -132,7 +139,6 @@ class MootDao:
                    '(select achievement_id from achievement where name=%s), now());')
             c.execute(cmd, (username, achievementname))
             conn.commit()
-
 
 
     def get_achievements(self, username):

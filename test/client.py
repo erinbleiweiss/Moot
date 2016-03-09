@@ -66,6 +66,13 @@ def get_unearned_achievements(username, password):
     response = r.json()
     print response
 
+def check_for_achievements(username, password):
+    url = "{}{}{}".format(hostname, rest_prefix, "/check_for_achievements")
+
+    r = requests.get(url, auth=(username, password))
+    response = r.json()
+    print response
+
 def lookupBarcode(upc):
     payload = {'request_type': request_type, 'access_token': upc_access_token, 'upc': upc}
     # payload = (('request_type', request_type), ('access_token', access_token), ('upc', upc))
@@ -110,6 +117,8 @@ def maze_move(dir, maze, row, col):
     response = r.json()
     print response
 
+
+
 if __name__ == "__main__":
 
     # generate_random_word()
@@ -142,7 +151,10 @@ if __name__ == "__main__":
     # get_points('ebleiweiss', 'testpw')
 
 
-    get_achievements('ebleiweiss', 'testpw')
-    print('\n\n')
-    get_unearned_achievements('ebleiweiss', 'testpw')
+    # get_achievements('ebleiweiss', 'testpw')
+    # print('\n\n')
+    # get_unearned_achievements('ebleiweiss', 'testpw')
+
+    # get_points('ebleiweiss', 'testpw')
+    check_for_achievements('ebleiweiss', 'testpw')
 
