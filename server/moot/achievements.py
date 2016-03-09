@@ -19,13 +19,17 @@ class Achievements(Base):
             if(attr.startswith('test_')):
                 test = getattr(self, attr)
                 test_result = test()
-                achievement_name = test_result[0]
-                should_award = test_result[1]
-                if should_award and self.is_new_achievement(achievement_name):
+                should_award = test_result[0]
+                achievement_name = test_result[1]
+                if should_award:
                     db = MootDao()
                     db.award_achievement(self.username, achievement_name)
                     self.logger.info("Awarded achievement '{0}' to user '{1}"
                                      .format(achievement_name, self.username))
+                else:
+                    self.logger.debug("Not awarding achievement '{0}' to "
+                                      "user '{1}'".format(achievement_name,
+                                                          self.username))
 
 
     def is_new_achievement(self, achievement_name):
@@ -48,23 +52,36 @@ class Achievements(Base):
         """
         Tests whether user should be awarded "New Moot" Achievement
 
-        :return:    Tuple in the form (ID, Boolean)
-                    ID = String (corresponds to name in achievement table)
+        :return:    Tuple in the form (Name, Boolean)
+                    Name = String (corresponds to name in achievement table)
                     Boolean = Whether achievement should be awarded
         """
         self.logger.debug("test_new_moot()")
-        return ("New Moot", True)
+        name = "New Moot on the Block"
+        if self.is_new_achievement(name):
+            return (True, name)
+        return (False, name)
 
-    def test_savings_account(self):
+    def test_easy_as_abc(self):
         """
-        Tests whether user should be awarded "Savings Account" Achievement
+        Tests whether user should be awarded "Easy as ABC" Achievement
 
-        :return:    Tuple in the form (ID, Boolean)
-                    ID = String (corresponds to name in achievement table)
+        :return:    Tuple in the form (Name, Boolean)
+                    Name = String (corresponds to name in achievement table)
                     Boolean = Whether achievement should be awarded
         """
-        self.logger.debug("test_savings_account()")
-        db = MootDao()
-        points = db.get_points(self.username)
-        return ("Savings Account", points >= 1000)
+        self.logger.debug("test_easy_as_abc()")
+        name = "Easy as ABC"
+        if self.is_new_achievement(name):
+            db = MootDao()
+            products = db.get_products(self.username)
+            all_letters = set()
+            for p in products:
+                first_letter = p["product_name"][0]
+                if first_letter.isalpha():
+                    all_letters.add(first_letter.upper())
+                self.logger.debug("All letters: {0}".format(all_letters))
+                if len(all_letters) == 26:
+                    return (True, name)
+        return (False, name)
 

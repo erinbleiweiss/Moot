@@ -265,7 +265,7 @@ def login():
 def forgot_password():
     msg = Message()
     msg.recipients = ["erin.bleiweiss@utexas.edu"]
-    msg.body = "Moot test email"
+    msg.body = "Moot tests email"
     msg.subject = "Moot Password Reset"
     # msg.sender = ("Moot", "moot@erinbleiweiss.com")
     mail.send(msg)
@@ -463,10 +463,18 @@ def play_hangman():
 
     response = {}
 
+    try:
+        check_for_achievements_internal(username)
+    except Exception as e:
+        response["status"] = "failure"
+        return jsonify(response)
+
+
     db = MootDao()
     try:
         db.save_product(username, upc, product_name, "", "")
-    except Exception:
+    except Exception as e:
+        logger.critical(e)
         response["status"] = "failure"
         return jsonify(response)
 
@@ -941,6 +949,10 @@ def check_for_achievements():
     # except Exception:
     #     response["status"] = "failure"
 
+
+def check_for_achievements_internal(username):
+    ach = Achievements(username)
+    ach.check_all_achievements()
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado import options
-from game import app
+from moot.game import app
 
 import logging
 
