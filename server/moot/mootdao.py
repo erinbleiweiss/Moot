@@ -33,8 +33,6 @@ class MootDao(Base):
         # logger = logging.getLogger(__name__)
 
         Base.__init__(self, __name__)
-
-        self.config = ConfigParser.ConfigParser()
         self.config.read('config.ini')
 
         self.dbname = self.config.get('psql', 'dbname')
@@ -183,8 +181,26 @@ class MootDao(Base):
         with conn:
             c = conn.cursor()
             cmd = ('insert into scanned_product (user_id, upc, product_name, '
-                   'color, type, created_at) values ((select user_id from '
+                   'color, type, date) values ((select user_id from '
                    'gameuser where username=%s), %s, %s, %s, %s, now())')
             c.execute(cmd, (username, upc, product_name, color, type))
             conn.commit()
 
+
+    def get_products(self, username):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('select product_name, color, type, date from '
+                   'scanned_product where user_id = '
+                   '(select user_id from gameuser where username=%s)')
+            c.execute(cmd, (username,))
+            products = []
+            for row in c.fetchall():
+                d = {}
+                d["product_name"] = row[0]
+                d["color"] = row[1]
+                d["type"] = row[2]
+                d["date"] = row[3]
+                products.append(d)
+            return products

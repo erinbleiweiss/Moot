@@ -62,19 +62,26 @@ class Achievements(Base):
             return (True, name)
         return (False, name)
 
-    def test_savings_account(self):
+    def test_easy_as_abc(self):
         """
-        Tests whether user should be awarded "Savings Account" Achievement
+        Tests whether user should be awarded "Easy as ABC" Achievement
 
         :return:    Tuple in the form (Name, Boolean)
                     Name = String (corresponds to name in achievement table)
                     Boolean = Whether achievement should be awarded
         """
-        self.logger.debug("test_savings_account()")
-        name = "Savings Account"
+        self.logger.debug("test_easy_as_abc()")
+        name = "Easy as ABC"
         if self.is_new_achievement(name):
             db = MootDao()
-            points = db.get_points(self.username)
-            return (points >= 1000, name)
+            products = db.get_products(self.username)
+            all_letters = set()
+            for p in products:
+                first_letter = p["product_name"][0]
+                if first_letter.isalpha():
+                    all_letters.add(first_letter.upper())
+                self.logger.debug("All letters: {0}".format(all_letters))
+                if len(all_letters) == 26:
+                    return (True, name)
         return (False, name)
 

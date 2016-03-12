@@ -5,6 +5,8 @@
 DROP TABLE IF EXISTS achievement cascade;
 -- DROP TABLE IF EXISTS user_achievement cascade;
 -- DROP TABLE IF EXISTS user_score cascade;
+DROP TABLE IF EXISTS scanned_product cascade;
+
 
 CREATE TABLE gameuser (
 	user_id 	serial primary key,
@@ -33,12 +35,12 @@ CREATE TABLE user_score (
 );
 
 CREATE TABLE scanned_product (
-  user_id INTEGER UNIQUE REFERENCES gameuser,
+  user_id INTEGER REFERENCES gameuser,
   upc varchar(20) NOT NULL,
   product_name varchar(120) NOT NULL,
   color varchar(80),
   type varchar(80) NOT NULL,
-  created_at timestamp DEFAULT CURRENT_TIMESTAMP
+  date timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE INDEX username ON gameuser(username);

@@ -87,10 +87,11 @@ def generate_random_word():
     response = r.json()
     print response
 
-def check_letter(upc, target_word, letters_guessed):
+def check_letter(username, password, upc, target_word, letters_guessed):
     payload = {'upc': upc, 'target_word':target_word, 'letters_guessed': letters_guessed}
 
-    r = requests.get(hostname + rest_prefix + "/play_hangman", params=payload)
+    r = requests.get(hostname + rest_prefix + "/play_hangman",
+                     auth=(username, password), params=payload)
     response = r.json()
     print response
 
@@ -156,5 +157,10 @@ if __name__ == "__main__":
     # get_unearned_achievements('ebleiweiss', 'testpw')
 
     # get_points('ebleiweiss', 'testpw')
-    check_for_achievements('ebleiweiss', 'testpw')
+
+
+    check_letter("ebleiweiss", "testpw", "887386760502", "catch", "_____")
+    check_letter("ebleiweiss", "testpw", "0037000547334", "catch", "_____")
+
+    # check_for_achievements('ebleiweiss', 'testpw')
 
