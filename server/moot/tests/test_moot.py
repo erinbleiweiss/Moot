@@ -18,6 +18,7 @@ class MootTest(unittest.TestCase, Base):
 
     def setUp(self):
         print "MootTest.setUp()"
+<<<<<<< HEAD
 
 class MootTest(unittest.TestCase):
 
@@ -39,6 +40,7 @@ class MootTest(unittest.TestCase):
         self.config = ConfigParser.ConfigParser()
         self.config.read('config.ini')
 
+        self.config.read('config.ini')
         self.hostname = self.config.get('server', 'hostname')
         self.rest_prefix = self.config.get('server', 'rest_prefix')
         self.username = self.config.get('mootapp', 'username')
@@ -50,7 +52,7 @@ class MootTest(unittest.TestCase):
 
     def tearDown(self):
         print "MootTest.tearDown()"
-
+e)
 
     def api_get(self, endpoint, use_auth=False):
         url = "{0}{1}/{2}".format(self.hostname, self.rest_prefix, endpoint)
@@ -100,7 +102,6 @@ class MootTest(unittest.TestCase):
     def test_get_achievements(self):
         response = self.api_get('get_achievements', use_auth=True)
         self.assertEqual(response["status"], self.good_status)
-
 
 
 if __name__ == '__main__':

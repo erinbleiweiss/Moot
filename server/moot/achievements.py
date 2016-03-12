@@ -83,13 +83,3 @@ class Achievements(Base):
                 self.logger.debug("All letters: {0}".format(all_letters))
                 if len(all_letters) == 26:
                     return (True, name)
-
-        self.logger.debug("test_savings_account()")
-        name = "Savings Account"
-        if self.is_new_achievement(name):
-            db = MootDao()
-            points = db.get_points(self.username)
-            return (points >= 1000, name)
-
-
-
