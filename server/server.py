@@ -2,11 +2,12 @@ from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado import options
-from moot.game import app
-
+from logging.config import fileConfig
 import logging
 
-options.log_file_prefix = "info.log"
+from moot.game import app
+
+fileConfig('logging_config.ini', disable_existing_loggers=False)
 logger = logging.getLogger('server')
 
 http_server = HTTPServer(WSGIContainer(app))

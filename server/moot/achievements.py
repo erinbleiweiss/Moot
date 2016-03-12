@@ -19,17 +19,21 @@ class Achievements(Base):
             if(attr.startswith('test_')):
                 test = getattr(self, attr)
                 test_result = test()
-                should_award = test_result[0]
-                achievement_name = test_result[1]
-                if should_award:
-                    db = MootDao()
-                    db.award_achievement(self.username, achievement_name)
-                    self.logger.info("Awarded achievement '{0}' to user '{1}"
-                                     .format(achievement_name, self.username))
-                else:
-                    self.logger.debug("Not awarding achievement '{0}' to "
-                                      "user '{1}'".format(achievement_name,
-                                                          self.username))
+                try:
+                    should_award = test_result[0]
+                    achievement_name = test_result[1]
+                    if should_award:
+                        db = MootDao()
+                        db.award_achievement(self.username, achievement_name)
+                        self.logger.info("Awarded achievement '{0}' to user "
+                                         "'{1}".format(achievement_name,
+                                                       self.username))
+                    else:
+                        self.logger.info("Not awarding achievement '{0}' to "
+                                          "user '{1}'".format(achievement_name,
+                                                              self.username))
+                except TypeError:
+                    self.logger.critical("Problem with test result")
 
 
     def is_new_achievement(self, achievement_name):
@@ -60,6 +64,9 @@ class Achievements(Base):
         name = "New Moot on the Block"
         if self.is_new_achievement(name):
             return (True, name)
+        else:
+            self.logger.debug("User '{0}' already earned '{1}'"
+                              .format(self.username, name))
         return (False, name)
 
     def test_easy_as_abc(self):
@@ -80,6 +87,13 @@ class Achievements(Base):
                 first_letter = p["product_name"][0]
                 if first_letter.isalpha():
                     all_letters.add(first_letter.upper())
-                self.logger.debug("All letters: {0}".format(all_letters))
                 if len(all_letters) == 26:
                     return (True, name)
+                else:
+                    self.logger.debug(len(all_letters))
+        else:
+            self.logger.debug("User '{0}' already earned '{1}'"
+                              .format(self.username, name))
+        return (False, name)
+
+

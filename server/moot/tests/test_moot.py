@@ -1,21 +1,22 @@
+import sys
+import ConfigParser
 from logging.config import fileConfig
-from logging import getLogger
+import logging
 import unittest
 import requests
-import ConfigParser
 
 from moot.base import Base
 
 hostname = "http://108.84.181.177:5000"
 rest_prefix = "/v1"
 
-class MootTest(unittest.TestCase, Base):
+class MootTest(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         unittest.TestCase.__init__(self, *args, **kwargs)
-        Base.__init__(self, __name__)
 
     def setUp(self):
+        self.config = ConfigParser.ConfigParser()
         self.config.read('config.ini')
 
         self.hostname = self.config.get('server', 'hostname')
@@ -25,7 +26,6 @@ class MootTest(unittest.TestCase, Base):
         self.email = self.config.get('mootapp', 'email')
         self.bad_status = "failure"
         self.good_status = "success"
-
 
     def tearDown(self):
         print "MootTest.tearDown()"
@@ -79,6 +79,11 @@ class MootTest(unittest.TestCase, Base):
         response = self.api_get('get_achievements', use_auth=True)
         self.assertEqual(response["status"], self.good_status)
 
+    def test_check_for_achievements(self):
+        response = self.api_get('check_for_achievements', use_auth=True)
+        self.assertEqual(response["status"], self.good_status)
+
 
 if __name__ == '__main__':
+
     unittest.main()

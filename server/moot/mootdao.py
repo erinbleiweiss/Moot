@@ -1,9 +1,5 @@
 import psycopg2
 import md5
-import ConfigParser
-
-import logging
-from logging.config import fileConfig
 
 from base import Base
 
@@ -29,9 +25,6 @@ class BadArgumentsException(Exception):
 class MootDao(Base):
 
     def __init__(self):
-        # fileConfig('logging_config.ini')
-        # logger = logging.getLogger(__name__)
-
         Base.__init__(self, __name__)
         self.config.read('config.ini')
 
