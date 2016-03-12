@@ -15,32 +15,9 @@ class MootTest(unittest.TestCase, Base):
         unittest.TestCase.__init__(self, *args, **kwargs)
         Base.__init__(self, __name__)
 
-
     def setUp(self):
-        print "MootTest.setUp()"
-<<<<<<< HEAD
-
-class MootTest(unittest.TestCase):
-
-    # def __init__(self, name):
-    #     unittest.TestCase.__init__(self)
-    #     # Base.__init__(self, __name__)
-    #
-    #     self.config = ConfigParser.ConfigParser()
-    #     self.hostname = self.config.get('server, hostname')
-    #     self.rest_prefix = self.config.get('server, rest_prefix')
-    #     self.username = self.config.get('mootapp, username')
-    #     self.password = self.config.get('mootapp, password')
-
-    def __init__(self, *args, **kwargs):
-        unittest.TestCase.__init__(self, *args, **kwargs)
-
-
-    def setUp(self):
-        self.config = ConfigParser.ConfigParser()
         self.config.read('config.ini')
 
-        self.config.read('config.ini')
         self.hostname = self.config.get('server', 'hostname')
         self.rest_prefix = self.config.get('server', 'rest_prefix')
         self.username = self.config.get('mootapp', 'username')
@@ -52,7 +29,6 @@ class MootTest(unittest.TestCase):
 
     def tearDown(self):
         print "MootTest.tearDown()"
-e)
 
     def api_get(self, endpoint, use_auth=False):
         url = "{0}{1}/{2}".format(self.hostname, self.rest_prefix, endpoint)
