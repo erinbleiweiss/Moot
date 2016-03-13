@@ -2,11 +2,12 @@ from __future__ import absolute_import
 import os
 import unittest
 import ConfigParser
-from logging.config import fileConfig
-import logging
+
 import requests
 
-from moot.logger import get_logger
+import sys
+sys.path.append(os.pardir)
+from moot_logger import get_logger
 
 class MootTest(unittest.TestCase):
 
@@ -27,9 +28,7 @@ class MootTest(unittest.TestCase):
         self.bad_status = "failure"
         self.good_status = "success"
 
-        logger_path = os.path.join(os.getcwd(), "logging_config.ini")
-        fileConfig(logger_path, disable_existing_loggers=False)
-        self.logger = logging.getLogger(__name__)
+        self.logger = get_logger(__name__, isTestFile=True)
 
     def tearDown(self):
         print "MootTest.tearDown()"

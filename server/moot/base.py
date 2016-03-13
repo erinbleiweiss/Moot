@@ -1,7 +1,7 @@
 import os
 import ConfigParser
 
-from moot.logger import get_logger
+from moot.moot_logger import get_logger
 
 class Base:
 

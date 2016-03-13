@@ -5,7 +5,7 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 
 from moot.game import app
-from moot.logger import get_logger
+from moot.moot_logger import get_logger
 
 logger = get_logger("server")
 

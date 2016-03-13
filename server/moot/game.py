@@ -10,7 +10,7 @@ from werkzeug.datastructures import MultiDict
 
 from moot.mootdao import MootDao
 from moot.achievements import Achievements
-from moot.logger import get_logger
+from moot.moot_logger import get_logger
 
 import requests
 import json
