@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from flask import Flask, request, jsonify, make_response
 from flask_mail import Mail, Message
 from flask_wtf import Form
@@ -8,12 +10,12 @@ mail = Mail(app)
 
 from werkzeug.datastructures import MultiDict
 
-from mootdao import MootDao
-from achievements import Achievements
+from moot.mootdao import MootDao
+from moot.achievements import Achievements
+from moot.logger import get_logger
 
 import requests
 import json
-import logging
 import pprint
 import Image
 import math
@@ -25,8 +27,6 @@ import pdb
 from collections import namedtuple, Counter
 from colorama import init, Fore, Back, Style
 
-import logging
-from logging.config import fileConfig
 
 #TODO: Read from file
 SEARCH_UPC_URL = "http://www.searchupc.com/handlers/upcsearch.ashx"
@@ -36,9 +36,7 @@ WORDNIK_URL = "http://api.wordnik.com:80/v4/words.json/randomWord"
 WORDNIK_API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
 
-
-fileConfig('logging_config.ini', disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 class RegistrationForm(Form):
     username = StringField('Username', [

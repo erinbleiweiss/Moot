@@ -89,8 +89,6 @@ class Achievements(Base):
                     all_letters.add(first_letter.upper())
                 if len(all_letters) == 26:
                     return (True, name)
-                else:
-                    self.logger.debug(len(all_letters))
         else:
             self.logger.debug("User '{0}' already earned '{1}'"
                               .format(self.username, name))

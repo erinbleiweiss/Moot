@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 import psycopg2
 import md5
 
-from base import Base
+from moot.base import Base
 
 class UserAlreadyExistsException(Exception):
     def __init__(self, err):
@@ -26,7 +27,8 @@ class MootDao(Base):
 
     def __init__(self):
         Base.__init__(self, __name__)
-        self.config.read('config.ini')
+
+        self.logger.debug(self.config)
 
         self.dbname = self.config.get('psql', 'dbname')
         self.pgusername = self.config.get('psql', 'pgusername')

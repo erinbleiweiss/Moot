@@ -1,14 +1,13 @@
+from __future__ import absolute_import
+
 from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
-from tornado import options
-from logging.config import fileConfig
-import logging
 
 from moot.game import app
+from moot.logger import get_logger
 
-fileConfig('logging_config.ini', disable_existing_loggers=False)
-logger = logging.getLogger('server')
+logger = get_logger("server")
 
 http_server = HTTPServer(WSGIContainer(app))
 http_server.listen(5000)

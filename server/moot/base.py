@@ -1,13 +1,16 @@
-from logging.config import fileConfig
+from __future__ import absolute_import
+import os
 import ConfigParser
-import logging
+
+from moot.logger import get_logger
 
 class Base:
 
     def __init__(self, name):
         self.config = ConfigParser.ConfigParser()
+        config_path = os.path.join(os.getcwd(), "moot/config.ini")
+        self.config.read(config_path)
 
-        fileConfig('logging_config.ini', disable_existing_loggers=False)
         self.name = name
-        self.logger = logging.getLogger(name)
+        self.logger = get_logger(self.name)
 

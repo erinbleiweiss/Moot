@@ -1,11 +1,12 @@
-import sys
+from __future__ import absolute_import
+import os
+import unittest
 import ConfigParser
 from logging.config import fileConfig
 import logging
-import unittest
 import requests
 
-from moot.base import Base
+from moot.logger import get_logger
 
 hostname = "http://108.84.181.177:5000"
 rest_prefix = "/v1"
@@ -16,8 +17,10 @@ class MootTest(unittest.TestCase):
         unittest.TestCase.__init__(self, *args, **kwargs)
 
     def setUp(self):
+
         self.config = ConfigParser.ConfigParser()
-        self.config.read('config.ini')
+        config_path = os.path.join(os.getcwd(), "config.ini")
+        self.config.read(config_path)
 
         self.hostname = self.config.get('server', 'hostname')
         self.rest_prefix = self.config.get('server', 'rest_prefix')
@@ -26,6 +29,10 @@ class MootTest(unittest.TestCase):
         self.email = self.config.get('mootapp', 'email')
         self.bad_status = "failure"
         self.good_status = "success"
+
+        logger_path = os.path.join(os.getcwd(), "logging_config.ini")
+        fileConfig(logger_path, disable_existing_loggers=False)
+        self.logger = logging.getLogger(__name__)
 
     def tearDown(self):
         print "MootTest.tearDown()"

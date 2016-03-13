@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+import os
 import requests
 import json
 import pprint
@@ -5,7 +7,9 @@ import pprint
 
 import logging
 from logging.config import fileConfig
-fileConfig('/home/erin/Thesis/server/logging_config.ini')
+
+logger_path = os.path.join(os.pardir, "logging_config.ini")
+fileConfig(logger_path, disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 
 hostname = "http://108.84.181.177:5000"
