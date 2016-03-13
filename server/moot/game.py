@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from flask import Flask, request, jsonify, make_response
 from flask_mail import Mail, Message
 from flask_wtf import Form

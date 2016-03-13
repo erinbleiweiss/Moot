@@ -1,16 +1,19 @@
 from __future__ import absolute_import
 import os
 import requests
-import json
-import pprint
-# from colored import fg, bg, attr
 
 import logging
 from logging.config import fileConfig
+import logging, logging.handlers
 
-logger_path = os.path.join(os.pardir, "logging_config.ini")
-fileConfig(logger_path, disable_existing_loggers=False)
+
 logger = logging.getLogger(__name__)
+handler = logging.FileHandler('info.log')
+formatter = logging.Formatter('%(asctime)s [%(name)-18s] %(levelname)s: '
+                              '%(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
 
 hostname = "http://108.84.181.177:5000"
 rest_prefix = "/v1"

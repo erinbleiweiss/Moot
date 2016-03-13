@@ -8,9 +8,6 @@ import requests
 
 from moot.logger import get_logger
 
-hostname = "http://108.84.181.177:5000"
-rest_prefix = "/v1"
-
 class MootTest(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
