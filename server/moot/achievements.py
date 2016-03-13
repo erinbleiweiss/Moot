@@ -99,3 +99,29 @@ class Achievements(Base):
         return (False, name)
 
 
+    def test_write_your_name(self):
+        """
+        Tests whether user should be awarded "Write Your Name" Achievement
+
+        :return:    Tuple in the form (Name, Boolean)
+                    Name = String (corresponds to name in achievement table)
+                    Boolean = Whether achievement should be awarded
+        """
+        self.logger.debug("test_write_your_name()")
+        name = "Write Your Name"
+        if self.is_new_achievement(name):
+            db = MootDao()
+            products = db.get_products(self.username)
+            self.logger.debug(products)
+            all_letters = set()
+            username_letters = set(self.username)
+            for p in products:
+                first_letter = p["product_name"][0]
+                if first_letter.isalpha():
+                    all_letters.add(first_letter.upper())
+                if all_letters == username_letters:
+                    return (True, name)
+        else:
+            self.logger.debug("User '{0}' already earned '{1}'"
+                              .format(self.username, name))
+        return (False, name)
