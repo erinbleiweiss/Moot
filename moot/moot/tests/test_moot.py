@@ -29,9 +29,16 @@ class MootTest(unittest.TestCase):
         self.logger = get_logger(__name__, isTestFile=True)
 
     def tearDown(self):
-        print "MootTest.tearDown()"
+        print("tearDown")
 
     def api_get(self, endpoint, use_auth=False):
+        """
+        Helper function to make HTTP GET requests to the server
+        :param endpoint: (String) URL of HTTP call
+        :param use_auth: (Boolean) Whether or not to use authentication
+                         (False if not specified)
+        :return:
+        """
         url = "{0}{1}/{2}".format(self.hostname, self.rest_prefix, endpoint)
         print(url)
         if use_auth:
@@ -42,6 +49,14 @@ class MootTest(unittest.TestCase):
         return response
 
     def api_post(self, endpoint, payload, use_auth=False):
+        """
+        Helper function to make HTTP POST requests to the server
+        :param endpoint: (String) URL of HTTP call
+        :param payload:  (Dict) Data to be passed as JSON
+        :param use_auth: (Boolean) Whether or not to use authentication
+                         (False if not specified)
+        :return:
+        """
         url = "{}{}/{}".format(self.hostname, self.rest_prefix, endpoint)
         if use_auth:
             r = requests.post(url, auth=(self.username, self.password),

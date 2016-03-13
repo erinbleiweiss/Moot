@@ -85,7 +85,6 @@ class Achievements(Base):
         if self.is_new_achievement(name):
             db = MootDao()
             products = db.get_products(self.username)
-            self.logger.debug(products)
             all_letters = set()
             for p in products:
                 first_letter = p["product_name"][0]
@@ -112,7 +111,6 @@ class Achievements(Base):
         if self.is_new_achievement(name):
             db = MootDao()
             products = db.get_products(self.username)
-            self.logger.debug(products)
             all_letters = set()
             username_letters = set(self.username)
             for p in products:

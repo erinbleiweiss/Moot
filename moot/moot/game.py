@@ -12,6 +12,8 @@ from moot.mootdao import MootDao
 from moot.achievements import Achievements
 from moot.moot_logger import get_logger
 
+import os
+import ConfigParser
 import requests
 import json
 import pprint
@@ -26,15 +28,18 @@ from collections import namedtuple, Counter
 from colorama import init, Fore, Back, Style
 
 
-#TODO: Read from file
-SEARCH_UPC_URL = "http://www.searchupc.com/handlers/upcsearch.ashx"
-UPC_REQUEST_TYPE = "3"
-UPC_ACCESS_TOKEN = "EDDD50C8-9FC4-48D0-B29A-1E1EF405283A"
-WORDNIK_URL = "http://api.wordnik.com:80/v4/words.json/randomWord"
-WORDNIK_API_KEY = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
-QR_CODE_URL = "http://api.qrserver.com/v1/create-qr-code/"
-
+config = ConfigParser.ConfigParser()
+config_path = os.path.join(os.getcwd(), "moot/config.ini")
+config.read(config_path)
 logger = get_logger(__name__)
+
+SEARCH_UPC_URL = config.get('api', 'search_upc_url')
+UPC_REQUEST_TYPE = config.get('api', 'upc_request_type')
+UPC_ACCESS_TOKEN = config.get('api', 'upc_access_token')
+WORDNIK_URL = config.get('api', 'wordnik_url')
+WORDNIK_API_KEY = config.get('api', 'wordnik_api_key')
+QR_CODE_URL = config.get('api', 'qr_code_url')
+
 
 class RegistrationForm(Form):
     username = StringField('Username', [

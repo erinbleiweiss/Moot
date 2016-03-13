@@ -27,8 +27,6 @@ class MootDao(Base):
     def __init__(self):
         Base.__init__(self, __name__)
 
-        self.logger.debug(self.config)
-
         self.dbname = self.config.get('psql', 'dbname')
         self.pgusername = self.config.get('psql', 'pgusername')
         self.pgpassword = self.config.get('psql', 'pgpassword')
