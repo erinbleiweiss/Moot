@@ -1,9 +1,8 @@
 from __future__ import absolute_import
-
 import os
+import sys
 import requests
 
-import sys
 sys.path.append(os.pardir)
 from moot_logger import get_logger
 

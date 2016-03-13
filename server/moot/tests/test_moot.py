@@ -1,13 +1,12 @@
 from __future__ import absolute_import
 import os
+import sys
 import unittest
 import ConfigParser
 
 import requests
 
-import sys
-sys.path.append(os.pardir)
-from moot_logger import get_logger
+from moot.moot_logger import get_logger
 
 class MootTest(unittest.TestCase):
 
@@ -15,7 +14,6 @@ class MootTest(unittest.TestCase):
         unittest.TestCase.__init__(self, *args, **kwargs)
 
     def setUp(self):
-
         self.config = ConfigParser.ConfigParser()
         config_path = os.path.join(os.getcwd(), "config.ini")
         self.config.read(config_path)
