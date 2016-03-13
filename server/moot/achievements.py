@@ -15,6 +15,7 @@ class Achievements(Base):
         self.all_achievements = MootDao().get_achievements(self.username)
 
     def check_all_achievements(self):
+        achievements_earned = []
         for attr in dir(self):
             if(attr.startswith('test_')):
                 test = getattr(self, attr)
@@ -28,12 +29,14 @@ class Achievements(Base):
                         self.logger.info("Awarded achievement '{0}' to user "
                                          "'{1}".format(achievement_name,
                                                        self.username))
+                        achievements_earned.append(achievement_name)
                     else:
                         self.logger.info("Not awarding achievement '{0}' to "
                                           "user '{1}'".format(achievement_name,
                                                               self.username))
                 except TypeError:
                     self.logger.critical("Problem with test result")
+        return achievements_earned
 
 
     def is_new_achievement(self, achievement_name):
@@ -82,6 +85,7 @@ class Achievements(Base):
         if self.is_new_achievement(name):
             db = MootDao()
             products = db.get_products(self.username)
+            self.logger.debug(products)
             all_letters = set()
             for p in products:
                 first_letter = p["product_name"][0]

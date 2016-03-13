@@ -109,6 +109,16 @@ class GenericGameController{
         }
     }
     
+    func displayAchievements(acheivements_earned: JSON){
+        if (acheivements_earned.count == 0) {
+            NSLog("No achievements earned")
+        } else {
+            for ach in acheivements_earned.arrayValue {
+                NSLog(ach.string!)
+            }
+        }
+    }
+    
     
     
     

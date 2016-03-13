@@ -93,6 +93,8 @@ class HangmanGameController: GenericGameController {
                     for (index, letter) in game_state.characters.enumerate() {
                         self.gameTiles[index].updateLetter(letter)
                     }
+                    let achievements_earned = json["achievements_earned"]
+                    self.displayAchievements(achievements_earned)
                     self.checkForSuccess()
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):

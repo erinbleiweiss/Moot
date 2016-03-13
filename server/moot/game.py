@@ -459,18 +459,20 @@ def play_hangman():
 
     response = {}
 
-    try:
-        check_for_achievements_internal(username)
-    except Exception as e:
-        response["status"] = "failure"
-        return jsonify(response)
-
 
     db = MootDao()
     try:
         db.save_product(username, upc, product_name, "", "")
     except Exception as e:
         logger.critical(e)
+        response["status"] = "failure"
+        return jsonify(response)
+
+    try:
+        achievements_earned = check_for_achievements_internal(username)
+        response["achievements_earned"] = achievements_earned
+    except Exception as e:
+        response["achievements_earned"] = []
         response["status"] = "failure"
         return jsonify(response)
 
@@ -948,7 +950,10 @@ def check_for_achievements():
 
 def check_for_achievements_internal(username):
     ach = Achievements(username)
-    ach.check_all_achievements()
+    try:
+        return ach.check_all_achievements()
+    except Exception:
+        return []
 
 
 if __name__ == "__main__":
