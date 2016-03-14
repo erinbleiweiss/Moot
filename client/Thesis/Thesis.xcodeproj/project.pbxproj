@@ -33,6 +33,11 @@
 		80B195031BF5685F00B5C3CE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195021BF5685F00B5C3CE /* Config.swift */; };
 		80B195051BF56C4500B5C3CE /* HangmanGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195041BF56C4500B5C3CE /* HangmanGameController.swift */; };
 		80B195081BF56CD900B5C3CE /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195071BF56CD900B5C3CE /* Level.swift */; };
+		80B6E4A21C96338A002761D8 /* PopUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E49D1C96338A002761D8 /* PopUpViewController_iPad.xib */; };
+		80B6E4A31C96338A002761D8 /* PopUpViewController_iPhone6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E49E1C96338A002761D8 /* PopUpViewController_iPhone6.xib */; };
+		80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */; };
+		80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E4A01C96338A002761D8 /* PopUpViewController.xib */; };
+		80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */; };
 		80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */; };
 		80CBB5BD1C79926400D705A7 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BC1C79926400D705A7 /* ScoreManager.swift */; };
 		80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BE1C79952900D705A7 /* AchievementManager.swift */; };
@@ -104,6 +109,11 @@
 		80B195021BF5685F00B5C3CE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		80B195041BF56C4500B5C3CE /* HangmanGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameController.swift; sourceTree = "<group>"; };
 		80B195071BF56CD900B5C3CE /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		80B6E49D1C96338A002761D8 /* PopUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPad.xib; sourceTree = "<group>"; };
+		80B6E49E1C96338A002761D8 /* PopUpViewController_iPhone6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6.xib; sourceTree = "<group>"; };
+		80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6Plus.xib; sourceTree = "<group>"; };
+		80B6E4A01C96338A002761D8 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
+		80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewControllerSwift.swift; sourceTree = "<group>"; };
 		80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewController.swift; sourceTree = "<group>"; };
 		80CBB5BC1C79926400D705A7 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		80CBB5BE1C79952900D705A7 /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
@@ -171,6 +181,19 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		80B6E4921C963344002761D8 /* NMPopUpView */ = {
+			isa = PBXGroup;
+			children = (
+				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
+				80B6E49D1C96338A002761D8 /* PopUpViewController_iPad.xib */,
+				80B6E49E1C96338A002761D8 /* PopUpViewController_iPhone6.xib */,
+				80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */,
+				80B6E4A01C96338A002761D8 /* PopUpViewController.xib */,
+				80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */,
+			);
+			name = NMPopUpView;
+			sourceTree = "<group>";
+		};
 		80ED1EF91BB25A400011A410 = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +225,7 @@
 				80F0DD551C5EEE19002A8037 /* Levels */,
 				80F0DD541C5EEDEE002A8037 /* Classes */,
 				80B0EABD1BE702CE00639ADC /* Assets */,
-				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
+				80B6E4921C963344002761D8 /* NMPopUpView */,
 				80ED1F101BB25A400011A410 /* LaunchScreen.xib */,
 				80ED1F051BB25A400011A410 /* Supporting Files */,
 			);
@@ -399,8 +422,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80B6E4A21C96338A002761D8 /* PopUpViewController_iPad.xib in Resources */,
+				80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */,
+				80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */,
 				80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */,
+				80B6E4A31C96338A002761D8 /* PopUpViewController_iPhone6.xib in Resources */,
 				801E76D51C6805D40077A379 /* level1.plist in Resources */,
 				802369471C73BEDE00840D30 /* LevelPicker.xib in Resources */,
 				80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */,
@@ -499,6 +526,7 @@
 				80ECB4801C896722007559A8 /* AchievementViewController.swift in Sources */,
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
 				80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */,
+				80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
 				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,

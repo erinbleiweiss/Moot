@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:AchievementDataController.swift">
-   </FileRef>
-   <FileRef
       location = "group:/Users/erin/Dropbox/UT (15-16)/Thesis/client/Thesis/Thesis.xcodeproj">
    </FileRef>
    <FileRef

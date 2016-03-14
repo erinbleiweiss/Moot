@@ -17,6 +17,7 @@ class GenericGameController{
     var defaults: NSUserDefaults?
     var username: String?
     var password: String?
+    var popViewController: PopUpViewControllerSwift?
 //    var headers: [String: String]
     
     init() {
@@ -29,6 +30,9 @@ class GenericGameController{
         let base64Credentials = credentialData.base64EncodedStringWithOptions([])
         let headers = ["Authorization": "Basic \(base64Credentials)"]
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers
+        
+        self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController", bundle: nil)
+
     }
     
     func setLevelProgress(level: Int) {
@@ -115,10 +119,40 @@ class GenericGameController{
         } else {
             for ach in acheivements_earned.arrayValue {
                 NSLog(ach.string!)
+                let message = "You just earned the \(ach.string!) achievement!"
+                self.showPopUp(ach.string!, message: message, image: UIImage(named: "medal")!)
+
             }
         }
     }
     
+    
+    func showPopUp(title: String, message: String, image: UIImage) {
+        let bundle = NSBundle(forClass: PopUpViewControllerSwift.self)
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
+        {
+            self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPad", bundle: bundle)
+            self.popViewController!.title = title
+            self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+        } else
+        {
+            if UIScreen.mainScreen().bounds.size.width > 320 {
+                if UIScreen.mainScreen().scale == 3 {
+                    self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPhone6Plus", bundle: bundle)
+                    self.popViewController!.title = title
+                    self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+                } else {
+                    self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPhone6", bundle: bundle)
+                    self.popViewController!.title = title
+                    self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+                }
+            } else {
+                self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController", bundle: bundle)
+                self.popViewController!.title = title
+                self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+            }
+        }
+    }
     
     
     

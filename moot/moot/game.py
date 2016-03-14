@@ -163,9 +163,22 @@ def get_product_img(upc):
 ###########################################################
 # Global Utilities                                        #
 ###########################################################
+def logger_header(endpoint):
+    """
+    Formats an endpoint name as center-aligned, padded with equal signs
+    and logs to standard logger for process readability
+
+    ==================== /endpoint ====================
+    :param endpoint: (String) name of endpoint
+    :return: none
+    """
+    endpoint_string = " {0} ".format(endpoint)
+    logger.debug("{0:=^48}".format(endpoint_string))
+
+
 @app.route('/v1/register', methods=["POST"])
 def register():
-    logger.debug('register()')
+    logger_header('/register')
     try:
         data = MultiDict(mapping=request.form)
         form = RegistrationForm(data, csrf_enabled=False)
@@ -207,7 +220,7 @@ def register():
 
 @app.route('/v1/login', methods=["GET"])
 def login():
-    logger.debug('login()')
+    logger_header('/login')
 
     # try:
     #     data = MultiDict(mapping=request.authorization)
@@ -264,6 +277,7 @@ def login():
 
 @app.route('/v1/forgot_password', methods=["GET"])
 def forgot_password():
+    logger_header('/forgot_password')
     msg = Message()
     msg.recipients = ["erin.bleiweiss@utexas.edu"]
     msg.body = "Moot tests email"
@@ -275,6 +289,7 @@ def forgot_password():
 
 @app.route('/v1/get_achievements', methods=["GET"])
 def get_achievements():
+    logger_header('/get_achievements')
     db = MootDao()
     auth = request.authorization
     username = auth.username
@@ -291,6 +306,7 @@ def get_achievements():
 
 @app.route('/v1/get_unearned_achievements', methods=["GET"])
 def get_unearned_achievements():
+    logger_header('/get_unearned_achievements')
     db = MootDao()
     auth = request.authorization
     username = auth.username
@@ -312,6 +328,7 @@ def moot_points(str, size):
 
 @app.route('/v1/award_points', methods=["POST"])
 def award_points():
+    logger_header('/award_points')
     auth = request.authorization
     username = auth.username
     points = request.form["points"]
@@ -328,6 +345,7 @@ def award_points():
 
 @app.route('/v1/get_points', methods=["GET"])
 def get_points():
+    logger_header('/get_points')
     auth = request.authorization
     username = auth.username
 
@@ -364,7 +382,7 @@ def get_points():
 
 @app.route('/v1/save_product', methods=["POST"])
 def save_product():
-    logger.debug("save_product()")
+    logger_header('/save_product')
     auth = request.authorization
     username = auth.username
 
@@ -403,7 +421,7 @@ def generate_random_word():
 
     :return:    random word as string
     """
-    logger.debug("generate_random_word()")
+    logger_header("/generate_random_word")
     auth = request.authorization
     username = auth.username
 
@@ -446,7 +464,7 @@ def play_hangman():
     return:             {"guess": letter guessed (or "not in word")
                          "letters_guessed": state of current game}
     """
-    logger.debug("play_hangman()")
+    logger_header("/play_hangman")
     auth = request.authorization
     username = auth.username
 
@@ -517,7 +535,7 @@ def get_product_nameOLD():
 
     return:     product name as json
     """
-
+    logger_header('/get_product_nameOLD')
     #TODO: Wrap in try/catch
     params = {'request_type': UPC_REQUEST_TYPE,
               'access_token': UPC_ACCESS_TOKEN,
@@ -652,6 +670,7 @@ def find_colors(img, n=4):
 
 @app.route('/v1/image_colors', methods=["GET"])
 def image_colors():
+    logger_header('/image_colors')
     upc = request.args.get('upc')
     url = get_product_img(upc)
     response = requests.get(url)
@@ -760,6 +779,7 @@ def generate_maze():
                     ex: 12_8_10_10_9_7_5_12_9_5...
     """
 
+    logger_header('/generate_maze')
     width = int(request.args.get('width'))
     height = int(request.args.get('height'))
 
@@ -825,6 +845,7 @@ def carve_passages(row, col, grid):
 
 @app.route('/v1/maze_move', methods=["GET"])
 def move():
+    logger_header('/maze_move')
     """
     Checks whether a move in a maze is valid, and returns
     new position
@@ -891,7 +912,7 @@ def get_qr_code():
 
     return:                 A QR code image as .png
     """
-
+    logger_header('/get_qr_code')
     base_url = QR_CODE_URL
     width = request.args.get('width')
     height = request.args.get('height')
@@ -919,7 +940,7 @@ def check_qr_code():
 
     return:                 true
     """
-
+    logger_header('/check_qr_code')
     response = {}
     # Totally unique, definitely obfuscated identification string
     response["correcthorsebatterystaple"] = "true"
@@ -933,7 +954,7 @@ def check_qr_code():
 ###########################################################
 @app.route('/v1/check_for_achievements', methods=["GET"])
 def check_for_achievements():
-    logger.debug("check_for_achievements()")
+    logger_header("/check_for_achievements")
     auth = request.authorization
     username = auth.username
 
