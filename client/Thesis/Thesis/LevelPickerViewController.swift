@@ -85,10 +85,10 @@ class LevelPickerViewController: MootViewController, UIViewLoading {
             
             //            levelView.backgroundColor = UIColor(white: 1, alpha: 0.5)
             
+            levelView.backgroundColor = UIColor.blueColor()
+            
             if (level.isLocked()) {
-                levelView.backgroundColor = UIColor.redColor()
-            } else{
-                levelView.backgroundColor = UIColor.blueColor()
+                levelView.displayLock()
             }
             
             

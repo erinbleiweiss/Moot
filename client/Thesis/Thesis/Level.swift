@@ -22,10 +22,13 @@ struct Level {
     var levelNumber: Int?
     var rootVC: String?
     private var locked: Bool = true
+    private var currentStage: Int = 1
+    private var numStages: Int = 1
     
-    init (levelNumber: Int, rootVC: String){
+    init (levelNumber: Int, rootVC: String, numStages: Int){
         self.levelNumber = levelNumber
         self.rootVC = rootVC
+        self.numStages = numStages
     }
     
     /**
@@ -57,6 +60,14 @@ struct Level {
     
     mutating func unlock(){
         self.locked = false
+    }
+    
+    mutating func setCurrentStage(currentStage: Int){
+        self.currentStage = currentStage
+    }
+    
+    func getCurrentStage() -> Int{
+        return self.currentStage
     }
     
 }

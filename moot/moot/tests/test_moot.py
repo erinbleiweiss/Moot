@@ -31,7 +31,7 @@ class MootTest(unittest.TestCase):
     def tearDown(self):
         print("tearDown")
 
-    def api_get(self, endpoint, use_auth=False):
+    def api_get(self, endpoint, payload=None, use_auth=False):
         """
         Helper function to make HTTP GET requests to the server
         :param endpoint: (String) URL of HTTP call
@@ -42,9 +42,9 @@ class MootTest(unittest.TestCase):
         url = "{0}{1}/{2}".format(self.hostname, self.rest_prefix, endpoint)
         print(url)
         if use_auth:
-            r = requests.get(url, auth=(self.username, self.password))
+            r = requests.get(url, params=payload, auth=(self.username, self.password))
         else:
-            r = requests.get(url)
+            r = requests.get(url, params=payload)
         response = r.json()
         return response
 
@@ -52,7 +52,7 @@ class MootTest(unittest.TestCase):
         """
         Helper function to make HTTP POST requests to the server
         :param endpoint: (String) URL of HTTP call
-        :param payload:  (Dict) Data to be passed as JSON
+        :param payload:  (Dict) Da0746775167813ta to be passed as JSON
         :param use_auth: (Boolean) Whether or not to use authentication
                          (False if not specified)
         :return:
@@ -99,6 +99,23 @@ class MootTest(unittest.TestCase):
         response = self.api_get('check_for_achievements', use_auth=True)
         self.assertEqual(response["status"], self.good_status)
 
+    def test_generate_random_word(self):
+        response = self.api_get('generate_random_word', use_auth=True)
+        self.assertEqual(response["status"], self.good_status)
+
+    def test_play_hangman(self):
+        payload = {'upc': '0746775167813',
+                   'target_word': 'butts',
+                   'letters_guessed': '_tts'}
+        response = self.api_get('play_hangman', payload, use_auth=True)
+        self.assertEqual(response["status"], self.good_status)
+
+    def test_play_hangman_incorrect(self):
+        payload = {'upc': '0746775167813',
+                   'target_word': 'poop',
+                   'letters_guessed': '_oo_'}
+        response = self.api_get('play_hangman', payload, use_auth=True)
+        self.assertEqual(response["status"], self.good_status)
 
 if __name__ == '__main__':
 

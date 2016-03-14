@@ -40,6 +40,8 @@ WORDNIK_URL = config.get('api', 'wordnik_url')
 WORDNIK_API_KEY = config.get('api', 'wordnik_api_key')
 QR_CODE_URL = config.get('api', 'qr_code_url')
 
+SUCCESS = "success"
+FAILURE = "failure"
 
 class RegistrationForm(Form):
     username = StringField('Username', [
@@ -192,7 +194,7 @@ def register():
             db.create_user(username, password, email)
 
             response = {}
-            response["status"] = "success"
+            response["status"] = SUCCESS
             response["message"] = "created user"
 
             logger.debug('it worked?')
@@ -207,13 +209,13 @@ def register():
                     errors_in_field.append(err)
                 response["errors"][fieldName] = errors_in_field
 
-            response["status"] = "failure"
+            response["status"] = FAILURE
             return jsonify(response)
 
     except Exception as e:
         logger.debug('Exception: {}'.format(e))
         response = {}
-        response["status"] = "failure"
+        response["status"] = FAILURE
         return jsonify(response)
 
 
@@ -231,7 +233,7 @@ def login():
     #         logger.debug("success")
     #
     #         response = {}
-    #         response["status"] = "success"
+    #         response["status"] = SUCCESS
     #         return jsonify(response)
     #     else:
     #         logger.debug("did not validate")
@@ -247,13 +249,13 @@ def login():
     #
     #
     #         logger.debug(response["errors"])
-    #         response["status"] = "failure"
+    #         response["status"] = FAILURE
     #         return jsonify(response)
     #
     # except Exception as e:
     #     logger.debug('Exception: {}'.format(e))
     #     response = {}
-    #     response["status"] = "failure"
+    #     response["status"] = FAILURE
     #     return jsonify(response)
 
 
@@ -265,9 +267,9 @@ def login():
     #
     response = {}
     if db.login(username, password):
-        response["status"] = "success"
+        response["status"] = SUCCESS
     else:
-        response["status"] = "failure"
+        response["status"] = FAILURE
 
     logger.debug("Attempting to login user '{}' with password '{}' - {}".format(
         username, password, response["status"]))
@@ -300,7 +302,7 @@ def get_achievements():
 
     response = {}
     response["achievements"] = achievements
-    response["status"] = "success"
+    response["status"] = SUCCESS
     return jsonify(response)
 
 
@@ -317,7 +319,7 @@ def get_unearned_achievements():
 
     response = {}
     response["achievements"] = achievements
-    response["status"] = "success"
+    response["status"] = SUCCESS
     return jsonify(response)
 
 def moot_points(str, size):
@@ -337,9 +339,9 @@ def award_points():
     response = {}
     try:
         db.award_points(username, points)
-        response["status"] = "success"
+        response["status"] = SUCCESS
     except Exception:
-        response["status"] = "failure"
+        response["status"] = FAILURE
 
     return jsonify(response)
 
@@ -354,9 +356,9 @@ def get_points():
     try:
         points = db.get_points(username)
         response["points"] = points
-        response["status"] = "success"
+        response["status"] = SUCCESS
     except Exception:
-        response["status"] = "failure"
+        response["status"] = FAILURE
     return jsonify(response)
 
 
@@ -373,9 +375,9 @@ def get_points():
 #     response = {}
 #     try:
 #         db.get_product_info()
-#         response["status"] = "success"
+#         response["status"] = SUCCESS
 #     except Exception:
-#         response["status"] = "failure"
+#         response["status"] = FAILURE
 #
 #     return jsonify(response)
 
@@ -406,9 +408,9 @@ def save_product():
     response = {}
     try:
         db.save_product(username, upc, product_name, color, type)
-        response["status"] = "success"
+        response["status"] = SUCCESS
     except Exception:
-        response["status"] = "failure"
+        response["status"] = FAILURE
     return jsonify(response)
 
 ###########################################################
@@ -443,10 +445,10 @@ def generate_random_word():
         logger.info("Game data for user '{}': Hangman Word = '{}'".format(
             username, random_word))
         response["word"] = random_word
-        response["status"] = "Success"
+        response["status"] = SUCCESS
     except Exception as e:
-        response["status"] = "Failure - Problem retrieving word from " \
-                             "Wordnik API"
+        response["status"] = FAILURE
+        response["message"] =  "Problem retrieving word from Wordnik API"
 
     return jsonify(response)
 
@@ -488,7 +490,7 @@ def play_hangman():
         db.save_product(username, upc, product_name, "", "")
     except Exception as e:
         logger.critical(e)
-        response["status"] = "failure"
+        response["status"] = FAILURE
         return jsonify(response)
 
     try:
@@ -496,7 +498,7 @@ def play_hangman():
         response["achievements_earned"] = achievements_earned
     except Exception as e:
         response["achievements_earned"] = []
-        response["status"] = "failure"
+        response["status"] = FAILURE
         return jsonify(response)
 
 
@@ -513,12 +515,12 @@ def play_hangman():
                 new_letters[i] = current_letter
 
         response["guess"] = current_letter
-        response["status"] = 1
+        response["status"] = SUCCESS
         response["letters_guessed"] = ''.join(new_letters)
     # If guess is incorrect
     else:
         response["guess"] = current_letter
-        response["status"] = 2
+        response["status"] = SUCCESS
         response["letters_guessed"] = ''.join(letters_guessed)
     return jsonify(response)
 
@@ -964,14 +966,14 @@ def check_for_achievements():
     ach.check_all_achievements()
 
     response = {}
-    response["status"] = "success"
+    response["status"] = SUCCESS
     return jsonify(response)
 
     # try:
     #     db.check_for_achievements()
-    #     response["status"] = "success"
+    #     response["status"] = SUCCESS
     # except Exception:
-    #     response["status"] = "failure"
+    #     response["status"] = FAILURE
 
 
 def check_for_achievements_internal(username):

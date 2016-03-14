@@ -45,6 +45,14 @@ class LevelTile: UIButton{
         self.tileSize = Int(self.frame.width)
     }
     
+    func displayLock(){
+        let lockView = UIImageView(image: UIImage(named: "lock"))
+        let dim = self.bounds.width / 4.0
+        lockView.frame = CGRect(x: self.bounds.width - (dim/2), y: self.bounds.height - (dim/2), width: dim, height: dim)
+        self.addSubview(lockView)
+        self.bringSubviewToFront(lockView)
+    }
+    
     
     
 
