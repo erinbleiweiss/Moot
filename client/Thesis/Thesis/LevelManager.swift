@@ -15,9 +15,9 @@ class LevelManager{
     let defaults = NSUserDefaults.standardUserDefaults()
     
     private var allLevels: [Level] = [
-        Level(levelNumber: 1, rootVC: "HangmanRootVC"),
-        Level(levelNumber: 2, rootVC: "MazeRootVC"),
-        Level(levelNumber: 3, rootVC: "JigsawRootVC")
+        Level(levelNumber: 1, rootVC: "HangmanRootVC", numStages: 1),
+        Level(levelNumber: 2, rootVC: "MazeRootVC", numStages: 1),
+        Level(levelNumber: 3, rootVC: "JigsawRootVC", numStages: 1)
     ]
     
     /// Methods

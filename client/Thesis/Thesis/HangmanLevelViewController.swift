@@ -16,17 +16,14 @@ import SwiftSpinner
     
 class HangmanLevelViewController: GenericLevelViewController {
     
-    @IBOutlet weak var currentGameLabel: UILabel!
-    @IBOutlet weak var currentGuessLabel: UILabel!
-    @IBOutlet weak var gameMessageLabel: UILabel!
-
-    
     /// Display margin between tiles
     // TODO: adapt margin based on screen size
     let TileMargin: CGFloat = 20.0
     
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
 //        self.currentGameLabel.text = productName
+        print("back")
+        print(self.controller.upc)
     }
     
     let controller: HangmanGameController
@@ -37,46 +34,75 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.controller.level = LevelManager.sharedInstance.getLevel(1)
+
         // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
 
+        self.setUpLevel()
+    
+    }
+    
+
+    override func viewDidAppear(animated: Bool) {
+        
+        self.updateGame()
+        
+        let allLevels = LevelManager.sharedInstance.listLevels()
+        for l in allLevels {
+            print(String(l.levelNumber) + " - locked: " + String(l.isLocked()))
+        }
+        
+    }
+    
+    
+    
+    /**
+        When the level is loaded, make an initial call to the controller to get a new word and setup the level tiles with a blank game
+
+    */
+    func setUpLevel(){
         // Initial load, no target word
         if (self.controller.targetWord == "") {
             // Generate target word
             self.controller.getRandomWord(){ responseObject, error in
                 print("responseObject = \(responseObject); error = \(error)")
-
-                // On load, generate blank game
+                
+                // Generate game with blank tiles
                 self.layoutTiles()
                 
+                // Set current game string in controller
                 for (_, _) in self.controller.targetWord.characters.enumerate() {
                     self.controller.currentGame += "_"
                 }
-
-                self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
-                self.currentGuessLabel.attributedText = self.guessStyles(self.controller.currentGuess)
                 
             }
             
         }
-        else {
-            self.controller.playHangman(self.controller.upc){ responseObject, error in
-            }
-        }
-
-    
     }
     
-    override func viewDidAppear(animated: Bool) {
+    /**
+        When returning to the view (such as from the camera):
+            - check to see if upc is not blank (Make sure something was scanned)
+            - display SwiftSpinner to indicate loadings
+            - provide feedback on whether or not word is correct
+            - hide SwiftSpinner after a delay
+     
+     */
+    func updateGame(){
         if (controller.targetWord != "" && controller.upc != ""){
             SwiftSpinner.show("Scanning")
             controller.playHangman(controller.upc){ responseObject, error in
                 // Display feedback message if letter is an incorrect guess
-                if (responseObject!["status"] == 2){
+                if (responseObject!["game_state"].string == "2"){
                     SwiftSpinner.show("Not in word", animated: false)
+                    self.delay(1.5){
+                        SwiftSpinner.hide()
+                    }
+                } else if (responseObject!["game_state"].string == "1"){
+                    SwiftSpinner.show("Already guessed!", animated: false)
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }
@@ -89,17 +115,13 @@ class HangmanLevelViewController: GenericLevelViewController {
                         SwiftSpinner.hide()
                     }
                 }
-                self.currentGameLabel.attributedText = self.letterStyles(self.controller.currentGame)
-                self.controller.checkForSuccess()
+                //                if (self.controller.checkForSuccess()){
+                //                    self.advanceStage()
+                //                }
             }
         }
-        
-        let allLevels = LevelManager.sharedInstance.listLevels()
-        for l in allLevels {
-            print(String(l.levelNumber) + " - locked: " + String(l.isLocked()))
-        }
-        
     }
+    
     
     
     /**
@@ -127,45 +149,53 @@ class HangmanLevelViewController: GenericLevelViewController {
         }
     }
     
-    func letterStyles(currentGame: String) -> NSMutableAttributedString{
-        let fontAttributes = [
-            NSFontAttributeName: UIFont(
-                name: "Anonymous",
-                size: 50.0
-                )!,
-            NSKernAttributeName: 15
-        ]
-        
-        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .Center
-        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
-        
-        
-        return returnString
-        
+//    func letterStyles(currentGame: String) -> NSMutableAttributedString{
+//        let fontAttributes = [
+//            NSFontAttributeName: UIFont(
+//                name: "Anonymous",
+//                size: 50.0
+//                )!,
+//            NSKernAttributeName: 15
+//        ]
+//        
+//        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
+//        
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.alignment = .Center
+//        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
+//        
+//        
+//        return returnString
+//        
+//    }
+//    
+//    func guessStyles(currentGame: String) -> NSMutableAttributedString{
+//        let fontAttributes = [
+//            NSFontAttributeName: UIFont(
+//                name: "Anonymous",
+//                size: 75.0
+//                )!
+//        ]
+//        
+//        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
+//        
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.alignment = .Center
+//        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
+//        
+//        
+//        return returnString
+//        
+//    }
+
+    func advanceStage(){
+        print("ok")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
+        self.presentViewController(successVC, animated: false, completion: nil)
+        self.controller.advanceStage()
     }
     
-    func guessStyles(currentGame: String) -> NSMutableAttributedString{
-        let fontAttributes = [
-            NSFontAttributeName: UIFont(
-                name: "Anonymous",
-                size: 75.0
-                )!
-        ]
-        
-        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .Center
-        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
-        
-        
-        return returnString
-        
-    }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

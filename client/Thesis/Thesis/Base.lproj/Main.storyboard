@@ -25,34 +25,10 @@
                                     <segue destination="Tgb-Rn-ozr" kind="presentation" id="4iu-AR-M5d"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwC-97-IR5">
-                                <rect key="frame" x="168" y="139" width="264" height="107"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLW-WZ-f9R">
-                                <rect key="frame" x="212" y="347" width="177" height="53"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbt-Wq-LQe">
-                                <rect key="frame" x="178" y="237" width="243" height="133"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="czR-Ba-T5l" firstAttribute="top" secondItem="wbt-Wq-LQe" secondAttribute="bottom" constant="150" id="09h-ks-NK4"/>
-                            <constraint firstItem="czR-Ba-T5l" firstAttribute="top" secondItem="xLW-WZ-f9R" secondAttribute="bottom" constant="120" id="7bW-5r-5fj"/>
                             <constraint firstItem="GhM-h6-dF2" firstAttribute="top" secondItem="czR-Ba-T5l" secondAttribute="bottom" constant="50" id="8jM-NU-qiL"/>
-                            <constraint firstItem="xLW-WZ-f9R" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="MOA-qy-2nz"/>
-                            <constraint firstItem="wbt-Wq-LQe" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="UF3-aa-Juf"/>
-                            <constraint firstItem="SwC-97-IR5" firstAttribute="top" secondItem="1oy-an-ZFM" secondAttribute="bottom" constant="75" id="aDK-WX-cN7"/>
-                            <constraint firstItem="SwC-97-IR5" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="meC-KS-BUk"/>
                             <constraint firstItem="czR-Ba-T5l" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="vsU-0J-h0a"/>
                         </constraints>
                     </view>
@@ -63,11 +39,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="currentGameLabel" destination="SwC-97-IR5" id="1Tn-KM-Gc2"/>
-                        <outlet property="currentGuessLabel" destination="wbt-Wq-LQe" id="jnR-rm-Qlj"/>
-                        <outlet property="gameMessageLabel" destination="xLW-WZ-f9R" id="Uh7-pP-JFh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="BI5-Kh-Sl2" userLabel="Exit" sceneMemberID="exit"/>
@@ -84,6 +55,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="cjl-pC-x5L" kind="relationship" relationship="rootViewController" id="Q20-3o-PyM"/>
+                        <segue destination="adr-xV-0u3" kind="show" identifier="MazeSuccess" id="dy6-Tj-7bV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDU-Ll-d6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -258,6 +230,7 @@
                     </navigationBar>
                     <connections>
                         <segue destination="lXw-5a-cOg" kind="relationship" relationship="rootViewController" id="oLy-am-bfA"/>
+                        <segue destination="adr-xV-0u3" kind="show" identifier="JigsawSuccess" id="imR-n2-eTg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dls-49-x1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -546,6 +519,35 @@
             </objects>
             <point key="canvasLocation" x="1551" y="-451"/>
         </scene>
+        <!--Stage Completed View Controller-->
+        <scene sceneID="00Y-ts-WoV">
+            <objects>
+                <viewController storyboardIdentifier="StageCompleteVC" id="adr-xV-0u3" customClass="StageCompletedViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lsz-dJ-Ltk"/>
+                        <viewControllerLayoutGuide type="bottom" id="W7F-XQ-phF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dE8-EO-oSL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="STAGE COMPLETE!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Si1-74-Xoy">
+                                <rect key="frame" x="158" y="154" width="285" height="84"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Si1-74-Xoy" firstAttribute="centerX" secondItem="dE8-EO-oSL" secondAttribute="centerX" id="nC2-uQ-6yK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wjZ-4k-S7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3016" y="-703"/>
+        </scene>
         <!--Achievement View Controller-->
         <scene sceneID="aSs-ob-cAS">
             <objects>
@@ -604,7 +606,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Achievements" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zld-wk-QfP">
                                 <rect key="frame" x="220" y="79" width="160" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -749,6 +751,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="s2J-Mq-6rJ" kind="relationship" relationship="rootViewController" id="pFm-jh-ioe"/>
+                        <segue destination="adr-xV-0u3" kind="show" identifier="HangmanSuccess" id="gYl-F1-PB5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JzY-p0-TrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -794,5 +797,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="1mB-6R-8FK"/>
+        <segue reference="gYl-F1-PB5"/>
     </inferredMetricsTieBreakers>
 </document>

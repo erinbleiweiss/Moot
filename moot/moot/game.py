@@ -426,15 +426,33 @@ def generate_random_word():
     logger_header("/generate_random_word")
     auth = request.authorization
     username = auth.username
+    difficulty = request.args.get('difficulty')
+
+    if int(difficulty) == 1:
+        minLength = 4
+        maxLength = 5
+        minCorpusCount= 100000
+    elif int(difficulty) == 2:
+        minLength = 4
+        maxLength = 5
+        minCorpusCount= 100000
+    elif int(difficulty) == 3:
+        minLength = 4
+        maxLength = 5
+        minCorpusCount= 100000
+    else:
+        minLength = 4
+        maxLength = 5
+        minCorpusCount= 100000
 
     # TODO: obfuscate word when passing to client
     # TODO: wrap in try/catch
     params = {'hasDictionaryDef': 'true',
               'includePartOfSpeech': 'noun',
               'excludePartOfSpeech': 'proper-noun',
-              'minCorpusCount': 100000,
-              'minLength': 5,
-              'maxLength': 6,
+              'minCorpusCount': minCorpusCount,
+              'minLength': minLength,
+              'maxLength': maxLength,
               'api_key': WORDNIK_API_KEY
               }
     response = {}
@@ -457,13 +475,19 @@ def play_hangman():
     """
     Checks whether product name first letter is in word
 
+    Returns one of the following game_states:
+        0: Letter is in word, and is a correct guess
+        1: Letter is in word, but has already been guessed
+        2: Letter is not in word
+
     Request parameters
     upc: product        UPC as string
     target_word:        target word as string
     letters_guessed:    state of current game / all letters guessed as
                         string with underscores (_) representing blanks
 
-    return:             {"guess": letter guessed (or "not in word")
+    return:             {"guess": letter guessed"
+                         "game_state": 0, 1, or 2 (see above)
                          "letters_guessed": state of current game}
     """
     logger_header("/play_hangman")
@@ -505,7 +529,8 @@ def play_hangman():
     # If character has already been revealed
     if current_letter in letters_guessed:
         response["guess"] = current_letter
-        response["status"] = 0
+        response["status"] = SUCCESS
+        response["game_state"] = 1
         response["letters_guessed"] = ''.join(letters_guessed)
     # If guess is correct
     elif current_letter in target_letters:
@@ -516,11 +541,13 @@ def play_hangman():
 
         response["guess"] = current_letter
         response["status"] = SUCCESS
+        response["game_state"] = 0
         response["letters_guessed"] = ''.join(new_letters)
     # If guess is incorrect
     else:
         response["guess"] = current_letter
         response["status"] = SUCCESS
+        response["game_state"] = 2
         response["letters_guessed"] = ''.join(letters_guessed)
     return jsonify(response)
 

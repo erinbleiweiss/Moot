@@ -18,7 +18,11 @@ class GenericGameController{
     var username: String?
     var password: String?
     var popViewController: PopUpViewControllerSwift?
-//    var headers: [String: String]
+    var level: Level?
+    
+    // Status codes used to verify properly-formatted responseObjects from Alamofire API calls
+    var SUCCESS: String = "success"
+    var FAILURE: String = "failure"
     
     init() {
         self.defaults = NSUserDefaults.standardUserDefaults()
@@ -71,6 +75,29 @@ class GenericGameController{
     
     
     
+    /**
+     Wrapper around Apple's dispatch_after() function in order to execute a code
+     block after a specified amount of time
+     
+     - Parameters:
+     - delay: (Double) time in seconds
+     
+     - Returns: none
+     
+     */
+    func delay(delay: Double, closure: ()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            closure
+        )
+    }
+    
+    
+    
     
     /**
         Create a time-stamped entry in the database recording a scanned product for a user.  These entries will be used to track progress towards earning achievements.
@@ -113,6 +140,28 @@ class GenericGameController{
         }
     }
     
+    
+    /**
+        This function should be called at the completetion of any stage in a level.  It will determine whether or not the compeleted stage is the final stage in the level, and thus whether the level is complete
+     
+        - Parameters: none
+        - Returns: Boolean indicatiing whether level is complete
+     
+    */
+    func checkLevelCompleted() -> Bool{
+        let currentStage = level?.getCurrentStage()
+        let numStages = level?.getNumStages()
+        return currentStage == numStages
+    }
+    
+    
+    /**
+        Determine whether an achievement was earned, and if so, display the appropriate popup message
+     
+        - Parameters: 
+            - achievements_earned: (JSON) A JSON object from the level's game controller containing a list of all achievements earned
+     
+    */
     func displayAchievements(acheivements_earned: JSON){
         if (acheivements_earned.count == 0) {
             NSLog("No achievements earned")
@@ -127,6 +176,14 @@ class GenericGameController{
     }
     
     
+    /**
+        Use the NMPopupView class to display a popup for the given achievements
+     
+        - Parameters:
+            - title: (String) Name of achievement
+            - message: (String) Description to be displayed
+            - image: (UI Image) Image associated with achievement
+    */
     func showPopUp(title: String, message: String, image: UIImage) {
         let bundle = NSBundle(forClass: PopUpViewControllerSwift.self)
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
@@ -152,6 +209,17 @@ class GenericGameController{
                 self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
             }
         }
+    }
+    
+    
+    
+    /**
+        Helper function to be called when the final stage of a level is complete.
+        Calls LevelManager, gets the next available Level object, and sets its unlock property to True
+
+    */
+    func succeed() {
+        LevelManager.sharedInstance.unlockNextLevel(level!.getLevelNum())
     }
     
     

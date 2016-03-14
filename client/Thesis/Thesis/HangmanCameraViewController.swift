@@ -20,17 +20,22 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.clearUpc()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.clearUpc()
+    }
+    
+    /**
+        Reset upc on load
+     */
+    func clearUpc(){
+        self.upc = ""
     }
         
     
     override func doAfterScan(upc: String){
-//        getProduct(upc){ responseObject, error in3
-//            print("responseObject = \(responseObject); error = \(error)")
-//            self.productName = responseObject!
-//            print(self.productName)
-//            self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)
-//        }
-        
         // Assign read upc to class
         self.upc = upc
         self.performSegueWithIdentifier("barcodeScannedSegue", sender: nil)

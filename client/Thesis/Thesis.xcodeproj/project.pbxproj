@@ -38,6 +38,7 @@
 		80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */; };
 		80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E4A01C96338A002761D8 /* PopUpViewController.xib */; };
 		80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */; };
+		80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */; };
 		80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */; };
 		80CBB5BD1C79926400D705A7 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BC1C79926400D705A7 /* ScoreManager.swift */; };
 		80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BE1C79952900D705A7 /* AchievementManager.swift */; };
@@ -114,6 +115,7 @@
 		80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6Plus.xib; sourceTree = "<group>"; };
 		80B6E4A01C96338A002761D8 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewControllerSwift.swift; sourceTree = "<group>"; };
+		80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageCompletedViewController.swift; sourceTree = "<group>"; };
 		80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewController.swift; sourceTree = "<group>"; };
 		80CBB5BC1C79926400D705A7 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		80CBB5BE1C79952900D705A7 /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */,
 				8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */,
 				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
+				80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
 				80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */,
 				8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */,
+				80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */,
 				80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */,
 				80FD13871C73D2A60085BB50 /* LevelTile.swift in Sources */,
 				80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */,

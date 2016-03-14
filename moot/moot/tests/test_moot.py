@@ -100,7 +100,10 @@ class MootTest(unittest.TestCase):
         self.assertEqual(response["status"], self.good_status)
 
     def test_generate_random_word(self):
-        response = self.api_get('generate_random_word', use_auth=True)
+        payload = {
+            'difficulty': 1
+        }
+        response = self.api_get('generate_random_word', payload, use_auth=True)
         self.assertEqual(response["status"], self.good_status)
 
     def test_play_hangman(self):

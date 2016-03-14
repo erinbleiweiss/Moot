@@ -13,8 +13,6 @@ import SwiftyJSON
 
 class HangmanGameController: GenericGameController {
     
-    var level = LevelManager.sharedInstance.getLevel(1)
-    
     var upc: String = ""
     var productName: String = ""
     var targetWord: String = ""
@@ -37,7 +35,7 @@ class HangmanGameController: GenericGameController {
     */
     func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_random_word"
-        Alamofire.request(.GET, url).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["difficulty": self.level!.getCurrentStage()]).responseJSON { (_, _, result) in
             switch result {
                 case .Success(let data):
                     let json = JSON(data)
@@ -109,25 +107,53 @@ class HangmanGameController: GenericGameController {
         Called after each "move" to determine whether the game is complete (all tiles are filled)
         
         - Parameters: none
-        - Returns: boolean indicating whether or not the game has been won
+        - Returns: a return code indicating the appropriate behavior
+            - 0: Current stage is not complete, take no action
+            - 1: Current stage is complete, and level should advance to next stage
+            - 2: Current stage is complete, and is the final stage in the level.  Should complete and advance to next level.
+            - 3: Default return code (Something unexpected happened)
     
     */
-    func checkForSuccess() -> Bool{
-        print("checking for success")
+    func checkForSuccess() -> Int{
+        
         for tile in gameTiles{
             if !tile.isFilled{
-                return false
+                // Stage is not complete
+                return 1
             }
         }
-        print("game complete")
-        succeed()
-        return true
+        // Stage is complete, check for level completion
+        let level_complete = self.checkLevelCompleted()
+        if (!level_complete){
+            advanceStage() // Not final stage; Level not complete
+            return 1
+        } else {
+            succeed() // Final stage; Level is complete
+            return 2
+        }
+        
     }
     
-    func succeed() {
-        LevelManager.sharedInstance.unlockNextLevel(level.getLevelNum())
-    }
+    func advanceStage(){
+        
+        print("pressed")
+//        self.level?.advanceToNextStage()
+//        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
+//        let rootVC = level?.getRootVC()
+//        
+//        let rootVC = level?.getRootVC() as! UINavigationController
+//        let rootVC = self.gameView.window!.rootViewController as! LoginViewController
+//        let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController
+//        rootVC!.presentViewController(successVC, animated: true, completion: nil)
 
+//        rootVC.showViewController(successVC, sender: nil)
+        
+//        rootVC.performSegueWithIdentifier("HangmanSuccess", sender: rootVC)
+        
+    }
+    
 
     
     
