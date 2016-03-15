@@ -44,10 +44,8 @@ class HangmanLevelViewController: GenericLevelViewController {
     
 
     override func viewDidAppear(animated: Bool) {
-        print("viewdidappear")
-        
+        super.viewDidAppear(animated)
         self.updateGame()
-        
         let allLevels = LevelManager.sharedInstance.listLevels()
         for l in allLevels {
             print(String(l.levelNumber) + " - locked: " + String(l.isLocked()))

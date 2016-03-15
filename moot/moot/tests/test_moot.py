@@ -109,7 +109,7 @@ class MootTest(unittest.TestCase):
     def test_play_hangman(self):
         payload = {'upc': '0746775167813',
                    'target_word': 'butts',
-                   'letters_guessed': '_tts'}
+                   'letters_guessed': '_utts'}
         response = self.api_get('play_hangman', payload, use_auth=True)
         self.assertEqual(response["status"], self.good_status)
 

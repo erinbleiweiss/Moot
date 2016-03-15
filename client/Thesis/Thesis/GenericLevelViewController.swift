@@ -12,6 +12,8 @@ import SWRevealViewController
 
 class GenericLevelViewController: MootViewController {
 
+    var scoreBox: ScoreBox?
+    var levelBadge: LevelBadge?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +22,21 @@ class GenericLevelViewController: MootViewController {
         self.view.backgroundColor = color
         // Do any additional setup after loading the view.
         
+        let scoreBoxFrame = CGRect(x: 50, y: 100, width: 100, height: 100)
+        self.scoreBox = ScoreBox(frame: scoreBoxFrame)
+        self.scoreBox!.backgroundColor = UIColor(white: 1, alpha: 1)
+        self.view.addSubview(scoreBox!)
+        
+        let badgeFrame = CGRect(x: self.view.bounds.width - 150, y: 100, width: 100, height: 100)
+        self.levelBadge = LevelBadge(frame: badgeFrame)
+        self.levelBadge!.backgroundColor = UIColor(white: 1, alpha: 1)
+        self.view.addSubview(levelBadge!)
         
         
-        let frame = CGRect(x: 50, y: 100, width: 100, height: 100)
-        let customView = ScoreBox(frame: frame)
-        customView.backgroundColor = UIColor(white: 1, alpha: 1)
-        self.view.addSubview(customView)
-        
-        
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.levelBadge?.update()
     }
 
     override func didReceiveMemoryWarning() {

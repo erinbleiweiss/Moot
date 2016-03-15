@@ -27,8 +27,14 @@ class LevelManager{
         return allLevels
     }
     
-    func getLevel(currentLevel: Int) -> Level{
-        return allLevels[currentLevel - 1]
+    func getCurrentLevel() -> Int {
+        var level: Int = 1
+        for l in self.allLevels {
+            if !l.isLocked(){
+                level = l.getLevelNum()
+            }
+        }
+        return level
     }
     
     func isLocked(level: Int) -> Bool {
@@ -58,9 +64,9 @@ class LevelManager{
     }
     
     func advancetoNextStage(currentLevel: Int){
-        var level = allLevels[currentLevel]
+        var level = allLevels[currentLevel - 1]
         if level.getCurrentStage() < level.getNumStages(){
-            level.advanceStage()
+            self.allLevels[currentLevel - 1].advanceStage()
         }
     }
     

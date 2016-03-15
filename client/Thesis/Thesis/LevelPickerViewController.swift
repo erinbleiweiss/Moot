@@ -127,7 +127,7 @@ class LevelPickerViewController: MootViewController, UIViewLoading {
     */
     func updateTiles(){
         for (idx, tile) in self.levelTiles.enumerate() {
-            let level = LevelManager.sharedInstance.getLevel(idx + 1)
+            let level = LevelManager.sharedInstance.listLevels()[idx]
             if (level.isLocked()) {
                 tile.backgroundColor = UIColor.redColor()
             } else{
