@@ -111,17 +111,6 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     
     /**
-        To be called between levels, remove all tiles from view
-     */
-    func clearTiles(){
-        for tile in self.controller.gameTiles {
-            tile.removeFromSuperview()
-        }
-    }
-    
-    
-    
-    /**
         When returning to the view (such as from the camera):
             - check to see if upc is not blank (Make sure something was scanned)
             - display SwiftSpinner to indicate loadings
@@ -183,7 +172,7 @@ class HangmanLevelViewController: GenericLevelViewController {
         self.presentViewController(successVC, animated: false, completion: nil)
         self.controller.upc = ""
         self.controller.targetWord = ""
-        self.clearTiles()
+        self.controller.clearTiles()
         self.setUpLevel()
     }
     

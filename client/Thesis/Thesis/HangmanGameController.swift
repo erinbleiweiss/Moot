@@ -139,7 +139,17 @@ class HangmanGameController: GenericGameController {
     }
     
 
-    
+    /**
+        To be called between levels:
+            - remove all tiles from view
+            - clear gameTiles array
+     */
+    func clearTiles(){
+        for tile in self.gameTiles {
+            tile.removeFromSuperview()
+        }
+        self.gameTiles.removeAll()
+    }
     
     
 }
