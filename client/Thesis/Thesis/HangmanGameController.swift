@@ -35,7 +35,7 @@ class HangmanGameController: GenericGameController {
     */
     func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_random_word"
-        let difficulty = self.level!.getCurrentStage()
+        let difficulty = self.getCurrentStage()
         Alamofire.request(.GET, url, parameters: ["difficulty": difficulty]).responseJSON { (_, _, result) in
             switch result {
                 case .Success(let data):
@@ -121,9 +121,6 @@ class HangmanGameController: GenericGameController {
     */
     func checkForSuccess() -> Int{
         
-        advanceStage()
-        return 1
-        
         for tile in gameTiles{
             if !tile.isFilled{
                 return 0 // Stage is not complete
@@ -132,19 +129,12 @@ class HangmanGameController: GenericGameController {
         // Stage is complete, check for level completion
         let level_complete = self.checkLevelCompleted()
         if (!level_complete){
-            advanceStage()
+            self.advanceToNextStage()
             return 1 // Not final stage; Level not complete
         } else {
-            succeed() // Final stage; Level is complete
+            self.succeed() // Final stage; Level is complete
             return 2
         }
-        
-    }
-    
-    func advanceStage(){
-        
-        print("pressed")
-        self.level?.advanceToNextStage()
         
     }
     

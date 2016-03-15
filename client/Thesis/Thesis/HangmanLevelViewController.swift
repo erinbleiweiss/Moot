@@ -31,7 +31,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.controller.level = LevelManager.sharedInstance.getLevel(1)
+        self.controller.level = 1
 
         // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
@@ -69,9 +69,8 @@ class HangmanLevelViewController: GenericLevelViewController {
                 print("responseObject = \(responseObject); error = \(error)")
                 
                 // Set current game string in controller (if not first level)
-                let difficulty = self.controller.level?.getCurrentStage()
+                let difficulty = self.controller.getCurrentStage()
                 if (difficulty != 1){
-                    
                     for (_, _) in self.controller.targetWord.characters.enumerate() {
                         self.controller.currentGame += "_"
                     }
@@ -108,6 +107,17 @@ class HangmanLevelViewController: GenericLevelViewController {
             tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
             self.controller.gameView.addSubview(tile)
             self.controller.gameTiles.append(tile)
+        }
+    }
+    
+    
+    
+    /**
+        To be called between levels, remove all tiles from view
+     */
+    func clearTiles(){
+        for tile in self.controller.gameTiles {
+            tile.removeFromSuperview()
         }
     }
     
@@ -166,7 +176,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     /**
         Transition to the "Stage completed" controller, then prepare for new level:
-            - Clear scanned UPC value
+            - Clear scanned UPC value and target word
             - Set up level with new word
      */
     func displayStageCompletionView(){
@@ -174,6 +184,8 @@ class HangmanLevelViewController: GenericLevelViewController {
         let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
         self.presentViewController(successVC, animated: false, completion: nil)
         self.controller.upc = ""
+        self.controller.targetWord = ""
+        self.clearTiles()
         self.setUpLevel()
     }
     

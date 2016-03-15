@@ -62,18 +62,16 @@ struct Level {
         self.locked = false
     }
     
-    mutating func advanceToNextStage(){
-        if (self.currentStage < self.numStages){
-            self.currentStage++
-        }
-    }
-    
     func getCurrentStage() -> Int{
         return self.currentStage
     }
     
     func getNumStages() -> Int{
         return self.numStages
+    }
+    
+    mutating func advanceStage(){
+        self.currentStage++
     }
     
 }

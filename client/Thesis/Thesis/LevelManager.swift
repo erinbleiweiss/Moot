@@ -15,7 +15,7 @@ class LevelManager{
     let defaults = NSUserDefaults.standardUserDefaults()
     
     private var allLevels: [Level] = [
-        Level(levelNumber: 1, rootVC: "HangmanRootVC", numStages: 1),
+        Level(levelNumber: 1, rootVC: "HangmanRootVC", numStages: 3),
         Level(levelNumber: 2, rootVC: "MazeRootVC", numStages: 1),
         Level(levelNumber: 3, rootVC: "JigsawRootVC", numStages: 1)
     ]
@@ -44,6 +44,23 @@ class LevelManager{
         let numLevels = allLevels.count
         if (currentLevel <= numLevels){
             allLevels[currentLevel].unlock()
+        }
+    }
+    
+    func getCurrentStage(currentLevel: Int) -> Int{
+        let level = allLevels[currentLevel - 1]
+        return level.getCurrentStage()
+    }
+
+    func getNumStages(currentLevel: Int) -> Int{
+        let level = allLevels[currentLevel - 1]
+        return level.getNumStages()
+    }
+    
+    func advancetoNextStage(currentLevel: Int){
+        var level = allLevels[currentLevel]
+        if level.getCurrentStage() < level.getNumStages(){
+            level.advanceStage()
         }
     }
     

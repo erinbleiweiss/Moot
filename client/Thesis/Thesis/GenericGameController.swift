@@ -18,7 +18,7 @@ class GenericGameController{
     var username: String?
     var password: String?
     var popViewController: PopUpViewControllerSwift?
-    var level: Level?
+    var level: Int?
     
     // Status codes used to verify properly-formatted responseObjects from Alamofire API calls
     var SUCCESS: String = "success"
@@ -141,19 +141,6 @@ class GenericGameController{
     }
     
     
-    /**
-        This function should be called at the completetion of any stage in a level.  It will determine whether or not the compeleted stage is the final stage in the level, and thus whether the level is complete
-     
-        - Parameters: none
-        - Returns: Boolean indicatiing whether level is complete
-     
-    */
-    func checkLevelCompleted() -> Bool{
-        let currentStage = level?.getCurrentStage()
-        let numStages = level?.getNumStages()
-        return currentStage == numStages
-    }
-    
     
     /**
         Determine whether an achievement was earned, and if so, display the appropriate popup message
@@ -213,13 +200,61 @@ class GenericGameController{
     
     
     
+    
+    //// ==========================================================
+    //// LEVEL MANIPULATING FUNCTIONS:
+    //// ==========================================================
+    
+    /**
+        Get current stage of level from Level Manager
+    
+        - Returns: (Int) current stage
+    */
+    func getCurrentStage() -> Int{
+        return LevelManager.sharedInstance.getCurrentStage(self.level!)
+    }
+    
+    
+    /**
+        Get number of stages in current level from Level Manager
+     
+        - Returns: (Int) number of stages
+     */
+    func getNumStages() -> Int{
+        return LevelManager.sharedInstance.getNumStages(self.level!)
+    }
+    
+    
+    /**
+        This function should be called at the completetion of any stage in a level.  It will determine whether or not the compeleted stage is the final stage in the level, and thus whether the level is complete
+     
+        - Parameters: none
+        - Returns: (Boolean) indicatiing whether level is complete
+     
+     */
+    func checkLevelCompleted() -> Bool{
+        let currentStage = self.getCurrentStage()
+        let numStages = self.getNumStages()
+        return currentStage == numStages
+    }
+    
+    
+    /**
+        Increments the current stage for level in level manager
+     */
+    func advanceToNextStage(){
+        print("pressed")
+        LevelManager.sharedInstance.advancetoNextStage(self.level!)
+    }
+    
+    
     /**
         Helper function to be called when the final stage of a level is complete.
         Calls LevelManager, gets the next available Level object, and sets its unlock property to True
 
     */
     func succeed() {
-        LevelManager.sharedInstance.unlockNextLevel(level!.getLevelNum())
+        LevelManager.sharedInstance.unlockNextLevel(self.level!)
     }
     
     

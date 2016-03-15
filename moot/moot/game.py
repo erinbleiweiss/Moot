@@ -438,16 +438,12 @@ def generate_random_word():
         response["status"] = "success"
         return jsonify(response)
     elif int(difficulty) == 2:
-        minLength = 4
+        minLength = 5
         maxLength = 5
         minCorpusCount= 100000
     elif int(difficulty) == 3:
-        minLength = 4
-        maxLength = 5
-        minCorpusCount= 100000
-    else:
-        minLength = 4
-        maxLength = 5
+        minLength = 6
+        maxLength = 6
         minCorpusCount= 100000
 
     # TODO: obfuscate word when passing to client
