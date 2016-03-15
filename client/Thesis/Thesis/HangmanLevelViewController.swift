@@ -13,7 +13,7 @@ import SwiftSpinner
 
 
 /// View controller for the hangman scanning level
-    
+
 class HangmanLevelViewController: GenericLevelViewController {
     
     /// Display margin between tiles
@@ -21,9 +21,6 @@ class HangmanLevelViewController: GenericLevelViewController {
     let TileMargin: CGFloat = 20.0
     
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
-//        self.currentGameLabel.text = productName
-        print("back")
-        print(self.controller.upc)
     }
     
     let controller: HangmanGameController
@@ -47,6 +44,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     
 
     override func viewDidAppear(animated: Bool) {
+        print("viewdidappear")
         
         self.updateGame()
         
@@ -70,18 +68,50 @@ class HangmanLevelViewController: GenericLevelViewController {
             self.controller.getRandomWord(){ responseObject, error in
                 print("responseObject = \(responseObject); error = \(error)")
                 
+                // Set current game string in controller (if not first level)
+                let difficulty = self.controller.level?.getCurrentStage()
+                if (difficulty != 1){
+                    
+                    for (_, _) in self.controller.targetWord.characters.enumerate() {
+                        self.controller.currentGame += "_"
+                    }
+                }
+                
                 // Generate game with blank tiles
                 self.layoutTiles()
-                
-                // Set current game string in controller
-                for (_, _) in self.controller.targetWord.characters.enumerate() {
-                    self.controller.currentGame += "_"
-                }
                 
             }
             
         }
     }
+    
+    
+    /**
+     On load, create and display one tile for each letter in the target word.
+     This function also calculates the appropriate size for the tiles based on the device's screen
+     width, as well as the margin size between tiles.
+     
+     - Parameters: none
+     - Returns: none
+     
+     */
+    func layoutTiles(){
+        // Calculate the tile size and left margin (xOffset)
+        let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
+        var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
+        xOffset += tileSide / 2.0 //adjust for tile center (instead of the tile's origin)
+        
+        // For each letter in the target word, create a new tile object (initialized with a blank "_" by default)
+        // Add each tile to the view, and append the tile to the controller's list of tile objects
+        for (index, letter) in self.controller.currentGame.characters.enumerate(){
+            let tile = HangmanTile(letter: letter, sideLength: tileSide)
+            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
+            self.controller.gameView.addSubview(tile)
+            self.controller.gameTiles.append(tile)
+        }
+    }
+    
+    
     
     /**
         When returning to the view (such as from the camera):
@@ -108,12 +138,22 @@ class HangmanLevelViewController: GenericLevelViewController {
                     }
                 }
                 else{
+                    // Guess is correct, check for success
                     SwiftSpinner.show("", animated: false)
                     SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
                     SwiftSpinner.show(self.controller.currentGuess, animated: false)
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }
+                    
+                    let return_code = self.controller.checkForSuccess()
+                    if (return_code == 1) {
+                        // Stage is complete
+                        self.displayStageCompletionView()
+                    } else if (return_code == 2){
+                        // Level is complete
+                    }
+                    
                 }
                 //                if (self.controller.checkForSuccess()){
                 //                    self.advanceStage()
@@ -122,32 +162,27 @@ class HangmanLevelViewController: GenericLevelViewController {
         }
     }
     
-    
+
     
     /**
-        On load, create and display one tile for each letter in the target word.
-        This function also calculates the appropriate size for the tiles based on the device's screen
-        width, as well as the margin size between tiles.
-    
-        - Parameters: none
-        - Returns: none
-    
-    */
-    func layoutTiles(){
-        // Calculate the tile size and left margin (xOffset)
-        let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
-        var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
-        xOffset += tileSide / 2.0 //adjust for tile center (instead of the tile's origin)
-        
-        // For each letter in the target word, create a new tile object (initialized with a blank "_" by default)
-        // Add each tile to the view, and append the tile to the controller's list of tile objects
-        for (index, _) in self.controller.targetWord.characters.enumerate(){
-            let tile = HangmanTile(letter: "_", sideLength: tileSide)
-            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
-            self.controller.gameView.addSubview(tile)
-            self.controller.gameTiles.append(tile)
-        }
+        Transition to the "Stage completed" controller, then prepare for new level:
+            - Clear scanned UPC value
+            - Set up level with new word
+     */
+    func displayStageCompletionView(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
+        self.presentViewController(successVC, animated: false, completion: nil)
+        self.controller.upc = ""
+        self.setUpLevel()
     }
+    
+
+
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    }
+    
     
 //    func letterStyles(currentGame: String) -> NSMutableAttributedString{
 //        let fontAttributes = [
@@ -188,14 +223,7 @@ class HangmanLevelViewController: GenericLevelViewController {
 //        
 //    }
 
-    func advanceStage(){
-        print("ok")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
-        self.presentViewController(successVC, animated: false, completion: nil)
-        self.controller.advanceStage()
-    }
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -203,14 +231,6 @@ class HangmanLevelViewController: GenericLevelViewController {
     }
     
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
+
     
 }

@@ -36,27 +36,6 @@ class GenericLevelViewController: MootViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /**
-        Wrapper around Apple's dispatch_after() function in order to execute a code
-        block after a specified amount of time
-     
-        - Parameters: 
-            - delay: (Double) time in seconds
-     
-        - Returns: none
-     
-    */
-    func delay(delay: Double, closure: ()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(),
-            closure
-        )
-    }
 
 
     func provideVCClass() -> UIViewController.Type {

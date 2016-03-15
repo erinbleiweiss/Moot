@@ -8,23 +8,28 @@
 
 import UIKit
 
-class StageCompletedViewController: UIViewController {
+class StageCompletedViewController: MootViewController {
 
+    var sender: UIViewController?
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "HangmanSuccess"
-        {
-            print("yeehaw")
-            
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "HangmanSuccess"
+//        {
+//            print("yeehaw")
+//            
 //            if let destinationVC = segue.destinationViewController as? UIViewController{
 //                destinationVC.numberToDisplay = counter
 //            }
-        }
-    }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.delay(3){
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
         // Do any additional setup after loading the view.
     }
 

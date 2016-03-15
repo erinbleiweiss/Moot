@@ -421,6 +421,10 @@ def generate_random_word():
     """
     Generates a random word from searchupc.com
 
+    :difficulty: A number from 1-3 indicating the current level stage.
+    Words should get progressively harder.  Level 1 should always use
+    the word "scan"
+
     :return:    random word as string
     """
     logger_header("/generate_random_word")
@@ -429,9 +433,10 @@ def generate_random_word():
     difficulty = request.args.get('difficulty')
 
     if int(difficulty) == 1:
-        minLength = 4
-        maxLength = 5
-        minCorpusCount= 100000
+        response = {}
+        response["word"] = "scan"
+        response["status"] = "success"
+        return jsonify(response)
     elif int(difficulty) == 2:
         minLength = 4
         maxLength = 5

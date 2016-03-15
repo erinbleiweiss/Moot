@@ -35,7 +35,8 @@ class HangmanGameController: GenericGameController {
     */
     func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_random_word"
-        Alamofire.request(.GET, url, parameters: ["difficulty": self.level!.getCurrentStage()]).responseJSON { (_, _, result) in
+        let difficulty = self.level!.getCurrentStage()
+        Alamofire.request(.GET, url, parameters: ["difficulty": difficulty]).responseJSON { (_, _, result) in
             switch result {
                 case .Success(let data):
                     let json = JSON(data)
@@ -44,6 +45,11 @@ class HangmanGameController: GenericGameController {
                     print(word)
                     self.targetWord = word
                     self.currentGame = ""
+                    
+                    // On first level, prepopulate currentGame
+                    if (difficulty == 1 && word == "scan"){
+                        self.currentGame = "sc_n"
+                    }
                     completionHandler(responseObject: word, error: result.error as? NSError)
                 case .Failure(_):
                     // There was a problem retrieving a word from the database
@@ -93,7 +99,6 @@ class HangmanGameController: GenericGameController {
                     }
                     let achievements_earned = json["achievements_earned"]
                     self.displayAchievements(achievements_earned)
-                    self.checkForSuccess()
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
                     NSLog("Request failed with error: \(result.error)")
@@ -116,17 +121,19 @@ class HangmanGameController: GenericGameController {
     */
     func checkForSuccess() -> Int{
         
+        advanceStage()
+        return 1
+        
         for tile in gameTiles{
             if !tile.isFilled{
-                // Stage is not complete
-                return 1
+                return 0 // Stage is not complete
             }
         }
         // Stage is complete, check for level completion
         let level_complete = self.checkLevelCompleted()
         if (!level_complete){
-            advanceStage() // Not final stage; Level not complete
-            return 1
+            advanceStage()
+            return 1 // Not final stage; Level not complete
         } else {
             succeed() // Final stage; Level is complete
             return 2
@@ -137,20 +144,7 @@ class HangmanGameController: GenericGameController {
     func advanceStage(){
         
         print("pressed")
-//        self.level?.advanceToNextStage()
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
-//        let rootVC = level?.getRootVC()
-//        
-//        let rootVC = level?.getRootVC() as! UINavigationController
-//        let rootVC = self.gameView.window!.rootViewController as! LoginViewController
-//        let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController
-//        rootVC!.presentViewController(successVC, animated: true, completion: nil)
-
-//        rootVC.showViewController(successVC, sender: nil)
-        
-//        rootVC.performSegueWithIdentifier("HangmanSuccess", sender: rootVC)
+        self.level?.advanceToNextStage()
         
     }
     

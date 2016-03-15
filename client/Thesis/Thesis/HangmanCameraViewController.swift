@@ -35,6 +35,12 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
     }
         
     
+    /**
+        Read data and send back to level controller
+     
+        - Parameters:
+            - upc: (String) scanned UPC code
+     */
     override func doAfterScan(upc: String){
         // Assign read upc to class
         self.upc = upc
@@ -44,7 +50,12 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
     }
     
     
-    // Get product name from UPC
+    /**
+        Get product name from UPC
+     
+        - Parameters
+            - upc: (String) UPC from camrea
+     */
     func getProduct(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_product_nameOLD"
         Alamofire.request(.GET, url, parameters: ["upc": upc]).responseJSON { (_, _, result) in
@@ -62,9 +73,10 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
     }
     
     
-    // Send data back to TestLevelViewController via segue
+    /**
+        Send data back to TestLevelViewController via segue
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        
         // If UPC defined
         if let _ = upc{
             let destinationVC = segue.destinationViewController as! HangmanLevelViewController
