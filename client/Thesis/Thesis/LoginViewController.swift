@@ -19,6 +19,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let uuid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
+            print(uuid)
+        }
+
 
         // Do any additional setup after loading the view.
         

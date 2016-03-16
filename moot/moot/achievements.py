@@ -7,12 +7,12 @@ from mootdao import MootDao
 
 class Achievements(Base):
 
-    def __init__(self, username):
+    def __init__(self, user_id):
         Base.__init__(self, __name__)
-        self.username = username
+        self.user_id = user_id
         self.config = ConfigParser.ConfigParser()
         self.config.read('config.ini')
-        self.all_achievements = MootDao().get_achievements(self.username)
+        self.all_achievements = MootDao().get_achievements(self.user_id)
 
     def check_all_achievements(self):
         achievements_earned = []
@@ -25,15 +25,15 @@ class Achievements(Base):
                     achievement_name = test_result[1]
                     if should_award:
                         db = MootDao()
-                        db.award_achievement(self.username, achievement_name)
+                        db.award_achievement(self.user_id, achievement_name)
                         self.logger.info("Awarded achievement '{0}' to user "
                                          "'{1}".format(achievement_name,
-                                                       self.username))
+                                                       self.user_id))
                         achievements_earned.append(achievement_name)
                     else:
                         self.logger.info("Not awarding achievement '{0}' to "
                                           "user '{1}'".format(achievement_name,
-                                                              self.username))
+                                                              self.user_id))
                 except TypeError:
                     self.logger.critical("Problem with test result")
         return achievements_earned
@@ -69,7 +69,7 @@ class Achievements(Base):
             return (True, name)
         else:
             self.logger.debug("User '{0}' already earned '{1}'"
-                              .format(self.username, name))
+                              .format(self.user_id, name))
         return (False, name)
 
     def test_easy_as_abc(self):
@@ -84,7 +84,7 @@ class Achievements(Base):
         name = "Easy as ABC"
         if self.is_new_achievement(name):
             db = MootDao()
-            products = db.get_products(self.username)
+            products = db.get_products(self.user_id)
             all_letters = set()
             for p in products:
                 first_letter = p["product_name"][0]
@@ -94,32 +94,6 @@ class Achievements(Base):
                     return (True, name)
         else:
             self.logger.debug("User '{0}' already earned '{1}'"
-                              .format(self.username, name))
+                              .format(self.user_id, name))
         return (False, name)
 
-
-    def test_write_your_name(self):
-        """
-        Tests whether user should be awarded "Write Your Name" Achievement
-
-        :return:    Tuple in the form (Name, Boolean)
-                    Name = String (corresponds to name in achievement table)
-                    Boolean = Whether achievement should be awarded
-        """
-        self.logger.debug("test_write_your_name()")
-        name = "Write Your Name"
-        if self.is_new_achievement(name):
-            db = MootDao()
-            products = db.get_products(self.username)
-            all_letters = set()
-            username_letters = set(self.username)
-            for p in products:
-                first_letter = p["product_name"][0]
-                if first_letter.isalpha():
-                    all_letters.add(first_letter.upper())
-                if all_letters == username_letters:
-                    return (True, name)
-        else:
-            self.logger.debug("User '{0}' already earned '{1}'"
-                              .format(self.username, name))
-        return (False, name)

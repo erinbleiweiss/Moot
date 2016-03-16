@@ -9,11 +9,8 @@ DROP TABLE IF EXISTS scanned_product cascade;
 
 
 CREATE TABLE gameuser (
-	user_id 	serial primary key,
-	created_at	timestamp DEFAULT CURRENT_TIMESTAMP,
-	username	varchar(80) UNIQUE NOT NULL,
-	password	varchar(128) NOT NULL,
-	email varchar(80) NOT NULL
+	user_id 	varchar(80) primary key NOT NULL,
+	created_at	timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE achievement (
@@ -23,19 +20,19 @@ CREATE TABLE achievement (
 );
 
 CREATE TABLE user_achievement (
-	user_id	INTEGER references gameuser,
+	user_id	varchar(80) references gameuser,
 	achievement_id	INTEGER references achievement,
-  type varchar(80) NOT NULL,
+  type varchar(80),
 	created_at	timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE user_score (
-	user_id	INTEGER UNIQUE references gameuser,
+	user_id	varchar(80) UNIQUE references gameuser,
 	score_value	INTEGER NOT NULL
 );
 
 CREATE TABLE scanned_product (
-  user_id INTEGER REFERENCES gameuser,
+  user_id varchar(80) REFERENCES gameuser,
   upc varchar(20) NOT NULL,
   product_name varchar(120) NOT NULL,
   color varchar(80),
@@ -43,7 +40,7 @@ CREATE TABLE scanned_product (
   date timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX username ON gameuser(username);
+CREATE INDEX user_id ON gameuser(user_id);
 
 
 INSERT INTO achievement VALUES (1, 'New Moot on the Block', 'Create a new Moot account');
@@ -52,4 +49,6 @@ INSERT INTO achievement VALUES (3, 'Taste The Rainbow', 'Scan 7 different colore
 INSERT INTO achievement VALUES (4, 'Easy as ABC', 'Scan products beginning with every letter of the alphabet');
 INSERT INTO achievement VALUES (5, 'Overeager', 'Fuck up the waiting level a lot');
 INSERT INTO achievement VALUES (6, 'Write Your Name', 'Scan all the letters of your username');
-INSERT INTO achievement VALUES (6, 'Spell a color', 'Scan all the letters of your username');
+INSERT INTO achievement VALUES (7, 'Spell a color', 'Scan all the letters of your username');
+
+

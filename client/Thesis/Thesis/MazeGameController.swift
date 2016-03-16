@@ -57,8 +57,8 @@ class MazeGameController: GenericGameController {
             
             
             let json = JSON(result.value!)
-            if let success = json["success"].string{
-                if success == "true" {
+            if let success = json["status"].string{
+                if success == "success" {
                     let new_row = String(json["row"])
                     let new_col = String(json["col"])
                     

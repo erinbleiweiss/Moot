@@ -1,12 +1,6 @@
 from flask import Flask, request, jsonify, make_response
-from flask_mail import Mail, Message
-from flask_wtf import Form
-from wtforms import StringField, PasswordField, validators, ValidationError
 
 app = Flask(__name__)
-mail = Mail(app)
-
-from werkzeug.datastructures import MultiDict
 
 from moot.mootdao import MootDao
 from moot.achievements import Achievements
@@ -42,75 +36,6 @@ QR_CODE_URL = config.get('api', 'qr_code_url')
 
 SUCCESS = "success"
 FAILURE = "failure"
-
-class RegistrationForm(Form):
-    username = StringField('Username', [
-        validators.DataRequired(message="Username cannot be blank"),
-        validators.Length(4, 20,
-                          message="Username must be between "
-                                  "4 and 20 characters"),
-        validators.regexp('^[A-Za-z][A-Za-z0-9_.]*$',
-                          message="Usernames may contain only letters, "
-                                  "numbers, periods or underscores")
-    ])
-    password = PasswordField('Password', [
-        validators.DataRequired(message="Password cannot be blank"),
-        validators.Length(4, 20,
-                          message="Password must be between "
-                                  "4 and 20 characters"),
-    ])
-    confirmPassword = PasswordField('Confirm password', [
-        validators.equal_to('password',
-                            message="Passwords must match")
-    ])
-    email = StringField('Email address', [
-        validators.DataRequired(message="Email cannot be blank."),
-        validators.Email(message="Email address is not valid")
-    ])
-
-    def getValue(self, param):
-        return getattr(self, param)._value()
-
-    def validate_username(form, field):
-        db = MootDao()
-        exists = db.check_username_exists(field.data)
-        if exists:
-            raise ValidationError("Username unavailable")
-
-
-class LoginForm(Form):
-    username = StringField('Username', [
-        validators.DataRequired(message="Username cannot be blank")
-    ])
-    password = PasswordField('Password', [
-        validators.DataRequired(message="Password cannot be blank")
-    ])
-
-    def getValue(self, param):
-        return getattr(self, param)._value()
-
-    def validate_username(form, field):
-        db = MootDao()
-        exists = db.check_username_exists(field.data)
-        if not exists:
-            raise ValidationError("No account with this username exists")
-
-    def validate(self, extra_validators=None):
-        if not Form.validate(self):
-            return False
-
-        logger.debug("wat")
-        print('wat')
-        username = self.username._value()
-        password = self.password._value()
-
-        logger.debug("Attempting to login user '{}' with password '{}'"
-                     .format(username, password))
-
-        db = MootDao()
-        login = db.login(username, password)
-        if not login:
-            raise ValidationError("Username or password is invalid")
 
 
 @app.route("/")
@@ -168,125 +93,31 @@ def get_product_img(upc):
 def logger_header(endpoint):
     """
     Formats an endpoint name as center-aligned, padded with equal signs
-    and logs to standard logger for process readability
+    and logs to standard logger for process readability (see following)
 
     ==================== /endpoint ====================
+
     :param endpoint: (String) name of endpoint
     :return: none
     """
     endpoint_string = " {0} ".format(endpoint)
     logger.debug("{0:=^48}".format(endpoint_string))
 
-
-@app.route('/v1/register', methods=["POST"])
-def register():
-    logger_header('/register')
-    try:
-        data = MultiDict(mapping=request.form)
-        form = RegistrationForm(data, csrf_enabled=False)
-
-        if form.validate():
-            username = form.getValue("username")
-            password = form.getValue("password")
-            email = form.getValue("email")
-
-            db = MootDao()
-            db.create_user(username, password, email)
-
-            response = {}
-            response["status"] = SUCCESS
-            response["message"] = "created user"
-
-            logger.debug('it worked?')
-            return jsonify(response)
-        else:
-            response = {}
-            response["errors"] = {}
-            for fieldName, errorMessages in form.errors.iteritems():
-                errors_in_field = []
-                for err in errorMessages:
-                    logger.debug("{} error: {}".format(fieldName, err))
-                    errors_in_field.append(err)
-                response["errors"][fieldName] = errors_in_field
-
-            response["status"] = FAILURE
-            return jsonify(response)
-
-    except Exception as e:
-        logger.debug('Exception: {}'.format(e))
-        response = {}
-        response["status"] = FAILURE
-        return jsonify(response)
-
-
-
 @app.route('/v1/login', methods=["GET"])
 def login():
     logger_header('/login')
-
-    # try:
-    #     data = MultiDict(mapping=request.authorization)
-    #     form = LoginForm(data, csrf_enabled=False)
-    #     logger.debug("checkpoint 3")
-    #
-    #     if form.validate():
-    #         logger.debug("success")
-    #
-    #         response = {}
-    #         response["status"] = SUCCESS
-    #         return jsonify(response)
-    #     else:
-    #         logger.debug("did not validate")
-    #
-    #         response = {}
-    #         response["errors"] = {}
-    #         for fieldName, errorMessages in form.errors.iteritems():
-    #             errors_in_field = []
-    #             for err in errorMessages:
-    #                 logger.debug("{} error: {}".format(fieldName, err))
-    #                 errors_in_field.append(err)
-    #             response["errors"][fieldName] = errors_in_field
-    #
-    #
-    #         logger.debug(response["errors"])
-    #         response["status"] = FAILURE
-    #         return jsonify(response)
-    #
-    # except Exception as e:
-    #     logger.debug('Exception: {}'.format(e))
-    #     response = {}
-    #     response["status"] = FAILURE
-    #     return jsonify(response)
-
-
     db = MootDao()
     auth = request.authorization
-
-    username = auth.username
+    user_id = auth.username
     password = auth.password
-    #
     response = {}
-    if db.login(username, password):
-        response["status"] = SUCCESS
+
+    if (password == config.get('mootapp', 'moot_password') and \
+            db.login(user_id)):
+            response["status"] = SUCCESS
     else:
         response["status"] = FAILURE
-
-    logger.debug("Attempting to login user '{}' with password '{}' - {}".format(
-        username, password, response["status"]))
-
     return jsonify(response)
-
-
-@app.route('/v1/forgot_password', methods=["GET"])
-def forgot_password():
-    logger_header('/forgot_password')
-    msg = Message()
-    msg.recipients = ["erin.bleiweiss@utexas.edu"]
-    msg.body = "Moot tests email"
-    msg.subject = "Moot Password Reset"
-    # msg.sender = ("Moot", "moot@erinbleiweiss.com")
-    mail.send(msg)
-    return "Message sent"
 
 
 @app.route('/v1/get_achievements', methods=["GET"])
@@ -294,10 +125,9 @@ def get_achievements():
     logger_header('/get_achievements')
     db = MootDao()
     auth = request.authorization
-    username = auth.username
-    password = auth.password
+    user_id = auth.username
 
-    achievements = db.get_achievements(username)
+    achievements = db.get_achievements(user_id)
     logger.debug(achievements)
 
     response = {}
@@ -311,10 +141,9 @@ def get_unearned_achievements():
     logger_header('/get_unearned_achievements')
     db = MootDao()
     auth = request.authorization
-    username = auth.username
-    password = auth.password
+    user_id = auth.username
 
-    achievements = db.get_unearned_achievements(username)
+    achievements = db.get_unearned_achievements(user_id)
     logger.debug(achievements)
 
     response = {}
@@ -332,13 +161,13 @@ def moot_points(str, size):
 def award_points():
     logger_header('/award_points')
     auth = request.authorization
-    username = auth.username
+    user_id = auth.username
     points = request.form["points"]
 
     db = MootDao()
     response = {}
     try:
-        db.award_points(username, points)
+        db.award_points(user_id, points)
         response["status"] = SUCCESS
     except Exception:
         response["status"] = FAILURE
@@ -349,12 +178,12 @@ def award_points():
 def get_points():
     logger_header('/get_points')
     auth = request.authorization
-    username = auth.username
+    user_id = auth.username
 
     db = MootDao()
     response = {}
     try:
-        points = db.get_points(username)
+        points = db.get_points(user_id)
         response["points"] = points
         response["status"] = SUCCESS
     except Exception:
@@ -365,7 +194,7 @@ def get_points():
 # @app.route('/v1/get_product_info', methods=["GET"])
 # def get_product_info():
 #     auth = request.authorization
-#     username = auth.username
+#     user_id = auth.username
 #
 #     upc = requests.get["upc"]
 #     product_name = get_product_name(upc)
@@ -386,12 +215,16 @@ def get_points():
 def save_product():
     logger_header('/save_product')
     auth = request.authorization
-    username = auth.username
+    user_id = auth.username
 
     upc = request.form["upc"]
     try:
         product_name = request.form["product_name"]
     except KeyError:
+        logger.debug("key error")
+        product_name = get_product_name(upc)
+    except Exception:
+        logger.debug("exception")
         product_name = ""
 
     try:
@@ -407,7 +240,7 @@ def save_product():
     db = MootDao()
     response = {}
     try:
-        db.save_product(username, upc, product_name, color, type)
+        db.save_product(user_id, upc, product_name, color, type)
         response["status"] = SUCCESS
     except Exception:
         response["status"] = FAILURE
@@ -429,7 +262,7 @@ def generate_random_word():
     """
     logger_header("/generate_random_word")
     auth = request.authorization
-    username = auth.username
+    user_id = auth.username
     difficulty = request.args.get('difficulty')
 
     if int(difficulty) == 1:
@@ -462,7 +295,7 @@ def generate_random_word():
         word_data = word_data.json()
         random_word = word_data["word"]
         logger.info("Game data for user '{}': Hangman Word = '{}'".format(
-            username, random_word))
+            user_id, random_word))
         response["word"] = random_word
         response["status"] = SUCCESS
     except Exception as e:
@@ -493,7 +326,7 @@ def play_hangman():
     """
     logger_header("/play_hangman")
     auth = request.authorization
-    username = auth.username
+    user_id = auth.username
 
     upc = request.args.get('upc')
     target_word = request.args.get('target_word').upper()
@@ -512,14 +345,14 @@ def play_hangman():
 
     db = MootDao()
     try:
-        db.save_product(username, upc, product_name, "", "")
+        db.save_product(user_id, upc, product_name, "", "")
     except Exception as e:
         logger.critical(e)
         response["status"] = FAILURE
         return jsonify(response)
 
     try:
-        achievements_earned = check_for_achievements_internal(username)
+        achievements_earned = check_for_achievements_internal(user_id)
         response["achievements_earned"] = achievements_earned
     except Exception as e:
         response["achievements_earned"] = []
@@ -589,7 +422,7 @@ def get_product_nameOLD():
 Point = namedtuple('Point', ('coords', 'n', 'ct'))
 Cluster = namedtuple('Cluster', ('points', 'center', 'n'))
 
-def get_points(img):
+def get_color_points(img):
     points = []
     w, h = img.size
     for count, color in img.getcolors(w * h):
@@ -691,7 +524,7 @@ def find_colors(img, n=4):
     img.thumbnail((200, 200))
     w, h = img.size
 
-    points = get_points(img)
+    points = get_color_points(img)
     clusters = kmeans(points, n, 1)
 
     rgb_values = [c.center.coords for c in clusters]
@@ -725,9 +558,11 @@ def image_colors():
 
     if len(dominant_colors) > 0:
         count = Counter(dominant_colors)
+        result["status"] = SUCCESS
         result["dominant_color"] = count.most_common()[0][0]
         return jsonify(result)
 
+    result["status"] = FAILURE
     result["dominant_color"] = "none"
     return jsonify(result)
 
@@ -833,6 +668,7 @@ def generate_maze():
     logger.debug(maze_string)
 
     response = {}
+    response['status'] = SUCCESS
     response['maze'] = maze_string
 
     return jsonify(response)
@@ -874,7 +710,7 @@ def carve_passages(row, col, grid):
 
 
 @app.route('/v1/maze_move', methods=["GET"])
-def move():
+def maze_move():
     logger_header('/maze_move')
     """
     Checks whether a move in a maze is valid, and returns
@@ -915,11 +751,11 @@ def move():
 
     # If wall exists
     if getattr(current_tile, dir):
-        response["success"] = "false"
+        response["status"] = FAILURE
         logger.info(("Hit a wall moving {}").format(dir))
         return jsonify (response)
 
-    response["success"] = "true"
+    response["status"] = SUCCESS
     response["row"] = row + dy[dir]
     response["col"] = col + dx[dir]
     new_tile = Tile(int(maze[row + dy[dir]][col + dx[dir]]))
@@ -948,6 +784,7 @@ def get_qr_code():
     height = request.args.get('height')
     # target_url = 'http://www.google.com'
     # TODO: Obtain endpoint URL (and route?) dynamically
+    # TODO: Make qr code unique for user_id
     target_url = "http://52.26.94.97:5000/v1/check_qr_code"
 
     request_url = ("{}?size={}x{}&data={}").format(base_url,
@@ -973,7 +810,8 @@ def check_qr_code():
     logger_header('/check_qr_code')
     response = {}
     # Totally unique, definitely obfuscated identification string
-    response["correcthorsebatterystaple"] = "true"
+    response["status"] = SUCCESS
+    response["correcthorsebatterystaple"] = SUCCESS
 
     return jsonify(response)
 
@@ -986,11 +824,9 @@ def check_qr_code():
 def check_for_achievements():
     logger_header("/check_for_achievements")
     auth = request.authorization
-    username = auth.username
+    user_id = auth.username
 
-    # param = requests.get["param"]
-
-    ach = Achievements(username)
+    ach = Achievements(user_id)
     ach.check_all_achievements()
 
     response = {}
@@ -1004,8 +840,8 @@ def check_for_achievements():
     #     response["status"] = FAILURE
 
 
-def check_for_achievements_internal(username):
-    ach = Achievements(username)
+def check_for_achievements_internal(user_id):
+    ach = Achievements(user_id)
     try:
         return ach.check_all_achievements()
     except Exception:
