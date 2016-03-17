@@ -359,13 +359,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A0v-Oi-9P7" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
-                                <rect key="frame" x="41" y="210" width="239" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-B9-hHA">
-                                <rect key="frame" x="41" y="283" width="239" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-B9-hHA">
+                                <rect key="frame" x="140" y="242" width="320" height="116"/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -374,118 +369,16 @@
                                     <action selector="loginButtonPressed:" destination="Tlx-cy-dgz" eventType="touchUpInside" id="Lw4-2r-A1c"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEb-lx-vpX">
-                                <rect key="frame" x="41" y="321" width="108" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Forgot Password?"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frw-fO-qnl">
-                                <rect key="frame" x="219" y="321" width="61" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <segue destination="5Ao-pO-s5v" kind="presentation" id="zGN-hg-7V2"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRW-X3-7aF" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
-                                <rect key="frame" x="41" y="138" width="239" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cnS-B9-hHA" firstAttribute="centerX" secondItem="9zC-r5-Koj" secondAttribute="centerX" id="eF6-rd-ae9"/>
+                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="passwordTextField" destination="A0v-Oi-9P7" id="im6-qN-evf"/>
-                        <outlet property="usernameTextField" destination="aRW-X3-7aF" id="VGF-Pg-3mA"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1p3-u0-upw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="739" y="-1195"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="wOc-P3-Yem">
-            <objects>
-                <navigationController id="5Ao-pO-s5v" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gXn-fi-O7t">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="FQm-Z2-eqX" kind="relationship" relationship="rootViewController" id="ulD-Wq-ez1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R6C-Jd-f8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1551" y="-1195"/>
-        </scene>
-        <!--Register View Controller-->
-        <scene sceneID="Tfu-dD-2rj">
-            <objects>
-                <viewController id="FQm-Z2-eqX" customClass="RegisterViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zmF-BN-nOI"/>
-                        <viewControllerLayoutGuide type="bottom" id="W23-p2-InJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="a5k-tD-eNY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Frc-qy-aYx" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
-                                <rect key="frame" x="20" y="209" width="331" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICw-Sn-aqZ" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
-                                <rect key="frame" x="20" y="278" width="331" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Lp-bd-dna" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
-                                <rect key="frame" x="20" y="348" width="331" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkh-og-PLF">
-                                <rect key="frame" x="20" y="411" width="331" height="37"/>
-                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Register">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="registerButton:" destination="FQm-Z2-eqX" eventType="touchUpInside" id="I4v-fr-sAT"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imU-cm-31w" customClass="UIMaterialTextField" customModule="Moot" customModuleProvider="target">
-                                <rect key="frame" x="20" y="136" width="331" height="55"/>
-                                <accessibility key="accessibilityConfiguration" hint="Username">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="zmS-CK-KT3">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="9pH-b8-IQa">
-                            <connections>
-                                <segue destination="aAF-sR-aGh" kind="unwind" unwindAction="cancelToLogin:" id="WyT-n0-VGH"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="confirmPasswordTextField" destination="0Lp-bd-dna" id="QQv-xm-h9T"/>
-                        <outlet property="emailTextField" destination="Frc-qy-aYx" id="cbS-gx-Xva"/>
-                        <outlet property="passwordTextField" destination="ICw-Sn-aqZ" id="Cy0-uI-Ijh"/>
-                        <outlet property="usernameTextField" destination="imU-cm-31w" id="e9I-tj-etV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ATW-yL-SA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="aAF-sR-aGh" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2244" y="-1195"/>
         </scene>
         <!--Level Picker View Controller-->
         <scene sceneID="mTs-UA-ous">

@@ -1,10 +1,10 @@
 -- schema for the Moot game
 
 
--- DROP TABLE IF EXISTS gameuser cascade;
+DROP TABLE IF EXISTS gameuser cascade;
 DROP TABLE IF EXISTS achievement cascade;
--- DROP TABLE IF EXISTS user_achievement cascade;
--- DROP TABLE IF EXISTS user_score cascade;
+DROP TABLE IF EXISTS user_achievement cascade;
+DROP TABLE IF EXISTS user_score cascade;
 DROP TABLE IF EXISTS scanned_product cascade;
 
 
@@ -43,12 +43,11 @@ CREATE TABLE scanned_product (
 CREATE INDEX user_id ON gameuser(user_id);
 
 
-INSERT INTO achievement VALUES (1, 'New Moot on the Block', 'Create a new Moot account');
-INSERT INTO achievement VALUES (2, 'Savings Account', 'Accumulate 1000 Moot Points');
-INSERT INTO achievement VALUES (3, 'Taste The Rainbow', 'Scan 7 different colored products');
-INSERT INTO achievement VALUES (4, 'Easy as ABC', 'Scan products beginning with every letter of the alphabet');
-INSERT INTO achievement VALUES (5, 'Overeager', 'Fuck up the waiting level a lot');
-INSERT INTO achievement VALUES (6, 'Write Your Name', 'Scan all the letters of your username');
-INSERT INTO achievement VALUES (7, 'Spell a color', 'Scan all the letters of your username');
+INSERT INTO achievement (name, description) VALUES ('New Moot on the Block', 'Create a new Moot account');
+INSERT INTO achievement (name, description) VALUES ('Savings Account', 'Accumulate 1000 Moot Points');
+INSERT INTO achievement (name, description) VALUES ('Taste The Rainbow', 'Scan 7 different colored products');
+INSERT INTO achievement (name, description) VALUES ('Easy as ABC', 'Scan products beginning with every letter of the alphabet');
+INSERT INTO achievement (name, description) VALUES ('Overeager', 'Fuck up the waiting level a lot');
+INSERT INTO achievement (name, description) VALUES ('Spell a color', 'Scan all the letters of your username');
 
 
