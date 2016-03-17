@@ -11,7 +11,7 @@ import ConfigParser
 import requests
 import json
 import pprint
-import Image
+from PIL import Image
 import math
 from math import sqrt
 import random

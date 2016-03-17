@@ -180,8 +180,11 @@ class MootTest(unittest.TestCase):
             'width': '4',
             'height': '4'
         }
-        response = self.api_get('get_qr_code', payload=payload)
-        self.assertEqual(response["status"], self.good_status)
+
+        url = "{0}{1}/{2}".format(self.hostname, self.rest_prefix, 'get_qr_code')
+        response = requests.get(url, params=payload, auth=(self.user_id,
+                                                        self.password))
+        self.assertEqual(response.status_code, 200)
 
     def test_check_qr_code(self):
         response = self.api_get('check_qr_code')
