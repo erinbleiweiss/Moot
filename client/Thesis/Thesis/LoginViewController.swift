@@ -54,7 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         let url: String = hostname + rest_prefix + "/login"
         
         let uuid = UIDevice.currentDevice().identifierForVendor!.UUIDString
-        let password = "DV7pHGtSS9FJzmJ5ucD3VvYu$x2GrfP9F9b$"
+        let password = get_api_key()
         let credentialData = "\(uuid):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
         let base64Credentials = credentialData.base64EncodedStringWithOptions([])
         let headers = ["Authorization": "Basic \(base64Credentials)"]
