@@ -20,7 +20,8 @@ from StringIO import StringIO
 import pdb
 from collections import namedtuple, Counter
 from colorama import init, Fore, Back, Style
-
+from colorthief import ColorThief
+import colorsys
 
 config = ConfigParser.ConfigParser()
 config_path = os.path.join(os.getcwd(), "moot/config.ini")
@@ -531,40 +532,78 @@ def find_colors(img, n=4):
     return rgb_values
 
 
+# @app.route('/v1/image_colors', methods=["GET"])
+# def image_colors():
+#     logger_header('/image_colors')
+#     upc = request.args.get('upc')
+#     url = get_product_img(upc)
+#     response = requests.get(url)
+#     img = Image.open(StringIO(response.content))
+#
+#     neutral_colors = ["black", "white", "brown"]
+#
+#     colors = find_colors(img)
+#     for color in colors:
+#         logger.debug([int(i) for i in color])
+#     logger.debug([get_color_name(c) for c in colors])
+#
+#     print(Fore.RED + 'some red text')
+#     print(Style.RESET_ALL)
+#
+#     result = {}
+#     dominant_colors = []
+#     for color in colors:
+#         color_name = get_color_name(color)
+#         if color_name not in neutral_colors:
+#             dominant_colors.append(color_name)
+#
+#     if len(dominant_colors) > 0:
+#         count = Counter(dominant_colors)
+#         result["status"] = SUCCESS
+#         result["dominant_color"] = count.most_common()[0][0]
+#         return jsonify(result)
+#
+#     result["status"] = FAILURE
+#     result["dominant_color"] = "none"
+#     return jsonify(result)
+
 @app.route('/v1/image_colors', methods=["GET"])
 def image_colors():
     logger_header('/image_colors')
     upc = request.args.get('upc')
     url = get_product_img(upc)
     response = requests.get(url)
-    img = Image.open(StringIO(response.content))
+    logger.debug("Image: {0}".format(url))
 
-    neutral_colors = ["black", "white", "brown"]
 
-    colors = find_colors(img)
-    for color in colors:
-        logger.debug([int(i) for i in color])
-    logger.debug([get_color_name(c) for c in colors])
+    color_thief = ColorThief(StringIO(response.content))
+    dominant_color = color_thief.get_color(quality = 1)
 
-    print(Fore.RED + 'some red text')
-    print(Style.RESET_ALL)
+    dominant_color = tuple([color / 255.0 for color in dominant_color])
 
-    result = {}
-    dominant_colors = []
-    for color in colors:
-        color_name = get_color_name(color)
-        if color_name not in neutral_colors:
-            dominant_colors.append(color_name)
+    red, green, blue = dominant_color[0], \
+                       dominant_color[1], \
+                       dominant_color[2]
 
-    if len(dominant_colors) > 0:
-        count = Counter(dominant_colors)
-        result["status"] = SUCCESS
-        result["dominant_color"] = count.most_common()[0][0]
-        return jsonify(result)
+    hsv_color = colorsys.rgb_to_hsv(red, green, blue)
+    hue = hsv_color[0]
+    value = hsv_color[2]
 
-    result["status"] = FAILURE
-    result["dominant_color"] = "none"
-    return jsonify(result)
+    new_rgb_color = colorsys.hsv_to_rgb(hue, 1.0, value)
+    new_rgb_color = tuple([color * 255 for color in new_rgb_color])
+
+    logger.debug(new_rgb_color)
+    logger.debug(get_color_name(new_rgb_color))
+
+    # palette = color_thief.get_palette(color_count=3, quality=1)
+    # for color in palette:
+    #     logger.debug(color)
+    #     logger.debug(get_color_name(color))
+
+    response = {}
+    response["color"] = new_rgb_color
+    response["status"] = SUCCESS
+    return jsonify(response)
 
 
 class Tile (object):

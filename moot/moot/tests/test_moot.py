@@ -152,7 +152,8 @@ class MootTest(unittest.TestCase):
 
     def test_image_colors(self):
         payload = {
-            'upc': self.TEST_UPC
+            # 'upc': self.TEST_UPC
+            'upc': "0052000328660"
         }
         response = self.api_get('image_colors', payload=payload)
         self.assertEqual(response["status"], self.good_status)
