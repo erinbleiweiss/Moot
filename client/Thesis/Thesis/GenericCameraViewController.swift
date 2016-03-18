@@ -107,6 +107,7 @@ class GenericCameraViewController: UIViewController, AVCaptureMetadataOutputObje
         self.view.bringSubviewToFront(self.highlightView)
         
         // TODO: If detection string is nil
+        // CAUSES GAME CRASH
         doAfterScan(detectionString)
         
     }

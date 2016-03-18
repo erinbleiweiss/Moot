@@ -14,8 +14,13 @@ class LevelManager{
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    private var allLevels = [Level]()
-    private var numLevels = 3
+    // Initialize default levels in case saved levels do not exist
+    private var defaultLevels: [Level] = [
+        Level(levelNumber: 1, rootVC: "HangmanRootVC", numStages: 3),
+        Level(levelNumber: 2, rootVC: "MazeRootVC", numStages: 1),
+        Level(levelNumber: 3, rootVC: "JigsawRootVC", numStages: 1)
+    ]
+    private var userLevels = [Level]()
     
     /// Methods
     private init() { // This prevents others from using the default '()' initializer for this class.
@@ -23,12 +28,12 @@ class LevelManager{
     }
     
     func listLevels() -> [Level]{
-        return allLevels
+        return userLevels
     }
     
     func getCurrentLevel() -> Int {
         var level: Int = 1
-        for l in self.allLevels {
+        for l in self.userLevels {
             if !l.isLocked(){
                 level = l.getLevelNum()
             }
@@ -37,37 +42,37 @@ class LevelManager{
     }
     
     func isLocked(level: Int) -> Bool {
-        let level = allLevels[level - 1]
+        let level = userLevels[level - 1]
         return level.isLocked()
     }
     
     func unlockLevel(currentLevel: Int){
-        allLevels[currentLevel - 1].unlock()
+        userLevels[currentLevel - 1].unlock()
         saveLevels()
     }
     
     func unlockNextLevel(currentLevel: Int){
-        let numLevels = allLevels.count
+        let numLevels = userLevels.count
         if (currentLevel <= numLevels){
-            allLevels[currentLevel].unlock()
+            userLevels[currentLevel].unlock()
         }
         saveLevels()
     }
     
     func getCurrentStage(currentLevel: Int) -> Int{
-        let level = allLevels[currentLevel - 1]
+        let level = userLevels[currentLevel - 1]
         return level.getCurrentStage()
     }
 
     func getNumStages(currentLevel: Int) -> Int{
-        let level = allLevels[currentLevel - 1]
+        let level = userLevels[currentLevel - 1]
         return level.getNumStages()
     }
     
     func advancetoNextStage(currentLevel: Int){
-        let level = allLevels[currentLevel - 1]
+        let level = userLevels[currentLevel - 1]
         if level.getCurrentStage() < level.getNumStages(){
-            self.allLevels[currentLevel - 1].advanceStage()
+            self.userLevels[currentLevel - 1].advanceStage()
         }
         saveLevels()
     }
@@ -84,8 +89,7 @@ class LevelManager{
         Save levels to Core Data
      */
     func saveLevels(){
-        
-        for (idx, level) in allLevels.enumerate(){
+        for (idx, level) in userLevels.enumerate(){
             let path = "mootLevel_\(idx).archive"
             let file = documentsDirectory().stringByAppendingPathComponent(path)
             if NSKeyedArchiver.archiveRootObject(level, toFile: file) {
@@ -98,33 +102,20 @@ class LevelManager{
     }
     
     /**
-        Load levels from Core Data, or load default level if saved level does not exist
+        Load levels from Core Data into self.userLevels, or load default level if saved level does not exist
      */
     func loadLevels(){
-        
-        // Initialize default levels in case saved levels do not exist
-        var defaultLevels = [Level]()
-        for _ in 0...numLevels-1 {
-            defaultLevels.append(Level())
-        }
-        defaultLevels[0].new(1, rootVC: "HangmanRootVC", numStages: 3)
-        defaultLevels[1].new(2, rootVC: "MazeRootVC", numStages: 1)
-        defaultLevels[2].new(3, rootVC: "JigsawRootVC", numStages: 1)
-        
-        // Read saved levels from Core Data, or use default levels if necessary
-        var userLevels = [Level]()
-        for idx in 0...numLevels-1 {
+        for idx in 0...self.defaultLevels.count-1 {
             let path = "mootLevel_\(idx).archive"
             let file = documentsDirectory().stringByAppendingPathComponent(path)
             if let level = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? Level {
-                userLevels.append(level)
+                self.userLevels.append(level)
                 print("Success reading level \(idx+1)")
             } else {
                 print("Could not read level \(idx+1)")
-                userLevels.append(defaultLevels[idx])
+                self.userLevels.append(self.defaultLevels[idx])
             }
         }
-        allLevels = userLevels
     }
     
     

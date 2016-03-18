@@ -15,48 +15,64 @@ import UIKit
     Class Attributes:
         - levelNumber: (Int) Each level should have a unique level number, which defines the order that levels should be played
         - rootVC: (String) corresponds to an identifier on the storyboard that identifies the level's root view controller
+        - locked: (Boolean) Indicates whether or not the level is unlocked, and therefore playable.  Default value is true.
+        - currentStage: (Int) If the level has multiple stages, indicates the highest unlocked stage
+        - numStages: (Int) Indicates the number of stages a level has.  Default value (minimum) is 1.
  
  */
-class Level: NSObject {
+class Level: NSObject, NSCoding {
     
-    var levelNumber: Int?
-    var rootVC: String?
-    private var locked: Bool = true
-    private var currentStage: Int = 1
-    private var numStages: Int = 1
+    var levelNumber: Int
+    var rootVC: String
+    private var locked: Bool
+    private var currentStage: Int
+    private var numStages: Int
     
-    func encodeWithCoder(aCoder: NSCoder!){
-        aCoder.encodeInteger(levelNumber!, forKey: "levelNumber")
-        aCoder.encodeObject(rootVC!, forKey: "rootVC")
+    // Default initializer
+    init(levelNumber: Int, rootVC: String, locked: Bool, currentStage: Int, numStages: Int){
+        self.levelNumber = levelNumber
+        self.rootVC = rootVC
+        self.locked = locked
+        self.currentStage = currentStage
+        self.numStages = numStages
+    }
+    
+    
+    // Overloaded initializer with default values
+    convenience init(levelNumber: Int, rootVC: String, numStages: Int){
+        self.init(
+            levelNumber: levelNumber,
+            rootVC: rootVC,
+            locked: true,
+            currentStage: 1,
+            numStages: numStages
+        )
+    }
+    
+    
+    // MARK: NSCoding
+    required convenience init?(coder aDecoder: NSCoder){
+        guard let rootVC = aDecoder.decodeObjectForKey("rootVC") as? String
+            else {return nil}
+        
+        self.init(
+            levelNumber: aDecoder.decodeIntegerForKey("levelNumber"),
+            rootVC: rootVC,
+            locked: aDecoder.decodeBoolForKey("locked"),
+            currentStage: aDecoder.decodeIntegerForKey("currentStage"),
+            numStages: aDecoder.decodeIntegerForKey("numStages")
+        )
+    }
+    
+    
+    func encodeWithCoder(aCoder: NSCoder){
+        aCoder.encodeInteger(levelNumber, forKey: "levelNumber")
+        aCoder.encodeObject(rootVC, forKey: "rootVC")
         aCoder.encodeBool(locked, forKey: "locked")
         aCoder.encodeInteger(currentStage, forKey: "currentStage")
         aCoder.encodeInteger(numStages, forKey: "numStages")
     }
     
-    init(coder aDecoder: NSCoder!){
-        levelNumber = aDecoder.decodeIntegerForKey("levelNumber")
-        rootVC = aDecoder.decodeObjectForKey("rootVC") as? String
-        locked = aDecoder.decodeBoolForKey("locked")
-        currentStage = aDecoder.decodeIntegerForKey("currentStage")
-        numStages = aDecoder.decodeIntegerForKey("numStages")
-    }
-    
-    override init() {
-    }
-    
-    /**
-        Acts as an initializer
-    
-        - Parameters:
-            - levelNumber: (Int)
-            - rootVC:      (String)
-            - numStages:   (Int)
-     */
-    func new(levelNumber: Int, rootVC: String, numStages: Int){
-        self.levelNumber = levelNumber
-        self.rootVC = rootVC
-        self.numStages = numStages
-    }
     
     /**
         Returns the level's root view from the Main storyboard
@@ -67,18 +83,16 @@ class Level: NSObject {
     */
     func getRootVC() -> UIViewController{
         var viewControllerType = ""
-        if let vc = self.rootVC{
-            viewControllerType = vc
-        }
-        
+        viewControllerType = self.rootVC
+
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as? UIViewController
-        return newVC!
+        let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as UIViewController
+        return newVC
         
     }
     
     func getLevelNum() -> Int{
-        return self.levelNumber!
+        return self.levelNumber
     }
     
     func isLocked() -> Bool{
