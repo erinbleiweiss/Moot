@@ -17,7 +17,7 @@ import UIKit
         - rootVC: (String) corresponds to an identifier on the storyboard that identifies the level's root view controller
  
  */
-struct Level {
+class Level: NSObject {
     
     var levelNumber: Int?
     var rootVC: String?
@@ -25,7 +25,34 @@ struct Level {
     private var currentStage: Int = 1
     private var numStages: Int = 1
     
-    init (levelNumber: Int, rootVC: String, numStages: Int){
+    func encodeWithCoder(aCoder: NSCoder!){
+        aCoder.encodeInteger(levelNumber!, forKey: "levelNumber")
+        aCoder.encodeObject(rootVC!, forKey: "rootVC")
+        aCoder.encodeBool(locked, forKey: "locked")
+        aCoder.encodeInteger(currentStage, forKey: "currentStage")
+        aCoder.encodeInteger(numStages, forKey: "numStages")
+    }
+    
+    init(coder aDecoder: NSCoder!){
+        levelNumber = aDecoder.decodeIntegerForKey("levelNumber")
+        rootVC = aDecoder.decodeObjectForKey("rootVC") as? String
+        locked = aDecoder.decodeBoolForKey("locked")
+        currentStage = aDecoder.decodeIntegerForKey("currentStage")
+        numStages = aDecoder.decodeIntegerForKey("numStages")
+    }
+    
+    override init() {
+    }
+    
+    /**
+        Acts as an initializer
+    
+        - Parameters:
+            - levelNumber: (Int)
+            - rootVC:      (String)
+            - numStages:   (Int)
+     */
+    func new(levelNumber: Int, rootVC: String, numStages: Int){
         self.levelNumber = levelNumber
         self.rootVC = rootVC
         self.numStages = numStages
@@ -58,7 +85,7 @@ struct Level {
         return self.locked
     }
     
-    mutating func unlock(){
+    func unlock(){
         self.locked = false
     }
     
@@ -70,8 +97,12 @@ struct Level {
         return self.numStages
     }
     
-    mutating func advanceStage(){
+    func advanceStage(){
         self.currentStage++
     }
+    
+    
+
+    
     
 }

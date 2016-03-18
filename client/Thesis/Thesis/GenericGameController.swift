@@ -25,9 +25,8 @@ class GenericGameController{
     var FAILURE: String = "failure"
     
     init() {
-        self.defaults = NSUserDefaults.standardUserDefaults()
-        self.username = defaults!.stringForKey("username")
-        self.password = defaults!.stringForKey("password")
+        self.username = get_uuid()
+        self.password = get_api_key()
         
         // Pre-authorize all API Requests with appropriate headers
         let credentialData = "\(self.username!):\(self.password!)".dataUsingEncoding(NSUTF8StringEncoding)!
