@@ -117,10 +117,7 @@ class CompassView: UIView {
         layers["Main"] = Main
         
         for idx in 1...8{
-            var name: String
-            if (idx == 1){ name = "rose" }
-            else { name = "rose\(idx)" }
-            
+            let name = "rose\(idx)"
             let layer = CAShapeLayer()
             layer.descriptiveName = name
             Main.addSublayer(layer)
@@ -135,10 +132,7 @@ class CompassView: UIView {
         layers["Ticks"] = Ticks
         
         for idx in 1...8{
-            var name: String
-            if (idx == 1){ name = "path" }
-            else { name = "path\(idx)" }
-            
+            let name = "path\(idx)"
             let layer = CAShapeLayer()
             layer.descriptiveName = name
             Ticks.addSublayer(layer)
@@ -194,183 +188,78 @@ class CompassView: UIView {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
-        if layerIds == nil || layerIds.contains("red"){
-            let red = layers["red"] as! CAShapeLayer
-            red.fillColor = UIColor(red:0.718, green: 0.196, blue:0.2, alpha:1).CGColor
-            red.lineWidth = 0
+        let colors: [String: UIColor] = [
+            "red": UIColor(red:0.718, green: 0.196, blue:0.2, alpha:1),
+            "orange": UIColor(red:0.937, green: 0.498, blue:0.00392, alpha: 1),
+            "yellow": UIColor(red:0.988, green: 0.792, blue:0.31, alpha:1),
+            "greenyellow": UIColor(red:0.784, green: 0.824, blue:0.098, alpha:1),
+            "green": UIColor(red:0.545, green: 0.643, blue:0.0314, alpha:1),
+            "teal":  UIColor(red:0.00392, green: 0.533, blue:0.518, alpha:1),
+            "blue": UIColor(red:0, green: 0.447, blue:0.725, alpha:1),
+            "purple": UIColor(red:0.627, green: 0.333, blue:0.596, alpha:1)
+        ]
+        
+        for (name, color) in colors {
+            if layerIds == nil || layerIds.contains(name){
+                let layer = layers[name] as! CAShapeLayer
+                layer.fillColor = color.CGColor
+                layer.lineWidth = 0
+            }
         }
-        if layerIds == nil || layerIds.contains("orange"){
-            let orange = layers["orange"] as! CAShapeLayer
-            orange.fillColor = UIColor(red:0.937, green: 0.498, blue:0.00392, alpha:1).CGColor
-            orange.lineWidth = 0
+        
+        // Compass Rose
+        let rose_colors: [String: UIColor] = [
+            "dark": UIColor(red:0.502, green: 0.502, blue:0.502, alpha:1),
+            "light": UIColor(red:0.8, green: 0.8, blue:0.8, alpha:1)
+        ]
+        
+        for idx in 1...8 {
+            var color: UIColor?
+            if idx % 2 == 0 {
+                color = rose_colors["light"]
+            } else {
+                color = rose_colors["dark"]
+            }
+            if layerIds == nil || layerIds.contains("rose\(idx)"){
+                let rose = layers["rose\(idx)"] as! CAShapeLayer
+                rose.fillColor = color!.CGColor
+                rose.lineWidth = 0
+            }
         }
-        if layerIds == nil || layerIds.contains("yellow"){
-            let yellow = layers["yellow"] as! CAShapeLayer
-            yellow.fillColor = UIColor(red:0.988, green: 0.792, blue:0.31, alpha:1).CGColor
-            yellow.lineWidth = 0
+        
+        // Ticks
+        for idx in 1...8 {
+            if layerIds == nil || layerIds.contains("path\(idx)"){
+                let path = layers["path\(idx)"] as! CAShapeLayer
+                path.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
+                path.lineWidth = 0
+            }
         }
-        if layerIds == nil || layerIds.contains("greenyellow"){
-            let greenyellow = layers["greenyellow"] as! CAShapeLayer
-            greenyellow.fillColor = UIColor(red:0.784, green: 0.824, blue:0.098, alpha:1).CGColor
-            greenyellow.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("green"){
-            let green = layers["green"] as! CAShapeLayer
-            green.fillColor = UIColor(red:0.545, green: 0.643, blue:0.0314, alpha:1).CGColor
-            green.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("teal"){
-            let teal = layers["teal"] as! CAShapeLayer
-            teal.fillColor = UIColor(red:0.00392, green: 0.533, blue:0.518, alpha:1).CGColor
-            teal.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("blue"){
-            let blue = layers["blue"] as! CAShapeLayer
-            blue.fillColor = UIColor(red:0, green: 0.447, blue:0.725, alpha:1).CGColor
-            blue.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("purple"){
-            let purple = layers["purple"] as! CAShapeLayer
-            purple.fillColor = UIColor(red:0.627, green: 0.333, blue:0.596, alpha:1).CGColor
-            purple.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose"){
-            let rose = layers["rose"] as! CAShapeLayer
-            rose.fillColor = UIColor(red:0.502, green: 0.502, blue:0.502, alpha:1).CGColor
-            rose.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose2"){
-            let rose2 = layers["rose2"] as! CAShapeLayer
-            rose2.fillColor = UIColor(red:0.8, green: 0.8, blue:0.8, alpha:1).CGColor
-            rose2.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose3"){
-            let rose3 = layers["rose3"] as! CAShapeLayer
-            rose3.fillColor = UIColor(red:0.502, green: 0.502, blue:0.502, alpha:1).CGColor
-            rose3.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose4"){
-            let rose4 = layers["rose4"] as! CAShapeLayer
-            rose4.fillColor = UIColor(red:0.8, green: 0.8, blue:0.8, alpha:1).CGColor
-            rose4.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose5"){
-            let rose5 = layers["rose5"] as! CAShapeLayer
-            rose5.fillColor = UIColor(red:0.502, green: 0.502, blue:0.502, alpha:1).CGColor
-            rose5.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose6"){
-            let rose6 = layers["rose6"] as! CAShapeLayer
-            rose6.fillColor = UIColor(red:0.8, green: 0.8, blue:0.8, alpha:1).CGColor
-            rose6.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose7"){
-            let rose7 = layers["rose7"] as! CAShapeLayer
-            rose7.fillColor = UIColor(red:0.502, green: 0.502, blue:0.502, alpha:1).CGColor
-            rose7.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("rose8"){
-            let rose8 = layers["rose8"] as! CAShapeLayer
-            rose8.fillColor = UIColor(red:0.8, green: 0.8, blue:0.8, alpha:1).CGColor
-            rose8.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path"){
-            let path = layers["path"] as! CAShapeLayer
-            path.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path2"){
-            let path2 = layers["path2"] as! CAShapeLayer
-            path2.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path2.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path3"){
-            let path3 = layers["path3"] as! CAShapeLayer
-            path3.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path3.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path4"){
-            let path4 = layers["path4"] as! CAShapeLayer
-            path4.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path4.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path5"){
-            let path5 = layers["path5"] as! CAShapeLayer
-            path5.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path5.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path6"){
-            let path6 = layers["path6"] as! CAShapeLayer
-            path6.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path6.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path7"){
-            let path7 = layers["path7"] as! CAShapeLayer
-            path7.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path7.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("path8"){
-            let path8 = layers["path8"] as! CAShapeLayer
-            path8.fillColor = UIColor(red:0.2, green: 0.2, blue:0.2, alpha:1).CGColor
-            path8.lineWidth = 0
-        }
+        
+        // Center
         if layerIds == nil || layerIds.contains("center"){
             let center = layers["center"] as! CAShapeLayer
             center.fillColor = UIColor.blackColor().CGColor
             center.lineWidth = 0
         }
+        
+        // Arrow
         if layerIds == nil || layerIds.contains("arrow"){
             let arrow = layers["arrow"] as! CAShapeLayer
             arrow.fillColor = UIColor.blackColor().CGColor
             arrow.lineWidth = 0
         }
-        if layerIds == nil || layerIds.contains("red_touch"){
-            let red_touch = layers["red_touch"] as! CAShapeLayer
-            red_touch.opacity   = 0.01
-            red_touch.fillColor = UIColor(red:0.718, green: 0.196, blue:0.2, alpha:1).CGColor
-            red_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("orange_touch"){
-            let orange_touch = layers["orange_touch"] as! CAShapeLayer
-            orange_touch.opacity   = 0.01
-            orange_touch.fillColor = UIColor(red:0.937, green: 0.498, blue:0.00392, alpha:1).CGColor
-            orange_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("yellow_touch"){
-            let yellow_touch = layers["yellow_touch"] as! CAShapeLayer
-            yellow_touch.opacity   = 0.01
-            yellow_touch.fillColor = UIColor(red:0.988, green: 0.792, blue:0.31, alpha:1).CGColor
-            yellow_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("greenyellow_touch"){
-            let greenyellow_touch = layers["greenyellow_touch"] as! CAShapeLayer
-            greenyellow_touch.opacity   = 0.01
-            greenyellow_touch.fillColor = UIColor(red:0.784, green: 0.824, blue:0.098, alpha:1).CGColor
-            greenyellow_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("green_touch"){
-            let green_touch = layers["green_touch"] as! CAShapeLayer
-            green_touch.opacity   = 0.01
-            green_touch.fillColor = UIColor(red:0.545, green: 0.643, blue:0.0314, alpha:1).CGColor
-            green_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("teal_touch"){
-            let teal_touch = layers["teal_touch"] as! CAShapeLayer
-            teal_touch.opacity   = 0.01
-            teal_touch.fillColor = UIColor(red:0.00392, green: 0.533, blue:0.518, alpha:1).CGColor
-            teal_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("blue_touch"){
-            let blue_touch = layers["blue_touch"] as! CAShapeLayer
-            blue_touch.opacity   = 0.01
-            blue_touch.fillColor = UIColor(red:0, green: 0.447, blue:0.725, alpha:1).CGColor
-            blue_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("purple_touch"){
-            let purple_touch = layers["purple_touch"] as! CAShapeLayer
-            purple_touch.opacity   = 0.01
-            purple_touch.fillColor = UIColor(red:0.627, green: 0.333, blue:0.596, alpha:1).CGColor
-            purple_touch.lineWidth = 0
+        
+        
+        // Color Touch
+        // Opacity is set to .01 so that it renders as a layer, but is still hidden
+        for (name, color) in colors {
+            if layerIds == nil || layerIds.contains("\(name)_touch"){
+                let layer = layers["\(name)_touch"] as! CAShapeLayer
+                layer.opacity   = 0.01
+                layer.fillColor = color.CGColor
+                layer.lineWidth = 0
+            }
         }
         
         CATransaction.commit()
@@ -432,9 +321,9 @@ class CompassView: UIView {
             Main.frame = CGRectMake(0.03894 * Main.superlayer!.bounds.width, 0.03469 * Main.superlayer!.bounds.height, 0.92341 * Main.superlayer!.bounds.width, 0.92634 * Main.superlayer!.bounds.height)
         }
         
-        if let rose : CAShapeLayer = layers["rose"] as? CAShapeLayer{
+        if let rose : CAShapeLayer = layers["rose1"] as? CAShapeLayer{
             rose.frame = CGRectMake(0.29197 * rose.superlayer!.bounds.width, 0, 0.21034 * rose.superlayer!.bounds.width, 0.50356 * rose.superlayer!.bounds.height)
-            rose.path  = rosePathWithBounds((layers["rose"] as! CAShapeLayer).bounds).CGPath;
+            rose.path  = rosePathWithBounds((layers["rose1"] as! CAShapeLayer).bounds).CGPath;
         }
         
         if let rose2 : CAShapeLayer = layers["rose2"] as? CAShapeLayer{
@@ -476,9 +365,9 @@ class CompassView: UIView {
             Ticks.frame = CGRectMake(0, 0,  Ticks.superlayer!.bounds.width,  Ticks.superlayer!.bounds.height)
         }
         
-        if let path : CAShapeLayer = layers["path"] as? CAShapeLayer{
+        if let path : CAShapeLayer = layers["path1"] as? CAShapeLayer{
             path.frame = CGRectMake(0.48375 * path.superlayer!.bounds.width, 0, 0.03491 * path.superlayer!.bounds.width, 0.13238 * path.superlayer!.bounds.height)
-            path.path  = pathPathWithBounds((layers["path"] as! CAShapeLayer).bounds).CGPath;
+            path.path  = pathPathWithBounds((layers["path1"] as! CAShapeLayer).bounds).CGPath;
         }
         
         if let path2 : CAShapeLayer = layers["path2"] as? CAShapeLayer{
