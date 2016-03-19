@@ -7,30 +7,7 @@
 
 import UIKit
 
-extension CALayer {
-    private struct AssociatedKeys {
-        static var DescriptiveName = "nsh_DescriptiveName"
-    }
-    
-    @IBInspectable var descriptiveName: String? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.DescriptiveName) as? String
-        }
-        set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(
-                    self,
-                    &AssociatedKeys.DescriptiveName,
-                    newValue as NSString?,
-                    objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC
-                )
-            }
-        }
-    }
-}
-
-
-class CompassView: UIView {
+class CompassViewOLD: UIView {
     
     var layers : Dictionary<String, AnyObject> = [:]
     
@@ -61,7 +38,6 @@ class CompassView: UIView {
         }
     }
     
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         var point: CGPoint = (touches.first?.locationInView(self))!
@@ -70,8 +46,8 @@ class CompassView: UIView {
         var layer: CALayer = (self.layer.presentationLayer()?.hitTest(point))!
         layer = layer.modelLayer() as! CALayer
         
+        print(layer)
         print(layer.descriptiveName)
-            
         
         
     }
@@ -84,6 +60,7 @@ class CompassView: UIView {
         
         // Colors Layer
         let Colors = CALayer()
+        Colors.descriptiveName = "Colors"
         self.layer.addSublayer(Colors)
         layers["Colors"] = Colors
         
@@ -105,12 +82,14 @@ class CompassView: UIView {
         }
         
         // Compass Layer
+        
         let Compass = CALayer()
         Compass.descriptiveName = "Compass"
         self.layer.addSublayer(Compass)
         layers["Compass"] = Compass
         
         // Main Layer
+        
         let Main = CALayer()
         Main.descriptiveName = "Main"
         Compass.addSublayer(Main)
@@ -127,8 +106,8 @@ class CompassView: UIView {
             layers[name] = layer
         }
         
-        
         // Ticks Layer
+        
         let Ticks = CALayer()
         Ticks.descriptiveName = "Ticks"
         Compass.addSublayer(Ticks)
@@ -145,7 +124,9 @@ class CompassView: UIView {
             layers[name] = layer
         }
         
+        
         // Center Layer
+        
         let center = CAShapeLayer()
         center.descriptiveName = "center"
         Compass.addSublayer(center)
@@ -156,35 +137,11 @@ class CompassView: UIView {
         Arrow.descriptiveName = "Arrow"
         self.layer.addSublayer(Arrow)
         layers["Arrow"] = Arrow
+        
         let arrow = CAShapeLayer()
         arrow.descriptiveName = "arrow"
         Arrow.addSublayer(arrow)
         layers["arrow"] = arrow
-        
-        
-        // Colors Touch Layer
-        let Colors_Touch = CALayer()
-        Colors_Touch.descriptiveName = "Colors_Touch"
-        self.layer.addSublayer(Colors_Touch)
-        layers["Colors_Touch"] = Colors_Touch
-        
-        let ColorTouchLayers = [
-            "red_touch",
-            "orange_touch",
-            "yellow_touch",
-            "greenyellow_touch",
-            "green_touch",
-            "teal_touch",
-            "blue_touch",
-            "purple_touch"
-        ]
-        for name in ColorTouchLayers{
-            let layer = CAShapeLayer()
-            layer.descriptiveName = name
-            Colors_Touch.addSublayer(layer)
-            layers[name] = layer
-        }
-        
         
         resetLayerPropertiesForLayerIdentifiers(nil)
         setupLayerFrames()
@@ -323,54 +280,6 @@ class CompassView: UIView {
             let arrow = layers["arrow"] as! CAShapeLayer
             arrow.fillColor = UIColor.blackColor().CGColor
             arrow.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("red_touch"){
-            let red_touch = layers["red_touch"] as! CAShapeLayer
-            red_touch.opacity   = 0.01
-            red_touch.fillColor = UIColor(red:0.718, green: 0.196, blue:0.2, alpha:1).CGColor
-            red_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("orange_touch"){
-            let orange_touch = layers["orange_touch"] as! CAShapeLayer
-            orange_touch.opacity   = 0.01
-            orange_touch.fillColor = UIColor(red:0.937, green: 0.498, blue:0.00392, alpha:1).CGColor
-            orange_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("yellow_touch"){
-            let yellow_touch = layers["yellow_touch"] as! CAShapeLayer
-            yellow_touch.opacity   = 0.01
-            yellow_touch.fillColor = UIColor(red:0.988, green: 0.792, blue:0.31, alpha:1).CGColor
-            yellow_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("greenyellow_touch"){
-            let greenyellow_touch = layers["greenyellow_touch"] as! CAShapeLayer
-            greenyellow_touch.opacity   = 0.01
-            greenyellow_touch.fillColor = UIColor(red:0.784, green: 0.824, blue:0.098, alpha:1).CGColor
-            greenyellow_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("green_touch"){
-            let green_touch = layers["green_touch"] as! CAShapeLayer
-            green_touch.opacity   = 0.01
-            green_touch.fillColor = UIColor(red:0.545, green: 0.643, blue:0.0314, alpha:1).CGColor
-            green_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("teal_touch"){
-            let teal_touch = layers["teal_touch"] as! CAShapeLayer
-            teal_touch.opacity   = 0.01
-            teal_touch.fillColor = UIColor(red:0.00392, green: 0.533, blue:0.518, alpha:1).CGColor
-            teal_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("blue_touch"){
-            let blue_touch = layers["blue_touch"] as! CAShapeLayer
-            blue_touch.opacity   = 0.01
-            blue_touch.fillColor = UIColor(red:0, green: 0.447, blue:0.725, alpha:1).CGColor
-            blue_touch.lineWidth = 0
-        }
-        if layerIds == nil || layerIds.contains("purple_touch"){
-            let purple_touch = layers["purple_touch"] as! CAShapeLayer
-            purple_touch.opacity   = 0.01
-            purple_touch.fillColor = UIColor(red:0.627, green: 0.333, blue:0.596, alpha:1).CGColor
-            purple_touch.lineWidth = 0
         }
         
         CATransaction.commit()
@@ -526,56 +435,13 @@ class CompassView: UIView {
         }
         
         if let arrow : CAShapeLayer = layers["arrow"] as? CAShapeLayer{
-            arrow.frame = CGRectMake(0, 0,  arrow.superlayer!.bounds.width,  arrow.superlayer!.bounds.height)
+            arrow.frame = CGRectMake(0, 0,  arrow.superlayer!.bounds.width, 1 * arrow.superlayer!.bounds.height)
             arrow.path  = arrowPathWithBounds((layers["arrow"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let Colors_Touch : CALayer = layers["Colors_Touch"] as? CALayer{
-            Colors_Touch.frame = CGRectMake(0.0371 * Colors_Touch.superlayer!.bounds.width, 0.03665 * Colors_Touch.superlayer!.bounds.height, 0.92579 * Colors_Touch.superlayer!.bounds.width, 0.9267 * Colors_Touch.superlayer!.bounds.height)
-        }
-        
-        if let red_touch : CAShapeLayer = layers["red_touch"] as? CAShapeLayer{
-            red_touch.frame = CGRectMake(0.30935 * red_touch.superlayer!.bounds.width, 0, 0.38312 * red_touch.superlayer!.bounds.width, 0.16333 * red_touch.superlayer!.bounds.height)
-            red_touch.path  = red_touchPathWithBounds((layers["red_touch"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let orange_touch : CAShapeLayer = layers["orange_touch"] as? CAShapeLayer{
-            orange_touch.frame = CGRectMake(0.64195 * orange_touch.superlayer!.bounds.width, 0.03916 * orange_touch.superlayer!.bounds.height, 0.31934 * orange_touch.superlayer!.bounds.width, 0.31931 * orange_touch.superlayer!.bounds.height)
-            orange_touch.path  = orange_touchPathWithBounds((layers["orange_touch"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let yellow_touch : CAShapeLayer = layers["yellow_touch"] as? CAShapeLayer{
-            yellow_touch.frame = CGRectMake(0.8389 * yellow_touch.superlayer!.bounds.width, 0.30827 * yellow_touch.superlayer!.bounds.height, 0.1611 * yellow_touch.superlayer!.bounds.width, 0.38333 * yellow_touch.superlayer!.bounds.height)
-            yellow_touch.path  = yellow_touchPathWithBounds((layers["yellow_touch"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let greenyellow_touch : CAShapeLayer = layers["greenyellow_touch"] as? CAShapeLayer{
-            greenyellow_touch.frame = CGRectMake(0.64723 * greenyellow_touch.superlayer!.bounds.width, 0.63386 * greenyellow_touch.superlayer!.bounds.height, 0.31558 * greenyellow_touch.superlayer!.bounds.width, 0.32752 * greenyellow_touch.superlayer!.bounds.height)
-            greenyellow_touch.path  = greenyellow_touchPathWithBounds((layers["greenyellow_touch"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let green_touch : CAShapeLayer = layers["green_touch"] as? CAShapeLayer{
-            green_touch.frame = CGRectMake(0.30838 * green_touch.superlayer!.bounds.width, 0.83621 * green_touch.superlayer!.bounds.height, 0.38532 * green_touch.superlayer!.bounds.width, 0.16379 * green_touch.superlayer!.bounds.height)
-            green_touch.path  = green_touchPathWithBounds((layers["green_touch"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let teal_touch : CAShapeLayer = layers["teal_touch"] as? CAShapeLayer{
-            teal_touch.frame = CGRectMake(0.03762 * teal_touch.superlayer!.bounds.width, 0.63891 * teal_touch.superlayer!.bounds.height, 0.32722 * teal_touch.superlayer!.bounds.width, 0.3232 * teal_touch.superlayer!.bounds.height)
-            teal_touch.path  = teal_touchPathWithBounds((layers["teal_touch"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let blue_touch : CAShapeLayer = layers["blue_touch"] as? CAShapeLayer{
-            blue_touch.frame = CGRectMake(0, 0.30663 * blue_touch.superlayer!.bounds.height, 0.16287 * blue_touch.superlayer!.bounds.width, 0.38463 * blue_touch.superlayer!.bounds.height)
-            blue_touch.path  = blue_touchPathWithBounds((layers["blue_touch"] as! CAShapeLayer).bounds).CGPath;
-        }
-        
-        if let purple_touch : CAShapeLayer = layers["purple_touch"] as? CAShapeLayer{
-            purple_touch.frame = CGRectMake(0.03846 * purple_touch.superlayer!.bounds.width, 0.03821 * purple_touch.superlayer!.bounds.height, 0.32404 * purple_touch.superlayer!.bounds.width, 0.31981 * purple_touch.superlayer!.bounds.height)
-            purple_touch.path  = purple_touchPathWithBounds((layers["purple_touch"] as! CAShapeLayer).bounds).CGPath;
         }
         
         CATransaction.commit()
     }
+    
     
     //MARK: - Bezier Path
     
@@ -1068,138 +934,6 @@ class CompassView: UIView {
         arrowPath.moveToPoint(CGPointMake(minX + 0.53118 * w, minY + 0.77088 * h))
         
         return arrowPath;
-    }
-    
-    func red_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let red_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        red_touchPath.moveToPoint(CGPointMake(minX + w, minY + 0.23537 * h))
-        red_touchPath.addCurveToPoint(CGPointMake(minX + 0.49826 * w, minY), controlPoint1:CGPointMake(minX + 0.84595 * w, minY + 0.08545 * h), controlPoint2:CGPointMake(minX + 0.67546 * w, minY))
-        red_touchPath.addCurveToPoint(CGPointMake(minX, minY + 0.2308 * h), controlPoint1:CGPointMake(minX + 0.3218 * w, minY), controlPoint2:CGPointMake(minX + 0.15353 * w, minY + 0.08207 * h))
-        red_touchPath.addLineToPoint(CGPointMake(minX, minY + 0.2308 * h))
-        red_touchPath.addLineToPoint(CGPointMake(minX + 0.1364 * w, minY + 0.98385 * h))
-        red_touchPath.addCurveToPoint(CGPointMake(minX + 0.49826 * w, minY + 0.81801 * h), controlPoint1:CGPointMake(minX + 0.24804 * w, minY + 0.87694 * h), controlPoint2:CGPointMake(minX + 0.37021 * w, minY + 0.81801 * h))
-        red_touchPath.addCurveToPoint(CGPointMake(minX + 0.86712 * w, minY + h), controlPoint1:CGPointMake(minX + 0.62705 * w, minY + 0.81801 * h), controlPoint2:CGPointMake(minX + 0.75496 * w, minY + 0.8919 * h))
-        red_touchPath.addLineToPoint(CGPointMake(minX + w, minY + 0.23537 * h))
-        red_touchPath.closePath()
-        red_touchPath.moveToPoint(CGPointMake(minX + w, minY + 0.23537 * h))
-        
-        return red_touchPath;
-    }
-    
-    func orange_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let orange_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        orange_touchPath.moveToPoint(CGPointMake(minX + w, minY + 0.84023 * h))
-        orange_touchPath.addCurveToPoint(CGPointMake(minX + 0.15689 * w, minY), controlPoint1:CGPointMake(minX + 0.84091 * w, minY + 0.46121 * h), controlPoint2:CGPointMake(minX + 0.53674 * w, minY + 0.15802 * h))
-        orange_touchPath.addLineToPoint(CGPointMake(minX, minY + 0.38799 * h))
-        orange_touchPath.addCurveToPoint(CGPointMake(minX + 0.61366 * w, minY + h), controlPoint1:CGPointMake(minX + 0.27603 * w, minY + 0.50389 * h), controlPoint2:CGPointMake(minX + 0.49717 * w, minY + 0.72447 * h))
-        orange_touchPath.addLineToPoint(CGPointMake(minX + w, minY + 0.84023 * h))
-        orange_touchPath.closePath()
-        orange_touchPath.moveToPoint(CGPointMake(minX + w, minY + 0.84023 * h))
-        
-        return orange_touchPath;
-    }
-    
-    func yellow_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let yellow_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        yellow_touchPath.moveToPoint(CGPointMake(minX + 0.76475 * w, minY + h))
-        yellow_touchPath.addCurveToPoint(CGPointMake(minX + w, minY + 0.50146 * h), controlPoint1:CGPointMake(minX + 0.91634 * w, minY + 0.84643 * h), controlPoint2:CGPointMake(minX + w, minY + 0.67805 * h))
-        yellow_touchPath.addCurveToPoint(CGPointMake(minX + 0.76186 * w, minY), controlPoint1:CGPointMake(minX + w, minY + 0.32375 * h), controlPoint2:CGPointMake(minX + 0.91527 * w, minY + 0.15436 * h))
-        yellow_touchPath.addLineToPoint(CGPointMake(minX, minY + 0.1371 * h))
-        yellow_touchPath.addCurveToPoint(CGPointMake(minX + 0.17233 * w, minY + 0.50251 * h), controlPoint1:CGPointMake(minX + 0.11105 * w, minY + 0.24967 * h), controlPoint2:CGPointMake(minX + 0.17233 * w, minY + 0.37308 * h))
-        yellow_touchPath.addCurveToPoint(CGPointMake(minX + 0.01352 * w, minY + 0.85389 * h), controlPoint1:CGPointMake(minX + 0.17233 * w, minY + 0.62658 * h), controlPoint2:CGPointMake(minX + 0.11601 * w, minY + 0.74513 * h))
-        yellow_touchPath.addLineToPoint(CGPointMake(minX + 0.76475 * w, minY + h))
-        yellow_touchPath.closePath()
-        yellow_touchPath.moveToPoint(CGPointMake(minX + 0.76475 * w, minY + h))
-        
-        return yellow_touchPath;
-    }
-    
-    func greenyellow_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let greenyellow_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        greenyellow_touchPath.moveToPoint(CGPointMake(minX + w, minY + 0.17104 * h))
-        greenyellow_touchPath.addCurveToPoint(CGPointMake(minX + 0.14534 * w, minY + h), controlPoint1:CGPointMake(minX + 0.84083 * w, minY + 0.54469 * h), controlPoint2:CGPointMake(minX + 0.53202 * w, minY + 0.84403 * h))
-        greenyellow_touchPath.addLineToPoint(CGPointMake(minX, minY + 0.6186 * h))
-        greenyellow_touchPath.addCurveToPoint(CGPointMake(minX + 0.61642 * w, minY), controlPoint1:CGPointMake(minX + 0.28137 * w, minY + 0.49972 * h), controlPoint2:CGPointMake(minX + 0.50443 * w, minY + 0.2766 * h))
-        greenyellow_touchPath.addLineToPoint(CGPointMake(minX + w, minY + 0.17104 * h))
-        greenyellow_touchPath.closePath()
-        greenyellow_touchPath.moveToPoint(CGPointMake(minX + w, minY + 0.17104 * h))
-        
-        return greenyellow_touchPath;
-    }
-    
-    func green_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let green_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        green_touchPath.moveToPoint(CGPointMake(minX, minY + 0.76802 * h))
-        green_touchPath.addCurveToPoint(CGPointMake(minX + 0.4973 * w, minY + h), controlPoint1:CGPointMake(minX + 0.15316 * w, minY + 0.91749 * h), controlPoint2:CGPointMake(minX + 0.32113 * w, minY + h))
-        green_touchPath.addCurveToPoint(CGPointMake(minX + w, minY + 0.76271 * h), controlPoint1:CGPointMake(minX + 0.67554 * w, minY + h), controlPoint2:CGPointMake(minX + 0.84539 * w, minY + 0.91554 * h))
-        green_touchPath.addLineToPoint(CGPointMake(minX + 0.88096 * w, minY))
-        green_touchPath.addCurveToPoint(CGPointMake(minX + 0.4973 * w, minY + 0.18921 * h), controlPoint1:CGPointMake(minX + 0.7636 * w, minY + 0.12166 * h), controlPoint2:CGPointMake(minX + 0.6338 * w, minY + 0.18921 * h))
-        green_touchPath.addCurveToPoint(CGPointMake(minX + 0.14524 * w, minY + 0.03117 * h), controlPoint1:CGPointMake(minX + 0.37293 * w, minY + 0.18921 * h), controlPoint2:CGPointMake(minX + 0.25414 * w, minY + 0.13314 * h))
-        green_touchPath.addLineToPoint(CGPointMake(minX, minY + 0.76802 * h))
-        green_touchPath.closePath()
-        green_touchPath.moveToPoint(CGPointMake(minX, minY + 0.76802 * h))
-        
-        return green_touchPath;
-    }
-    
-    func teal_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let teal_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        teal_touchPath.moveToPoint(CGPointMake(minX, minY + 0.16091 * h))
-        teal_touchPath.addCurveToPoint(CGPointMake(minX + 0.82819 * w, minY + h), controlPoint1:CGPointMake(minX + 0.15461 * w, minY + 0.53985 * h), controlPoint2:CGPointMake(minX + 0.45386 * w, minY + 0.843 * h))
-        teal_touchPath.addLineToPoint(CGPointMake(minX + 0.82819 * w, minY + h))
-        teal_touchPath.addLineToPoint(CGPointMake(minX + w, minY + 0.62458 * h))
-        teal_touchPath.addCurveToPoint(CGPointMake(minX + 0.37477 * w, minY), controlPoint1:CGPointMake(minX + 0.72557 * w, minY + 0.50831 * h), controlPoint2:CGPointMake(minX + 0.48704 * w, minY + 0.27898 * h))
-        teal_touchPath.addLineToPoint(CGPointMake(minX, minY + 0.16091 * h))
-        teal_touchPath.closePath()
-        teal_touchPath.moveToPoint(CGPointMake(minX, minY + 0.16091 * h))
-        
-        return teal_touchPath;
-    }
-    
-    func blue_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let blue_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        blue_touchPath.moveToPoint(CGPointMake(minX + 0.23182 * w, minY + h))
-        blue_touchPath.addCurveToPoint(CGPointMake(minX, minY + 0.50402 * h), controlPoint1:CGPointMake(minX + 0.08243 * w, minY + 0.84718 * h), controlPoint2:CGPointMake(minX, minY + 0.67968 * h))
-        blue_touchPath.addCurveToPoint(CGPointMake(minX + 0.23976 * w, minY), controlPoint1:CGPointMake(minX, minY + 0.32528 * h), controlPoint2:CGPointMake(minX + 0.08536 * w, minY + 0.15498 * h))
-        blue_touchPath.addLineToPoint(CGPointMake(minX + 0.23976 * w, minY))
-        blue_touchPath.addLineToPoint(CGPointMake(minX + w, minY + 0.12994 * h))
-        blue_touchPath.addCurveToPoint(CGPointMake(minX + 0.81864 * w, minY + 0.50507 * h), controlPoint1:CGPointMake(minX + 0.88327 * w, minY + 0.24506 * h), controlPoint2:CGPointMake(minX + 0.81864 * w, minY + 0.37187 * h))
-        blue_touchPath.addCurveToPoint(CGPointMake(minX + 0.98476 * w, minY + 0.86479 * h), controlPoint1:CGPointMake(minX + 0.81864 * w, minY + 0.63235 * h), controlPoint2:CGPointMake(minX + 0.87766 * w, minY + 0.7538 * h))
-        blue_touchPath.addLineToPoint(CGPointMake(minX + 0.23182 * w, minY + h))
-        blue_touchPath.closePath()
-        blue_touchPath.moveToPoint(CGPointMake(minX + 0.23182 * w, minY + h))
-        
-        return blue_touchPath;
-    }
-    
-    func purple_touchPathWithBounds(bound: CGRect) -> UIBezierPath{
-        let purple_touchPath = UIBezierPath()
-        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-        
-        purple_touchPath.moveToPoint(CGPointMake(minX + 0.83872 * w, minY))
-        purple_touchPath.addCurveToPoint(CGPointMake(minX, minY + 0.84374 * h), controlPoint1:CGPointMake(minX + 0.46048 * w, minY + 0.15718 * h), controlPoint2:CGPointMake(minX + 0.15756 * w, minY + 0.46206 * h))
-        purple_touchPath.addLineToPoint(CGPointMake(minX, minY + 0.84374 * h))
-        purple_touchPath.addLineToPoint(CGPointMake(minX + 0.38209 * w, minY + h))
-        purple_touchPath.addCurveToPoint(CGPointMake(minX + w, minY + 0.3846 * h), controlPoint1:CGPointMake(minX + 0.49898 * w, minY + 0.72094 * h), controlPoint2:CGPointMake(minX + 0.72205 * w, minY + 0.4985 * h))
-        purple_touchPath.addLineToPoint(CGPointMake(minX + 0.83872 * w, minY))
-        purple_touchPath.closePath()
-        purple_touchPath.moveToPoint(CGPointMake(minX + 0.83872 * w, minY))
-        
-        return purple_touchPath;
     }
     
     

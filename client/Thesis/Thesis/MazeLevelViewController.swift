@@ -90,31 +90,31 @@ class MazeLevelViewController: GenericLevelViewController {
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if touches.count > 0 {
-            NSLog("Got a touch.")
-        }
-        for touch in touches {
-            let point = touch.locationInView(touch.view)
-            
-            let point_view = touch.view?.convertPoint(point, toView: nil)
-            
-            let arrow = self.compass!.getArrow()
-            
-            let layer = CALayer(layer: (self.view.layer.presentationLayer()?.hitTest(point_view!))!)
-            
-            print(layer.descriptiveName)
-            
-            print("touched layer: \(layer)")
-//            print("arrow layer: \(arrow)")
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        if touches.count > 0 {
+//            NSLog("Got a touch.")
+//        }
+//        for touch in touches {
+//            let point = touch.locationInView(touch.view)
 //            
-//            if (layer == arrow){
-//                print("touched arrow!")
-//            }
-
-            
-        }
-    }
+//            let point_view = touch.view?.convertPoint(point, toView: self.compass)
+//            
+//            let arrow = self.compass!.getArrow()
+//            
+//            let layer = CALayer(layer: (self.view.layer.presentationLayer()?.hitTest(point_view!))!)
+//            
+//            print(layer.descriptiveName)
+//            
+//            print("touched layer: \(layer)")
+////            print("arrow layer: \(arrow)")
+////            
+////            if (layer == arrow){
+////                print("touched arrow!")
+////            }
+//
+//            
+//        }
+//    }
     
 
     
