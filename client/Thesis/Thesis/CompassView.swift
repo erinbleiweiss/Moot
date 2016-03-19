@@ -38,14 +38,12 @@ class CompassView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupProperties()
         setupLayers()
     }
     
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
-        setupProperties()
         setupLayers()
     }
     
@@ -62,23 +60,29 @@ class CompassView: UIView {
     }
     
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func unlockColor(color: String){
+        let colors: [String: UIColor] = [
+            "red_touch":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
+            "orange_touch":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
+            "yellow_touch":       UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
+            "greenyellow_touch":  UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
+            "green_touch":        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
+            "teal_touch":         UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
+            "blue_touch":         UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
+            "purple_touch":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
+        ]
         
-        var point: CGPoint = (touches.first?.locationInView(self))!
-        point = self.convertPoint(point, toView: nil)
-        
-        var layer: CALayer = (self.layer.presentationLayer()?.hitTest(point))!
-        layer = layer.modelLayer() as! CALayer
-        
-        print(layer.descriptiveName)
-            
-        
+        if colors[color] != nil {
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            let layer = layers[color] as! CAShapeLayer
+            layer.fillColor = colors[color]!.CGColor
+            print("changing color")
+            CATransaction.commit()
+        }
         
     }
     
-    func setupProperties(){
-        
-    }
     
     func setupLayers(){
         
@@ -189,14 +193,14 @@ class CompassView: UIView {
         CATransaction.setDisableActions(true)
         
         let colors: [String: UIColor] = [
-            "red":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
-            "orange":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
-            "yellow":       UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
-            "greenyellow":  UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
-            "green":        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
-            "teal":         UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
-            "blue":         UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
-            "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
+            "red":          UIColor(red:0.376, green: 0.275, blue:0.275, alpha:1),
+            "orange":       UIColor(red:0.624, green: 0.533, blue:0.439, alpha:1),
+            "yellow":       UIColor(red:0.831, green: 0.792, blue:0.690, alpha:1),
+            "greenyellow":  UIColor(red:0.761, green: 0.769, blue:0.604, alpha:1),
+            "green":        UIColor(red:0.569, green: 0.588, blue:0.459, alpha:1),
+            "teal":         UIColor(red:0.369, green: 0.455, blue:0.455, alpha:1),
+            "blue":         UIColor(red:0.325, green: 0.404, blue:0.459, alpha:1),
+            "purple":       UIColor(red:0.455, green: 0.400, blue:0.451, alpha:1)
         ]
         
         for (name, color) in colors {
