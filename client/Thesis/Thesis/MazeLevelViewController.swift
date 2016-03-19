@@ -12,6 +12,7 @@ import SwiftyJSON
 
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
+    var compass: CompassView?
     @IBOutlet weak var colorLabel: UILabel!
     
 
@@ -81,10 +82,41 @@ class MazeLevelViewController: GenericLevelViewController {
             self.view.addSubview(self.controller.tokenView)
             
         }
-
-
+        
+        let size: CGFloat = 400.0
+        let compassFrame = CGRect(x: (self.view.bounds.width / 2) - (size / 2), y: self.view.bounds.height - size, width: size, height: size)
+        self.compass = CompassView(frame: compassFrame)
+        self.view.addSubview(self.compass!)
         
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if touches.count > 0 {
+            NSLog("Got a touch.")
+        }
+        for touch in touches {
+            let point = touch.locationInView(touch.view)
+            
+            let point_view = touch.view?.convertPoint(point, toView: nil)
+            
+            let arrow = self.compass!.getArrow()
+            
+            let layer = CALayer(layer: (self.view.layer.presentationLayer()?.hitTest(point_view!))!)
+            
+            print(layer.descriptiveName)
+            
+            print("touched layer: \(layer)")
+//            print("arrow layer: \(arrow)")
+//            
+//            if (layer == arrow){
+//                print("touched arrow!")
+//            }
+
+            
+        }
+    }
+    
+
     
     func getWalls(num: Int) -> String {
         var str = String(num, radix: 2)             // Decimal to binary

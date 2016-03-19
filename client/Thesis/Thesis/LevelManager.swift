@@ -12,8 +12,6 @@ class LevelManager{
     
     static let sharedInstance = LevelManager()
     
-    let defaults = NSUserDefaults.standardUserDefaults()
-    
     // Initialize default levels in case saved levels do not exist
     private var defaultLevels: [Level] = [
         Level(levelNumber: 1, rootVC: "HangmanRootVC", numStages: 3),
@@ -89,7 +87,7 @@ class LevelManager{
         Save levels to Core Data
      */
     func saveLevels(){
-        for (idx, level) in userLevels.enumerate(){
+        for (idx, level) in self.userLevels.enumerate(){
             let path = "mootLevel_\(idx).archive"
             let file = documentsDirectory().stringByAppendingPathComponent(path)
             if NSKeyedArchiver.archiveRootObject(level, toFile: file) {
