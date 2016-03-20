@@ -90,68 +90,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JvM-R2-Dce">
-                                <rect key="frame" x="273" y="520" width="54" height="30"/>
-                                <state key="normal" title="Camera"/>
-                                <connections>
-                                    <segue destination="8eb-Af-hHg" kind="presentation" id="UoD-C7-xF4"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVR-8U-b8V">
-                                <rect key="frame" x="196" y="72" width="209" height="67"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="209" id="XIT-wz-z7I"/>
-                                    <constraint firstAttribute="height" constant="67" id="pSb-gj-hS5"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVR-8U-b8V">
+                                <rect key="frame" x="196" y="81" width="209" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgn-1y-PWX">
-                                <rect key="frame" x="285" y="386" width="30" height="30"/>
-                                <state key="normal" title="Up"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-bg-gmA">
+                                <rect key="frame" x="261" y="545" width="79" height="47"/>
+                                <state key="normal" title="Camera"/>
                                 <connections>
-                                    <action selector="moveUp:" destination="cjl-pC-x5L" eventType="touchUpInside" id="DG8-fJ-Y2P"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbP-8w-Cux">
-                                <rect key="frame" x="338" y="422" width="36" height="30"/>
-                                <state key="normal" title="Right"/>
-                                <connections>
-                                    <action selector="moveRight:" destination="cjl-pC-x5L" eventType="touchUpInside" id="jeq-XG-8w1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeU-Ch-qtI">
-                                <rect key="frame" x="281" y="462" width="39" height="30"/>
-                                <state key="normal" title="Down"/>
-                                <connections>
-                                    <action selector="moveDown:" destination="cjl-pC-x5L" eventType="touchUpInside" id="smx-fR-e1j"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spk-hh-odu">
-                                <rect key="frame" x="224" y="422" width="30" height="30"/>
-                                <state key="normal" title="Left"/>
-                                <connections>
-                                    <action selector="moveLeft:" destination="cjl-pC-x5L" eventType="touchUpInside" id="2fg-U8-ZVO"/>
+                                    <segue destination="8eb-Af-hHg" kind="presentation" id="Dif-GJ-TGM"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Spk-hh-odu" firstAttribute="leading" secondItem="Zxc-nT-jCa" secondAttribute="leadingMargin" constant="204" id="0AJ-pK-BA4"/>
-                            <constraint firstItem="Tgn-1y-PWX" firstAttribute="centerX" secondItem="EeU-Ch-qtI" secondAttribute="centerX" id="C5l-bH-Ej0"/>
-                            <constraint firstItem="Tgn-1y-PWX" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="KLd-Gm-BuS"/>
-                            <constraint firstItem="FEw-Lz-QQM" firstAttribute="top" secondItem="IbP-8w-Cux" secondAttribute="bottom" constant="148" id="LqY-bE-lVD"/>
-                            <constraint firstItem="FEw-Lz-QQM" firstAttribute="top" secondItem="Spk-hh-odu" secondAttribute="bottom" constant="148" id="PR7-Tg-QjE"/>
-                            <constraint firstItem="FEw-Lz-QQM" firstAttribute="top" secondItem="JvM-R2-Dce" secondAttribute="bottom" constant="50" id="SSa-dy-6li"/>
-                            <constraint firstItem="EeU-Ch-qtI" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="Tw7-Sm-MDD"/>
-                            <constraint firstItem="EeU-Ch-qtI" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="Y0q-5k-6BE"/>
-                            <constraint firstAttribute="trailing" secondItem="IbP-8w-Cux" secondAttribute="trailing" constant="226" id="ZMn-Zb-f1g"/>
-                            <constraint firstItem="EeU-Ch-qtI" firstAttribute="top" secondItem="Tgn-1y-PWX" secondAttribute="bottom" constant="46" id="a18-0G-GgK"/>
-                            <constraint firstItem="JvM-R2-Dce" firstAttribute="top" secondItem="EeU-Ch-qtI" secondAttribute="bottom" constant="28" id="c8F-do-ZCt"/>
-                            <constraint firstItem="nVR-8U-b8V" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="lKM-yI-Jk0"/>
-                            <constraint firstItem="JvM-R2-Dce" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="nDC-kk-wud"/>
-                            <constraint firstItem="nVR-8U-b8V" firstAttribute="top" secondItem="qkm-nh-jZp" secondAttribute="bottom" constant="8" symbolic="YES" id="ob6-tJ-WbC"/>
+                            <constraint firstItem="nVR-8U-b8V" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="HhM-QQ-fYA"/>
+                            <constraint firstItem="nVR-8U-b8V" firstAttribute="top" secondItem="qkm-nh-jZp" secondAttribute="bottom" constant="17" id="gPd-Rd-iOP"/>
+                            <constraint firstItem="FEw-Lz-QQM" firstAttribute="top" secondItem="eGh-bg-gmA" secondAttribute="bottom" constant="8" id="i4a-0f-1yQ"/>
+                            <constraint firstItem="eGh-bg-gmA" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="srx-gx-wjV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ad5-PM-k6W">
@@ -690,6 +648,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="1mB-6R-8FK"/>
-        <segue reference="gYl-F1-PB5"/>
+        <segue reference="dy6-Tj-7bV"/>
     </inferredMetricsTieBreakers>
 </document>

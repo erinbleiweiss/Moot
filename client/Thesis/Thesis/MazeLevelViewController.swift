@@ -83,53 +83,12 @@ class MazeLevelViewController: GenericLevelViewController {
             
         }
         
-        let size: CGFloat = 400.0
-        let compassFrame = CGRect(x: (self.view.bounds.width / 2) - (size / 2), y: self.view.bounds.height - size, width: size, height: size)
+        let size: CGFloat = 300.0
+        let compassFrame = CGRect(x: (self.view.bounds.width / 2) - (size / 2), y: self.view.bounds.height - size - 50, width: size, height: size)
         self.compass = CompassView(frame: compassFrame)
         self.view.addSubview(self.compass!)
         
     }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
-        var point: CGPoint = (touches.first?.locationInView(self.compass))!
-        point = self.compass!.convertPoint(point, toView: nil)
-        
-        var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
-        layer = layer.modelLayer() as! CALayer
-        
-        print(layer.descriptiveName)
-        
-        if layer.descriptiveName != nil {
-            
-            let layerName = layer.descriptiveName
-            let index = layerName!.endIndex.advancedBy(-6)
-            let touchedColor = layerName!.substringToIndex(index)
-            self.compass?.unlockColor(touchedColor)
-            
-            
-            let directions: [String: CGFloat] = [
-                "red": 0,
-                "orange": 45,
-                "yellow": 90,
-                "greenyellow": 135,
-                "green": 180,
-                "teal": 225,
-                "blue": 270,
-                "purple": 315
-            ]
-            
-            let direction = directions[touchedColor]
-            
-            self.compass?.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
-                print("animated")
-            })
-            
-        }
-        
-        
-    }
-    
 
     
     func getWalls(num: Int) -> String {
@@ -144,46 +103,46 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     
-    @IBAction func moveUp(sender: AnyObject) {
-        self.controller.mazeMove("north"){ responseObject, error in
-            print(responseObject!)
-            self.updateToken()
-            
-            print(self.controller.pos_row)
-            print(self.controller.pos_col)
-        }
-    }
-    
-    @IBAction func moveLeft(sender: AnyObject) {
-        self.controller.mazeMove("west"){ responseObject, error in
-            print(responseObject!)
-            self.updateToken()
-            
-            print(self.controller.pos_row)
-            print(self.controller.pos_col)
-        }
-    }
-    
-    @IBAction func moveDown(sender: AnyObject) {
-        self.controller.mazeMove("south"){ responseObject, error in
-            print(responseObject!)
-            self.updateToken()
-            
-            print(self.controller.pos_row)
-            print(self.controller.pos_col)
-        }
-    }
-    
-    @IBAction func moveRight(sender: AnyObject) {
-        self.controller.mazeMove("east"){ responseObject, error in
-            print(responseObject!)
-            self.updateToken()
-            
-            print(self.controller.pos_row)
-            print(self.controller.pos_col)
-            
-        }
-    }
+//    @IBAction func moveUp(sender: AnyObject) {
+//        self.controller.mazeMove("north"){ responseObject, error in
+//            print(responseObject!)
+//            self.updateToken()
+//            
+//            print(self.controller.pos_row)
+//            print(self.controller.pos_col)
+//        }
+//    }
+//    
+//    @IBAction func moveLeft(sender: AnyObject) {
+//        self.controller.mazeMove("west"){ responseObject, error in
+//            print(responseObject!)
+//            self.updateToken()
+//            
+//            print(self.controller.pos_row)
+//            print(self.controller.pos_col)
+//        }
+//    }
+//    
+//    @IBAction func moveDown(sender: AnyObject) {
+//        self.controller.mazeMove("south"){ responseObject, error in
+//            print(responseObject!)
+//            self.updateToken()
+//            
+//            print(self.controller.pos_row)
+//            print(self.controller.pos_col)
+//        }
+//    }
+//    
+//    @IBAction func moveRight(sender: AnyObject) {
+//        self.controller.mazeMove("east"){ responseObject, error in
+//            print(responseObject!)
+//            self.updateToken()
+//            
+//            print(self.controller.pos_row)
+//            print(self.controller.pos_col)
+//            
+//        }
+//    }
     
     func updateToken(){
         self.controller.tokenView.frame = CGRect(x: 50 + (100 * (self.controller.pos_col+1)), y: 200 + (100 * self.controller.pos_row), width: 100, height: 100)
@@ -201,7 +160,7 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     @IBAction func cancelToMazeLevelViewController(segue:UIStoryboardSegue) {
-        self.colorLabel.text = color
+        self.compass!.unlockColor(color)
     }
     
 

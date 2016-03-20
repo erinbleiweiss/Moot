@@ -37,7 +37,8 @@ class MazeCameraViewController: GenericCameraViewController, CameraDelegate {
         Alamofire.request(.GET, url, parameters: ["upc": upc]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
-            if let color = json["dominant_color"].string{
+            print(json)
+            if let color = json["color"].string{
                 completionHandler(responseObject: color, error: result.error as? NSError)
             } else {
                 completionHandler(responseObject: "Not Found", error: result.error as? NSError)

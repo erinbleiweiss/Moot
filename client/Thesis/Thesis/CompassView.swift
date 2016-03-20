@@ -37,10 +37,12 @@ class CompassView: UIView {
     var updateLayerValueForCompletedAnimation : Bool = false
     
     var currentPosition: CGFloat = 0
-    
+    let controller: MazeGameController
+
     //MARK: - Life Cycle
     
     override init(frame: CGRect) {
+        controller = MazeGameController()
         super.init(frame: frame)
         setupProperties()
         setupLayers()
@@ -48,6 +50,7 @@ class CompassView: UIView {
     
     required init?(coder aDecoder: NSCoder)
     {
+        controller = MazeGameController()
         super.init(coder: aDecoder)
         setupProperties()
         setupLayers()
@@ -63,6 +66,53 @@ class CompassView: UIView {
         didSet{
             setupLayerFrames()
         }
+    }
+    
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        super.touchesBegan(touches, withEvent: event)
+        
+        var point: CGPoint = (touches.first?.locationInView(self))!
+        point = self.convertPoint(point, toView: nil)
+        
+        
+        var layer: CALayer = (self.layer.presentationLayer()?.hitTest(point))!
+        layer = layer.modelLayer() as! CALayer
+            
+        print(layer.descriptiveName)
+            
+        if layer.descriptiveName != nil {
+                
+            let layerName = layer.descriptiveName
+            if layerName != "Colors_Touch"{
+            
+                let index = layerName!.endIndex.advancedBy(-6)
+                let touchedColor = layerName!.substringToIndex(index)
+                //              self.compass?.unlockColor(touchedColor)
+                
+                
+                let directions: [String: CGFloat] = [
+                    "red": 0,
+                    "orange": 45,
+                    "yellow": 90,
+                    "greenyellow": 135,
+                    "green": 180,
+                    "teal": 225,
+                    "blue": 270,
+                    "purple": 315
+                ]
+                
+                let direction = directions[touchedColor]
+                
+                self.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
+                        print("animated")
+                })
+                
+            }
+        }
+
+        
     }
     
     
