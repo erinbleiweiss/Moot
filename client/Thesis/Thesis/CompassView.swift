@@ -33,17 +33,23 @@ extension CALayer {
 class CompassView: UIView {
     
     var layers : Dictionary<String, AnyObject> = [:]
+    var completionBlocks : Dictionary<CAAnimation, (Bool) -> Void> = [:]
+    var updateLayerValueForCompletedAnimation : Bool = false
+    
+    var currentPosition: CGFloat = 0
     
     //MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupProperties()
         setupLayers()
     }
     
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
+        setupProperties()
         setupLayers()
     }
     
@@ -72,13 +78,14 @@ class CompassView: UIView {
             "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
         ]
         
-        let index = color.endIndex.advancedBy(-6)
-        let touchedColor = color.substringToIndex(index)
-        
-        if colors[touchedColor] != nil {
-            let layer = layers[touchedColor] as! CAShapeLayer
-            layer.fillColor = colors[touchedColor]!.CGColor
+        if colors[color] != nil {
+            let layer = layers[color] as! CAShapeLayer
+            layer.fillColor = colors[color]!.CGColor
         }
+        
+    }
+    
+    func setupProperties(){
         
     }
     
@@ -468,6 +475,78 @@ class CompassView: UIView {
         
         CATransaction.commit()
     }
+    
+    
+
+    //MARK: - Animation Setup
+    
+    func addarrowAnimation(){
+        addarrowAnimationCompletionBlock(0, completionBlock: nil)
+    }
+    
+    func addarrowAnimationCompletionBlock(newPosition: CGFloat, completionBlock: ((finished: Bool) -> Void)?){
+        if completionBlock != nil{
+            let completionAnim = CABasicAnimation(keyPath:"completionAnim")
+            completionAnim.duration = 0.5
+            completionAnim.delegate = self
+            completionAnim.setValue("old", forKey:"animId")
+            completionAnim.setValue(false, forKey:"needEndAnim")
+            layer.addAnimation(completionAnim, forKey:"old")
+            if let anim = layer.animationForKey("old"){
+                completionBlocks[anim] = completionBlock
+            }
+        }
+        
+        let fillMode : String = kCAFillModeForwards
+        
+        let Arrow = layers["Arrow"] as! CALayer
+        
+        ////Arrow animation
+        let ArrowTransformAnim      = CAKeyframeAnimation(keyPath:"transform.rotation.z")
+        ArrowTransformAnim.values   = [self.currentPosition * CGFloat(M_PI/180),
+            newPosition * CGFloat(M_PI/180)]
+        ArrowTransformAnim.keyTimes = [0, 1]
+        ArrowTransformAnim.duration = 0.5
+        
+        let ArrowBasicAnim : CAAnimationGroup = QCMethod.groupAnimations([ArrowTransformAnim], fillMode:fillMode)
+        Arrow.addAnimation(ArrowBasicAnim, forKey:"ArrowBasicAnim")
+        
+        self.currentPosition = newPosition
+    }
+    
+    //MARK: - Animation Cleanup
+    
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool){
+        if let completionBlock = completionBlocks[anim]{
+            completionBlocks.removeValueForKey(anim)
+            if (flag && updateLayerValueForCompletedAnimation) || anim.valueForKey("needEndAnim") as! Bool{
+                updateLayerValuesForAnimationId(anim.valueForKey("animId") as! String)
+                removeAnimationsForAnimationId(anim.valueForKey("animId") as! String)
+            }
+            completionBlock(flag)
+        }
+    }
+    
+    func updateLayerValuesForAnimationId(identifier: String){
+        if identifier == "old"{
+            QCMethod.updateValueFromPresentationLayerForAnimation((layers["Arrow"] as! CALayer).animationForKey("ArrowBasicAnim"), theLayer:(layers["Arrow"] as! CALayer))
+        }
+    }
+    
+    func removeAnimationsForAnimationId(identifier: String){
+        if identifier == "old"{
+            (layers["Arrow"] as! CALayer).removeAnimationForKey("ArrowBasicAnim")
+        }
+    }
+    
+    func removeAllAnimations(){
+        for layer in layers.values{
+            (layer as! CALayer).removeAllAnimations()
+        }
+    }
+    
+    
+    
     
     //MARK: - Bezier Path
     

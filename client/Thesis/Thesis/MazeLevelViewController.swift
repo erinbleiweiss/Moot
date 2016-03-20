@@ -101,8 +101,30 @@ class MazeLevelViewController: GenericLevelViewController {
         print(layer.descriptiveName)
         
         if layer.descriptiveName != nil {
-            self.compass?.unlockColor(layer.descriptiveName!)
-            self.compass?.setNeedsDisplay()
+            
+            let layerName = layer.descriptiveName
+            let index = layerName!.endIndex.advancedBy(-6)
+            let touchedColor = layerName!.substringToIndex(index)
+            self.compass?.unlockColor(touchedColor)
+            
+            
+            let directions: [String: CGFloat] = [
+                "red": 0,
+                "orange": 45,
+                "yellow": 90,
+                "greenyellow": 135,
+                "green": 180,
+                "teal": 225,
+                "blue": 270,
+                "purple": 315
+            ]
+            
+            let direction = directions[touchedColor]
+            
+            self.compass?.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
+                print("animated")
+            })
+            
         }
         
         
