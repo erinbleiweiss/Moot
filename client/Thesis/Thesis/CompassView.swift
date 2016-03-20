@@ -72,9 +72,10 @@ class CompassView: UIView {
             "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
         ]
         
+        let index = color.endIndex.advancedBy(-6)
+        let touchedColor = color.substringToIndex(index)
+        
         if colors[touchedColor] != nil {
-            let index = color.endIndex.advancedBy(-6)
-            let touchedColor = color.substringToIndex(index)
             let layer = layers[touchedColor] as! CAShapeLayer
             layer.fillColor = colors[touchedColor]!.CGColor
         }
