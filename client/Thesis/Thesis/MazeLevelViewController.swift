@@ -90,6 +90,84 @@ class MazeLevelViewController: GenericLevelViewController {
         
     }
 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        super.touchesBegan(touches, withEvent: event)
+        
+        var point: CGPoint = (touches.first?.locationInView(self.compass))!
+        point = self.compass!.convertPoint(point, toView: nil)
+        
+        
+        var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
+        layer = layer.modelLayer() as! CALayer
+        
+        print(layer.descriptiveName)
+        
+        if layer.descriptiveName != nil {
+            
+            let color_layers: [String: String] = [
+                "red_touch": "red",
+                "orange_touch": "orange",
+                "yellow_touch": "yellow",
+                "greenyellow_touch": "greenyellow",
+                "green_touch": "green",
+                "teal_touch": "teal",
+                "blue_touch": "blue",
+                "purple_touch": "purple"
+            ]
+            
+            let layerName = layer.descriptiveName
+            if color_layers[layerName!] != nil{
+                
+                let touchedColor = color_layers[layerName!]
+                
+                let colorLayer = self.compass!.layers[touchedColor!] as! CALayer
+                if colorLayer.locked == false {
+                    
+                    let directions: [String: CGFloat] = [
+                        "red": 0,
+                        "orange": 45,
+                        "yellow": 90,
+                        "greenyellow": 135,
+                        "green": 180,
+                        "teal": 225,
+                        "blue": 270,
+                        "purple": 315
+                    ]
+                    
+                    let direction = directions[touchedColor!]
+                    
+                    if direction == 0 {
+                        self.controller.mazeMove("north"){ responseObject, error in
+                            self.updateToken()
+                        }
+                    } else if direction == 90 {
+                        self.controller.mazeMove("east"){ responseObject, error in
+                            self.updateToken()
+                        }
+                    } else if direction == 180 {
+                        self.controller.mazeMove("south"){ responseObject, error in
+                            self.updateToken()
+                        }
+                    } else if direction == 270 {
+                        self.controller.mazeMove("west"){ responseObject, error in
+                            self.updateToken()
+                        }
+                    }
+                    
+                    self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
+                        print("animated")
+                    })
+                }
+                
+            }
+        }
+        
+        
+    }
+    
+    
+    
     
     func getWalls(num: Int) -> String {
         var str = String(num, radix: 2)             // Decimal to binary

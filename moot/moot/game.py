@@ -491,16 +491,27 @@ def get_color_name(input_color):
     #           [255, 255, 255]]                                  # White
 
 
-    colors = [
-        [179, 48, 49],              # Red
-        [236, 125, 0],              # Orange
-        [251, 201, 71],             # Yellow
-        [202, 209, 0],              # Green-Yellow
-        [141, 163, 0],              # Green
-        [23, 136, 132],             # Teal
-        [17, 116, 187],             # Blue
-        [157, 86, 154]              # Purple
-    ]
+              # Light           # Medium        # Dark
+    colors = [[255, 153, 153],  [255, 0, 0],    [113, 0, 0],    # Red
+              [255, 111, 168],  [255, 123, 51], [156, 68, 0],   # Orange
+              [255, 255, 131],  [255, 255, 0],  [211, 167, 0],  # Yellow
+              [166, 196, 113],  [112, 153, 0],  [53, 71, 0],    # Green-Yellow
+              [126, 228, 126],  [0, 153, 0],    [0, 60, 0],     # Green
+              [130, 222, 231],  [0, 134, 153],  [0, 53, 60],    # Blue-Green
+              [131, 184, 255],  [0, 0, 255],    [0, 0, 165],    # Blue
+              [166, 131, 199],  [102, 0, 102],  [56, 22, 56],   # Purple
+              [244, 131, 225],  [204, 0, 153],  [116, 0, 71]]   # Magenta
+
+    # colors = [
+    #     [179, 48, 49],              # Red
+    #     [236, 125, 0],              # Orange
+    #     [251, 201, 71],             # Yellow
+    #     [202, 209, 0],              # Green-Yellow
+    #     [141, 163, 0],              # Green
+    #     [23, 136, 132],             # Teal
+    #     [17, 116, 187],             # Blue
+    #     [157, 86, 154]              # Purple
+    # ]
 
     min_distance = 10000000
     color_match = 0
@@ -512,19 +523,23 @@ def get_color_name(input_color):
         if distance < min_distance:
             min_distance = distance
             color_match = i
-    #
-    # if color_match in range (0, 3):
-    #     return "red"
-    # elif color_match in range (3, 6):
-    #     return "orange"
-    # elif color_match in range (6, 9):
-    #     return "yellow"
-    # elif color_match in range (9, 15):
-    #     return "green"
-    # elif color_match in range (15, 21):
-    #     return "blue"
-    # elif color_match in range (21, 27):
-    #     return "purple"
+
+    if color_match in range (0, 3):
+        return "red"
+    elif color_match in range (3, 6):
+        return "orange"
+    elif color_match in range (6, 9):
+        return "yellow"
+    elif color_match in range (9, 12):
+        return "greenyellow"
+    elif color_match in range (12, 15):
+        return "green"
+    elif color_match in range (15, 18):
+        return "blue"
+    elif color_match in range (18, 21):
+        return "teal"
+    elif color_match in range (21, 27):
+        return "purple"
     # elif color_match in range (27, 30):
     #     return "brown"
     # elif color_match == 30:
@@ -532,22 +547,22 @@ def get_color_name(input_color):
     # elif color_match == 31:
     #     return "white"
 
-    if color_match == 0:
-        return "red"
-    elif color_match == 1:
-        return "orange"
-    elif color_match == 2:
-        return "yellow"
-    elif color_match == 3:
-        return "greenyellow"
-    elif color_match == 4:
-        return "green"
-    elif color_match == 5:
-        return "teal"
-    elif color_match == 6:
-        return "blue"
-    elif color_match == 7:
-        return "purple"
+    # if color_match == 0:
+    #     return "red"
+    # elif color_match == 1:
+    #     return "orange"
+    # elif color_match == 2:
+    #     return "yellow"
+    # elif color_match == 3:
+    #     return "greenyellow"
+    # elif color_match == 4:
+    #     return "green"
+    # elif color_match == 5:
+    #     return "teal"
+    # elif color_match == 6:
+    #     return "blue"
+    # elif color_match == 7:
+    #     return "purple"
 
 
 def find_colors(img, n=4):
