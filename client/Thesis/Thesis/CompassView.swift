@@ -10,6 +10,7 @@ import UIKit
 extension CALayer {
     private struct AssociatedKeys {
         static var DescriptiveName = "nsh_DescriptiveName"
+        static var Locked = "nsh_Locked"
     }
     
     @IBInspectable var descriptiveName: String? {
@@ -27,6 +28,24 @@ extension CALayer {
             }
         }
     }
+    
+    @IBInspectable var locked: Bool? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.Locked) as? Bool
+        }
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(
+                    self,
+                    &AssociatedKeys.Locked,
+                    newValue as Bool?,
+                    objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC
+                )
+            }
+        }
+    }
+    
+    
 }
 
 
@@ -89,25 +108,28 @@ class CompassView: UIView {
             
                 let index = layerName!.endIndex.advancedBy(-6)
                 let touchedColor = layerName!.substringToIndex(index)
-                //              self.compass?.unlockColor(touchedColor)
                 
                 
-                let directions: [String: CGFloat] = [
-                    "red": 0,
-                    "orange": 45,
-                    "yellow": 90,
-                    "greenyellow": 135,
-                    "green": 180,
-                    "teal": 225,
-                    "blue": 270,
-                    "purple": 315
-                ]
+                let colorLayer = self.layers[touchedColor] as! CALayer
+                if colorLayer.locked == false {
                 
-                let direction = directions[touchedColor]
+                    let directions: [String: CGFloat] = [
+                        "red": 0,
+                        "orange": 45,
+                        "yellow": 90,
+                        "greenyellow": 135,
+                        "green": 180,
+                        "teal": 225,
+                        "blue": 270,
+                        "purple": 315
+                    ]
                 
-                self.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
+                    let direction = directions[touchedColor]
+                
+                    self.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
                         print("animated")
-                })
+                    })
+                }
                 
             }
         }
@@ -131,6 +153,7 @@ class CompassView: UIView {
         if colors[color] != nil {
             let layer = layers[color] as! CAShapeLayer
             layer.fillColor = colors[color]!.CGColor
+            layer.locked = false
         }
         
     }
@@ -235,6 +258,7 @@ class CompassView: UIView {
         for name in ColorTouchLayers{
             let layer = CAShapeLayer()
             layer.descriptiveName = name
+            layer.locked = true
             Colors_Touch.addSublayer(layer)
             layers[name] = layer
         }
