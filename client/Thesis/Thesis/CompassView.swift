@@ -221,14 +221,14 @@ class CompassView: UIView {
         CATransaction.setDisableActions(true)
         
         let colors: [String: UIColor] = [
-            "red":          UIColor(red:0.376, green: 0.275, blue:0.275, alpha:1),
-            "orange":       UIColor(red:0.624, green: 0.533, blue:0.439, alpha:1),
-            "yellow":       UIColor(red:0.831, green: 0.792, blue:0.690, alpha:1),
-            "greenyellow":  UIColor(red:0.761, green: 0.769, blue:0.604, alpha:1),
-            "green":        UIColor(red:0.569, green: 0.588, blue:0.459, alpha:1),
-            "teal":         UIColor(red:0.369, green: 0.455, blue:0.455, alpha:1),
-            "blue":         UIColor(red:0.325, green: 0.404, blue:0.459, alpha:1),
-            "purple":       UIColor(red:0.455, green: 0.400, blue:0.451, alpha:1)
+            "red":          UIColor(red:0.471, green:0.420, blue:0.420, alpha:1),
+            "orange":       UIColor(red:0.510, green:0.467, blue:0.416, alpha:1),
+            "yellow":       UIColor(red:0.667, green:0.647, blue:0.596, alpha:1),
+            "greenyellow":  UIColor(red:0.447, green:0.451, blue:0.369, alpha:1),
+            "green":        UIColor(red:0.345, green:0.353, blue:0.286, alpha:1),
+            "teal":         UIColor(red:0.290, green:0.333, blue:0.333, alpha:1),
+            "blue":         UIColor(red:0.365, green:0.404, blue:0.431, alpha:1),
+            "purple":       UIColor(red:0.490, green:0.463, blue:0.490, alpha:1)
         ]
         
         for (name, color) in colors {
