@@ -97,66 +97,58 @@ class MazeLevelViewController: GenericLevelViewController {
         var point: CGPoint = (touches.first?.locationInView(self.compass))!
         point = self.compass!.convertPoint(point, toView: nil)
         
-        // TODO: Throws error if nil
-        var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
-        layer = layer.modelLayer() as! CALayer
+        if (self.compass!.layer.presentationLayer()?.hitTest(point) != nil){
+            var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
+            layer = layer.modelLayer() as! CALayer
         
-        print(layer.descriptiveName)
+            print(layer.descriptiveName)
         
-        if layer.descriptiveName != nil {
-            
-            let color_layers: [String: String] = [
-                "red_touch": "red",
-                "orange_touch": "orange",
-                "yellow_touch": "yellow",
-                "greenyellow_touch": "greenyellow",
-                "green_touch": "green",
-                "teal_touch": "teal",
-                "blue_touch": "blue",
-                "purple_touch": "purple"
-            ]
-            
-            let layerName = layer.descriptiveName
-            if color_layers[layerName!] != nil{
+            if layer.descriptiveName != nil {
+                let color_layers: [String: String] = [
+                    "red_touch": "red",
+                    "orange_touch": "orange",
+                    "yellow_touch": "yellow",
+                    "greenyellow_touch": "greenyellow",
+                    "green_touch": "green",
+                    "teal_touch": "teal",
+                    "blue_touch": "blue",
+                    "purple_touch": "purple"
+                ]
+                let layerName = layer.descriptiveName
+                if color_layers[layerName!] != nil{
+                    let touchedColor = color_layers[layerName!]
                 
-                let touchedColor = color_layers[layerName!]
-                
-                let colorLayer = self.compass!.layers[touchedColor!] as! CALayer
-                if colorLayer.locked == false {
-                    
-                    let directions: [String: CGFloat] = [
-                        "red": 0,
-                        "orange": 45,
-                        "yellow": 90,
-                        "greenyellow": 135,
-                        "green": 180,
-                        "teal": 225,
-                        "blue": 270,
-                        "purple": 315
-                    ]
-                    
-                    let cardinal_directions: [String: String] = [
-                        "red": "north",
-                        "orange": "northeast",
-                        "yellow": "east",
-                        "greenyellow": "southeast",
-                        "green": "south",
-                        "teal": "southwest",
-                        "blue": "west",
-                        "purple": "northwest"
-                    ]
-                    
-                    self.controller.mazeMove(cardinal_directions[touchedColor!]!){ responseObject, error in
-                        self.updateToken()
-                        let direction = directions[touchedColor!]
-                        self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
-                            print("animated")
-                        })
+                    let colorLayer = self.compass!.layers[touchedColor!] as! CALayer
+                    if colorLayer.locked == false {
+                        let directions: [String: CGFloat] = [
+                            "red": 0,
+                            "orange": 45,
+                            "yellow": 90,
+                            "greenyellow": 135,
+                            "green": 180,
+                            "teal": 225,
+                            "blue": 270,
+                            "purple": 315
+                        ]
+                        let cardinal_directions: [String: String] = [
+                            "red": "north",
+                            "orange": "northeast",
+                            "yellow": "east",
+                            "greenyellow": "southeast",
+                            "green": "south",
+                            "teal": "southwest",
+                            "blue": "west",
+                            "purple": "northwest"
+                        ]
+                        self.controller.mazeMove(cardinal_directions[touchedColor!]!){ responseObject, error in
+                            self.updateToken()
+                            let direction = directions[touchedColor!]
+                            self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void    in
+                                print("animated")
+                            })
+                        }
                     }
-
-
                 }
-                
             }
         }
         
