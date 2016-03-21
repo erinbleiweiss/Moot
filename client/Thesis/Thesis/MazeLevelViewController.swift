@@ -97,7 +97,7 @@ class MazeLevelViewController: GenericLevelViewController {
         var point: CGPoint = (touches.first?.locationInView(self.compass))!
         point = self.compass!.convertPoint(point, toView: nil)
         
-        
+        // TODO: Throws error if nil
         var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
         layer = layer.modelLayer() as! CALayer
         
@@ -135,29 +135,26 @@ class MazeLevelViewController: GenericLevelViewController {
                         "purple": 315
                     ]
                     
-                    let direction = directions[touchedColor!]
+                    let cardinal_directions: [String: String] = [
+                        "red": "north",
+                        "orange": "northeast",
+                        "yellow": "east",
+                        "greenyellow": "southeast",
+                        "green": "south",
+                        "teal": "southwest",
+                        "blue": "west",
+                        "purple": "northwest"
+                    ]
                     
-                    if direction == 0 {
-                        self.controller.mazeMove("north"){ responseObject, error in
-                            self.updateToken()
-                        }
-                    } else if direction == 90 {
-                        self.controller.mazeMove("east"){ responseObject, error in
-                            self.updateToken()
-                        }
-                    } else if direction == 180 {
-                        self.controller.mazeMove("south"){ responseObject, error in
-                            self.updateToken()
-                        }
-                    } else if direction == 270 {
-                        self.controller.mazeMove("west"){ responseObject, error in
-                            self.updateToken()
-                        }
+                    self.controller.mazeMove(cardinal_directions[touchedColor!]!){ responseObject, error in
+                        self.updateToken()
+                        let direction = directions[touchedColor!]
+                        self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
+                            print("animated")
+                        })
                     }
-                    
-                    self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void in
-                        print("animated")
-                    })
+
+
                 }
                 
             }

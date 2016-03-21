@@ -683,7 +683,10 @@ class Tile (object):
         self.south = 1 if self.south else 0
         self.east = 1 if self.east else 0
 
-        binary = ("{}{}{}{}").format(self.north, self.west, self.south, self.east)
+        binary = ("{}{}{}{}").format(self.north,
+                                     self.west,
+                                     self.south,
+                                     self.east)
         return str(int(binary, 2))
 
     def __repr__(self):
@@ -796,7 +799,6 @@ def carve_passages(row, col, grid):
 
 @app.route('/v1/maze_move', methods=["GET"])
 def maze_move():
-    logger_header('/maze_move')
     """
     Checks whether a move in a maze is valid, and returns
     new position
@@ -812,6 +814,7 @@ def maze_move():
                          "col":     new position (x)
                         }
     """
+    logger_header('/maze_move')
 
     dir = request.args.get('dir')
     maze = request.args.get('maze')
@@ -834,18 +837,88 @@ def maze_move():
     dx = {'north': 0, 'east': 1, 'south': 0, 'west': -1}
     dy = {'north': -1, 'east': 0, 'south': 1, 'west': 0}
 
-    # If wall exists
-    if getattr(current_tile, dir):
-        response["status"] = FAILURE
-        logger.info(("Hit a wall moving {}").format(dir))
-        return jsonify (response)
+    diagonals = {"northeast": ("north", "east"),
+                 "southeast": ("south", "east"),
+                 "southwest": ("south", "west"),
+                 "northwest": ("north", "west")}
 
-    response["status"] = SUCCESS
-    response["row"] = row + dy[dir]
-    response["col"] = col + dx[dir]
-    new_tile = Tile(int(maze[row + dy[dir]][col + dx[dir]]))
-    logger.info(("Moved {} to: {}").format(dir, new_tile))
+    logger.debug("Direction: {0}".format(dir))
 
+    # For diagonal movements, the user is advancing two tiles.  Thus, two
+    # combinations of moves should be tested before a move can be considered a
+    # failure. First, check movement of dir1 and dir2 as first and second
+    # directions in tuple.  If a success is not returned, check movement of
+    # dir2 and then dir1
+    if dir in diagonals:
+        # Direction is a diagonal movement
+        dir1 = diagonals[dir][0]
+        dir2 = diagonals[dir][1]
+        if getattr(current_tile, dir1):
+            # First direction is invalid as first move for current tile
+            logger.debug("Hit wall moving {0}".format(dir1))
+        else:
+             # First direction valid as first move for current tile
+            logger.debug("Moved {0}".format(dir1))
+            intermediate_tile = Tile(int(maze[row + dy[dir1]][col + dx[dir1]]))
+            if getattr(intermediate_tile, dir2):
+                # First direction valid as first move, but second direction
+                # invalid for second move
+                logger.debug("Moved {0}, then hit wall moving {1}".format(
+                    dir1, dir2))
+                logger.info(("Hit a wall moving {}").format(dir))
+            else:
+                # Diagonal movement is valid
+                logger.debug("Moved {0}, then moved {1}".format(dir1, dir2))
+                response["status"] = SUCCESS
+                response["row"] = row + dy[dir1] + dy[dir2]
+                response["col"] = col + dx[dir1] + dx[dir2]
+                new_tile = Tile(int(maze[row + dy[dir1] + dy[dir2]]
+                                    [col + dx[dir1] + dx[dir2]]))
+                logger.info(("Moved {} to: {}").format(dir, new_tile))
+                return jsonify(response)
+
+
+        if getattr(current_tile, dir2):
+            # Second direction is invalid as first move for current tile
+            logger.debug("Hit wall moving {0}".format(dir2))
+        else:
+             # Second direction valid as first move for current tile
+            logger.debug("Moved {0}".format(dir2))
+            intermediate_tile = Tile(int(maze[row + dy[dir2]][col + dx[dir2]]))
+            if getattr(intermediate_tile, dir1):
+                # Second direction valid as first move, but first direction
+                # invalid for second move
+                logger.debug("Moved {0}, then hit wall moving {1}".format(
+                    dir2, dir1))
+                logger.info(("Hit a wall moving {}").format(dir))
+            else:
+                # Diagonal movement is valid
+                logger.debug("Moved {0}, then moved {1}".format(dir2, dir1))
+                response["status"] = SUCCESS
+                response["row"] = row + dy[dir1] + dy[dir2]
+                response["col"] = col + dx[dir1] + dx[dir2]
+                new_tile = Tile(int(maze[row + dy[dir1] + dy[dir2]]
+                                    [col + dx[dir1] + dx[dir2]]))
+                logger.info(("Moved {} to: {}").format(dir, new_tile))
+                return jsonify(response)
+
+
+    else:
+        # Movement is not a diagonal movement
+        if getattr(current_tile, dir):
+            # Wall exists for 1-tile movement
+            logger.info(("Hit a wall moving {}").format(dir))
+        else:
+            # 1-tile movement is valid
+            response["status"] = SUCCESS
+            response["row"] = row + dy[dir]
+            response["col"] = col + dx[dir]
+            new_tile = Tile(int(maze[row + dy[dir]][col + dx[dir]]))
+            logger.info(("Moved {} to: {}").format(dir, new_tile))
+            return jsonify(response)
+
+    response["status"] = FAILURE
+    logger.info(("Hit a wall moving {}").format(dir))
     return jsonify(response)
 
 
