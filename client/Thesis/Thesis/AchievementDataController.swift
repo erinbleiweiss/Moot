@@ -15,15 +15,9 @@ class AchievementDataController: GenericGameController{
 
     var allAchievements: [Achievement] = []
 
-    func getAchievements(user: String, password: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
-        
+    func getAchievements(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_achievements"
-        
-        let credentialData = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
-        let headers = ["Authorization": "Basic \(base64Credentials)"]
-        
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
             .responseJSON { (_, _, result) in
                 switch result {
                 case .Success(let data):
@@ -44,15 +38,9 @@ class AchievementDataController: GenericGameController{
     }
     
     
-    func getUnearnedAchievements(user: String, password: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
-        
+    func getUnearnedAchievements(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_unearned_achievements"
-        
-        let credentialData = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
-        let headers = ["Authorization": "Basic \(base64Credentials)"]
-        
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
             .responseJSON { (_, _, result) in
                 switch result {
                 case .Success(let data):

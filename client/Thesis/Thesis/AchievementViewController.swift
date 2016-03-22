@@ -29,17 +29,14 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
 
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let username = defaults.stringForKey("username")
-        {
-            let password = defaults.stringForKey("password")
-            self.controller.getAchievements(username, password: password!){ responseObject, error in
-                
-            }
-            self.controller.getUnearnedAchievements(username, password: password!){ responseObject, error in
-                self.tableView.reloadData()
-            }
-            
+
+        self.controller.getAchievements(){ responseObject, error in
+            self.tableView.reloadData()
         }
+        self.controller.getUnearnedAchievements(){ responseObject, error in
+            self.tableView.reloadData()
+        }
+
         
         // Do any additional setup after loading the view.
     }
