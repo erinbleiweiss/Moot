@@ -47,7 +47,6 @@
 		80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BE1C79952900D705A7 /* AchievementManager.swift */; };
 		80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */; };
 		80D69EC31CA1E9300076209C /* MootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D69EC21CA1E9300076209C /* MootTabBarController.swift */; };
-		80D69EC51CA1ED0B0076209C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D69EC41CA1ED0B0076209C /* MainTabBarController.swift */; };
 		80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB858E1C83ABC700AC37A7 /* MootViewController.swift */; };
 		80EB85931C8462C700AC37A7 /* AchievementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */; };
 		80EB85951C8479F400AC37A7 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB85941C8479F400AC37A7 /* Achievement.swift */; };
@@ -129,7 +128,6 @@
 		80CBB5BE1C79952900D705A7 /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
 		80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		80D69EC21CA1E9300076209C /* MootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootTabBarController.swift; sourceTree = "<group>"; };
-		80D69EC41CA1ED0B0076209C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		80EB858E1C83ABC700AC37A7 /* MootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootViewController.swift; sourceTree = "<group>"; };
 		80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementTableViewCell.swift; sourceTree = "<group>"; };
 		80EB85941C8479F400AC37A7 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
@@ -289,7 +287,6 @@
 				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
 				805BCC131C9D28F1008B4536 /* CompassView.swift */,
 				804E11E61C9E22F800F57992 /* QCMethod.swift */,
-				80D69EC21CA1E9300076209C /* MootTabBarController.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -308,7 +305,7 @@
 				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
 				80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */,
 				804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */,
-				80D69EC41CA1ED0B0076209C /* MainTabBarController.swift */,
+				80D69EC21CA1E9300076209C /* MootTabBarController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -553,7 +550,6 @@
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
 				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
-				80D69EC51CA1ED0B0076209C /* MainTabBarController.swift in Sources */,
 				8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,
 				80EB85931C8462C700AC37A7 /* AchievementTableViewCell.swift in Sources */,

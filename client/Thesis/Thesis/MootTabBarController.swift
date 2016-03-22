@@ -10,6 +10,8 @@ import UIKit
 
 public class MootTabBarController: UITabBarController {
 
+    var cameraButton: UIButton?
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,13 +21,15 @@ public class MootTabBarController: UITabBarController {
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Insert empty tab item at center index. In this case we have 5 tabs.
-        self.insertEmptyTabItem("", atIndex: 1)
+            // Insert empty tab item at center index.
+            self.insertEmptyTabItem("", atIndex: 1)
         
-        // Raise the center button with image
-        let img = UIImage(named: "icon_camera")
-        self.addRaisedButton(img, highlightImage: nil)
+            // Raise the center button with image
+            let img = UIImage(named: "icon_camera")
+            self.createRaisedButton(img, highlightImage: nil)
     }
+    
+    
 
     public func insertEmptyTabItem(title: String, atIndex: Int) {
         let vc = UIViewController()
@@ -36,7 +40,7 @@ public class MootTabBarController: UITabBarController {
     }
     
     
-    public func addRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
+    public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
         if let buttonImage = buttonImage {
             let button = UIButton(type: UIButtonType.Custom)
             button.autoresizingMask = [UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin]
@@ -58,12 +62,23 @@ public class MootTabBarController: UITabBarController {
             }
             
             button.addTarget(self, action: "onRaisedButton:", forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addSubview(button)
+            self.cameraButton = button
         }
     }
     
     public func onRaisedButton(sender: UIButton!) {
         
+    }
+    
+
+    func addCameraButton(){
+        self.view.addSubview(self.cameraButton!)
+        self.view.setNeedsDisplay()
+    }
+    
+    func removeCameraButton(){
+        self.cameraButton!.removeFromSuperview()
+        self.view.setNeedsDisplay()
     }
     
     

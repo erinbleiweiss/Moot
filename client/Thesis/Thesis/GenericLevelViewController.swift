@@ -20,6 +20,12 @@ class GenericLevelViewController: MootViewController {
         super.init(coder: aDecoder)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tabBar = self.tabBarController as! MootTabBarController
+        tabBar.addCameraButton()
+        tabBar.setNeedsStatusBarAppearanceUpdate()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
