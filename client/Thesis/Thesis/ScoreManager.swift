@@ -19,6 +19,9 @@ class ScoreManager{
     /// Methods
     private init() {
         self.currentScore = 0
+        if let userScore: Int = defaults.integerForKey("currentScore"){
+            self.currentScore = userScore
+        }
     }
     
     func getScore() -> Int{
