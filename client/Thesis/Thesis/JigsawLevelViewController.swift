@@ -16,9 +16,7 @@ class JigsawLevelViewController: GenericLevelViewController {
         controller = JigsawGameController()
         super.init(coder: aDecoder)
     }
-    
-    private var tiles = [QRTile]()
-    private var targets = [QRTileTarget]()
+
     
     
     var response: String!
@@ -41,7 +39,7 @@ class JigsawLevelViewController: GenericLevelViewController {
             self.generateTiles(self.controller.QRImage, rows: rows, cols: cols)
             self.generateTargets(rows, cols: cols)
             
-            self.tiles = self.tiles.shuffle()
+            self.controller.tiles = self.controller.tiles.shuffle()
             self.displayTiles(tileMargin, rows: rows, cols: cols)
             
         }
@@ -64,7 +62,7 @@ class JigsawLevelViewController: GenericLevelViewController {
                 let image: UIImage = UIImage(CGImage: cgImage!)
                 
                 let tile = QRTile(id: id, image: image)
-                self.tiles.append(tile)
+                self.controller.tiles.append(tile)
                 id++
             }
         }
@@ -75,12 +73,10 @@ class JigsawLevelViewController: GenericLevelViewController {
         var idx = 0
         for row in 0...rows-1 {
             for col in 0...cols-1 {
-                self.tiles[idx].center = CGPointMake(100 + CGFloat(col) * self.tiles[idx].frame.width
-                    + (CGFloat(col) * CGFloat(tileMargin)),
-                    500 + CGFloat(row) * self.tiles[idx].frame.height
-                        + (CGFloat(row) * CGFloat(tileMargin)))
-                self.tiles[idx].dragDelegate = self
-                self.view.addSubview(self.tiles[idx])
+                self.controller.tiles[idx].center = CGPointMake(300 + CGFloat(col) * self.controller.tiles[idx].frame.width + (CGFloat(col) * CGFloat(tileMargin)),
+                                                    500 + CGFloat(row) * self.controller.tiles[idx].frame.height + (CGFloat(row) * CGFloat(tileMargin)))
+                self.controller.tiles[idx].dragDelegate = self
+                self.view.addSubview(self.controller.tiles[idx])
                 idx++
             }
         }
@@ -88,17 +84,17 @@ class JigsawLevelViewController: GenericLevelViewController {
     
     func generateTargets(rows: Int, cols: Int){
         
-        let width = self.tiles[0].frame.width
-        let height = self.tiles[0].frame.height
+        let width = self.controller.tiles[0].frame.width
+        let height = self.controller.tiles[0].frame.height
         
         var id = 0
         for row in 0...rows-1{
             for col in 0...cols-1{
                 let frame = CGRect(x: 0, y: 0, width: width, height: height)
                 let targetView = QRTileTarget(id: id, frame: frame)
-                targetView.center = CGPointMake(100 + CGFloat(col) * width, 150 + CGFloat(row) * height)
+                targetView.center = CGPointMake(300 + CGFloat(col) * width, 150 + CGFloat(row) * height)
                 targetView.backgroundColor = UIColor(white: 1, alpha: 0.5)
-                self.targets.append(targetView)
+                self.controller.targets.append(targetView)
                 self.view.addSubview(targetView)
                 id++
             }
@@ -106,7 +102,6 @@ class JigsawLevelViewController: GenericLevelViewController {
         
     }
 
-    
     
     func placeTile(tileView: QRTile, targetView: QRTileTarget) {
         
@@ -132,6 +127,9 @@ class JigsawLevelViewController: GenericLevelViewController {
             completion: {
                 (value: Bool) in
                 targetView.hidden = true
+                if self.controller.checkForSuccess(){
+                    self.displayLevelCompletionView()
+                }
         })
         
     }
@@ -155,7 +153,7 @@ extension JigsawLevelViewController: TileDragDelegateProtocol {
     
     func tileView(tileView: QRTile, didDragToPoint point: CGPoint) {
         var targetView: QRTileTarget?
-        for tv in targets {
+        for tv in self.controller.targets {
             if tv.frame.contains(point) && !tv.isMatched {
                 targetView = tv
                 break

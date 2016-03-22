@@ -51,7 +51,7 @@ class LevelManager{
     
     func unlockNextLevel(currentLevel: Int){
         let numLevels = userLevels.count
-        if (currentLevel <= numLevels){
+        if (currentLevel < numLevels){
             userLevels[currentLevel].unlock()
         }
         saveLevels()

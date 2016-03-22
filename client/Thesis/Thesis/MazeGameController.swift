@@ -84,7 +84,7 @@ class MazeGameController: GenericGameController {
     /**
         Called after each "maveMove" to determine whether the level has been completed.  Critera for winning: Token has made it to bottom right corner of maze.
      
-        - Returns: (Bool) True or False indicating level completiion
+        - Returns: (Bool) True or False indicating level completion
      */
     func checkForSuccess() -> Bool {
         if ((pos_row == maze_size-1) && (pos_col == maze_size-1)){
