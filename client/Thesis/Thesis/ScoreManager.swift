@@ -29,7 +29,12 @@ class ScoreManager{
         currentScore += points
     }
     
-    func saveScore() {
+    func setScore(points: Int){
+        self.currentScore = points
+        saveScore()
+    }
+    
+    private func saveScore() {
         defaults.setInteger(currentScore, forKey: "currentScore")
     }
     

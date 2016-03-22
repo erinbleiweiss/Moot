@@ -121,11 +121,7 @@ class GenericGameController{
         
         let url: String = hostname + rest_prefix + "/save_product"
         
-        let credentialData = "\(self.username):\(self.password)".dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
-        let headers = ["Authorization": "Basic \(base64Credentials)"]
-        
-        Alamofire.request(.POST, url, parameters: nil, encoding: .JSON, headers: headers)
+        Alamofire.request(.POST, url, parameters: nil, encoding: .JSON)
             .responseJSON { (_, _, result) in
                 switch result {
                 case .Success(let data):
@@ -137,6 +133,25 @@ class GenericGameController{
                     NSLog("Request failed with error: \(result.error)")
                 }
         }
+    }
+    
+    
+    /**
+        Get current score from DB
+     */
+    func getMootPoints(completionHandler: (responseObject: JSON?, error: NSError?) -> ()){
+        let url: String = hostname + rest_prefix + "/get_points"
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+            .responseJSON { (_, _, result) in
+                switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                    completionHandler(responseObject: json, error: result.error as? NSError)
+                case .Failure(_):
+                    NSLog("Request failed with error: \(result.error)")
+                }
+        }
+        
     }
     
     

@@ -15,6 +15,12 @@ class GenericLevelViewController: MootViewController {
     var scoreBox: ScoreBox?
     var levelBadge: LevelBadge?
     
+    private var controller: GenericGameController
+    required init?(coder aDecoder: NSCoder) {
+        controller = GenericGameController()
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +60,21 @@ class GenericLevelViewController: MootViewController {
      */
     func setUpLevel(){
         
+    }
+    
+    
+    /**
+        Update Moot Points badge with point total from DB, and save score to ScoreManager
+     */
+    func updateMootPoints(){
+        self.controller.getMootPoints { (responseObject, error) -> () in
+            if responseObject!["status"] == "success" {
+                let points = responseObject!["points"].intValue
+                ScoreManager.sharedInstance.setScore(points)
+                self.scoreBox?.setPoints(points)
+                self.scoreBox?.setNeedsDisplay()
+            }
+        }
     }
    
     /**

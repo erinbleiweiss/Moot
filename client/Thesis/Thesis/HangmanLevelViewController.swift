@@ -23,7 +23,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
     }
     
-    let controller: HangmanGameController
+    var controller: HangmanGameController
     required init?(coder aDecoder: NSCoder) {
         controller = HangmanGameController()
         super.init(coder: aDecoder)
@@ -153,6 +153,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                     }
                     
                 }
+                self.updateMootPoints()
             }
         }
     }

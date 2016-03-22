@@ -32,6 +32,11 @@ class ScoreBox: UIView{
         
     }
     
+    func setPoints(points: Int){
+        self.points = points
+        self.pointsLabel.text = String(points)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

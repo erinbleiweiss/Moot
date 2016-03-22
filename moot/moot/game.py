@@ -35,6 +35,7 @@ WORDNIK_URL = config.get('api', 'wordnik_url')
 WORDNIK_API_KEY = config.get('api', 'wordnik_api_key')
 QR_CODE_URL = config.get('api', 'qr_code_url')
 
+MAX_POINTS_FOR_PRODUCT = 100
 SUCCESS = "success"
 FAILURE = "failure"
 
@@ -175,6 +176,8 @@ def award_points():
 
     return jsonify(response)
 
+
+
 @app.route('/v1/get_points', methods=["GET"])
 def get_points():
     logger_header('/get_points')
@@ -292,6 +295,8 @@ def generate_random_word():
               }
     response = {}
     try:
+        # TODO: make sure word does not contain special characters, and does
+        # not start with a capital letter (is not a proper noun)
         word_data = requests.get(WORDNIK_URL, params=params)
         word_data = word_data.json()
         random_word = word_data["word"]
@@ -336,6 +341,15 @@ def play_hangman():
 
     # Get "current letter" corresponding to first letter of scanned object
     product_name = get_product_name(upc)
+    points_earned = moot_points(product_name, MAX_POINTS_FOR_PRODUCT)
+    db = MootDao()
+    response = {}
+    try:
+        db.award_points(user_id, points_earned)
+    except Exception as e:
+        logger.critical("Awarding points to user '{0}' failed with exception "
+                        "{1}".format(user_id, e))
+
     logger.debug(product_name)
 
     current_letter = product_name[0].upper()

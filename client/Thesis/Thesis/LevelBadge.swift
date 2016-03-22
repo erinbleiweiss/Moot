@@ -31,6 +31,7 @@ class LevelBadge: UIView{
         
     }
     
+    
     func update(){
         let currentLevel = LevelManager.sharedInstance.getCurrentLevel()
         let currentStage = LevelManager.sharedInstance.getCurrentStage(currentLevel)
