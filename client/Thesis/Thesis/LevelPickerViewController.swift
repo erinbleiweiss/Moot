@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SWRevealViewController
 
 
 protocol UIViewLoading {}
@@ -114,7 +113,7 @@ class LevelPickerViewController: MootViewController, UIViewLoading {
     */
     func clickPressed(sender: LevelTile!){
         if (!sender.level!.isLocked()){
-            self.revealViewController().pushFrontViewController(sender.rootVC!, animated: true)
+            self.navigationController?.pushViewController(sender.VC!, animated: true)
         }
         
     }

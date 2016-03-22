@@ -267,46 +267,51 @@ def generate_random_word():
     logger_header("/generate_random_word")
     auth = request.authorization
     user_id = auth.username
-    difficulty = request.args.get('difficulty')
+    difficulty = int(request.args.get('difficulty'))
 
-    if int(difficulty) == 1:
-        response = {}
+    response = {}
+
+    if difficulty == 1:
         response["word"] = "scan"
         response["status"] = "success"
         return jsonify(response)
-    elif int(difficulty) == 2:
-        minLength = 5
-        maxLength = 5
-        minCorpusCount= 100000
-    elif int(difficulty) == 3:
+    elif difficulty == 2:
+        # minLength = 5
+        # maxLength = 5
+        # minCorpusCount= 100000
+        response["word"] = "moot"
+        response["status"] = "success"
+    elif difficulty == 3:
         minLength = 6
         maxLength = 6
         minCorpusCount= 100000
 
-    # TODO: obfuscate word when passing to client
-    # TODO: wrap in try/catch
-    params = {'hasDictionaryDef': 'true',
-              'includePartOfSpeech': 'noun',
-              'excludePartOfSpeech': 'proper-noun',
-              'minCorpusCount': minCorpusCount,
-              'minLength': minLength,
-              'maxLength': maxLength,
-              'api_key': WORDNIK_API_KEY
-              }
-    response = {}
-    try:
-        # TODO: make sure word does not contain special characters, and does
-        # not start with a capital letter (is not a proper noun)
-        word_data = requests.get(WORDNIK_URL, params=params)
-        word_data = word_data.json()
-        random_word = word_data["word"]
-        logger.info("Game data for user '{}': Hangman Word = '{}'".format(
-            user_id, random_word))
-        response["word"] = random_word
-        response["status"] = SUCCESS
-    except Exception as e:
-        response["status"] = FAILURE
-        response["message"] =  "Problem retrieving word from Wordnik API"
+
+    if difficulty > 2:
+        # TODO: obfuscate word when passing to client
+        # TODO: wrap in try/catch
+        params = {'hasDictionaryDef': 'true',
+                  'includePartOfSpeech': 'noun',
+                  'excludePartOfSpeech': 'proper-noun',
+                  'minCorpusCount': minCorpusCount,
+                  'minLength': minLength,
+                  'maxLength': maxLength,
+                  'api_key': WORDNIK_API_KEY
+                  }
+
+        try:
+            # TODO: make sure word does not contain special characters, and does
+            # not start with a capital letter (is not a proper noun)
+            word_data = requests.get(WORDNIK_URL, params=params)
+            word_data = word_data.json()
+            random_word = word_data["word"]
+            logger.info("Game data for user '{}': Hangman Word = '{}'".format(
+                user_id, random_word))
+            response["word"] = random_word
+            response["status"] = SUCCESS
+        except Exception as e:
+            response["status"] = FAILURE
+            response["message"] =  "Problem retrieving word from Wordnik API"
 
     return jsonify(response)
 
@@ -370,6 +375,7 @@ def play_hangman():
         achievements_earned = check_for_achievements_internal(user_id)
         response["achievements_earned"] = achievements_earned
     except Exception as e:
+        logger.critical(e)
         response["achievements_earned"] = []
         response["status"] = FAILURE
         return jsonify(response)

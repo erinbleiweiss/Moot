@@ -13,6 +13,8 @@ import SwiftyJSON
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
     var compass: CompassView?
+    let tileSize = 75
+
     @IBOutlet weak var colorLabel: UILabel!
     
 
@@ -53,7 +55,7 @@ class MazeLevelViewController: GenericLevelViewController {
             
             var row = 0
             var col = 0
-            
+
             for tile in tiles{
                 
                 let walls = self.getWalls(Int(tile)!)
@@ -63,7 +65,7 @@ class MazeLevelViewController: GenericLevelViewController {
                 let south = self.evaluateWall(walls[2])
                 let east = self.evaluateWall(walls[3])
                 
-                let frame = CGRect(x: 50 + (100 * (col+1)), y: 200 + (100 * row), width: 100, height: 100)
+                let frame = CGRect(x: 50 + (self.tileSize * (col+1)), y: 200 + (self.tileSize * row), width: self.tileSize, height: self.tileSize)
                 let customView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
                 customView.backgroundColor = UIColor(white: 1, alpha: 0.5)
                 
@@ -82,7 +84,7 @@ class MazeLevelViewController: GenericLevelViewController {
             }
          
             
-            let tokenFrame = CGRect(x: 50 + (100 * (self.controller.pos_col+1)), y: 200 + (100 * self.controller.pos_row), width: 100, height: 100)
+            let tokenFrame = CGRect(x: 50 + (self.tileSize * (self.controller.pos_col+1)), y: 200 + (self.self.tileSize * self.controller.pos_row), width: self.tileSize, height: self.tileSize)
             self.controller.tokenView = MazeToken(frame: tokenFrame)
             self.controller.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
             self.view.addSubview(self.controller.tokenView)
@@ -179,7 +181,7 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     func updateToken(){
-        self.controller.tokenView.frame = CGRect(x: 50 + (100 * (self.controller.pos_col+1)), y: 200 + (100 * self.controller.pos_row), width: 100, height: 100)
+        self.controller.tokenView.frame = CGRect(x: 50 + (self.tileSize * (self.controller.pos_col+1)), y: 200 + (self.tileSize * self.controller.pos_row), width: self.tileSize, height: self.tileSize)
         self.controller.tokenView.setNeedsDisplay()
     }
     

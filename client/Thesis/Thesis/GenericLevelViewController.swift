@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftHEXColors
-import SWRevealViewController
 
 class GenericLevelViewController: MootViewController {
 

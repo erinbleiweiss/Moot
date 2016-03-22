@@ -135,6 +135,7 @@ class HangmanGameController: GenericGameController {
           self.clearTiles()
           return 1 // Not final stage; Level not complete
         } else {
+          self.upc = ""
           self.succeed() // Final stage; Level is complete
           return 2
         }

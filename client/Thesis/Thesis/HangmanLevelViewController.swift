@@ -31,6 +31,11 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var tabItems = self.tabBarController!.tabBar.items
+        let newTabItem: UITabBarItem  = UITabBarItem(title: "New", image: nil, tag: 2)
+        tabItems?.append(newTabItem)
+        
         self.controller.level = 1
 
         // Add one layer for all game elements (-200 accounts for height of top bar)

@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
 //                defaults.setObject(username, forKey: "username")
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-                let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("RevealVC") as UIViewController
+                let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
                 self.presentViewController(revealViewController, animated: true, completion: nil)
             }
         }

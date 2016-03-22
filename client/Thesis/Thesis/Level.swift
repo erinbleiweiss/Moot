@@ -23,15 +23,15 @@ import UIKit
 class Level: NSObject, NSCoding {
     
     var levelNumber: Int
-    var rootVC: String
+    var VC: String
     private var locked: Bool
     private var currentStage: Int
     private var numStages: Int
     
     // Default initializer
-    init(levelNumber: Int, rootVC: String, locked: Bool, currentStage: Int, numStages: Int){
+    init(levelNumber: Int, VC: String, locked: Bool, currentStage: Int, numStages: Int){
         self.levelNumber = levelNumber
-        self.rootVC = rootVC
+        self.VC = VC
         self.locked = locked
         self.currentStage = currentStage
         self.numStages = numStages
@@ -39,10 +39,10 @@ class Level: NSObject, NSCoding {
     
     
     // Overloaded initializer with default values
-    convenience init(levelNumber: Int, rootVC: String, numStages: Int){
+    convenience init(levelNumber: Int, VC: String, numStages: Int){
         self.init(
             levelNumber: levelNumber,
-            rootVC: rootVC,
+            VC: VC,
             locked: true,
             currentStage: 1,
             numStages: numStages
@@ -52,12 +52,12 @@ class Level: NSObject, NSCoding {
     
     // MARK: NSCoding
     required convenience init?(coder aDecoder: NSCoder){
-        guard let rootVC = aDecoder.decodeObjectForKey("rootVC") as? String
+        guard let VC = aDecoder.decodeObjectForKey("VC") as? String
             else {return nil}
         
         self.init(
             levelNumber: aDecoder.decodeIntegerForKey("levelNumber"),
-            rootVC: rootVC,
+            VC: VC,
             locked: aDecoder.decodeBoolForKey("locked"),
             currentStage: aDecoder.decodeIntegerForKey("currentStage"),
             numStages: aDecoder.decodeIntegerForKey("numStages")
@@ -67,7 +67,7 @@ class Level: NSObject, NSCoding {
     
     func encodeWithCoder(aCoder: NSCoder){
         aCoder.encodeInteger(levelNumber, forKey: "levelNumber")
-        aCoder.encodeObject(rootVC, forKey: "rootVC")
+        aCoder.encodeObject(VC, forKey: "VC")
         aCoder.encodeBool(locked, forKey: "locked")
         aCoder.encodeInteger(currentStage, forKey: "currentStage")
         aCoder.encodeInteger(numStages, forKey: "numStages")
@@ -81,9 +81,9 @@ class Level: NSObject, NSCoding {
         - Returns: UIViewController
      
     */
-    func getRootVC() -> UIViewController{
+    func getVC() -> UIViewController{
         var viewControllerType = ""
-        viewControllerType = self.rootVC
+        viewControllerType = self.VC
 
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as UIViewController

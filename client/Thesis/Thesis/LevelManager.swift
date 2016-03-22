@@ -14,9 +14,9 @@ class LevelManager{
     
     // Initialize default levels in case saved levels do not exist
     private var defaultLevels: [Level] = [
-        Level(levelNumber: 1, rootVC: "HangmanRootVC", numStages: 3),
-        Level(levelNumber: 2, rootVC: "MazeRootVC", numStages: 1),
-        Level(levelNumber: 3, rootVC: "JigsawRootVC", numStages: 1)
+        Level(levelNumber: 1, VC: "HangmanVC", numStages: 2),
+        Level(levelNumber: 2, VC: "MazeVC", numStages: 1),
+        Level(levelNumber: 3, VC: "JigsawVC", numStages: 1)
     ]
     private var userLevels = [Level]()
     

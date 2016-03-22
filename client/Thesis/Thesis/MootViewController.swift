@@ -14,22 +14,6 @@ class MootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let btnName = UIButton()
-        btnName.setImage(UIImage(named: "menu"), forState: .Normal)
-        btnName.frame = CGRectMake(0, 0, 30, 30)
-        //        btnName.addTarget(self, action: Selector("action"), forControlEvents: .TouchUpInside)
-        
-        
-        if self.revealViewController() != nil {
-            btnName.addTarget(self.revealViewController(), action: "revealToggle:", forControlEvents: .TouchUpInside)
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-        
-        //.... Set Left Bar Button item
-        let leftBarButton = UIBarButtonItem()
-        leftBarButton.customView = btnName
-        self.navigationItem.leftBarButtonItem = leftBarButton
     
     }
 
