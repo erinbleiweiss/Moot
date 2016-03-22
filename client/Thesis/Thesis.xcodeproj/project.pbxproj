@@ -19,6 +19,7 @@
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
 		804927871C97BAD200410B1A /* LevelBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804927861C97BAD200410B1A /* LevelBadge.swift */; };
 		804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E61C9E22F800F57992 /* QCMethod.swift */; };
+		804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */; };
 		804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */; };
 		804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */; };
 		804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55A1BEFEDA00091ED22 /* QRTile.swift */; };
@@ -98,6 +99,7 @@
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804927861C97BAD200410B1A /* LevelBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBadge.swift; sourceTree = "<group>"; };
 		804E11E61C9E22F800F57992 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
+		804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompletedViewController.swift; sourceTree = "<group>"; };
 		804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawLevelViewController.swift; sourceTree = "<group>"; };
 		804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawCameraViewController.swift; sourceTree = "<group>"; };
 		804EF55A1BEFEDA00091ED22 /* QRTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTile.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */,
 				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
 				80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */,
+				804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */,
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
+				804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */,
 				80B195031BF5685F00B5C3CE /* Config.swift in Sources */,
 				80EB85951C8479F400AC37A7 /* Achievement.swift in Sources */,
 				801590EC1C7FC0A70011872B /* LoginViewController.swift in Sources */,

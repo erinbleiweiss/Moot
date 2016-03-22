@@ -56,6 +56,7 @@
                     <connections>
                         <segue destination="cjl-pC-x5L" kind="relationship" relationship="rootViewController" id="Q20-3o-PyM"/>
                         <segue destination="adr-xV-0u3" kind="show" identifier="MazeSuccess" id="dy6-Tj-7bV"/>
+                        <segue destination="mXM-se-bXz" kind="show" id="VxY-q4-U2Q"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDU-Ll-d6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -189,6 +190,7 @@
                     <connections>
                         <segue destination="lXw-5a-cOg" kind="relationship" relationship="rootViewController" id="oLy-am-bfA"/>
                         <segue destination="adr-xV-0u3" kind="show" identifier="JigsawSuccess" id="imR-n2-eTg"/>
+                        <segue destination="mXM-se-bXz" kind="show" id="dOR-uI-Bri"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dls-49-x1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -399,6 +401,35 @@
             </objects>
             <point key="canvasLocation" x="3016" y="-703"/>
         </scene>
+        <!--Level Completed View Controller-->
+        <scene sceneID="x4P-Li-X1x">
+            <objects>
+                <viewController storyboardIdentifier="LevelCompleteVC" id="mXM-se-bXz" customClass="LevelCompletedViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3TC-bw-mJ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="lLV-9O-XBz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EBZ-LE-cWX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="LEVEL COMPLETE!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzS-In-7Fy">
+                                <rect key="frame" x="158" y="141" width="285" height="84"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VzS-In-7Fy" firstAttribute="centerX" secondItem="EBZ-LE-cWX" secondAttribute="centerX" id="iuJ-aQ-RLw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MUE-bU-5OB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3687" y="-703"/>
+        </scene>
         <!--Achievement View Controller-->
         <scene sceneID="aSs-ob-cAS">
             <objects>
@@ -603,6 +634,7 @@
                     <connections>
                         <segue destination="s2J-Mq-6rJ" kind="relationship" relationship="rootViewController" id="pFm-jh-ioe"/>
                         <segue destination="adr-xV-0u3" kind="show" identifier="HangmanSuccess" id="gYl-F1-PB5"/>
+                        <segue destination="mXM-se-bXz" kind="show" id="Gj5-wf-Cqs"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JzY-p0-TrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -648,6 +680,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="1mB-6R-8FK"/>
-        <segue reference="dy6-Tj-7bV"/>
+        <segue reference="dOR-uI-Bri"/>
+        <segue reference="imR-n2-eTg"/>
     </inferredMetricsTieBreakers>
 </document>

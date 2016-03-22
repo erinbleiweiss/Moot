@@ -45,12 +45,43 @@ class GenericLevelViewController: MootViewController {
     }
     
 
-
     func provideVCClass() -> UIViewController.Type {
         return GenericLevelViewController.self
     }
     
+    /**
+        This method should be overridden in subclasses to perform any "reset" actions if necessary
+     */
+    func setUpLevel(){
         
+    }
+   
+    /**
+        Transition to the "Stage completed" controller, then prepare for new level:
+            - Clear scanned UPC value and target word
+            - Set up level with new word
+     
+        Note that a segue must be created in the storyboard from the level's root navigation controller to the "Stage Complete" view controller
+     */
+    func displayStageCompletionView(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
+        self.presentViewController(successVC, animated: false, completion: nil)
+        self.setUpLevel()
+    }
+    
+    
+    
+    /**
+        Transition to the "Level Completed" controller, then prepare for new nevel
+     */
+    func displayLevelCompletionView(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let successVC = storyboard.instantiateViewControllerWithIdentifier("LevelCompleteVC")
+        self.presentViewController(successVC, animated: false, completion: nil)
+        self.setUpLevel()
+    }
+    
     
     /*
     // MARK: - Navigation

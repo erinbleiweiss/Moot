@@ -1,14 +1,14 @@
 //
-//  StageCompletedViewController.swift
+//  LevelCompletedViewController.swift
 //  Thesis
 //
-//  Created by Erin Bleiweiss on 3/14/16.
+//  Created by Erin Bleiweiss on 3/21/16.
 //  Copyright © 2016 Erin Bleiweiss. All rights reserved.
 //
 
 import UIKit
 
-class StageCompletedViewController: MootViewController {
+class LevelCompletedViewController: MootViewController {
 
     var sender: UIViewController?
     
@@ -21,21 +21,21 @@ class StageCompletedViewController: MootViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

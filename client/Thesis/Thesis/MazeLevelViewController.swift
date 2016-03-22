@@ -28,7 +28,7 @@ class MazeLevelViewController: GenericLevelViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let level = Level(levelNumber: 2)
+        self.controller.level = 2
         
         // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
@@ -43,7 +43,7 @@ class MazeLevelViewController: GenericLevelViewController {
 //                     12, 9, 6,  9,  13,
 //                      7, 6, 10, 2,  3]
         
-        self.controller.generateMaze(5, height: 5){ responseObject, error in
+        self.controller.generateMaze(){ responseObject, error in
             self.controller.tileString = responseObject!
             tiles = self.controller.tileString.componentsSeparatedByString("_")
             
@@ -66,6 +66,12 @@ class MazeLevelViewController: GenericLevelViewController {
                 let frame = CGRect(x: 50 + (100 * (col+1)), y: 200 + (100 * row), width: 100, height: 100)
                 let customView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
                 customView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+                
+                if (row == 0 && col == 0){
+                    customView.setStart()
+                } else if ((row == size-1) && (col == size-1)){
+                    customView.setEnd()
+                }
                 
                 self.view.addSubview(customView)
                 col++
@@ -145,6 +151,9 @@ class MazeLevelViewController: GenericLevelViewController {
                             let direction = directions[touchedColor!]
                             self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void    in
                                 print("animated")
+                                if self.controller.checkForSuccess() {
+                                    self.displayLevelCompletionView()
+                                }
                             })
                         }
                     }
@@ -168,48 +177,6 @@ class MazeLevelViewController: GenericLevelViewController {
     func evaluateWall (ch: Character) -> Bool{
         return (ch == "1")
     }
-    
-    
-//    @IBAction func moveUp(sender: AnyObject) {
-//        self.controller.mazeMove("north"){ responseObject, error in
-//            print(responseObject!)
-//            self.updateToken()
-//            
-//            print(self.controller.pos_row)
-//            print(self.controller.pos_col)
-//        }
-//    }
-//    
-//    @IBAction func moveLeft(sender: AnyObject) {
-//        self.controller.mazeMove("west"){ responseObject, error in
-//            print(responseObject!)
-//            self.updateToken()
-//            
-//            print(self.controller.pos_row)
-//            print(self.controller.pos_col)
-//        }
-//    }
-//    
-//    @IBAction func moveDown(sender: AnyObject) {
-//        self.controller.mazeMove("south"){ responseObject, error in
-//            print(responseObject!)
-//            self.updateToken()
-//            
-//            print(self.controller.pos_row)
-//            print(self.controller.pos_col)
-//        }
-//    }
-//    
-//    @IBAction func moveRight(sender: AnyObject) {
-//        self.controller.mazeMove("east"){ responseObject, error in
-//            print(responseObject!)
-//            self.updateToken()
-//            
-//            print(self.controller.pos_row)
-//            print(self.controller.pos_col)
-//            
-//        }
-//    }
     
     func updateToken(){
         self.controller.tokenView.frame = CGRect(x: 50 + (100 * (self.controller.pos_col+1)), y: 200 + (100 * self.controller.pos_row), width: 100, height: 100)

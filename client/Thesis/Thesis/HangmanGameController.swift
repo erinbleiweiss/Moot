@@ -129,11 +129,14 @@ class HangmanGameController: GenericGameController {
         // Stage is complete, check for level completion
         let level_complete = self.checkLevelCompleted()
         if (!level_complete){
-            self.advanceToNextStage()
-            return 1 // Not final stage; Level not complete
+          self.advanceToNextStage()
+          self.upc = ""
+          self.targetWord = ""
+          self.clearTiles()
+          return 1 // Not final stage; Level not complete
         } else {
-            self.succeed() // Final stage; Level is complete
-            return 2
+          self.succeed() // Final stage; Level is complete
+          return 2
         }
         
     }

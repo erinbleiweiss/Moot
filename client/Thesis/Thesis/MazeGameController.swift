@@ -18,6 +18,8 @@ class MazeGameController: GenericGameController {
     var pos_row = 0
     var pos_col = 0
 
+    var maze_size = 5
+    
     var tokenView = MazeToken!()
 
     
@@ -34,9 +36,9 @@ class MazeGameController: GenericGameController {
      
      */
     
-    func generateMaze(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+    func generateMaze(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_maze"
-        Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["width": maze_size, "height": maze_size]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
             if let maze = json["maze"].string{
@@ -76,6 +78,20 @@ class MazeGameController: GenericGameController {
             
             
         }
+    }
+    
+    
+    /**
+        Called after each "maveMove" to determine whether the level has been completed.  Critera for winning: Token has made it to bottom right corner of maze.
+     
+        - Returns: (Bool) True or False indicating level completiion
+     */
+    func checkForSuccess() -> Bool {
+        if ((pos_row == maze_size-1) && (pos_col == maze_size-1)){
+            self.succeed()
+            return true
+        }
+        return false
     }
     
 

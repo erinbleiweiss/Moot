@@ -14,6 +14,8 @@ class MazeTile: UIView {
     var west: Bool?
     var south: Bool?
     var east: Bool?
+    var isStart = false
+    var isEnd = false
     
     var tileSize: Int!
 
@@ -51,7 +53,7 @@ class MazeTile: UIView {
 
         
         // Draw West
-        if (self.west!){
+        if (self.west! && !isStart){
             path.moveToPoint(CGPoint(x: 0, y: 0))
             path.addLineToPoint(CGPoint(x: 0, y: tileSize))
         }
@@ -65,10 +67,11 @@ class MazeTile: UIView {
 
         
         // Draw East
-        if (self.east!){
+        if (self.east! && !isEnd){
             path.moveToPoint(CGPoint(x: tileSize, y: 0))
             path.addLineToPoint(CGPoint(x: tileSize, y: tileSize))
         }
+
 
 
         UIColor.blueColor().setStroke()
@@ -76,5 +79,14 @@ class MazeTile: UIView {
         path.stroke()
         
     }
+    
+    func setStart(){
+        self.isStart = true
+    }
+    
+    func setEnd(){
+        self.isEnd = true
+    }
+    
 
 }

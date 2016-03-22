@@ -59,7 +59,7 @@ class HangmanLevelViewController: GenericLevelViewController {
         When the level is loaded, make an initial call to the controller to get a new word and setup the level tiles with a blank game
 
     */
-    func setUpLevel(){
+    override func setUpLevel(){
         // Initial load, no target word
         if (self.controller.targetWord == "") {
             // Generate target word
@@ -149,78 +149,17 @@ class HangmanLevelViewController: GenericLevelViewController {
                         self.displayStageCompletionView()
                     } else if (return_code == 2){
                         // Level is complete
+                        self.displayLevelCompletionView()
                     }
                     
                 }
-                //                if (self.controller.checkForSuccess()){
-                //                    self.advanceStage()
-                //                }
             }
         }
     }
     
 
     
-    /**
-        Transition to the "Stage completed" controller, then prepare for new level:
-            - Clear scanned UPC value and target word
-            - Set up level with new word
-     */
-    func displayStageCompletionView(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
-        self.presentViewController(successVC, animated: false, completion: nil)
-        self.controller.upc = ""
-        self.controller.targetWord = ""
-        self.controller.clearTiles()
-        self.setUpLevel()
-    }
-    
 
-
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    }
-    
-    
-//    func letterStyles(currentGame: String) -> NSMutableAttributedString{
-//        let fontAttributes = [
-//            NSFontAttributeName: UIFont(
-//                name: "Anonymous",
-//                size: 50.0
-//                )!,
-//            NSKernAttributeName: 15
-//        ]
-//        
-//        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
-//        
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.alignment = .Center
-//        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
-//        
-//        
-//        return returnString
-//        
-//    }
-//    
-//    func guessStyles(currentGame: String) -> NSMutableAttributedString{
-//        let fontAttributes = [
-//            NSFontAttributeName: UIFont(
-//                name: "Anonymous",
-//                size: 75.0
-//                )!
-//        ]
-//        
-//        let returnString: NSMutableAttributedString = NSMutableAttributedString(string: currentGame, attributes: fontAttributes)
-//        
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.alignment = .Center
-//        returnString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, returnString.length))
-//        
-//        
-//        return returnString
-//        
-//    }
 
 
     

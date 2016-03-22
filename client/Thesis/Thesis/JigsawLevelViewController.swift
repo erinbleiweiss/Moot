@@ -26,7 +26,8 @@ class JigsawLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.controller.level = 3
+
         let gameView = UIView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
