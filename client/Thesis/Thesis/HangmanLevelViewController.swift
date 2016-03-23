@@ -31,11 +31,6 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var tabItems = self.tabBarController!.tabBar.items
-        let newTabItem: UITabBarItem  = UITabBarItem(title: "New", image: nil, tag: 2)
-        tabItems?.append(newTabItem)
-        
         self.controller.level = 1
         self.setCameraButton(self.controller.level!)
 
@@ -53,11 +48,6 @@ class HangmanLevelViewController: GenericLevelViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.updateGame()
-        let allLevels = LevelManager.sharedInstance.listLevels()
-        for l in allLevels {
-            print(String(l.levelNumber) + " - locked: " + String(l.isLocked()))
-        }
-        
     }
     
     

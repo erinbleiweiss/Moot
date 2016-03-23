@@ -12,6 +12,8 @@ class MootViewController: UIViewController {
     var hostname = Networking.networkConfig.hostname
     var rest_prefix = Networking.networkConfig.rest_prefix
     
+    var displayCamera: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     

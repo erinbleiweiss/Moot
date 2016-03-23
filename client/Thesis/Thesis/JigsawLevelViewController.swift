@@ -25,6 +25,7 @@ class JigsawLevelViewController: GenericLevelViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 3
+        self.setCameraButton(self.controller.level!)
 
         let gameView = UIView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)

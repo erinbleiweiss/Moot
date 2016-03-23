@@ -14,21 +14,19 @@ class GenericLevelViewController: MootViewController {
     var scoreBox: ScoreBox?
     var levelBadge: LevelBadge?
     
+//    var tabBar: MootTabBarController
+    
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
         controller = GenericGameController()
         super.init(coder: aDecoder)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        let tabBar = self.tabBarController as! MootTabBarController
-        tabBar.addCameraButton()
-        tabBar.setNeedsStatusBarAppearanceUpdate()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.displayCamera = true
+
         let color: UIColor = UIColor(hexString: "#2ecc71")!
         self.view.backgroundColor = color
         // Do any additional setup after loading the view.
@@ -45,15 +43,29 @@ class GenericLevelViewController: MootViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
+        tabBar.doTheThing()
+    }
+    
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.levelBadge?.update()
     }
 
+    override func viewDidDisappear(animated: Bool) {
+//        let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
+//        tabBar.removeCameraButton()
+        super.viewDidDisappear(animated)
+    }
+    
+    
     
     func setCameraButton(levelNum: Int){
-        let tabBar = self.tabBarController as! MootTabBarController
         let level = LevelManager.sharedInstance.listLevels()[levelNum - 1]
         let vc = level.getCameraVC()
+        let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
         tabBar.setCameraVCForButton(vc)
     }
     

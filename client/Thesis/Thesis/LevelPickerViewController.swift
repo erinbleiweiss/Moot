@@ -45,22 +45,26 @@ class LevelPickerViewController: MootViewController, UIViewLoading {
     }
     
     var levelTiles: [LevelTile] = []
+    var tabBar: MootTabBarController?
     
     override func viewDidLoad() {
+        print("viewdidload")
         super.viewDidLoad()
-    
+        self.navigationController?.navigationBarHidden = true
+
         LevelManager.sharedInstance.unlockLevel(1)
         self.displayLevelTiles()
         
     }
-    
+
     override func viewWillAppear(animated: Bool) {
-        let tabBar = self.tabBarController as! MootTabBarController
+        let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
         tabBar.removeCameraButton()
     }
     
     override func viewDidAppear(animated: Bool) {
         self.updateTiles()
+
     }
     
     

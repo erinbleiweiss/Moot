@@ -31,7 +31,8 @@ class MazeLevelViewController: GenericLevelViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 2
-        
+        self.setCameraButton(self.controller.level!)
+
         // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)

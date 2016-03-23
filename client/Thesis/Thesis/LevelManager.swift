@@ -91,7 +91,6 @@ class LevelManager{
             let path = "mootLevel_\(idx).archive"
             let file = documentsDirectory().stringByAppendingPathComponent(path)
             if NSKeyedArchiver.archiveRootObject(level, toFile: file) {
-                print("Success writing level \(idx+1)!")
             } else {
                 print("Unable to write level \(idx+1)!")
             }
@@ -108,7 +107,6 @@ class LevelManager{
             let file = documentsDirectory().stringByAppendingPathComponent(path)
             if let level = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? Level {
                 self.userLevels.append(level)
-                print("Success reading level \(idx+1)")
             } else {
                 print("Could not read level \(idx+1)")
                 self.userLevels.append(self.defaultLevels[idx])

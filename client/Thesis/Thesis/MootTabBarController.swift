@@ -10,27 +10,32 @@ import UIKit
 
 public class MootTabBarController: UITabBarController {
 
-    var cameraButton: UIButton?
     var cameraVC: UIViewController?
+    var cameraButtonVisible: Bool = false
     
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-            // Insert empty tab item at center index.
-            self.insertEmptyTabItem("", atIndex: 1)
+        // Insert empty tab item at center index.
+        self.insertEmptyTabItem("", atIndex: 1)
         
+
+
+    }
+    
+    public func doTheThing(){
+        if !cameraButtonVisible{
             // Raise the center button with image
             let img = UIImage(named: "icon_camera")
             self.createRaisedButton(img, highlightImage: nil)
+            self.cameraButtonVisible = true
+        }
     }
-    
-    
 
     public func insertEmptyTabItem(title: String, atIndex: Int) {
         let vc = UIViewController()
@@ -43,7 +48,9 @@ public class MootTabBarController: UITabBarController {
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
         if let buttonImage = buttonImage {
+            print("creating button")
             let button = UIButton(type: UIButtonType.Custom)
+            button.tag = 1337
             button.autoresizingMask = [UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin]
             
             button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height)
@@ -63,7 +70,7 @@ public class MootTabBarController: UITabBarController {
             }
             
             button.addTarget(self, action: "onRaisedButton:", forControlEvents: UIControlEvents.TouchUpInside)
-            self.cameraButton = button
+            self.view.addSubview(button)
         }
     }
     
@@ -78,14 +85,15 @@ public class MootTabBarController: UITabBarController {
     }
     
 
-    func addCameraButton(){
-        self.view.addSubview(self.cameraButton!)
-        self.view.setNeedsDisplay()
-    }
-    
     func removeCameraButton(){
-        self.cameraButton!.removeFromSuperview()
-        self.view.setNeedsDisplay()
+        if let theButton = self.view.viewWithTag(1337) as? UIButton {
+            theButton.removeFromSuperview()
+            self.view.setNeedsDisplay()
+            self.cameraButtonVisible = false
+        } else {
+            print("no button for tag")
+        }
+        
     }
     
     func setCameraVCForButton(vc: UIViewController){
