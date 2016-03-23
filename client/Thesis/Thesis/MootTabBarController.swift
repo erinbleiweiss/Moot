@@ -43,7 +43,7 @@ public class MootTabBarController: UITabBarController {
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
         if let buttonImage = buttonImage {
             print("creating button")
-            let button = UIButton(type: UIButtonType.Custom)
+            let button = CameraTabButton(type: UIButtonType.Custom)
             button.tag = 1337
             button.autoresizingMask = [UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin]
             
@@ -64,6 +64,9 @@ public class MootTabBarController: UITabBarController {
             }
             
             button.addTarget(self, action: "onRaisedButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            button.animation = "squeezeUp"
+            button.force = 0.5
+            button.animate()
             self.view.addSubview(button)
         }
     }
@@ -89,8 +92,12 @@ public class MootTabBarController: UITabBarController {
     }
     
     func removeCameraButton(){
-        if let theButton = self.view.viewWithTag(1337) as? UIButton {
-            theButton.removeFromSuperview()
+        if let button = self.view.viewWithTag(1337) as? CameraTabButton {
+            button.animation = "squeezeUp"
+            button.force = 0.1
+            button.animateToNext(){
+                button.removeFromSuperview()
+            }
             self.view.setNeedsDisplay()
             self.cameraButtonVisible = false
         } else {
@@ -103,6 +110,26 @@ public class MootTabBarController: UITabBarController {
         self.cameraVC = vc
     }
     
+    /**
+     Wrapper around Apple's dispatch_after() function in order to execute a code
+     block after a specified amount of time
+     
+     - Parameters:
+     - delay: (Double) time in seconds
+     
+     - Returns: none
+     
+     */
+    func delay(delay: Double, closure: ()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            closure
+        )
+    }
     
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

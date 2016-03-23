@@ -43,6 +43,7 @@
 		80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */; };
 		80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */; };
 		80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */; };
+		80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */; };
 		80CBB5BD1C79926400D705A7 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BC1C79926400D705A7 /* ScoreManager.swift */; };
 		80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BE1C79952900D705A7 /* AchievementManager.swift */; };
 		80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */; };
@@ -124,6 +125,7 @@
 		80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewControllerSwift.swift; sourceTree = "<group>"; };
 		80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageCompletedViewController.swift; sourceTree = "<group>"; };
 		80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewController.swift; sourceTree = "<group>"; };
+		80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraTabButton.swift; sourceTree = "<group>"; };
 		80CBB5BC1C79926400D705A7 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		80CBB5BE1C79952900D705A7 /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
 		80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
 				805BCC131C9D28F1008B4536 /* CompassView.swift */,
 				804E11E61C9E22F800F57992 /* QCMethod.swift */,
+				80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */,
 				80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */,
 				80FD13871C73D2A60085BB50 /* LevelTile.swift in Sources */,
+				80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */,
 				80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */,
 				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
 				80D69EC31CA1E9300076209C /* MootTabBarController.swift in Sources */,
