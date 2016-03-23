@@ -10,6 +10,7 @@ import UIKit
 
 public class MootTabBarController: UITabBarController {
 
+    var setupEmptyTab: Bool = false
     var cameraVC: UIViewController?
     var cameraButtonVisible: Bool = false
     
@@ -21,21 +22,14 @@ public class MootTabBarController: UITabBarController {
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Insert empty tab item at center index.
-        self.insertEmptyTabItem("", atIndex: 1)
-        
-
-
-    }
-    
-    public func doTheThing(){
-        if !cameraButtonVisible{
-            // Raise the center button with image
-            let img = UIImage(named: "icon_camera")
-            self.createRaisedButton(img, highlightImage: nil)
-            self.cameraButtonVisible = true
+        if !setupEmptyTab{
+            // Insert empty tab item at center index.
+            self.insertEmptyTabItem("", atIndex: 1)
+            self.setupEmptyTab = true
         }
     }
+    
+
 
     public func insertEmptyTabItem(title: String, atIndex: Int) {
         let vc = UIViewController()
@@ -85,6 +79,15 @@ public class MootTabBarController: UITabBarController {
     }
     
 
+    public func addCameraButton(){
+        if !cameraButtonVisible{
+            // Raise the center button with image
+            let img = UIImage(named: "icon_camera")
+            self.createRaisedButton(img, highlightImage: nil)
+            self.cameraButtonVisible = true
+        }
+    }
+    
     func removeCameraButton(){
         if let theButton = self.view.viewWithTag(1337) as? UIButton {
             theButton.removeFromSuperview()

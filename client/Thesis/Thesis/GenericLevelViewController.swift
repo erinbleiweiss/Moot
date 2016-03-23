@@ -46,7 +46,7 @@ class GenericLevelViewController: MootViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
-        tabBar.doTheThing()
+        tabBar.addCameraButton()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -54,13 +54,6 @@ class GenericLevelViewController: MootViewController {
         self.levelBadge?.update()
     }
 
-    override func viewDidDisappear(animated: Bool) {
-//        let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
-//        tabBar.removeCameraButton()
-        super.viewDidDisappear(animated)
-    }
-    
-    
     
     func setCameraButton(levelNum: Int){
         let level = LevelManager.sharedInstance.listLevels()[levelNum - 1]
