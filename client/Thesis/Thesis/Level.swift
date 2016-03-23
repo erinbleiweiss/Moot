@@ -91,13 +91,10 @@ class Level: NSObject, NSCoding {
         
     }
     
-    func getCameraVC() -> UIViewController{
+    func getCameraVC() -> String {
         var viewControllerType = ""
         viewControllerType = self.VC + "CameraRootVC"
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as UIViewController
-        return newVC
+        return viewControllerType
     }
     
     func getLevelNum() -> Int{

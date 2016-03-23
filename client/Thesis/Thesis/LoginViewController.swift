@@ -36,10 +36,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     @IBAction func loginButtonPressed(sender: AnyObject) {
         self.tryLogin(){ responseObject, error in
             if responseObject!["status"] == "success"{
-                
-//                let defaults = NSUserDefaults.standardUserDefaults()
-//                defaults.setObject(username, forKey: "username")
-                
+
                 let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
                 let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
                 self.presentViewController(revealViewController, animated: true, completion: nil)

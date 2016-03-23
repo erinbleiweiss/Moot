@@ -11,7 +11,7 @@ import UIKit
 public class MootTabBarController: UITabBarController {
 
     var setupEmptyTab: Bool = false
-    var cameraVC: UIViewController?
+    var cameraVC: String?
     var cameraButtonVisible: Bool = false
     
     override public func viewDidLoad() {
@@ -45,7 +45,6 @@ public class MootTabBarController: UITabBarController {
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
         if let buttonImage = buttonImage {
-            print("creating button")
             let button = CameraTabButton(type: UIButtonType.Custom)
             button.tag = 1337
             button.autoresizingMask = [UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin]
@@ -75,8 +74,9 @@ public class MootTabBarController: UITabBarController {
     }
     
     public func onRaisedButton(sender: UIButton!) {
-            
-        self.selectedViewController?.presentViewController(self.cameraVC!, animated: true, completion: { () -> Void in
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let modalVC = storyboard.instantiateViewControllerWithIdentifier(self.cameraVC!) as UIViewController
+        self.selectedViewController?.presentViewController(modalVC, animated: true, completion: { () -> Void in
             print("")
         })
         
@@ -109,7 +109,7 @@ public class MootTabBarController: UITabBarController {
         
     }
     
-    func setCameraVCForButton(vc: UIViewController){
+    func setCameraVCForButton(vc: String){
         self.cameraVC = vc
     }
     
