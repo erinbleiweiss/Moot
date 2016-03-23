@@ -37,6 +37,8 @@ class HangmanLevelViewController: GenericLevelViewController {
         tabItems?.append(newTabItem)
         
         self.controller.level = 1
+        self.setCameraButton(self.controller.level!)
+
 
         // Add one layer for all game elements (-200 accounts for height of top bar)
         let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))

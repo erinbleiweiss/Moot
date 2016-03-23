@@ -42,7 +42,7 @@
         <!--Navigation Controller-->
         <scene sceneID="48C-Bn-86n">
             <objects>
-                <navigationController id="Tgb-Rn-ozr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HangmanCameraRootVC" id="Tgb-Rn-ozr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aKO-AI-A1A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -146,7 +146,7 @@
         <!--Navigation Controller-->
         <scene sceneID="XAE-JQ-y1Q">
             <objects>
-                <navigationController id="8eb-Af-hHg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MazeCameraRootVC" id="8eb-Af-hHg" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9wK-OR-LWz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -162,7 +162,7 @@
         <!--Maze Camera View Controller-->
         <scene sceneID="LZD-dm-P7O">
             <objects>
-                <viewController id="jOD-4f-iKs" customClass="MazeCameraViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MazeCamera" id="jOD-4f-iKs" customClass="MazeCameraViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ei0-Kd-Hd6"/>
                         <viewControllerLayoutGuide type="bottom" id="ZD4-8I-NPF"/>
@@ -188,7 +188,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zot-HT-Szs">
             <objects>
-                <navigationController id="vvG-nh-eYh" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="JigsawCameraRootVC" id="vvG-nh-eYh" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r3Q-Ns-Mgd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -204,7 +204,7 @@
         <!--Jigsaw Camera View Controller-->
         <scene sceneID="pIG-vp-vI6">
             <objects>
-                <viewController id="ah2-6R-rKC" customClass="JigsawCameraViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JigsawCamera" id="ah2-6R-rKC" customClass="JigsawCameraViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lhk-cE-Anp"/>
                         <viewControllerLayoutGuide type="bottom" id="RXV-a8-9bJ"/>
@@ -230,7 +230,7 @@
         <!--Hangman Camera View Controller-->
         <scene sceneID="rU6-MS-vO6">
             <objects>
-                <viewController id="oQd-xS-Y4W" customClass="HangmanCameraViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HangmanCamera" id="oQd-xS-Y4W" customClass="HangmanCameraViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TcP-Bz-FBd"/>
                         <viewControllerLayoutGuide type="bottom" id="GsN-la-RM4"/>

@@ -43,13 +43,21 @@ class GenericLevelViewController: MootViewController {
         self.levelBadge!.backgroundColor = UIColor(white: 1, alpha: 1)
         self.view.addSubview(levelBadge!)
         
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         self.levelBadge?.update()
     }
 
+    
+    func setCameraButton(levelNum: Int){
+        let tabBar = self.tabBarController as! MootTabBarController
+        let level = LevelManager.sharedInstance.listLevels()[levelNum - 1]
+        let vc = level.getCameraVC()
+        tabBar.setCameraVCForButton(vc)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,6 +67,7 @@ class GenericLevelViewController: MootViewController {
     func provideVCClass() -> UIViewController.Type {
         return GenericLevelViewController.self
     }
+    
     
     /**
         This method should be overridden in subclasses to perform any "reset" actions if necessary

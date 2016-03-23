@@ -14,8 +14,8 @@ import UIKit
  
     Class Attributes:
         - levelNumber: (Int) Each level should have a unique level number, which defines the order that levels should be played
-        - rootVC: (String) corresponds to an identifier on the storyboard that identifies the level's root view controller
-        - locked: (Boolean) Indicates whether or not the level is unlocked, and therefore playable.  Default value is true.
+        - vc: (String) a simple string that identifies the level's associated view controllers (LevelVC and CameraVC) on the storyboard.  Note that the storyboard identifiers must match.  Ex: if 'vc' is "Hangman," the corresponding storyboard identifiers should be HangmanVC and HangmanCamera
+         - locked: (Boolean) Indicates whether or not the level is unlocked, and therefore playable.  Default value is true.
         - currentStage: (Int) If the level has multiple stages, indicates the highest unlocked stage
         - numStages: (Int) Indicates the number of stages a level has.  Default value (minimum) is 1.
  
@@ -83,12 +83,21 @@ class Level: NSObject, NSCoding {
     */
     func getVC() -> UIViewController{
         var viewControllerType = ""
-        viewControllerType = self.VC
+        viewControllerType = self.VC + "VC"
 
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as UIViewController
         return newVC
         
+    }
+    
+    func getCameraVC() -> UIViewController{
+        var viewControllerType = ""
+        viewControllerType = self.VC + "CameraRootVC"
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let newVC = storyboard.instantiateViewControllerWithIdentifier(viewControllerType) as UIViewController
+        return newVC
     }
     
     func getLevelNum() -> Int{

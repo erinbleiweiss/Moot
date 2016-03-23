@@ -11,6 +11,7 @@ import UIKit
 public class MootTabBarController: UITabBarController {
 
     var cameraButton: UIButton?
+    var cameraVC: UIViewController?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +68,13 @@ public class MootTabBarController: UITabBarController {
     }
     
     public func onRaisedButton(sender: UIButton!) {
+            
+        self.selectedViewController?.presentViewController(self.cameraVC!, animated: true, completion: { () -> Void in
+            print("")
+        })
         
+    
+
     }
     
 
@@ -79,6 +86,10 @@ public class MootTabBarController: UITabBarController {
     func removeCameraButton(){
         self.cameraButton!.removeFromSuperview()
         self.view.setNeedsDisplay()
+    }
+    
+    func setCameraVCForButton(vc: UIViewController){
+        self.cameraVC = vc
     }
     
     
