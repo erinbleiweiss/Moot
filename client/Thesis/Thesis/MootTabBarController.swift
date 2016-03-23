@@ -16,6 +16,9 @@ public class MootTabBarController: UITabBarController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+        let color = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
+        UITabBar.appearance().barTintColor = color
 
     }
     
@@ -85,7 +88,7 @@ public class MootTabBarController: UITabBarController {
     public func addCameraButton(){
         if !cameraButtonVisible{
             // Raise the center button with image
-            let img = UIImage(named: "icon_camera")
+            let img = UIImage(named: "camerabutton")
             self.createRaisedButton(img, highlightImage: nil)
             self.cameraButtonVisible = true
         }

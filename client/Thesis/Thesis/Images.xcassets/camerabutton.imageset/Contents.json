@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_camera.png",
+      "filename" : "camerabutton.png",
       "scale" : "1x"
     },
     {
