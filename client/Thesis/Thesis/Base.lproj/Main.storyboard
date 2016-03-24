@@ -40,7 +40,7 @@
                     <navigationItem key="navigationItem" id="zUy-Kr-iyx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="zOQ-gK-jhl" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="zOQ-gK-jhl" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1539" y="935"/>
         </scene>
@@ -105,7 +105,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GP3-hy-jiC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="anj-Q5-1Ap" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="anj-Q5-1Ap" customClass="RAMFlipLeftTransitionItemAniamtions" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1551" y="1669"/>
         </scene>
@@ -154,7 +154,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJe-nj-7AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="p3O-xP-DR0" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="p3O-xP-DR0" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1551" y="2443"/>
         </scene>
@@ -340,7 +340,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXm-rQ-VKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="sAx-AV-mjT" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="sAx-AV-mjT" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1539" y="238"/>
         </scene>
@@ -420,7 +420,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryp-nO-FEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Ia4-KO-jBd" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="Ia4-KO-jBd" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1539" y="-480"/>
         </scene>
@@ -444,7 +444,7 @@
                                         <rect key="frame" x="0.0" y="1" width="600" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zT8-d6-1al" id="TwV-jL-KEb">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uRE-d8-HUN">
@@ -499,7 +499,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbz-w0-muU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="P0Q-wI-KHL" customClass="RAMRightRotationAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="P0Q-wI-KHL" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="2244" y="-480"/>
         </scene>
