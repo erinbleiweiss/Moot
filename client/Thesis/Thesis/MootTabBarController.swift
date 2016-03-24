@@ -54,7 +54,8 @@ public class MootTabBarController: UITabBarController {
             button.tag = 1337
             button.autoresizingMask = [UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin]
             
-            button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height)
+            let buttonSize = self.tabBar.frame.height * 1.5
+            button.frame = CGRectMake(0.0, 0.0, buttonSize, buttonSize)
 //            button.setBackgroundImage(buttonImage, forState: UIControlState.Normal)
 //            button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
             
@@ -103,6 +104,9 @@ public class MootTabBarController: UITabBarController {
     
     func removeCameraButton(){
         if let button = self.view.viewWithTag(1337) as? CameraTabButton {
+            button.animation = "fadeOut"
+            button.duration = 0.5
+            button.animate()
             button.animation = "squeezeUp"
             button.force = 0.1
             button.animateToNext(){

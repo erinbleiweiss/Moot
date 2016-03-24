@@ -13,7 +13,8 @@ class CameraTabButton: SpringButton {
 
     override func drawRect(rect: CGRect) {
         // Drawing code
-        
+        self.layer.contentsScale = UIScreen.mainScreen().scale
+
         let frame = CGRectMake(2.0, 2.0, self.bounds.width - 4.0, self.bounds.height - 4.0)
         let path = UIBezierPath(ovalInRect: frame)
         UIColor.whiteColor().setFill()
@@ -29,12 +30,13 @@ class CameraTabButton: SpringButton {
         CGContextClip(context)
         
         let colors = [
-            UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 9.0).CGColor,
+            UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).CGColor,
             UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0).CGColor,
         ]
         
         let gradient = CGGradientCreateWithColors(colorSpace, colors, [0.0, 0.65])
         CGContextDrawLinearGradient(context, gradient, CGPoint.zero, CGPoint(x:0, y:self.bounds.height), CGGradientDrawingOptions())
+        
         
     }
 
