@@ -17,8 +17,8 @@ public class MootTabBarController: UITabBarController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        // turn off top border
-        self.tabBar.barStyle = UIBarStyle.Black
+//        // turn off top border
+//        self.tabBar.barStyle = UIBarStyle.Black
         self.tabBar.translucent = false
 
 //        let color = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
