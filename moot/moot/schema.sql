@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS gameuser cascade;
 DROP TABLE IF EXISTS achievement cascade;
 DROP TABLE IF EXISTS user_achievement cascade;
 DROP TABLE IF EXISTS user_score cascade;
+DROP TABLE IF EXISTS points_earned cascade;
 DROP TABLE IF EXISTS scanned_product cascade;
 
 
@@ -29,6 +30,12 @@ CREATE TABLE user_achievement (
 CREATE TABLE user_score (
 	user_id	varchar(80) UNIQUE references gameuser,
 	score_value	INTEGER NOT NULL
+);
+
+CREATE TABLE points_earned (
+	user_id varchar(80) references gameuser,
+	score_value INTEGER NOT NULL,
+	date timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE scanned_product (
