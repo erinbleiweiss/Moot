@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Levels-->
         <scene sceneID="2Pe-vE-o9c">
             <objects>
                 <viewController storyboardIdentifier="HangmanVC" id="s2J-Mq-6rJ" customClass="HangmanLevelViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,10 +32,15 @@
                             <constraint firstItem="czR-Ba-T5l" firstAttribute="centerX" secondItem="zNH-BF-KeF" secondAttribute="centerX" id="vsU-0J-h0a"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ZA5-ur-ffb"/>
+                    <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="ZA5-ur-ffb" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="zOQ-gK-jhl" id="c1q-aP-4Zu"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="zUy-Kr-iyx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="zOQ-gK-jhl" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1539" y="935"/>
         </scene>
@@ -55,7 +60,7 @@
             </objects>
             <point key="canvasLocation" x="2244" y="935"/>
         </scene>
-        <!--Item-->
+        <!--Levels-->
         <scene sceneID="Rah-pw-x0J">
             <objects>
                 <viewController storyboardIdentifier="MazeVC" id="cjl-pC-x5L" customClass="MazeLevelViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,17 +94,22 @@
                             <constraint firstItem="eGh-bg-gmA" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="srx-gx-wjV"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="2ua-p3-73c"/>
+                    <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="2ua-p3-73c" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="anj-Q5-1Ap" id="J2e-2A-pXT"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="Ad5-PM-k6W"/>
                     <connections>
                         <outlet property="colorLabel" destination="nVR-8U-b8V" id="DlZ-Gp-rwO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GP3-hy-jiC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="anj-Q5-1Ap" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1551" y="1669"/>
         </scene>
-        <!--Item-->
+        <!--Levels-->
         <scene sceneID="KaS-BI-lkE">
             <objects>
                 <viewController storyboardIdentifier="JigsawVC" id="lXw-5a-cOg" customClass="JigsawLevelViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
@@ -133,13 +143,18 @@
                             <constraint firstItem="i5U-sq-BGJ" firstAttribute="top" secondItem="z4x-jI-bR0" secondAttribute="bottom" constant="20" id="wDX-QQ-Z5l"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="sjm-5S-YrM"/>
+                    <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="sjm-5S-YrM" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="p3O-xP-DR0" id="LQu-k0-EVv"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="zKX-Ja-hYc"/>
                     <connections>
                         <outlet property="successLabel" destination="z4x-jI-bR0" id="VvN-dN-yqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJe-nj-7AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="p3O-xP-DR0" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1551" y="2443"/>
         </scene>
@@ -286,7 +301,7 @@
             </objects>
             <point key="canvasLocation" x="739" y="-1195"/>
         </scene>
-        <!--Level Picker View Controller-->
+        <!--Levels-->
         <scene sceneID="mTs-UA-ous">
             <objects>
                 <viewController id="Tzp-To-mNT" customClass="LevelPickerViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
@@ -312,7 +327,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="17f-7a-KCK" secondAttribute="trailing" constant="30" id="U9U-iR-pTC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="jIw-aF-5Fe"/>
+                    <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="jIw-aF-5Fe" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="sAx-AV-mjT" id="CUS-Bg-hye"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="lig-hV-zeV"/>
                     <connections>
                         <segue destination="s2J-Mq-6rJ" kind="show" id="C4G-Tu-ynu"/>
@@ -321,6 +340,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXm-rQ-VKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="sAx-AV-mjT" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1539" y="238"/>
         </scene>
@@ -382,11 +402,15 @@
             </objects>
             <point key="canvasLocation" x="3687" y="-703"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Levels-->
         <scene sceneID="Oct-LH-Jpz">
             <objects>
                 <navigationController id="cHU-Pl-GBJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="YNz-gQ-S2B"/>
+                    <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="YNz-gQ-S2B" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="Ia4-KO-jBd" id="LQh-6V-Gf4"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2ig-Np-glM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -396,10 +420,11 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryp-nO-FEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Ia4-KO-jBd" customClass="RAMLeftRotationAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1539" y="-480"/>
         </scene>
-        <!--Achievement View Controller-->
+        <!--Achievements-->
         <scene sceneID="aSs-ob-cAS">
             <objects>
                 <viewController id="Hp3-uy-9zI" customClass="AchievementViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
@@ -463,13 +488,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="mG7-UB-rz0" secondAttribute="trailing" constant="-20" id="XMq-9z-jBO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="4pO-Zz-6ap"/>
+                    <tabBarItem key="tabBarItem" title="Achievements" image="medal-1" id="4pO-Zz-6ap" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="P0Q-wI-KHL" id="qno-fJ-Fcd"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="qUy-2y-Q1e"/>
                     <connections>
                         <outlet property="tableView" destination="mG7-UB-rz0" id="lON-EM-PoU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbz-w0-muU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="P0Q-wI-KHL" customClass="RAMRightRotationAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="2244" y="-480"/>
         </scene>
@@ -567,6 +597,21 @@
             </objects>
             <point key="canvasLocation" x="-149" y="-850"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="b5R-zU-jys">
+            <objects>
+                <viewController id="4YF-YA-p7k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="blank" id="DKF-qJ-xFl" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="6ii-EN-n2h" id="ukv-gd-796"/>
+                        </connections>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Br-kK-O6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="6ii-EN-n2h" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController"/>
+            </objects>
+            <point key="canvasLocation" x="787" y="-447"/>
+        </scene>
         <!--Moot Tab Bar Controller-->
         <scene sceneID="5xg-81-A5z">
             <objects>
@@ -578,6 +623,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="cHU-Pl-GBJ" kind="relationship" relationship="viewControllers" id="e3l-KY-avH"/>
+                        <segue destination="4YF-YA-p7k" kind="relationship" relationship="viewControllers" id="goN-W5-Sgn"/>
                         <segue destination="Hp3-uy-9zI" kind="relationship" relationship="viewControllers" id="oEg-0s-RzA"/>
                     </connections>
                 </tabBarController>
@@ -586,4 +632,9 @@
             <point key="canvasLocation" x="787" y="212"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="blank" width="25" height="25"/>
+        <image name="categorize" width="25" height="25"/>
+        <image name="medal-1" width="25" height="25"/>
+    </resources>
 </document>

@@ -188,6 +188,7 @@
 		80B0EABD1BE702CE00639ADC /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
 				80B0EABE1BE7030800639ADC /* Anonymous.ttf */,
 			);
 			name = Assets;
@@ -196,7 +197,6 @@
 		80B6E4921C963344002761D8 /* NMPopUpView */ = {
 			isa = PBXGroup;
 			children = (
-				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
 				80B6E49D1C96338A002761D8 /* PopUpViewController_iPad.xib */,
 				80B6E49E1C96338A002761D8 /* PopUpViewController_iPhone6.xib */,
 				80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */,

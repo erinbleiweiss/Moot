@@ -7,16 +7,16 @@
 //
 
 import UIKit
+import RAMAnimatedTabBarController
 
-public class MootTabBarController: UITabBarController {
+public class MootTabBarController: RAMAnimatedTabBarController {
 
-    var setupEmptyTab: Bool = false
     var cameraVC: String?
     var cameraButtonVisible: Bool = false
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+
 //        // turn off top border
 //        self.tabBar.barStyle = UIBarStyle.Black
         self.tabBar.translucent = false
@@ -30,22 +30,12 @@ public class MootTabBarController: UITabBarController {
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !setupEmptyTab{
-            // Insert empty tab item at center index.
-            self.insertEmptyTabItem("", atIndex: 1)
-            self.setupEmptyTab = true
+        // Disable middle tab bar item
+        if  let arrayOfTabBarItems = self.tabBar.items as! AnyObject as? NSArray,tabBarItem = arrayOfTabBarItems[1] as? UITabBarItem {
+            tabBarItem.enabled = false
         }
     }
-    
 
-
-    public func insertEmptyTabItem(title: String, atIndex: Int) {
-        let vc = UIViewController()
-        vc.tabBarItem = UITabBarItem(title: title, image: nil, tag: 0)
-        vc.tabBarItem.enabled = false
-        
-        self.viewControllers?.insert(vc, atIndex: atIndex)
-    }
     
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
