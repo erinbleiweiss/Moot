@@ -46,8 +46,12 @@ public class MootTabBarController: RAMAnimatedTabBarController {
             
             let buttonSize = self.tabBar.frame.height * 1.5
             button.frame = CGRectMake(0.0, 0.0, buttonSize, buttonSize)
-//            button.setBackgroundImage(buttonImage, forState: UIControlState.Normal)
-//            button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
+
+
+            let imageOffsetY: CGFloat = buttonSize * 0.05
+            let imageFrame = CGRectMake(0, -imageOffsetY, buttonSize, buttonSize)
+            button.setImage(buttonImage, inFrame: imageFrame, forState: UIControlState.Normal)
+            button.setImage(buttonImage, inFrame: imageFrame, forState: UIControlState.Highlighted)
             
             let heightDifference = buttonImage.size.height - self.tabBar.frame.size.height
             
@@ -86,7 +90,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     public func addCameraButton(){
         if !cameraButtonVisible{
             // Raise the center button with image
-            let img = UIImage(named: "camerabutton")
+            let img = UIImage(named: "camera")
             self.createRaisedButton(img, highlightImage: nil)
             self.cameraButtonVisible = true
         }

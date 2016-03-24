@@ -9,8 +9,27 @@
 import UIKit
 import Spring
 
+// This extension allows the background image of a button to be set within its own frame.  This creates the ability to have a button image that is smaller than the original frame of the button
+extension CameraTabButton{
+    
+    func setImage(image: UIImage?, inFrame frame: CGRect?, forState state: UIControlState){
+        self.setImage(image, forState: state)
+        
+        if(frame != nil){
+            self.imageEdgeInsets = UIEdgeInsets(
+                top: frame!.minY - self.frame.minY,
+                left: frame!.minX - self.frame.minX,
+                bottom: self.frame.maxY - frame!.maxY,
+                right: self.frame.maxX - frame!.maxX
+            )
+        }
+    }
+    
+}
+
 class CameraTabButton: SpringButton {
 
+    
     override func drawRect(rect: CGRect) {
         // Drawing code
         self.layer.contentsScale = UIScreen.mainScreen().scale
