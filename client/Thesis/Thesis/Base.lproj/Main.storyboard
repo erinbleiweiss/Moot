@@ -441,10 +441,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
+                        <outlet property="delegate" destination="8YA-2V-gxr" id="d3s-jm-eWb"/>
                         <segue destination="Tzp-To-mNT" kind="relationship" relationship="rootViewController" id="2Xn-Mw-6nK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryp-nO-FEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="8YA-2V-gxr" customClass="FlipTransition" customModule="Moot" customModuleProvider="target"/>
                 <customObject id="Ia4-KO-jBd" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1539" y="-480"/>
@@ -469,7 +471,7 @@
                                         <rect key="frame" x="0.0" y="1" width="600" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zT8-d6-1al" id="TwV-jL-KEb">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uRE-d8-HUN">

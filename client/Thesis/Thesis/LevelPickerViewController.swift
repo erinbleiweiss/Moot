@@ -14,6 +14,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     
     @IBOutlet weak var levelCollectionView: UICollectionView!
     var tabBar: MootTabBarController?
+
     
     override func viewDidLoad() {
         print("viewdidload")
@@ -64,7 +65,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         Setup size of collection cells
      */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: 300, height: 300)
     }
     
 
@@ -76,7 +77,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         if !level.isLocked(){
             self.navigationController?.pushViewController(level.getVC(), animated: true)
         }
-
+        
     }
 
 

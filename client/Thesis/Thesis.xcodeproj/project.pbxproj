@@ -49,6 +49,7 @@
 		80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BE1C79952900D705A7 /* AchievementManager.swift */; };
 		80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */; };
 		80D69EC31CA1E9300076209C /* MootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D69EC21CA1E9300076209C /* MootTabBarController.swift */; };
+		80E05B2A1CA5040200EE96B3 /* FlipTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E05B291CA5040200EE96B3 /* FlipTransition.swift */; };
 		80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB858E1C83ABC700AC37A7 /* MootViewController.swift */; };
 		80EB85931C8462C700AC37A7 /* AchievementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */; };
 		80EB85951C8479F400AC37A7 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB85941C8479F400AC37A7 /* Achievement.swift */; };
@@ -131,6 +132,7 @@
 		80CBB5BE1C79952900D705A7 /* AchievementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
 		80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		80D69EC21CA1E9300076209C /* MootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootTabBarController.swift; sourceTree = "<group>"; };
+		80E05B291CA5040200EE96B3 /* FlipTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipTransition.swift; sourceTree = "<group>"; };
 		80EB858E1C83ABC700AC37A7 /* MootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootViewController.swift; sourceTree = "<group>"; };
 		80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementTableViewCell.swift; sourceTree = "<group>"; };
 		80EB85941C8479F400AC37A7 /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
@@ -183,6 +185,15 @@
 				3D0E432790B86DDDF9FF2648 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80A5B5B01CA500280074B48D /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				804E11E61C9E22F800F57992 /* QCMethod.swift */,
+				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		80B0EABD1BE702CE00639ADC /* Assets */ = {
@@ -288,7 +299,6 @@
 				804927861C97BAD200410B1A /* LevelBadge.swift */,
 				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
 				805BCC131C9D28F1008B4536 /* CompassView.swift */,
-				804E11E61C9E22F800F57992 /* QCMethod.swift */,
 				80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */,
 			);
 			name = Models;
@@ -339,6 +349,7 @@
 		80F0DD541C5EEDEE002A8037 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				80A5B5B01CA500280074B48D /* Animations */,
 				80F0DD501C5EE90D002A8037 /* Models */,
 				80F0DD511C5EE91B002A8037 /* Views */,
 				80F0DD521C5EE91F002A8037 /* Controllers */,
@@ -555,6 +566,7 @@
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
 				80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */,
 				8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */,
+				80E05B2A1CA5040200EE96B3 /* FlipTransition.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,
 				80EB85931C8462C700AC37A7 /* AchievementTableViewCell.swift in Sources */,
 			);
