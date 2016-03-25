@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LevelPickerViewController: MootViewController, UICollectionViewDataSource, UICollectionViewDelegate, FlipIconViewController {
+class LevelPickerViewController: MootViewController, UICollectionViewDataSource, UICollectionViewDelegate, FlipTransitionProtocol, FlipTransitionCVProtocol {
     @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
     }
     
@@ -80,8 +80,12 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         
     }
 
+    func transitionCollectionView() -> UICollectionView!{
+        return self.levelCollectionView
+    }
+    
 
-    func flipIconColoredViewForTransition(transition: FlipTransition) -> UIView? {
+    func flipViewForTransition() -> UIView? {
         if let indexPath = selectedIndexPath {
             let cell = levelCollectionView.cellForItemAtIndexPath(indexPath) as! LevelCell
             return cell.bgView

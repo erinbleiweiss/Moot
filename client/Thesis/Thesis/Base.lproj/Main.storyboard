@@ -105,7 +105,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GP3-hy-jiC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="anj-Q5-1Ap" customClass="RAMFlipLeftTransitionItemAniamtions" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="anj-Q5-1Ap" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1551" y="1669"/>
         </scene>

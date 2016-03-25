@@ -32,6 +32,7 @@
 		809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866631BE9DC6400B3FE9D /* MazeToken.swift */; };
 		80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5B5AC1CA4ED320074B48D /* LevelCell.swift */; };
 		80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */; };
+		80AE504C1CA5EFA500050457 /* CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE504B1CA5EFA500050457 /* CollectionViewExtension.swift */; };
 		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
 		80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195001BF5645A00B5C3CE /* HangmanTile.swift */; };
 		80B195031BF5685F00B5C3CE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195021BF5685F00B5C3CE /* Config.swift */; };
@@ -115,6 +116,7 @@
 		809866631BE9DC6400B3FE9D /* MazeToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeToken.swift; sourceTree = "<group>"; };
 		80A5B5AC1CA4ED320074B48D /* LevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeGameController.swift; sourceTree = "<group>"; };
+		80AE504B1CA5EFA500050457 /* CollectionViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExtension.swift; sourceTree = "<group>"; };
 		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
 		80B195001BF5645A00B5C3CE /* HangmanTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanTile.swift; sourceTree = "<group>"; };
 		80B195021BF5685F00B5C3CE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -196,6 +198,32 @@
 			name = Animations;
 			sourceTree = "<group>";
 		};
+		80AE504A1CA5EF6B00050457 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				80AE504B1CA5EFA500050457 /* CollectionViewExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		80AE504D1CA5F05200050457 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */,
+				80A5B5AC1CA4ED320074B48D /* LevelCell.swift */,
+				80B195001BF5645A00B5C3CE /* HangmanTile.swift */,
+				809866611BE9BE9C00B3FE9D /* MazeTile.swift */,
+				809866631BE9DC6400B3FE9D /* MazeToken.swift */,
+				804EF55A1BEFEDA00091ED22 /* QRTile.swift */,
+				804EF55C1BF001580091ED22 /* QRTileTarget.swift */,
+				805BCC131C9D28F1008B4536 /* CompassView.swift */,
+				80685A041C7A7873000AAB9E /* ScoreBox.swift */,
+				804927861C97BAD200410B1A /* LevelBadge.swift */,
+				80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */,
+			);
+			name = Subviews;
+			sourceTree = "<group>";
+		};
 		80B0EABD1BE702CE00639ADC /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +274,8 @@
 				80ED1F0B1BB25A400011A410 /* Main.storyboard */,
 				802369461C73BEDE00840D30 /* LevelPicker.xib */,
 				80F0DD551C5EEE19002A8037 /* Levels */,
+				80AE504A1CA5EF6B00050457 /* Extensions */,
+				80A5B5B01CA500280074B48D /* Animations */,
 				80F0DD541C5EEDEE002A8037 /* Classes */,
 				80B0EABD1BE702CE00639ADC /* Assets */,
 				80B6E4921C963344002761D8 /* NMPopUpView */,
@@ -285,21 +315,10 @@
 			children = (
 				80B195071BF56CD900B5C3CE /* Level.swift */,
 				80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */,
-				80A5B5AC1CA4ED320074B48D /* LevelCell.swift */,
 				80CBB5BC1C79926400D705A7 /* ScoreManager.swift */,
 				80CBB5BE1C79952900D705A7 /* AchievementManager.swift */,
-				80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */,
 				80EB85941C8479F400AC37A7 /* Achievement.swift */,
-				80B195001BF5645A00B5C3CE /* HangmanTile.swift */,
-				809866631BE9DC6400B3FE9D /* MazeToken.swift */,
-				809866611BE9BE9C00B3FE9D /* MazeTile.swift */,
-				804EF55A1BEFEDA00091ED22 /* QRTile.swift */,
-				804EF55C1BF001580091ED22 /* QRTileTarget.swift */,
-				80685A041C7A7873000AAB9E /* ScoreBox.swift */,
-				804927861C97BAD200410B1A /* LevelBadge.swift */,
 				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
-				805BCC131C9D28F1008B4536 /* CompassView.swift */,
-				80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -307,6 +326,7 @@
 		80F0DD511C5EE91B002A8037 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80AE504D1CA5F05200050457 /* Subviews */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
 				80EB858E1C83ABC700AC37A7 /* MootViewController.swift */,
 				80ECB47F1C896722007559A8 /* AchievementViewController.swift */,
@@ -349,7 +369,6 @@
 		80F0DD541C5EEDEE002A8037 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				80A5B5B01CA500280074B48D /* Animations */,
 				80F0DD501C5EE90D002A8037 /* Models */,
 				80F0DD511C5EE91B002A8037 /* Views */,
 				80F0DD521C5EE91F002A8037 /* Controllers */,
@@ -530,6 +549,7 @@
 				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
 				804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */,
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
+				80AE504C1CA5EFA500050457 /* CollectionViewExtension.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
 				804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */,
 				80B195031BF5685F00B5C3CE /* Config.swift in Sources */,

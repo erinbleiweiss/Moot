@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LevelCell: UICollectionViewCell {
+class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     var level: Level?
     var bgView: UIView!
     var levelLabel: UILabel!
@@ -49,6 +49,16 @@ class LevelCell: UICollectionViewCell {
         lockView.frame = CGRect(x: self.bounds.width - (dim/2), y: self.bounds.height - (dim/2), width: dim, height: dim)
         self.addSubview(lockView)
         self.bringSubviewToFront(lockView)
+    }
+    
+    func snapshotForTransition() -> UIView! {
+        UIGraphicsBeginImageContext(self.bgView.bounds.size);
+        self.bgView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        let snapshotView = UIImageView(image: screenshot)
+        snapshotView.frame = bgView.frame
+        return snapshotView
     }
     
 }
