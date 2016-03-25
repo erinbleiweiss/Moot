@@ -8,12 +8,24 @@
 //
 import UIKit
 
+@objc
+protocol FlipIconViewController {
+    func flipIconColoredViewForTransition(transition: FlipTransition) -> UIView?
+}
+
 private let FlipTransitionDuration: NSTimeInterval = 0.6
 
 class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning {
     
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return self
+        // protocol needs to be @objc for conformance testing
+        if fromVC is FlipIconViewController &&
+            toVC is FlipIconViewController {
+                return self
+        }
+        else {
+            return nil
+        }
     }
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {

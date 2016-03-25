@@ -8,13 +8,13 @@
 
 import UIKit
 
-class LevelPickerViewController: MootViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class LevelPickerViewController: MootViewController, UICollectionViewDataSource, UICollectionViewDelegate, FlipIconViewController {
     @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
     }
     
     @IBOutlet weak var levelCollectionView: UICollectionView!
     var tabBar: MootTabBarController?
-
+    var selectedIndexPath: NSIndexPath?
     
     override func viewDidLoad() {
         print("viewdidload")
@@ -55,7 +55,6 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         let level: Level = LevelManager.sharedInstance.listLevels()[indexPath.row]
         cell.setLevelforCell(level)
         cell.layoutSubviews()
-        cell.backgroundColor = UIColor.blueColor()
 
         // Set up cell
         return cell
@@ -75,12 +74,24 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let level: Level = LevelManager.sharedInstance.listLevels()[indexPath.row]
         if !level.isLocked(){
+            selectedIndexPath = indexPath
             self.navigationController?.pushViewController(level.getVC(), animated: true)
         }
         
     }
 
 
+    func flipIconColoredViewForTransition(transition: FlipTransition) -> UIView? {
+        if let indexPath = selectedIndexPath {
+            let cell = levelCollectionView.cellForItemAtIndexPath(indexPath) as! LevelCell
+            return cell.bgView
+        }
+        else {
+            return nil
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

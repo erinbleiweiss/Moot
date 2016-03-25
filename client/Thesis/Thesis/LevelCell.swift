@@ -10,11 +10,15 @@ import UIKit
 
 class LevelCell: UICollectionViewCell {
     var level: Level?
+    var bgView: UIView!
     var levelLabel: UILabel!
     var VC: UIViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.bgView = UIView(frame: self.bounds)
+        bgView.backgroundColor = UIColor.blueColor()
+        self.addSubview(bgView)
         self.levelLabel = UILabel(frame: self.bounds)
         self.levelLabel.textAlignment = NSTextAlignment.Center
         self.levelLabel.textColor = UIColor.whiteColor()

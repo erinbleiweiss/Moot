@@ -9,7 +9,7 @@
 import UIKit
 import SwiftHEXColors
 
-class GenericLevelViewController: MootViewController {
+class GenericLevelViewController: MootViewController, FlipIconViewController {
 
     var scoreBox: ScoreBox?
     var levelBadge: LevelBadge?
@@ -120,6 +120,11 @@ class GenericLevelViewController: MootViewController {
         let successVC = storyboard.instantiateViewControllerWithIdentifier("LevelCompleteVC")
         self.presentViewController(successVC, animated: false, completion: nil)
         self.setUpLevel()
+    }
+    
+    
+    func flipIconColoredViewForTransition(transition: FlipTransition) -> UIView? {
+        return self.view
     }
     
     
