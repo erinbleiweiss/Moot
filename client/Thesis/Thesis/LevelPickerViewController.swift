@@ -13,7 +13,6 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     }
     
     @IBOutlet weak var levelCollectionView: UICollectionView!
-    var levelTiles: [LevelTile] = []
     var tabBar: MootTabBarController?
     
     override func viewDidLoad() {

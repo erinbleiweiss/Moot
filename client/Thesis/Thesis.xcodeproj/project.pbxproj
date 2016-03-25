@@ -60,7 +60,6 @@
 		80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80ED1F101BB25A400011A410 /* LaunchScreen.xib */; };
 		80ED1F1E1BB25A400011A410 /* ThesisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80ED1F1D1BB25A400011A410 /* ThesisTests.swift */; };
 		80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0DD4E1C5EBBB2002A8037 /* GenericGameController.swift */; };
-		80FD13871C73D2A60085BB50 /* LevelTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FD13861C73D2A60085BB50 /* LevelTile.swift */; };
 		D25535E7CE531B4FDEB88348 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0E432790B86DDDF9FF2648 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -147,7 +146,6 @@
 		80ED1F1C1BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80ED1F1D1BB25A400011A410 /* ThesisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisTests.swift; sourceTree = "<group>"; };
 		80F0DD4E1C5EBBB2002A8037 /* GenericGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericGameController.swift; sourceTree = "<group>"; };
-		80FD13861C73D2A60085BB50 /* LevelTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTile.swift; sourceTree = "<group>"; };
 		A29897A7F59ED46F5CC3779B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,7 +275,6 @@
 				80B195071BF56CD900B5C3CE /* Level.swift */,
 				80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */,
 				80A5B5AC1CA4ED320074B48D /* LevelCell.swift */,
-				80FD13861C73D2A60085BB50 /* LevelTile.swift */,
 				80CBB5BC1C79926400D705A7 /* ScoreManager.swift */,
 				80CBB5BE1C79952900D705A7 /* AchievementManager.swift */,
 				80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */,
@@ -543,7 +540,6 @@
 				8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */,
 				80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */,
 				80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */,
-				80FD13871C73D2A60085BB50 /* LevelTile.swift in Sources */,
 				80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */,
 				80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */,
 				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
