@@ -319,12 +319,36 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yki-Nq-zA3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DSC-HF-NAJ">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LevelCell" id="ded-9A-NbP">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="17f-7a-KCK" firstAttribute="top" secondItem="aT0-iw-nlm" secondAttribute="bottom" constant="50" id="6Pw-aX-qwz"/>
                             <constraint firstItem="17f-7a-KCK" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="30" id="SZa-rI-Glt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="17f-7a-KCK" secondAttribute="trailing" constant="30" id="U9U-iR-pTC"/>
+                            <constraint firstItem="Yki-Nq-zA3" firstAttribute="top" secondItem="aEF-rD-81B" secondAttribute="topMargin" id="k7l-Nd-f3X"/>
+                            <constraint firstItem="XbL-UH-PE1" firstAttribute="top" secondItem="Yki-Nq-zA3" secondAttribute="bottom" id="lKS-YL-GVc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yki-Nq-zA3" secondAttribute="trailing" constant="-20" id="of3-cC-Rhl"/>
+                            <constraint firstItem="Yki-Nq-zA3" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="-20" id="sz2-J1-FS6"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="jIw-aF-5Fe" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
@@ -334,6 +358,7 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="lig-hV-zeV"/>
                     <connections>
+                        <outlet property="levelCollectionView" destination="Yki-Nq-zA3" id="aQg-NS-bzc"/>
                         <segue destination="s2J-Mq-6rJ" kind="show" id="C4G-Tu-ynu"/>
                         <segue destination="cjl-pC-x5L" kind="show" id="3l9-JH-Vi7"/>
                         <segue destination="lXw-5a-cOg" kind="show" id="LVm-HY-zWW"/>

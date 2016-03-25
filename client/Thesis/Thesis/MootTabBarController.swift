@@ -108,10 +108,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
             }
             self.view.setNeedsDisplay()
             self.cameraButtonVisible = false
-        } else {
-            print("no button for tag")
         }
-        
     }
     
     func setCameraVCForButton(vc: String){
