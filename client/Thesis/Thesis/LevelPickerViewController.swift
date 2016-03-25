@@ -38,26 +38,39 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
 
     }
     
+    /**
+        Returns number of collection cells to display
+     */
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let allLevels = LevelManager.sharedInstance.listLevels()
         return allLevels.count
     }
     
+    /**
+        Setup collection cells
+     */
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = levelCollectionView.dequeueReusableCellWithReuseIdentifier("LevelCell", forIndexPath: indexPath) as! LevelCell
         let level: Level = LevelManager.sharedInstance.listLevels()[indexPath.row]
         cell.setLevelforCell(level)
+        cell.layoutSubviews()
         cell.backgroundColor = UIColor.blueColor()
 
         // Set up cell
         return cell
     }
     
+    /**
+        Setup size of collection cells
+     */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
     
 
+    /**
+        Behavior when collection cell is selected
+     */
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let level: Level = LevelManager.sharedInstance.listLevels()[indexPath.row]
         if !level.isLocked(){

@@ -27,7 +27,6 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
 
-        
         let defaults = NSUserDefaults.standardUserDefaults()
 
         self.controller.getAchievements(){ responseObject, error in

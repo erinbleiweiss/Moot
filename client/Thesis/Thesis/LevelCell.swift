@@ -15,7 +15,10 @@ class LevelCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.layoutSubviews()
+        self.levelLabel = UILabel(frame: self.bounds)
+        self.levelLabel.textAlignment = NSTextAlignment.Center
+        self.levelLabel.textColor = UIColor.whiteColor()
+        self.addSubview(levelLabel)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,7 +27,6 @@ class LevelCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.addLabel()
         if (self.level?.isLocked() == true){
             displayLock()
         }
@@ -32,21 +34,10 @@ class LevelCell: UICollectionViewCell {
     
     func setLevelforCell(level: Level){
         self.level = level
+        self.VC = level.getVC()
+        self.levelLabel.text = String(level.getLevelNum())
     }
  
-    func addLabel(){
-        self.levelLabel = UILabel(frame: self.bounds)
-        self.levelLabel.textAlignment = NSTextAlignment.Center
-        self.levelLabel.textColor = UIColor.whiteColor()
-        if let num = level?.levelNumber{
-            self.levelLabel.text = String(num)
-        }
-        self.addSubview(levelLabel)
-        
-        if let _ = level?.VC{
-            self.VC = level!.getVC()
-        }
-    }
     
     func displayLock(){
         let lockView = UIImageView(image: UIImage(named: "lock"))
