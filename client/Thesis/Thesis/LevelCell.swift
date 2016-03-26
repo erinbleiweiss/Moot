@@ -51,14 +51,11 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         self.bringSubviewToFront(lockView)
     }
     
-    func snapshotForTransition() -> UIView! {
-        UIGraphicsBeginImageContext(self.bgView.bounds.size);
-        self.bgView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let screenshot = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        let snapshotView = UIImageView(image: screenshot)
-        snapshotView.frame = bgView.frame
-        return snapshotView
+    func transitionViewForCell() -> UIView! {
+        let newView: UIView = UIView(frame: self.bgView.frame)
+        newView.backgroundColor = bgView.backgroundColor
+        newView.addSubview(levelLabel)
+        return newView
     }
     
 }

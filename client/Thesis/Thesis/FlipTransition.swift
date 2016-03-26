@@ -18,7 +18,7 @@ protocol FlipTransitionProtocol {
 }
 
 @objc protocol FlipTransitionCellProtocol{
-    func snapshotForTransition() -> UIView!
+    func transitionViewForCell() -> UIView!
 }
 
 //@objc protocol FlipPageViewControllerProtocol : FlipTransitionCVProtocol{
@@ -60,122 +60,52 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        // Duration of transition as NSTimeInterval
         let duration = transitionDuration(transitionContext)
         
+        // Get to and from VC's
+        // fromViewController = LevelPickerVC
+        // toViewController = [Hangman]LevelVC
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
         
+        // toView is the main view of [Hangman]LevelVC
         let toView = toViewController.view
         toView.hidden = true
         
-        let transitionView = (toViewController as! FlipTransitionProtocol).flipViewForTransition()
-        let pageView = (fromViewController as! FlipTransitionCVProtocol).transitionCollectionView()
-        transitionView?.layoutIfNeeded()
-        let indexPath = pageView.fromPageIndexPath()
-        let levelViewCell = pageView.cellForItemAtIndexPath(indexPath)
+//        // define transitionView as "bgView" UIView (blue square from collectionview)
+//        let transitionView = (toViewController as! FlipTransitionProtocol).flipViewForTransition()
+        let collectionView = (fromViewController as! FlipTransitionCVProtocol).transitionCollectionView()
+        let indexPath = collectionView.fromPageIndexPath()
+        let levelViewCell = collectionView.cellForItemAtIndexPath(indexPath)
 
         let leftUpperPoint = levelViewCell!.convertPoint(CGPointZero, toView: toViewController.view)
         
-        let snapshot = (levelViewCell as! FlipTransitionCellProtocol).snapshotForTransition()
-        snapshot!.transform = CGAffineTransformMakeScale(animationScale, animationScale)
-        snapshot!.origin(CGPointMake(0, 0))
-        containerView?.addSubview(snapshot!)
         
-        toView.hidden = false
-        toView.alpha = 0
-        toView.transform = (snapshot?.transform)!
-        toView.frame = CGRectMake(-(leftUpperPoint.x * animationScale), -(leftUpperPoint.y * animationScale), toView.frame.size.width, toView.frame.size.height)
-        let whiteViewContainer = UIView(frame: UIScreen.mainScreen().bounds)
-        containerView?.addSubview(snapshot!)
-        containerView?.insertSubview(whiteViewContainer, belowSubview: toView)
+        let proxyView = (levelViewCell as! FlipTransitionCellProtocol).transitionViewForCell()
+        proxyView.hidden = true
+        containerView?.addSubview(proxyView)
         
         UIView.animateWithDuration(duration, animations: {
-            snapshot!.transform = CGAffineTransformIdentity
-            snapshot!.frame = CGRectMake(leftUpperPoint.x, leftUpperPoint.y, snapshot!.frame.size.width, snapshot!.frame.size.height)
-            toView.transform = CGAffineTransformIdentity
-            toView.frame = CGRectMake(0, 0, toView.frame.size.width, toView.frame.size.height);
-            toView.alpha = 1
+            proxyView.hidden = false
+            proxyView.frame = toViewController.view.frame
+            
             }, completion:{finished in
                 if finished {
-                    snapshot!.removeFromSuperview()
-                    whiteViewContainer.removeFromSuperview()
-                    transitionContext.completeTransition(true)
+//                    transitionContext.completeTransition(true)
                 }
         })
         
-        
-//        var backgroundViewController = fromViewController
-//        var foregroundViewController = toViewController
-//        
-//        if operation == .Pop {
-//            backgroundViewController = toViewController
-//            foregroundViewController = fromViewController
-//        }
-//        
-//        // get the colored view in the background and foreground view controllers
-//        
-//        let backgroundColoredViewMaybe = (backgroundViewController as? FlipIconViewController)?.flipIconColoredViewForTransition(self)
-//        let foregroundColoredViewMaybe = (foregroundViewController as? FlipIconViewController)?.flipIconColoredViewForTransition(self)
-//        
-//        assert(backgroundColoredViewMaybe != nil, "Cannot find colored view in background view controller")
-//        assert(foregroundColoredViewMaybe != nil, "Cannot find colored view in foreground view controller")
-//        
-//        let backgroundColoredView = backgroundColoredViewMaybe!
-//        let foregroundColoredView = foregroundColoredViewMaybe!
-//        
-//        // zoom foreground view
-//        let fullscreenWidth = foregroundViewController.view.frame.width
-//        let fullscreenHeight = foregroundViewController.view.frame.height
-//        let fullscreen = CGRectMake(0, 0, fullscreenWidth, fullscreenHeight)
-//        var proxyView: UIView = UIView(frame: fullscreen)
-//        proxyView.hidden = true
-//        proxyView.autoresizingMask = fromViewController.view.autoresizingMask
-//        fromViewController.view.superview?.addSubview(proxyView)
-//        
-//        
-//        // perform animation
-//        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
-//            [self]
-//            self.CGAffineTransformFromRect(fromViewController.view.frame, toRect: fullscreen)
-//            }, completion: {
-//                (finished) in
-//                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-//        })
-        
-    }
-    
-    
-        
-//        // create view snapshots
-//        
-//        // view controller need to be in view hierarchy for snapshotting
-//        containerView!.addSubview(backgroundViewController.view)
-//        let snapshotOfColoredView = backgroundColoredView.snapshotViewAfterScreenUpdates(false)
-//        snapshotOfColoredView.contentMode = .ScaleAspectFit
-//        
-//        // setup animation
-//        containerView!.addSubview(fromViewController.view)
-//        containerView!.addSubview(toViewController.view)
-//        toViewController.view.alpha = 0
-//        
-//        // perform animation
-//        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
-//            [self]
-//            toViewController.view.alpha = 1
-//            }, completion: {
-//                (finished) in
-//                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-//        })
-//        
-//    }
 
         
-    func CGAffineTransformFromRect(sourceRect: CGRect, toRect finalRect:CGRect) -> CGAffineTransform {
-        var transform = CGAffineTransformIdentity
-        transform = CGAffineTransformTranslate(transform, -(CGRectGetMidX(sourceRect) - CGRectGetMidX(finalRect)), -(CGRectGetMidY(sourceRect) - CGRectGetMidY(finalRect)))
-        transform = CGAffineTransformScale(transform, finalRect.size.width / sourceRect.size.width, finalRect.size.height / sourceRect.size.height)
-        return transform
     }
+    
+    
+        
+
+
+        
+
     
 }
