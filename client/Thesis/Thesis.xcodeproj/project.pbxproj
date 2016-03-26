@@ -32,7 +32,6 @@
 		809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866631BE9DC6400B3FE9D /* MazeToken.swift */; };
 		80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5B5AC1CA4ED320074B48D /* LevelCell.swift */; };
 		80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */; };
-		80AE504C1CA5EFA500050457 /* CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE504B1CA5EFA500050457 /* CollectionViewExtension.swift */; };
 		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
 		80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195001BF5645A00B5C3CE /* HangmanTile.swift */; };
 		80B195031BF5685F00B5C3CE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195021BF5685F00B5C3CE /* Config.swift */; };
@@ -116,7 +115,6 @@
 		809866631BE9DC6400B3FE9D /* MazeToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeToken.swift; sourceTree = "<group>"; };
 		80A5B5AC1CA4ED320074B48D /* LevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeGameController.swift; sourceTree = "<group>"; };
-		80AE504B1CA5EFA500050457 /* CollectionViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExtension.swift; sourceTree = "<group>"; };
 		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
 		80B195001BF5645A00B5C3CE /* HangmanTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanTile.swift; sourceTree = "<group>"; };
 		80B195021BF5685F00B5C3CE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 		80AE504A1CA5EF6B00050457 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				80AE504B1CA5EFA500050457 /* CollectionViewExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -549,7 +546,6 @@
 				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
 				804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */,
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
-				80AE504C1CA5EFA500050457 /* CollectionViewExtension.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
 				804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */,
 				80B195031BF5685F00B5C3CE /* Config.swift in Sources */,

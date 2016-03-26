@@ -79,22 +79,20 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         }
         
     }
+    
+    func flipViewForTransition() -> UIView? {
+        return self.view
+    }
 
     func transitionCollectionView() -> UICollectionView!{
         return self.levelCollectionView
     }
     
-
-    func flipViewForTransition() -> UIView? {
-        if let indexPath = selectedIndexPath {
-            let cell = levelCollectionView.cellForItemAtIndexPath(indexPath) as! LevelCell
-            return cell.bgView
-        }
-        else {
-            return nil
-        }
-        
+    func getSelectedIndexPath() -> NSIndexPath! {
+        return self.selectedIndexPath
     }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -8,13 +8,14 @@
 //
 import UIKit
 
+protocol FlipTransitionProtocol {
+    func flipViewForTransition () -> UIView?
+}
+
 @objc
 protocol FlipTransitionCVProtocol {
     func transitionCollectionView() -> UICollectionView!
-}
-
-protocol FlipTransitionProtocol {
-    func flipViewForTransition () -> UIView?
+    func getSelectedIndexPath() -> NSIndexPath!
 }
 
 @objc protocol FlipTransitionCellProtocol{
@@ -70,14 +71,18 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
         
-        // toView is the main view of [Hangman]LevelVC
-        let toView = toViewController.view
-        toView.hidden = true
+//        // toView is the main view of [Hangman]LevelVC
+//        let toView = toViewController.view
+//        toView.hidden = true
         
 //        // define transitionView as "bgView" UIView (blue square from collectionview)
 //        let transitionView = (toViewController as! FlipTransitionProtocol).flipViewForTransition()
         let collectionView = (fromViewController as! FlipTransitionCVProtocol).transitionCollectionView()
-        let indexPath = collectionView.fromPageIndexPath()
+        containerView!.addSubview(fromViewController.view)
+        containerView!.addSubview(toViewController.view)
+        toViewController.view.alpha = 0
+        
+        let indexPath = (fromViewController as! FlipTransitionCVProtocol).getSelectedIndexPath()
         let levelViewCell = collectionView.cellForItemAtIndexPath(indexPath)
 
         let leftUpperPoint = levelViewCell!.convertPoint(CGPointZero, toView: toViewController.view)
@@ -93,7 +98,10 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
             
             }, completion:{finished in
                 if finished {
-//                    transitionContext.completeTransition(true)
+                    proxyView.hidden = true
+//                    toView.hidden = false
+                    toViewController.view.alpha = 1
+                    transitionContext.completeTransition(true)
                 }
         })
         
