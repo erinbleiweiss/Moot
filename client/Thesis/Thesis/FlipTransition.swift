@@ -92,28 +92,40 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         proxyView.hidden = true
         containerView?.addSubview(proxyView)
         
-        UIView.animateWithDuration(duration, animations: {
-            proxyView.hidden = false
-            proxyView.frame = toViewController.view.frame
-            
-            }, completion:{finished in
-                if finished {
-                    proxyView.hidden = true
-//                    toView.hidden = false
-                    toViewController.view.alpha = 1
-                    transitionContext.completeTransition(true)
+
+
+        UIView.animateWithDuration(
+            duration,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0,
+            options: [],
+            animations: {
+                proxyView.hidden = false
+                proxyView.frame = toViewController.view.frame
+            }, completion: {
+                (finished) in
+                proxyView.hidden = true
+                toViewController.view.alpha = 1
+
+                UIView.transitionFromView(
+                    fromViewController.view,
+                    toView: toViewController.view!,
+                    duration: self.transitionDuration(transitionContext),
+                    options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
+                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
                 }
         })
+        
+        
         
 
         
     }
     
     
-        
-
-
-        
+    
+    
 
     
 }

@@ -75,6 +75,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         let level: Level = LevelManager.sharedInstance.listLevels()[indexPath.row]
         if !level.isLocked(){
             selectedIndexPath = indexPath
+            self.navigationController?.modalTransitionStyle = .FlipHorizontal
             self.navigationController?.pushViewController(level.getVC(), animated: true)
         }
         
