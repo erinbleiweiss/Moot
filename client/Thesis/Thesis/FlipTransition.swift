@@ -110,12 +110,10 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                     }
             })
         } else {
-            toViewController.view.hidden = false
             toViewController.view.alpha = 1
             proxyView.hidden = false
             proxyView.frame = containerView!.frame
             toViewController.view.addSubview(proxyView)
-
             UIView.transitionFromView(
                 fromViewController.view,
                 toView: toViewController.view,
@@ -131,15 +129,12 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                             proxyView.frame = initialProxyViewFrame
                         }, completion: {
                             (finished) in
-                            proxyView.hidden = true
-                            fromViewController.view.alpha = 1
+                            proxyView.removeFromSuperview()
                             transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
                     })
                     
             }
         }
-        
-        
         
         
     }
