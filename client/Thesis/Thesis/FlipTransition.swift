@@ -84,9 +84,10 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         let proxyView = (levelViewCell as! FlipTransitionCellProtocol).transitionViewForCell()
         let initialProxyViewFrame = proxyView.frame
         proxyView.hidden = true
-        containerView?.addSubview(proxyView)
         
         if self.operation == .Push {
+            fromViewController.view.addSubview(proxyView)
+
             UIView.animateWithDuration(
                 duration,
                 delay: 0,
@@ -109,11 +110,17 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                     }
             })
         } else {
+            toViewController.view.hidden = false
+            toViewController.view.alpha = 1
+            proxyView.hidden = false
+            proxyView.frame = containerView!.frame
+            toViewController.view.addSubview(proxyView)
+
             UIView.transitionFromView(
-                toViewController.view,
-                toView: fromViewController.view,
+                fromViewController.view,
+                toView: toViewController.view,
                 duration: self.transitionDuration(transitionContext),
-                options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
+                options: UIViewAnimationOptions.TransitionFlipFromLeft) { finished in
                     UIView.animateWithDuration(
                         duration,
                         delay: 0,
@@ -121,7 +128,6 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                         initialSpringVelocity: 0,
                         options: [],
                         animations: {
-                            proxyView.hidden = false
                             proxyView.frame = initialProxyViewFrame
                         }, completion: {
                             (finished) in
