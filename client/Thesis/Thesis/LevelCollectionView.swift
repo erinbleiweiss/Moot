@@ -10,10 +10,10 @@ import UIKit
 
 class LevelCollectionView: UICollectionView {
 
-    
-    override func layoutSubviews() {
-        self.invalidateIntrinsicContentSize()
-    }
+//    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+//        <#code#>
+//    }
+//    
     
     /*
     // Only override drawRect: if you perform custom drawing.

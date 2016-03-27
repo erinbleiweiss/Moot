@@ -21,11 +21,18 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
 
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        self.levelCollectionView.collectionViewLayout = layout
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        layout.itemSize = CGSize(width: screenWidth/3, height: screenWidth/3)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        
         levelCollectionView.dataSource = self
         levelCollectionView.delegate = self
         self.levelCollectionView!.registerClass(LevelCell.self, forCellWithReuseIdentifier: "LevelCell")
         self.levelCollectionView.backgroundColor = UIColor.whiteColor()
-        
+    
         LevelManager.sharedInstance.unlockLevel(1)
     }
 
@@ -59,14 +66,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         return cell
     }
     
-    /**
-        Setup size of collection cells
-     */
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 300, height: 300)
-    }
     
-
     /**
         Behavior when collection cell is selected
      */
@@ -79,6 +79,20 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         }
         
     }
+    
+    
+    /**
+     Setup size of collection cells
+     */
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: ScreenWidth/2, height: ScreenHeight/2)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(0, 0, 0, 0) // margin between cells
+    }
+    
+    
     
     func flipViewForTransition(transition: FlipTransition) -> UIView? {
         return self.view

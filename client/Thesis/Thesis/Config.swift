@@ -10,14 +10,19 @@ import Foundation
 import UIKit
 
 //UI Constants
-let ScreenWidth = UIScreen.mainScreen().bounds.size.width
-let ScreenHeight = UIScreen.mainScreen().bounds.size.height
+let ScreenBounds = UIScreen.mainScreen().bounds
+let ScreenSize   = ScreenBounds.size
+let ScreenWidth  = ScreenSize.width
+let ScreenHeight = ScreenSize.height
+
 
 var hostname = Networking.networkConfig.hostname
 var rest_prefix = Networking.networkConfig.rest_prefix
 
 // Base 64 encoded secret key
 var api_key = "RFY3cEhHdFNTOUZKem1KNXVjRDNWdll1JHgyR3JmUDlGOWIk"
+
+
 
 
 /**
