@@ -75,10 +75,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         toViewController.view.hidden = true
         
         let levelViewCell = (fromViewController as! FlipTransitionCVProtocol).getSelectedCell()
-//        let leftUpperPoint = levelViewCell!.convertPoint(CGPointZero, toView: toViewController.view)
-        
-        
-        let proxyView = (levelViewCell as FlipTransitionCellProtocol).transitionViewForCell()
+        let proxyView = (levelViewCell as FlipTransitionCellProtocol).transitionViewForCell() as! ProxyLevelCell
         let initialProxyViewFrame = proxyView.frame
         proxyView.hidden = true
         
@@ -93,7 +90,11 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                 options: [],
                 animations: {
                     proxyView.hidden = false
+
                     proxyView.frame = toViewController.view.frame
+                    proxyView.levelLabel.frame = toViewController.view.frame
+                    proxyView.layoutIfNeeded()
+                    
                 }, completion: {
                     (finished) in
                     proxyView.hidden = true
@@ -110,6 +111,8 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
             toViewController.view.hidden = false
             proxyView.hidden = false
             proxyView.frame = containerView!.frame
+            proxyView.levelLabel.frame = containerView!.frame
+            proxyView.layoutIfNeeded()
             toViewController.view.addSubview(proxyView)
             UIView.transitionFromView(
                 fromViewController.view,
@@ -124,6 +127,8 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                         options: [],
                         animations: {
                             proxyView.frame = initialProxyViewFrame
+                            proxyView.levelLabel.frame = initialProxyViewFrame
+                            proxyView.layoutIfNeeded()
                         }, completion: {
                             (finished) in
                             proxyView.removeFromSuperview()
