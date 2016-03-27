@@ -35,6 +35,7 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     }
     
     func setLevelforCell(level: Level){
+        print("setting level \(level.levelNumber)")
         self.level = level
         self.VC = level.getVC()
         self.levelLabel.text = String(level.getLevelNum())
@@ -54,7 +55,11 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         newView.bounds = self.bounds
 //        newView.backgroundColor = bgView.backgroundColor
         newView.backgroundColor = UIColor.redColor()
-        newView.addSubview(self.levelLabel)
+        let newLabel = UILabel(frame: self.levelLabel.frame)
+        newLabel.textColor = UIColor.whiteColor()
+        newLabel.text = self.levelLabel.text
+        newLabel.center = self.center
+        newView.addSubview(newLabel)
         return newView
     }
     
