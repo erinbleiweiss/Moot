@@ -27,10 +27,6 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.setLevelforCell(self.level!)
-        if (self.level?.isLocked() == true){
-//            displayLock()
-        }
     }
     
     func setLevelforCell(level: Level){
@@ -38,16 +34,19 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         self.level = level
         self.VC = level.getVC()
         self.levelLabel.text = String(level.getLevelNum())
+        if (self.level?.isLocked() == true){
+            displayLock()
+        }
     }
  
     
     func displayLock(){
         let lockView = UIImageView(image: UIImage(named: "lock"))
         let dim = self.bounds.width / 2
-        lockView.frame = CGRect(x: 0, y: 0, width: dim, height: dim)
-        lockView.center = self.center
+        let x = self.bounds.width/2 - dim/2
+        let y = self.bounds.height/2 - dim/2
+        lockView.frame = CGRectMake(x, y, dim, dim)
         self.addSubview(lockView)
-        self.bringSubviewToFront(lockView)
     }
     
     func transitionViewForCell() -> UIView! {

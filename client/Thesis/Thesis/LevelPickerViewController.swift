@@ -52,7 +52,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.levelCollectionView.reloadData()
+//        self.levelCollectionView.reloadData()
     }
     
     /**
@@ -73,7 +73,6 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         let colorIndex: Int = indexPath.row % colors.count
         cell.backgroundColor = colors[colorIndex]
         cell.setLevelforCell(level)
-        cell.layoutSubviews()
 
         // Set up cell
         return cell
@@ -87,7 +86,6 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         let level: Level = LevelManager.sharedInstance.listLevels()[indexPath.row]
         if !level.isLocked(){
             selectedIndexPath = indexPath
-            self.navigationController?.modalTransitionStyle = .FlipHorizontal
             self.navigationController?.pushViewController(level.getVC(), animated: true)
         }
         
