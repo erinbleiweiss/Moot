@@ -34,7 +34,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         self.levelCollectionView.collectionViewLayout = layout
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        layout.itemSize = CGSize(width: screenWidth/3, height: screenWidth/3)
+//        layout.itemSize = CGSize(width: ScreenWidth/2, height: ScreenHeight/2)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
@@ -98,7 +98,9 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
      Setup size of collection cells
      */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: ScreenWidth/2, height: ScreenHeight/2)
+        let width = levelCollectionView.bounds.size.width/2
+        let height = levelCollectionView.bounds.size.height/2
+        return CGSize(width: width, height: height)
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {

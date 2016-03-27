@@ -29,7 +29,7 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         super.layoutSubviews()
         self.setLevelforCell(self.level!)
         if (self.level?.isLocked() == true){
-            displayLock()
+//            displayLock()
         }
     }
     
@@ -43,8 +43,9 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     
     func displayLock(){
         let lockView = UIImageView(image: UIImage(named: "lock"))
-        let dim = self.bounds.width / 4.0
-        lockView.frame = CGRect(x: self.bounds.width - (dim/2), y: self.bounds.height - (dim/2), width: dim, height: dim)
+        let dim = self.bounds.width / 2
+        lockView.frame = CGRect(x: 0, y: 0, width: dim, height: dim)
+        lockView.center = self.center
         self.addSubview(lockView)
         self.bringSubviewToFront(lockView)
     }
