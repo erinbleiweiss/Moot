@@ -15,7 +15,6 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.blueColor()
         self.levelLabel = UILabel(frame: self.bounds)
         self.levelLabel.textAlignment = NSTextAlignment.Center
         self.levelLabel.textColor = UIColor.whiteColor()
@@ -51,7 +50,7 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     }
     
     func transitionViewForCell() -> UIView! {
-        let newView = ProxyLevelCell(level: (self.level?.getLevelNum())!, frame: self.frame)
+        let newView = ProxyLevelCell(level: (self.level?.getLevelNum())!, color: self.backgroundColor!, frame: self.frame)
         return newView
     }
     
