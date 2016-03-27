@@ -36,7 +36,6 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     
     override func viewDidAppear(animated: Bool) {
         self.levelCollectionView.reloadData()
-
     }
     
     /**
@@ -89,8 +88,8 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         return self.levelCollectionView
     }
     
-    func getSelectedIndexPath() -> NSIndexPath! {
-        return self.selectedIndexPath
+    func getSelectedCell() -> LevelCell! {
+        return levelCollectionView.cellForItemAtIndexPath(self.selectedIndexPath!) as! LevelCell
     }
     
 

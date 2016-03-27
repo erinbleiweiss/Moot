@@ -15,7 +15,7 @@ protocol FlipTransitionProtocol {
 @objc
 protocol FlipTransitionCVProtocol {
     func transitionCollectionView() -> UICollectionView!
-    func getSelectedIndexPath() -> NSIndexPath!
+    func getSelectedCell() -> LevelCell!
 }
 
 @objc protocol FlipTransitionCellProtocol{
@@ -69,19 +69,16 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
-        let collectionView = (fromViewController as! FlipTransitionCVProtocol).transitionCollectionView()
         
         containerView!.addSubview(fromViewController.view)
         containerView!.addSubview(toViewController.view)
-        toViewController.view.alpha = 0
+        toViewController.view.hidden = true
         
-        let indexPath = (fromViewController as! FlipTransitionCVProtocol).getSelectedIndexPath()
-        let levelViewCell = collectionView.cellForItemAtIndexPath(indexPath)
-
-        let leftUpperPoint = levelViewCell!.convertPoint(CGPointZero, toView: toViewController.view)
+        let levelViewCell = (fromViewController as! FlipTransitionCVProtocol).getSelectedCell()
+//        let leftUpperPoint = levelViewCell!.convertPoint(CGPointZero, toView: toViewController.view)
         
         
-        let proxyView = (levelViewCell as! FlipTransitionCellProtocol).transitionViewForCell()
+        let proxyView = (levelViewCell as FlipTransitionCellProtocol).transitionViewForCell()
         let initialProxyViewFrame = proxyView.frame
         proxyView.hidden = true
         
@@ -100,7 +97,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                 }, completion: {
                     (finished) in
                     proxyView.hidden = true
-                    toViewController.view.alpha = 1
+                    toViewController.view.hidden = false
                     UIView.transitionFromView(
                         fromViewController.view,
                         toView: toViewController.view!,
@@ -110,7 +107,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                     }
             })
         } else {
-            toViewController.view.alpha = 1
+            toViewController.view.hidden = false
             proxyView.hidden = false
             proxyView.frame = containerView!.frame
             toViewController.view.addSubview(proxyView)

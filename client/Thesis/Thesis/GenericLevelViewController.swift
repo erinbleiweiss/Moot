@@ -134,9 +134,9 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         return vc.levelCollectionView
     }
     
-    func getSelectedIndexPath() -> NSIndexPath! {
+    func getSelectedCell() -> LevelCell! {
         let vc = self.navigationController?.viewControllers[0] as! LevelPickerViewController
-        return vc.selectedIndexPath
+        return vc.levelCollectionView.cellForItemAtIndexPath(vc.selectedIndexPath!) as! LevelCell
     }
     
     
