@@ -18,7 +18,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     
     /// Display margin between tiles
     // TODO: adapt margin based on screen size
-    let TileMargin: CGFloat = 20.0
+    let TileMargin: CGFloat = ScreenWidth / 20
     
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
     }
@@ -36,7 +36,7 @@ class HangmanLevelViewController: GenericLevelViewController {
 
 
         // Add one layer for all game elements (-200 accounts for height of top bar)
-        let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
+        let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
 
@@ -65,7 +65,10 @@ class HangmanLevelViewController: GenericLevelViewController {
                 
                 // Set current game string in controller (if not first level)
                 let difficulty = self.controller.getCurrentStage()
-                if (difficulty != 1){
+                
+                if (difficulty == 1 && self.controller.targetWord == "scan"){
+                    self.controller.currentGame = "sc_n"
+                } else {
                     for (_, _) in self.controller.targetWord.characters.enumerate() {
                         self.controller.currentGame += "_"
                     }
@@ -90,6 +93,7 @@ class HangmanLevelViewController: GenericLevelViewController {
      
      */
     func layoutTiles(){
+        print("laying out tiles \(self.controller.currentGame)")
         // Calculate the tile size and left margin (xOffset)
         let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
         var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0

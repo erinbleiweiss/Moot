@@ -33,11 +33,12 @@ class HangmanGameController: GenericGameController {
         { word: "randomword" }
     
     */
-    func getRandomWord(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+    func getRandomWord(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_random_word"
         let difficulty = self.getCurrentStage()
-        Alamofire.request(.GET, url, parameters: ["difficulty": difficulty]).responseJSON { (_, _, result) in
-            switch result {
+     
+        Alamofire.request(.GET, url, parameters: ["difficulty": difficulty], headers: headers).responseJSON { (_, _, result) in
+          switch result {
                 case .Success(let data):
                     let json = JSON(data)
                     print(json)
@@ -45,16 +46,11 @@ class HangmanGameController: GenericGameController {
                     print(word)
                     self.targetWord = word
                     self.currentGame = ""
-                    
-                    // On first level, prepopulate currentGame
-                    if (difficulty == 1 && word == "scan"){
-                        self.currentGame = "sc_n"
-                    }
-                    completionHandler(responseObject: word, error: result.error as? NSError)
+
+                    completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
                     // There was a problem retrieving a word from the database
                     NSLog("getRandomWord failed with error: \(result.error)")
-                    completionHandler(responseObject: "Request failed with error: \(result.error)", error: result.error as? NSError)
             }
                 
         }
@@ -85,7 +81,7 @@ class HangmanGameController: GenericGameController {
     func playHangman(upc: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         self.loading = true;
         let url: String = hostname + rest_prefix + "/play_hangman"
-        Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame], headers: headers).responseJSON { (_, _, result) in
             
             switch result {
                 case .Success(let data):

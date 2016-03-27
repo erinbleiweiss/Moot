@@ -19,6 +19,7 @@ class GenericGameController{
     var password: String?
     var popViewController: PopUpViewControllerSwift?
     var level: Int?
+    var headers: [String: String]?
     
     // Status codes used to verify properly-formatted responseObjects from Alamofire API calls
     var SUCCESS: String = "success"
@@ -33,6 +34,7 @@ class GenericGameController{
         let base64Credentials = credentialData.base64EncodedStringWithOptions([])
         let headers = ["Authorization": "Basic \(base64Credentials)"]
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers
+        self.headers = headers
         
         self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController", bundle: nil)
 
@@ -121,7 +123,7 @@ class GenericGameController{
         
         let url: String = hostname + rest_prefix + "/save_product"
         
-        Alamofire.request(.POST, url, parameters: nil, encoding: .JSON)
+        Alamofire.request(.POST, url, parameters: nil, encoding: .JSON, headers: headers)
             .responseJSON { (_, _, result) in
                 switch result {
                 case .Success(let data):
@@ -141,7 +143,7 @@ class GenericGameController{
      */
     func getMootPoints(completionHandler: (responseObject: JSON?, error: NSError?) -> ()){
         let url: String = hostname + rest_prefix + "/get_points"
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
             .responseJSON { (_, _, result) in
                 switch result {
                 case .Success(let data):

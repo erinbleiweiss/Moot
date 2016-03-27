@@ -17,7 +17,7 @@ class AchievementDataController: GenericGameController{
 
     func getAchievements(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_achievements"
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+        Alamofire.request(.GET, url, parameters: nil, headers: headers, encoding: .JSON)
             .responseJSON { (_, _, result) in
                 switch result {
                 case .Success(let data):
@@ -40,7 +40,7 @@ class AchievementDataController: GenericGameController{
     
     func getUnearnedAchievements(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_unearned_achievements"
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON)
+        Alamofire.request(.GET, url, parameters: nil, headers: headers, encoding: .JSON)
             .responseJSON { (_, _, result) in
                 switch result {
                 case .Success(let data):

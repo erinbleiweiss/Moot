@@ -265,6 +265,7 @@ def generate_random_word():
     :return:    random word as string
     """
     logger_header("/generate_random_word")
+    logger.debug("auth: {}".format(request.authorization))
     auth = request.authorization
     user_id = auth.username
     difficulty = int(request.args.get('difficulty'))
@@ -276,18 +277,16 @@ def generate_random_word():
         response["status"] = "success"
         return jsonify(response)
     elif difficulty == 2:
-        # minLength = 5
-        # maxLength = 5
-        # minCorpusCount= 100000
-        response["word"] = "moot"
-        response["status"] = "success"
+        minLength = 5
+        maxLength = 5
+        minCorpusCount= 100000
     elif difficulty == 3:
         minLength = 6
         maxLength = 6
         minCorpusCount= 100000
 
 
-    if difficulty > 2:
+    if difficulty > 1:
         # TODO: obfuscate word when passing to client
         # TODO: wrap in try/catch
         params = {'hasDictionaryDef': 'true',
@@ -310,6 +309,7 @@ def generate_random_word():
             response["word"] = random_word
             response["status"] = SUCCESS
         except Exception as e:
+            response["word"] = ""
             response["status"] = FAILURE
             response["message"] =  "Problem retrieving word from Wordnik API"
 

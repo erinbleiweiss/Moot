@@ -55,7 +55,7 @@ class MazeGameController: GenericGameController {
     
     func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/maze_move"
-        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.tileString, "row": String(self.pos_row), "col": String(self.pos_col)]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.tileString, "row": String(self.pos_row), "col": String(self.pos_col)], headers: headers).responseJSON { (_, _, result) in
             
             
             let json = JSON(result.value!)

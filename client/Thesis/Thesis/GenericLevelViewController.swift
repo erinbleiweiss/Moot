@@ -27,8 +27,8 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         
         self.displayCamera = true
 
-        let color: UIColor = UIColor(hexString: "#2ecc71")!
-        self.view.backgroundColor = color
+//        let color: UIColor = UIColor(hexString: "#2ecc71")!
+//        self.view.backgroundColor = color
         // Do any additional setup after loading the view.
         
         let scoreBoxFrame = CGRect(x: 50, y: 100, width: 100, height: 100)
