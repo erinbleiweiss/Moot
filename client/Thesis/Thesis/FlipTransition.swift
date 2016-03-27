@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FlipTransitionProtocol {
-    func flipViewForTransition () -> UIView?
+    func flipViewForTransition (transition: FlipTransition) -> UIView?
 }
 
 @objc
@@ -61,23 +61,16 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        
+        
         // Duration of transition as NSTimeInterval
         let duration = transitionDuration(transitionContext)
         
-        // Get to and from VC's
-        // fromViewController = LevelPickerVC
-        // toViewController = [Hangman]LevelVC
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let containerView = transitionContext.containerView()
-        
-//        // toView is the main view of [Hangman]LevelVC
-//        let toView = toViewController.view
-//        toView.hidden = true
-        
-//        // define transitionView as "bgView" UIView (blue square from collectionview)
-//        let transitionView = (toViewController as! FlipTransitionProtocol).flipViewForTransition()
         let collectionView = (fromViewController as! FlipTransitionCVProtocol).transitionCollectionView()
+        
         containerView!.addSubview(fromViewController.view)
         containerView!.addSubview(toViewController.view)
         toViewController.view.alpha = 0
@@ -89,37 +82,59 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         
         
         let proxyView = (levelViewCell as! FlipTransitionCellProtocol).transitionViewForCell()
+        let initialProxyViewFrame = proxyView.frame
         proxyView.hidden = true
         containerView?.addSubview(proxyView)
         
-
-
-        UIView.animateWithDuration(
-            duration,
-            delay: 0,
-            usingSpringWithDamping: 1,
-            initialSpringVelocity: 0,
-            options: [],
-            animations: {
-                proxyView.hidden = false
-                proxyView.frame = toViewController.view.frame
-            }, completion: {
-                (finished) in
-                proxyView.hidden = true
-                toViewController.view.alpha = 1
-
-                UIView.transitionFromView(
-                    fromViewController.view,
-                    toView: toViewController.view!,
-                    duration: self.transitionDuration(transitionContext),
-                    options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
-                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-                }
-        })
+        if self.operation == .Push {
+            UIView.animateWithDuration(
+                duration,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0,
+                options: [],
+                animations: {
+                    proxyView.hidden = false
+                    proxyView.frame = toViewController.view.frame
+                }, completion: {
+                    (finished) in
+                    proxyView.hidden = true
+                    toViewController.view.alpha = 1
+                    UIView.transitionFromView(
+                        fromViewController.view,
+                        toView: toViewController.view!,
+                        duration: self.transitionDuration(transitionContext),
+                        options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
+                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                    }
+            })
+        } else {
+            UIView.transitionFromView(
+                toViewController.view,
+                toView: fromViewController.view,
+                duration: self.transitionDuration(transitionContext),
+                options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
+                    UIView.animateWithDuration(
+                        duration,
+                        delay: 0,
+                        usingSpringWithDamping: 1,
+                        initialSpringVelocity: 0,
+                        options: [],
+                        animations: {
+                            proxyView.hidden = false
+                            proxyView.frame = initialProxyViewFrame
+                        }, completion: {
+                            (finished) in
+                            proxyView.hidden = true
+                            fromViewController.view.alpha = 1
+                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                    })
+                    
+            }
+        }
         
         
         
-
         
     }
     

@@ -81,7 +81,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         
     }
     
-    func flipViewForTransition() -> UIView? {
+    func flipViewForTransition(transition: FlipTransition) -> UIView? {
         return self.view
     }
 
