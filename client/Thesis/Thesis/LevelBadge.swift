@@ -17,18 +17,20 @@ class LevelBadge: UIView{
         super.init(frame: frame)
         self.backgroundColor = UIColor(white: 1, alpha: 0)
 
-        self.currentLevelLabel = UILabel(frame: CGRect(x: 0, y: self.frame.height / 2, width: self.bounds.width, height: self.frame.height / 2))
+        self.currentLevelLabel = UILabel(frame: CGRect(x: 0, y: self.bounds.height * 0.25, width: self.bounds.width, height: self.bounds.height * 0.75))
         self.currentLevelLabel.textAlignment = NSTextAlignment.Center
         
         let currentLevel = LevelManager.sharedInstance.getCurrentLevel()
         let currentStage = LevelManager.sharedInstance.getCurrentStage(currentLevel)
         self.currentLevelLabel.text = "\(currentLevel) - \(currentStage)"
+        self.currentLevelLabel.sizeLabel()
         self.currentLevelLabel.textColor = UIColor.whiteColor()
         self.addSubview(currentLevelLabel)
         
-        self.levelTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.frame.height / 2))
+        self.levelTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 0.25))
         self.levelTitleLabel.textAlignment = NSTextAlignment.Center
         self.levelTitleLabel.text = "Level"
+        self.currentLevelLabel.sizeLabel()
         self.levelTitleLabel.textColor = UIColor.whiteColor()
         self.addSubview(levelTitleLabel)
         
@@ -39,6 +41,7 @@ class LevelBadge: UIView{
         let currentLevel = LevelManager.sharedInstance.getCurrentLevel()
         let currentStage = LevelManager.sharedInstance.getCurrentStage(currentLevel)
         self.currentLevelLabel.text = "\(currentLevel) - \(currentStage)"
+        self.currentLevelLabel.sizeLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
