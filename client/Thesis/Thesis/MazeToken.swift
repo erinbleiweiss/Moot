@@ -11,7 +11,7 @@ import UIKit
 class MazeToken: UIView {
 
     override func drawRect(rect: CGRect) {
-        let tokenPath = UIBezierPath(ovalInRect: rect)
+        let tokenPath = UIBezierPath(ovalInRect: CGRect(x: 5, y: 5, width: rect.width - 10, height: rect.height - 10))
         UIColor.redColor().setFill()
         tokenPath.fill()
     }

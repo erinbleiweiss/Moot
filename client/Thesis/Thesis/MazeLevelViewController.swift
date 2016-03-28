@@ -101,16 +101,15 @@ class MazeLevelViewController: GenericLevelViewController {
             
             self.controller.gameView.addSubview(mazeView)
          
-            
             let tokenFrame = CGRect(
-                x: 50 + (self.tileSize * (self.controller.pos_col+1)),
-                y: 200 + (self.self.tileSize * self.controller.pos_row),
+                x: self.tileSize * self.controller.pos_col,
+                y: self.tileSize * self.controller.pos_row,
                 width: self.tileSize,
                 height: self.tileSize
             )
             self.controller.tokenView = MazeToken(frame: tokenFrame)
             self.controller.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
-            self.view.addSubview(self.controller.tokenView)
+            mazeView.addSubview(self.controller.tokenView)
             
             let compassSize = self.controller.gameView.frame.height - mazeSize - 80
             let compassFrame = CGRect(
@@ -211,7 +210,12 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     func updateToken(){
-        self.controller.tokenView.frame = CGRect(x: 50 + (self.tileSize * (self.controller.pos_col+1)), y: 200 + (self.tileSize * self.controller.pos_row), width: self.tileSize, height: self.tileSize)
+        self.controller.tokenView.frame = CGRect(
+            x: self.tileSize * self.controller.pos_col,
+            y: self.tileSize * self.controller.pos_row,
+            width: self.tileSize,
+            height: self.tileSize
+        )
         self.controller.tokenView.setNeedsDisplay()
     }
     

@@ -58,28 +58,7 @@
                     <view key="view" contentMode="scaleToFill" id="Zxc-nT-jCa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVR-8U-b8V">
-                                <rect key="frame" x="196" y="81" width="209" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-bg-gmA">
-                                <rect key="frame" x="261" y="545" width="79" height="47"/>
-                                <state key="normal" title="Camera"/>
-                                <connections>
-                                    <segue destination="8eb-Af-hHg" kind="presentation" id="Dif-GJ-TGM"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="nVR-8U-b8V" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="HhM-QQ-fYA"/>
-                            <constraint firstItem="nVR-8U-b8V" firstAttribute="top" secondItem="qkm-nh-jZp" secondAttribute="bottom" constant="17" id="gPd-Rd-iOP"/>
-                            <constraint firstItem="FEw-Lz-QQM" firstAttribute="top" secondItem="eGh-bg-gmA" secondAttribute="bottom" constant="8" id="i4a-0f-1yQ"/>
-                            <constraint firstItem="eGh-bg-gmA" firstAttribute="centerX" secondItem="Zxc-nT-jCa" secondAttribute="centerX" id="srx-gx-wjV"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="2ua-p3-73c" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
@@ -87,9 +66,6 @@
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="Ad5-PM-k6W"/>
-                    <connections>
-                        <outlet property="colorLabel" destination="nVR-8U-b8V" id="DlZ-Gp-rwO"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GP3-hy-jiC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="anj-Q5-1Ap" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
