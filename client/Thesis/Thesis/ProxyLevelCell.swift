@@ -10,9 +10,11 @@ import UIKit
 
 class ProxyLevelCell: UIView {
     var levelLabel: UILabel!
+    var color: UIColor!
     
     init(level: Int, color: UIColor, frame: CGRect) {
         super.init(frame: frame)
+        self.color = color
         self.backgroundColor = color
         self.levelLabel = UILabel(frame: self.frame)
         self.levelLabel.bounds = self.bounds

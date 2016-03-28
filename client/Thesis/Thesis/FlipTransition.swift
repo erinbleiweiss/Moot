@@ -81,6 +81,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         
         if self.operation == .Push {
             fromViewController.view.addSubview(proxyView)
+            let color = proxyView.color
 
             UIView.animateWithDuration(
                 duration,
@@ -97,6 +98,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                     (finished) in
                     proxyView.hidden = true
                     toViewController.view.hidden = false
+                    (toViewController as! GenericLevelViewController).header?.backgroundColor = color
                     UIView.transitionFromView(
                         fromViewController.view,
                         toView: toViewController.view!,

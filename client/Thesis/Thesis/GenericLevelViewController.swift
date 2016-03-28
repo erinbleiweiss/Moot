@@ -11,11 +11,7 @@ import SwiftHEXColors
 
 class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol {
 
-    var scoreBox: ScoreBox?
-    var levelBadge: LevelBadge?
     var header: MootHeader?
-    
-//    var tabBar: MootTabBarController
     
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
@@ -38,21 +34,9 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         
         // Header should start off-screen for animation
         // Y value should be inverse of height
-        header = MootHeader(frame: CGRect(x: 0, y: -100, width: ScreenWidth, height: 100))
+        let headerHeight: CGFloat = 125
+        header = MootHeader(frame: CGRect(x: 0, y: -headerHeight, width: ScreenWidth, height: headerHeight))
         self.view.addSubview(header!)
-
-//        let color: UIColor = UIColor(hexString: "#2ecc71")!
-//        self.view.backgroundColor = color
-        // Do any additional setup after loading the view.
-        
-        let scoreBoxFrame = CGRect(x: 50, y: 50, width: 100, height: 100)
-        self.scoreBox = ScoreBox(frame: scoreBoxFrame)
-//        self.view.addSubview(scoreBox!)
-        
-        let badgeFrame = CGRect(x: self.view.bounds.width - 150, y: 50, width: 100, height: 100)
-        self.levelBadge = LevelBadge(frame: badgeFrame)
-//        self.view.addSubview(levelBadge!)
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -63,7 +47,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.levelBadge?.update()
+        self.header?.levelBadge!.update()
     }
 
     func addHeader(){
@@ -106,8 +90,8 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             if responseObject!["status"] == "success" {
                 let points = responseObject!["points"].intValue
                 ScoreManager.sharedInstance.setScore(points)
-                self.scoreBox?.setPoints(points)
-                self.scoreBox?.setNeedsDisplay()
+                self.header!.scoreBox?.setPoints(points)
+                self.header!.scoreBox?.setNeedsDisplay()
             }
         }
     }

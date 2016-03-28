@@ -15,7 +15,7 @@ class MootHeader: UIView {
     
     override init(frame: CGRect){
         super.init(frame: frame)
-        self.backgroundColor = UIColor(red:255/255, green: 102/255, blue:67/255, alpha:1)
+        self.backgroundColor = UIColor.blackColor()
         
         let subviewHeight = self.bounds.height/3
         let subviewWidth = self.bounds.width/2
