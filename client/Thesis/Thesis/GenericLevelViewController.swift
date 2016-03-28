@@ -34,8 +34,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         
         // Header should start off-screen for animation
         // Y value should be inverse of height
-        let headerHeight: CGFloat = 125
-        header = MootHeader(frame: CGRect(x: 0, y: -headerHeight, width: ScreenWidth, height: headerHeight))
+        header = MootHeader(frame: CGRect(x: 0, y: -yOffset, width: ScreenWidth, height: yOffset))
         self.view.addSubview(header!)
     }
     

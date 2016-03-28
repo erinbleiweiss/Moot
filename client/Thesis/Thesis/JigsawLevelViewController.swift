@@ -29,10 +29,10 @@ class JigsawLevelViewController: GenericLevelViewController {
         self.controller.level = 3
         self.setCameraButton(self.controller.level!)
 
-        let gameView = UIView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight))
+        let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight - yOffset))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
-        
+
         self.controller.getQRCode(300, height: 300){ responseObject, error in
             let rows = 3
             let cols = 3

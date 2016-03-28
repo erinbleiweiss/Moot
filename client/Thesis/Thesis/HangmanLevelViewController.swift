@@ -40,10 +40,9 @@ class HangmanLevelViewController: GenericLevelViewController {
 
 
         // Add one layer for all game elements (-200 accounts for height of top bar)
-        let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight))
+        let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight - yOffset))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
-
         self.setUpLevel()
     
     }
@@ -97,7 +96,6 @@ class HangmanLevelViewController: GenericLevelViewController {
      
      */
     func layoutTiles(){
-        print("laying out tiles \(self.controller.currentGame)")
         // Calculate the tile size and left margin (xOffset)
         let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
         var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
@@ -107,7 +105,7 @@ class HangmanLevelViewController: GenericLevelViewController {
         // Add each tile to the view, and append the tile to the controller's list of tile objects
         for (index, letter) in self.controller.currentGame.characters.enumerate(){
             let tile = HangmanTile(letter: letter, sideLength: tileSide)
-            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/4*3)
+            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/3)
             self.controller.gameView.addSubview(tile)
             self.controller.gameTiles.append(tile)
         }
