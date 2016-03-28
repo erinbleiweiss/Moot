@@ -26,6 +26,10 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
     ]
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         print("viewdidload")
         super.viewDidLoad()

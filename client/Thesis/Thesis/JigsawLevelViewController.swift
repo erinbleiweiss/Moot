@@ -16,11 +16,13 @@ class JigsawLevelViewController: GenericLevelViewController {
         controller = JigsawGameController()
         super.init(coder: aDecoder)
     }
-
-    
     
     var response: String!
     @IBOutlet weak var successLabel: UILabel!
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

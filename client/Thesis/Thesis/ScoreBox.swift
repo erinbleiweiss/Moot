@@ -19,7 +19,7 @@ class ScoreBox: UIView{
         self.backgroundColor = UIColor(white: 1, alpha: 0)
 
         self.points = ScoreManager.sharedInstance.getScore()
-        self.pointsLabel = UILabel(frame: CGRect(x: 0, y: self.bounds.height * 0.25, width: self.bounds.width, height: self.bounds.height * 0.75))
+        self.pointsLabel = UILabel(frame: CGRect(x: 0, y: self.bounds.height * 0.33, width: self.bounds.width, height: self.bounds.height * 0.66))
         self.pointsLabel.textAlignment = NSTextAlignment.Center
         self.pointsLabel.numberOfLines = 1
         if let points = self.points {
@@ -29,7 +29,7 @@ class ScoreBox: UIView{
         self.pointsLabel.textColor = UIColor.whiteColor()
         self.addSubview(pointsLabel)
         
-        self.mootPointsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 0.25))
+        self.mootPointsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 0.33))
         self.mootPointsLabel.textAlignment = NSTextAlignment.Center
         self.mootPointsLabel.numberOfLines = 1
         self.mootPointsLabel.adjustsFontSizeToFitWidth = true

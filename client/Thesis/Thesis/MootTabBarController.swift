@@ -35,8 +35,6 @@ public class MootTabBarController: RAMAnimatedTabBarController {
             tabBarItem.enabled = false
         }
     }
-
-    
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
         if let buttonImage = buttonImage {

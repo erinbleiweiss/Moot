@@ -89,12 +89,10 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                 initialSpringVelocity: 0,
                 options: [],
                 animations: {
-                    toViewController.navigationController?.navigationBarHidden = false
                     proxyView.hidden = false
                     proxyView.frame = toViewController.view.frame
                     proxyView.levelLabel.frame = toViewController.view.frame
                     proxyView.layoutIfNeeded()
-                    
                 }, completion: {
                     (finished) in
                     proxyView.hidden = true
@@ -104,7 +102,19 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                         toView: toViewController.view!,
                         duration: self.transitionDuration(transitionContext),
                         options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
-                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                            UIView.animateWithDuration(
+                                duration,
+                                delay: 0,
+                                usingSpringWithDamping: 1,
+                                initialSpringVelocity: 0,
+                                options: [.CurveEaseIn],
+                                animations: {
+                                    toViewController.navigationController?.navigationBarHidden = false
+                                    (toViewController as! GenericLevelViewController).addHeader()
+                                }, completion: { (finished) in
+                                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                                })
+                            
                     }
             })
         } else {

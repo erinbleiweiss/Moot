@@ -17,14 +17,14 @@ class MootHeader: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor(red:255/255, green: 102/255, blue:67/255, alpha:1)
         
-        let subviewHeight = self.bounds.height/2
+        let subviewHeight = self.bounds.height/3
         let subviewWidth = self.bounds.width/2
         
-        let scoreBoxFrame = CGRect(x: 0, y: subviewHeight, width: subviewWidth, height: subviewHeight)
+        let scoreBoxFrame = CGRect(x: 0, y: self.bounds.height - subviewHeight, width: subviewWidth, height: subviewHeight)
         self.scoreBox = ScoreBox(frame: scoreBoxFrame)
         self.addSubview(scoreBox!)
         
-        let badgeFrame = CGRect(x: subviewWidth, y: subviewHeight, width: subviewWidth, height: subviewHeight)
+        let badgeFrame = CGRect(x: subviewWidth, y: self.bounds.height - subviewHeight, width: subviewWidth, height: subviewHeight)
         self.levelBadge = LevelBadge(frame: badgeFrame)
         self.addSubview(levelBadge!)
     }

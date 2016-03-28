@@ -34,6 +34,7 @@
 		80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */; };
 		80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2ADE1CA8B6660033E48D /* MootHeader.swift */; };
 		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
+		80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */; };
 		80AE50511CA774A800050457 /* ProxyLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50501CA774A800050457 /* ProxyLevelCell.swift */; };
 		80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50521CA780C900050457 /* LevelCollectionView.swift */; };
 		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
@@ -121,6 +122,7 @@
 		80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeGameController.swift; sourceTree = "<group>"; };
 		80AE2ADE1CA8B6660033E48D /* MootHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootHeader.swift; sourceTree = "<group>"; };
 		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
+		80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelNavController.swift; sourceTree = "<group>"; };
 		80AE50501CA774A800050457 /* ProxyLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyLevelCell.swift; sourceTree = "<group>"; };
 		80AE50521CA780C900050457 /* LevelCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCollectionView.swift; sourceTree = "<group>"; };
 		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
@@ -153,7 +155,7 @@
 		80ED1F0E1BB25A400011A410 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80ED1F111BB25A400011A410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80ED1F171BB25A400011A410 /* Moot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Moot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		80ED1F1C1BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80ED1F1C1BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ThesisTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		80ED1F1D1BB25A400011A410 /* ThesisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisTests.swift; sourceTree = "<group>"; };
 		80F0DD4E1C5EBBB2002A8037 /* GenericGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericGameController.swift; sourceTree = "<group>"; };
 		A29897A7F59ED46F5CC3779B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		80ED1F041BB25A400011A410 /* Thesis */ = {
 			isa = PBXGroup;
 			children = (
+				80ED1F1C1BB25A400011A410 /* Info.plist */,
 				80ED1F071BB25A400011A410 /* AppDelegate.swift */,
 				80B195021BF5685F00B5C3CE /* Config.swift */,
 				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
@@ -314,7 +317,6 @@
 		80ED1F1B1BB25A400011A410 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				80ED1F1C1BB25A400011A410 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -337,6 +339,7 @@
 			children = (
 				80AE504D1CA5F05200050457 /* Subviews */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
+				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
 				80EB858E1C83ABC700AC37A7 /* MootViewController.swift */,
 				80ECB47F1C896722007559A8 /* AchievementViewController.swift */,
 				801590EB1C7FC0A70011872B /* LoginViewController.swift */,
@@ -574,6 +577,7 @@
 				804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */,
 				80CBB5BD1C79926400D705A7 /* ScoreManager.swift in Sources */,
 				80B195051BF56C4500B5C3CE /* HangmanGameController.swift in Sources */,
+				80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */,
 				804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */,
 				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
 				80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */,

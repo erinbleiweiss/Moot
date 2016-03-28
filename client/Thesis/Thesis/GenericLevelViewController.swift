@@ -13,6 +13,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
 
     var scoreBox: ScoreBox?
     var levelBadge: LevelBadge?
+    var header: MootHeader?
     
 //    var tabBar: MootTabBarController
     
@@ -20,6 +21,10 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     required init?(coder aDecoder: NSCoder) {
         controller = GenericGameController()
         super.init(coder: aDecoder)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     override func viewDidLoad() {
@@ -31,9 +36,11 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         
-        let header = MootHeader(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 150))
-        self.view.addSubview(header)
-        
+        // Header should start off-screen for animation
+        // Y value should be inverse of height
+        header = MootHeader(frame: CGRect(x: 0, y: -100, width: ScreenWidth, height: 100))
+        self.view.addSubview(header!)
+
 //        let color: UIColor = UIColor(hexString: "#2ecc71")!
 //        self.view.backgroundColor = color
         // Do any additional setup after loading the view.
@@ -59,6 +66,10 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         self.levelBadge?.update()
     }
 
+    func addHeader(){
+        let height = self.header!.frame.height
+        self.header?.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: height)
+    }
     
     func setCameraButton(levelNum: Int){
         let level = LevelManager.sharedInstance.listLevels()[levelNum - 1]
