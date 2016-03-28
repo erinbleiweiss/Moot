@@ -89,8 +89,8 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                 initialSpringVelocity: 0,
                 options: [],
                 animations: {
+                    toViewController.navigationController?.navigationBarHidden = false
                     proxyView.hidden = false
-
                     proxyView.frame = toViewController.view.frame
                     proxyView.levelLabel.frame = toViewController.view.frame
                     proxyView.layoutIfNeeded()
@@ -108,6 +108,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                     }
             })
         } else {
+            toViewController.navigationController?.navigationBarHidden = true
             toViewController.view.hidden = false
             proxyView.hidden = false
             proxyView.frame = containerView!.frame

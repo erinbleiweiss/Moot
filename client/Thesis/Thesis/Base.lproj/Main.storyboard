@@ -313,7 +313,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17f-7a-KCK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17f-7a-KCK">
                                 <rect key="frame" x="254" y="40" width="93" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -342,13 +342,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="17f-7a-KCK" firstAttribute="top" secondItem="aT0-iw-nlm" secondAttribute="bottom" constant="50" id="6Pw-aX-qwz"/>
-                            <constraint firstItem="17f-7a-KCK" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="30" id="SZa-rI-Glt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="17f-7a-KCK" secondAttribute="trailing" constant="30" id="U9U-iR-pTC"/>
-                            <constraint firstItem="Yki-Nq-zA3" firstAttribute="top" secondItem="aEF-rD-81B" secondAttribute="topMargin" id="k7l-Nd-f3X"/>
-                            <constraint firstItem="XbL-UH-PE1" firstAttribute="top" secondItem="Yki-Nq-zA3" secondAttribute="bottom" id="lKS-YL-GVc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Yki-Nq-zA3" secondAttribute="trailing" constant="-20" id="of3-cC-Rhl"/>
-                            <constraint firstItem="Yki-Nq-zA3" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="-20" id="sz2-J1-FS6"/>
+                            <constraint firstItem="Yki-Nq-zA3" firstAttribute="top" secondItem="aEF-rD-81B" secondAttribute="topMargin" id="Fbp-BK-hZ7"/>
+                            <constraint firstItem="XbL-UH-PE1" firstAttribute="top" secondItem="Yki-Nq-zA3" secondAttribute="bottom" id="X7n-Te-D11"/>
+                            <constraint firstItem="Yki-Nq-zA3" firstAttribute="leading" secondItem="aEF-rD-81B" secondAttribute="leadingMargin" constant="-20" id="YPh-F4-2j5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yki-Nq-zA3" secondAttribute="trailing" constant="-20" id="kDf-st-G7r"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="jIw-aF-5Fe" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">

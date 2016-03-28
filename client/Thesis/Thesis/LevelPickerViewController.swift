@@ -29,7 +29,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     override func viewDidLoad() {
         print("viewdidload")
         super.viewDidLoad()
-//        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.navigationBarHidden = true
 
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         self.levelCollectionView.collectionViewLayout = layout
