@@ -20,7 +20,7 @@ class JigsawGameController: GenericGameController{
     
     func getQRCode(width: Int, height: Int, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_qr_code"
-        Alamofire.request(.GET, url, parameters: ["width": width, "height": height]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["width": width, "height": height], headers: headers).responseJSON { (_, _, result) in
             
             if let img = result.data{
                 self.QRImage = UIImage(data: img)
