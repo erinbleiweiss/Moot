@@ -13,6 +13,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
 
     var cameraVC: String?
     var cameraButtonVisible: Bool = false
+    var button: CameraTabButton?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -38,36 +39,36 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
         if let buttonImage = buttonImage {
-            let button = CameraTabButton(type: UIButtonType.Custom)
-            button.tag = 1337
-            button.autoresizingMask = [UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin]
+            self.button = CameraTabButton(type: UIButtonType.Custom)
+            self.button!.tag = 1337
+            self.button!.autoresizingMask = [UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleTopMargin]
             
             let buttonSize = self.tabBar.frame.height * 1.5
-            button.frame = CGRectMake(0.0, 0.0, buttonSize, buttonSize)
+            self.button!.frame = CGRectMake(0.0, 0.0, buttonSize, buttonSize)
 
 
             let imageOffsetY: CGFloat = buttonSize * 0.05
             let imageFrame = CGRectMake(0, -imageOffsetY, buttonSize, buttonSize)
-            button.setImage(buttonImage, inFrame: imageFrame, forState: UIControlState.Normal)
-            button.setImage(buttonImage, inFrame: imageFrame, forState: UIControlState.Highlighted)
+            self.button!.setImage(buttonImage, inFrame: imageFrame, forState: UIControlState.Normal)
+            self.button!.setImage(buttonImage, inFrame: imageFrame, forState: UIControlState.Highlighted)
             
             let heightDifference = buttonImage.size.height - self.tabBar.frame.size.height
             
             if (heightDifference < 0) {
-                button.center = self.tabBar.center
+                self.button!.center = self.tabBar.center
             }
             else {
                 var center = self.tabBar.center
                 center.y -= heightDifference / 2.0
                 
-                button.center = center
+                self.button!.center = center
             }
             
-            button.addTarget(self, action: "onRaisedButton:", forControlEvents: UIControlEvents.TouchUpInside)
-            button.animation = "squeezeUp"
-            button.force = 0.5
-            button.animate()
-            self.view.addSubview(button)
+            self.button!.addTarget(self, action: "onRaisedButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            self.button!.animation = "squeezeUp"
+            self.button!.force = 0.5
+            self.button!.animate()
+            self.view.addSubview(button!)
         }
     }
     
@@ -82,6 +83,15 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         
     
 
+    }
+    
+    public func changeButtonColor(color: UIColor){
+        for item in self.tabBar.items! as! [RAMAnimatedTabBarItem] {
+            let image = item.iconView!.icon.image
+            item.iconView!.icon.image = image!.imageWithColor(color).imageWithRenderingMode(.AlwaysOriginal)
+        }
+        let cameraImage = self.button?.imageView?.image
+        self.button?.imageView?.image = cameraImage?.imageWithColor(color)
     }
     
 

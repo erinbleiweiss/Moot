@@ -96,6 +96,8 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                     proxyView.layoutIfNeeded()
                 }, completion: {
                     (finished) in
+//                    toViewController.navigationController?.tabBarController?.tabBar.barTintColor = color
+                    (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(color)
                     proxyView.hidden = true
                     toViewController.view.hidden = false
                     (toViewController as! GenericLevelViewController).header?.backgroundColor = color
@@ -142,6 +144,8 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                             proxyView.frame = initialProxyViewFrame
                             proxyView.levelLabel.frame = initialProxyViewFrame
                             proxyView.layoutIfNeeded()
+                            toViewController.navigationController?.tabBarController?.tabBar.barTintColor = UIColor.whiteColor()
+                            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(UIColor.blackColor())
                         }, completion: {
                             (finished) in
                             proxyView.removeFromSuperview()

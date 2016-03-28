@@ -109,7 +109,7 @@ class JigsawLevelViewController: GenericLevelViewController {
         let targetsSize = width * sqrt(CGFloat(self.controller.tiles.count))
         let targetsView = UIView(frame: CGRect(
             x: ((ScreenWidth / 2) - (targetsSize / 2) + (width / 2)),
-            y: 40,
+            y: ScreenHeight - self.controller.gameView.frame.height - 80,
             width: targetsSize,
             height: targetsSize)
         )
