@@ -28,10 +28,6 @@ class QRTile: UIImageView {
         self.id = id
         
         super.init(image: image)
-        
-//        let scale = sideLength / image.width
-//        self.frame = CGRect(x: 0, y: 0, width: frame.width * scale, height: frame.height * scale)
-        
         self.userInteractionEnabled = true
     }
     
