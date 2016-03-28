@@ -16,18 +16,26 @@ class ScoreBox: UIView{
     
     override init(frame: CGRect){
         super.init(frame: frame)
-        
+        self.backgroundColor = UIColor(white: 1, alpha: 0)
+
         self.points = ScoreManager.sharedInstance.getScore()
-        self.pointsLabel = UILabel(frame: CGRect(x: 0, y: self.frame.height / 2, width: self.bounds.width, height: self.frame.height / 2))
+        self.pointsLabel = UILabel(frame: CGRect(x: 0, y: self.bounds.height * 0.25, width: self.bounds.width, height: self.bounds.height * 0.75))
         self.pointsLabel.textAlignment = NSTextAlignment.Center
+        self.pointsLabel.numberOfLines = 1
         if let points = self.points {
                 self.pointsLabel.text = String(points)
+                self.pointsLabel.sizeLabel()
         }
+        self.pointsLabel.textColor = UIColor.whiteColor()
         self.addSubview(pointsLabel)
         
-        self.mootPointsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.frame.height / 2))
+        self.mootPointsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 0.25))
         self.mootPointsLabel.textAlignment = NSTextAlignment.Center
+        self.mootPointsLabel.numberOfLines = 1
+        self.mootPointsLabel.adjustsFontSizeToFitWidth = true
         self.mootPointsLabel.text = "Moot Points"
+        self.mootPointsLabel.sizeLabel()
+        self.mootPointsLabel.textColor = UIColor.whiteColor()
         self.addSubview(mootPointsLabel)
         
     }
@@ -35,6 +43,7 @@ class ScoreBox: UIView{
     func setPoints(points: Int){
         self.points = points
         self.pointsLabel.text = String(points)
+        self.pointsLabel.sizeLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {

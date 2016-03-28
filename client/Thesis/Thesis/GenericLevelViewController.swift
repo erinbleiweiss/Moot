@@ -27,19 +27,24 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         
         self.displayCamera = true
 
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        
+        let header = MootHeader(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: 150))
+        self.view.addSubview(header)
+        
 //        let color: UIColor = UIColor(hexString: "#2ecc71")!
 //        self.view.backgroundColor = color
         // Do any additional setup after loading the view.
         
-        let scoreBoxFrame = CGRect(x: 50, y: 100, width: 100, height: 100)
+        let scoreBoxFrame = CGRect(x: 50, y: 50, width: 100, height: 100)
         self.scoreBox = ScoreBox(frame: scoreBoxFrame)
-        self.scoreBox!.backgroundColor = UIColor(white: 1, alpha: 1)
-        self.view.addSubview(scoreBox!)
+//        self.view.addSubview(scoreBox!)
         
-        let badgeFrame = CGRect(x: self.view.bounds.width - 150, y: 100, width: 100, height: 100)
+        let badgeFrame = CGRect(x: self.view.bounds.width - 150, y: 50, width: 100, height: 100)
         self.levelBadge = LevelBadge(frame: badgeFrame)
-        self.levelBadge!.backgroundColor = UIColor(white: 1, alpha: 1)
-        self.view.addSubview(levelBadge!)
+//        self.view.addSubview(levelBadge!)
         
     }
     

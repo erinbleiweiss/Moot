@@ -32,6 +32,8 @@
 		809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866631BE9DC6400B3FE9D /* MazeToken.swift */; };
 		80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5B5AC1CA4ED320074B48D /* LevelCell.swift */; };
 		80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */; };
+		80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2ADE1CA8B6660033E48D /* MootHeader.swift */; };
+		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
 		80AE50511CA774A800050457 /* ProxyLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50501CA774A800050457 /* ProxyLevelCell.swift */; };
 		80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50521CA780C900050457 /* LevelCollectionView.swift */; };
 		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
@@ -117,6 +119,8 @@
 		809866631BE9DC6400B3FE9D /* MazeToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeToken.swift; sourceTree = "<group>"; };
 		80A5B5AC1CA4ED320074B48D /* LevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeGameController.swift; sourceTree = "<group>"; };
+		80AE2ADE1CA8B6660033E48D /* MootHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootHeader.swift; sourceTree = "<group>"; };
+		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
 		80AE50501CA774A800050457 /* ProxyLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyLevelCell.swift; sourceTree = "<group>"; };
 		80AE50521CA780C900050457 /* LevelCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCollectionView.swift; sourceTree = "<group>"; };
 		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 		80AE504A1CA5EF6B00050457 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				80685A041C7A7873000AAB9E /* ScoreBox.swift */,
 				804927861C97BAD200410B1A /* LevelBadge.swift */,
 				80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */,
+				80AE2ADE1CA8B6660033E48D /* MootHeader.swift */,
 			);
 			name = Subviews;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 				809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */,
 				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
 				804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */,
+				80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */,
 				80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */,
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
@@ -585,6 +592,7 @@
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
 				80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */,
 				80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */,
+				80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
 				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
