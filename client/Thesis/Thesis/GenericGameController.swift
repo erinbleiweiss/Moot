@@ -19,7 +19,6 @@ class GenericGameController{
     var username: String?
     var password: String?
     var popViewController: PopUpViewControllerSwift?
-    var achievementPopup: AchievementPopup?
     var level: Int?
     var headers: [String: String]?
     
