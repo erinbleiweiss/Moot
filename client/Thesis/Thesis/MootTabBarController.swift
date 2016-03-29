@@ -25,7 +25,6 @@ public class MootTabBarController: RAMAnimatedTabBarController {
 //        let color = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         let color = UIColor.whiteColor()
         UITabBar.appearance().barTintColor = color
-
     }
     
     override public func viewWillAppear(animated: Bool) {
@@ -35,6 +34,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         if  let arrayOfTabBarItems = self.tabBar.items as! AnyObject as? NSArray,tabBarItem = arrayOfTabBarItems[1] as? UITabBarItem {
             tabBarItem.enabled = false
         }
+        changeButtonColor(UIColor(red:180/255, green: 180/255, blue:180/255, alpha:1))
     }
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {

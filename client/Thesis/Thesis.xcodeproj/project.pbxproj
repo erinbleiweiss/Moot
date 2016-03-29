@@ -36,6 +36,8 @@
 		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
 		80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */; };
 		80AE2AE51CA90D6A0033E48D /* TabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE41CA90D6A0033E48D /* TabBarExtension.swift */; };
+		80AE2AE71CA9C2170033E48D /* AchievementPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80AE2AE61CA9C2170033E48D /* AchievementPopup.xib */; };
+		80AE2AEA1CA9C4AA0033E48D /* AchievementPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE91CA9C4AA0033E48D /* AchievementPopup.swift */; };
 		80AE50511CA774A800050457 /* ProxyLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50501CA774A800050457 /* ProxyLevelCell.swift */; };
 		80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50521CA780C900050457 /* LevelCollectionView.swift */; };
 		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
@@ -125,6 +127,8 @@
 		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
 		80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelNavController.swift; sourceTree = "<group>"; };
 		80AE2AE41CA90D6A0033E48D /* TabBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarExtension.swift; sourceTree = "<group>"; };
+		80AE2AE61CA9C2170033E48D /* AchievementPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementPopup.xib; sourceTree = "<group>"; };
+		80AE2AE91CA9C4AA0033E48D /* AchievementPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementPopup.swift; sourceTree = "<group>"; };
 		80AE50501CA774A800050457 /* ProxyLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyLevelCell.swift; sourceTree = "<group>"; };
 		80AE50521CA780C900050457 /* LevelCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCollectionView.swift; sourceTree = "<group>"; };
 		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
@@ -208,6 +212,14 @@
 			name = Animations;
 			sourceTree = "<group>";
 		};
+		80AE2AE81CA9C21E0033E48D /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				80AE2AE61CA9C2170033E48D /* AchievementPopup.xib */,
+			);
+			name = xibs;
+			sourceTree = "<group>";
+		};
 		80AE504A1CA5EF6B00050457 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +232,7 @@
 		80AE504D1CA5F05200050457 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				80AE2AE91CA9C4AA0033E48D /* AchievementPopup.swift */,
 				80EB85921C8462C700AC37A7 /* AchievementTableViewCell.swift */,
 				80AE50521CA780C900050457 /* LevelCollectionView.swift */,
 				80A5B5AC1CA4ED320074B48D /* LevelCell.swift */,
@@ -340,6 +353,7 @@
 		80F0DD511C5EE91B002A8037 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80AE2AE81CA9C21E0033E48D /* xibs */,
 				80AE504D1CA5F05200050457 /* Subviews */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
 				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
@@ -485,6 +499,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80AE2AE71CA9C2170033E48D /* AchievementPopup.xib in Resources */,
 				80B6E4A21C96338A002761D8 /* PopUpViewController_iPad.xib in Resources */,
 				80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */,
 				80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */,
@@ -572,6 +587,7 @@
 				80EB85951C8479F400AC37A7 /* Achievement.swift in Sources */,
 				801590EC1C7FC0A70011872B /* LoginViewController.swift in Sources */,
 				80AE50511CA774A800050457 /* ProxyLevelCell.swift in Sources */,
+				80AE2AEA1CA9C4AA0033E48D /* AchievementPopup.swift in Sources */,
 				809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */,
 				8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */,
 				801590F21C7FC7F50011872B /* UIMaterialTextField.swift in Sources */,

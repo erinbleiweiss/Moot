@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SCLAlertView
 
 class GenericGameController{
     var gameView: UIView!
@@ -18,6 +19,7 @@ class GenericGameController{
     var username: String?
     var password: String?
     var popViewController: PopUpViewControllerSwift?
+    var achievementPopup: AchievementPopup?
     var level: Int?
     var headers: [String: String]?
     
@@ -172,8 +174,8 @@ class GenericGameController{
             for ach in acheivements_earned.arrayValue {
                 NSLog(ach.string!)
                 let message = "You just earned the \(ach.string!) achievement!"
-                self.showPopUp(ach.string!, message: message, image: UIImage(named: "medal")!)
-
+//                self.showPopUp(ach.string!, message: message, image: UIImage(named: "medal")!)
+                self.showPopUp()
             }
         }
     }
@@ -187,33 +189,52 @@ class GenericGameController{
             - message: (String) Description to be displayed
             - image: (UI Image) Image associated with achievement
     */
-    func showPopUp(title: String, message: String, image: UIImage) {
-        let bundle = NSBundle(forClass: PopUpViewControllerSwift.self)
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
-        {
-            self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPad", bundle: bundle)
-            self.popViewController!.title = title
-            self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
-        } else
-        {
-            if UIScreen.mainScreen().bounds.size.width > 320 {
-                if UIScreen.mainScreen().scale == 3 {
-                    self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPhone6Plus", bundle: bundle)
-                    self.popViewController!.title = title
-                    self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
-                } else {
-                    self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPhone6", bundle: bundle)
-                    self.popViewController!.title = title
-                    self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
-                }
-            } else {
-                self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController", bundle: bundle)
-                self.popViewController!.title = title
-                self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
-            }
-        }
+//    func showPopUp(title: String, message: String, image: UIImage) {
+//        let bundle = NSBundle(forClass: PopUpViewControllerSwift.self)
+//        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad)
+//        {
+//            self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPad", bundle: bundle)
+//            self.popViewController!.title = title
+//            self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+//        } else
+//        {
+//            if UIScreen.mainScreen().bounds.size.width > 320 {
+//                if UIScreen.mainScreen().scale == 3 {
+//                    self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPhone6Plus", bundle: bundle)
+//                    self.popViewController!.title = title
+//                    self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+//                } else {
+//                    self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController_iPhone6", bundle: bundle)
+//                    self.popViewController!.title = title
+//                    self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+//                }
+//            } else {
+//                self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController", bundle: bundle)
+//                self.popViewController!.title = title
+//                self.popViewController!.showInView(self.gameView, withImage: image, withMessage: message, animated: true)
+//            }
+//        }
+//    }
+     
+//    func showPopUp(){
+//        self.achievementPopup = AchievementPopup(frame: self.gameView.bounds)
+//        self.gameView.addSubview(self.achievementPopup!)
+//    }
+
+    func showPopUp(){
+        let alertView = SCLAlertView()
+        alertView.addSocialMedia()
+        alertView.showTitle(
+            "New Moot on the Block",
+            subTitle: "Started a new Moot game",
+            duration: 0.0,
+            completeText: "Ok",
+            style: .Success,
+            colorStyle: 0x000000,
+            colorTextButton: 0xFFFFFF,
+            topLabel: "Achievement Unlocked!"
+        )
     }
-    
     
     
     

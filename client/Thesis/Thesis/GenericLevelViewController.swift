@@ -27,7 +27,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         super.viewDidLoad()
         
         self.displayCamera = true
-
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
