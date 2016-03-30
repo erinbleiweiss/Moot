@@ -16,6 +16,7 @@
 		801590F21C7FC7F50011872B /* UIMaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801590F11C7FC7F50011872B /* UIMaterialTextField.swift */; };
 		801E76D51C6805D40077A379 /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E76D41C6805D40077A379 /* level1.plist */; };
 		802369471C73BEDE00840D30 /* LevelPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802369461C73BEDE00840D30 /* LevelPicker.xib */; };
+		8024807E1CAB690700204F82 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024807D1CAB690700204F82 /* ColorExtensions.swift */; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
 		804927871C97BAD200410B1A /* LevelBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804927861C97BAD200410B1A /* LevelBadge.swift */; };
 		804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E61C9E22F800F57992 /* QCMethod.swift */; };
@@ -105,6 +106,7 @@
 		801590F11C7FC7F50011872B /* UIMaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMaterialTextField.swift; sourceTree = "<group>"; };
 		801E76D41C6805D40077A379 /* level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level1.plist; sourceTree = "<group>"; };
 		802369461C73BEDE00840D30 /* LevelPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LevelPicker.xib; sourceTree = "<group>"; };
+		8024807D1CAB690700204F82 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804927861C97BAD200410B1A /* LevelBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBadge.swift; sourceTree = "<group>"; };
 		804E11E61C9E22F800F57992 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */,
 				80AE2AE41CA90D6A0033E48D /* TabBarExtension.swift */,
+				8024807D1CAB690700204F82 /* ColorExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */,
+				8024807E1CAB690700204F82 /* ColorExtensions.swift in Sources */,
 				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
 				804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */,
 				80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */,

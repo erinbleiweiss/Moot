@@ -173,21 +173,25 @@ class GenericGameController{
             for ach in acheivements_earned.arrayValue {
                 NSLog(ach.string!)
                 let message = "You just earned the \(ach.string!) achievement!"
-                self.showPopUp(ach.string!, message: message)
+                self.showAchievementPopUp(ach.string!, message: message)
             }
         }
     }
+
+    //// ==========================================================
+    //// POPUP DISPLAYS:
+    //// ==========================================================
     
     
     /**
-        Use the NMPopupView class to display a popup for the given achievements
+        Use the SCLAlertView class to display a popup for the given achievements
      
         - Parameters:
             - title: (String) Name of achievement
             - message: (String) Description to be displayed
             - image: (UI Image) Image associated with achievement
     */
-    func showPopUp(title: String, message: String){
+    func showAchievementPopUp(title: String, message: String){
         let alertView = SCLAlertView()
         alertView.addSocialMedia()
         alertView.showTitle(
@@ -198,7 +202,31 @@ class GenericGameController{
             style: .Success,
             colorStyle: 0x000000,
             colorTextButton: 0xFFFFFF,
+            circleIconImage: UIImage(named: "medal2"),
             topLabel: "Achievement Unlocked!"
+        )
+    }
+
+    
+    /**
+        Use the SCLAlertview class to display a popup for each item scanned
+     
+        - Parameters:
+            - productName: (String) Name of product
+            - color: (UIColor) Color of scanned product
+     
+    */
+    func showProductPopup(productName: String, color: UIColor){
+        let colorString = color.toHexString()
+        let alertView = SCLAlertView()
+        alertView.addLowerTitle(productName)
+        alertView.showTitle(
+            "Product Scanned!",
+            subTitle: "",
+            style: .Success,
+            duration: 0.0,
+            colorStyle: UInt(colorString),
+            colorTextButton: 0xFFFFFF
         )
     }
     

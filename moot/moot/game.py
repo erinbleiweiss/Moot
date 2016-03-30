@@ -195,25 +195,75 @@ def get_points():
     return jsonify(response)
 
 
-# @app.route('/v1/get_product_info', methods=["GET"])
-# def get_product_info():
-#     auth = request.authorization
-#     user_id = auth.username
-#
-#     upc = requests.get["upc"]
-#     product_name = get_product_name(upc)
-#
-#
-#     db = MootDao()
-#     response = {}
-#     try:
-#         db.get_product_info()
-#         response["status"] = SUCCESS
-#     except Exception:
-#         response["status"] = FAILURE
-#
-#     return jsonify(response)
+@app.route('/v1/get_product_info', methods=["GET"])
+def get_product_info():
+    auth = request.authorization
+    user_id = auth.username
 
+    upc = requests.get["upc"]
+    product_name = get_product_name(upc)
+
+
+    db = MootDao()
+    response = {}
+    try:
+        db.get_product_info()
+        response["status"] = SUCCESS
+    except Exception:
+        response["status"] = FAILURE
+
+    return jsonify(response)
+
+
+def get_product_info_internal(user_id, upc):
+    logger_header('/get_product_info_internal')
+
+    # Get data from searchupc API
+    params = {'request_type': UPC_REQUEST_TYPE,
+              'access_token': UPC_ACCESS_TOKEN,
+              'upc': upc}
+    barcode_data = requests.get(SEARCH_UPC_URL, params=params)
+    barcode_data = barcode_data.json()
+    product_name = barcode_data["0"]["productname"]
+    product_img_url = barcode_data["0"]["imageurl"]
+
+    # Download product image
+    img_response = requests.get(product_img_url)
+
+    # Get dominant color as RGB value
+    color_thief = ColorThief(StringIO(img_response.content))
+    dominant_color = color_thief.get_color(quality=1)
+    red, green, blue = dominant_color[0], \
+                   dominant_color[1], \
+                   dominant_color[2]
+
+    # Convert RGB color to HSV color, then increase saturation
+    # value to 100%
+    hsv_color = colorsys.rgb_to_hsv(red, green, blue)
+    hue = hsv_color[0]
+    value = hsv_color[2]
+    new_rgb_color = colorsys.hsv_to_rgb(hue, 1.0, value)
+    new_rgb_color = tuple([color * 255 for color in new_rgb_color])
+
+    # Get color name of closest match
+    color_name = get_color_name(new_rgb_color)
+
+    logger.debug(new_rgb_color)
+    logger.debug(color_name)
+
+    product_info = {
+        "product_name": product_name,
+        "color": color_name,
+        "product_img": product_img_url
+    }
+
+    db = MootDao()
+    try:
+        db.save_product(user_id, upc, product_name, color_name, "")
+    except Exception as e:
+        logger.critical("Problem saving product info to database: {}".format(e))
+
+    return product_info
 
 @app.route('/v1/save_product', methods=["POST"])
 def save_product():
@@ -345,7 +395,9 @@ def play_hangman():
     letters_guessed = list(request.args.get('letters_guessed'))
 
     # Get "current letter" corresponding to first letter of scanned object
-    product_name = get_product_name(upc)
+    product_info = get_product_info_internal(user_id, upc)
+    product_name = product_info["product_name"]
+
     points_earned = moot_points(product_name, MAX_POINTS_FOR_PRODUCT)
     db = MootDao()
     response = {}
@@ -385,6 +437,9 @@ def play_hangman():
     if current_letter in letters_guessed:
         response["guess"] = current_letter
         response["status"] = SUCCESS
+        response["product_name"] = product_name
+        response["color"] = product_info["color"]
+        response["product_img"] = product_info["product_img"]
         response["game_state"] = 1
         response["letters_guessed"] = ''.join(letters_guessed)
     # If guess is correct
@@ -396,12 +451,18 @@ def play_hangman():
 
         response["guess"] = current_letter
         response["status"] = SUCCESS
+        response["product_name"] = product_name
+        response["color"] = product_info["color"]
+        response["product_img"] = product_info["product_img"]
         response["game_state"] = 0
         response["letters_guessed"] = ''.join(new_letters)
     # If guess is incorrect
     else:
         response["guess"] = current_letter
         response["status"] = SUCCESS
+        response["product_name"] = product_name
+        response["color"] = product_info["color"]
+        response["product_img"] = product_info["product_img"]
         response["game_state"] = 2
         response["letters_guessed"] = ''.join(letters_guessed)
     return jsonify(response)
@@ -631,9 +692,9 @@ def find_colors(img, n=4):
 #     result["dominant_color"] = "none"
 #     return jsonify(result)
 
-@app.route('/v1/image_colors', methods=["GET"])
-def image_colors():
-    logger_header('/image_colors')
+@app.route('/v1/image_colors_OLD', methods=["GET"])
+def image_colors_OLD():
+    logger_header('/image_colors_OLD')
     upc = request.args.get('upc')
     url = get_product_img(upc)
     response = requests.get(url)
@@ -670,6 +731,25 @@ def image_colors():
     response["color"] = color_name
     response["status"] = SUCCESS
     return jsonify(response)
+
+
+@app.route('/v1/image_colors', methods=["GET"])
+def image_colors():
+    logger_header("/image_colors")
+    auth = request.authorization
+    user_id = auth.username
+    upc = request.args.get('upc')
+
+    product_info = get_product_info_internal(user_id, upc)
+    color_name = product_info["color"]
+
+    response = {}
+    response["product_name"] = product_info["product_name"]
+    response["product_img"] = product_info["product_img"]
+    response["color"] = color_name
+    response["status"] = SUCCESS
+    return jsonify(response)
+
 
 
 class Tile (object):

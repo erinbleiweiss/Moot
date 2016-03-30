@@ -155,7 +155,7 @@ class MootTest(unittest.TestCase):
             # 'upc': self.TEST_UPC
             'upc': "0052000328660"
         }
-        response = self.api_get('image_colors', payload=payload)
+        response = self.api_get('image_colors', payload=payload, use_auth=True)
         self.assertEqual(response["status"], self.good_status)
 
     def test_generate_maze(self):

@@ -155,7 +155,10 @@ class HangmanLevelViewController: GenericLevelViewController {
                         self.displayLevelCompletionView()
                     }
                     
+
                 }
+
+                self.controller.showProductPopup(responseObject!["product_name"].string!, color: UIColor.blueColor())
                 self.updateMootPoints()
             }
         }
