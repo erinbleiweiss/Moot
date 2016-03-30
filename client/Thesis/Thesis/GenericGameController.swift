@@ -199,7 +199,7 @@ class GenericGameController{
             subTitle: message,
             duration: 0.0,
             completeText: "Ok",
-            style: .Success,
+            style: .Custom,
             colorStyle: 0x000000,
             colorTextButton: 0xFFFFFF,
             circleIconImage: UIImage(named: "medal2"),
@@ -216,9 +216,14 @@ class GenericGameController{
             - color: (UIColor) Color of scanned product
      
     */
-    func showProductPopup(productName: String, color: UIColor){
+    func showProductPopup(productName: String, color: UIColor, url: String){
+        var img = UIImage()
+        if let data = NSData(contentsOfURL: NSURL(string: url)!) {
+            img = UIImage(data: data)!
+        }
         let colorString = color.toHexString()
         let alertView = SCLAlertView()
+        alertView.addImage(img)
         alertView.addLowerTitle(productName)
         alertView.showTitle(
             "Product Scanned!",
@@ -230,6 +235,7 @@ class GenericGameController{
         )
     }
     
+
     
     
     //// ==========================================================
