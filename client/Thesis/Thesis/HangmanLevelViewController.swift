@@ -158,7 +158,7 @@ class HangmanLevelViewController: GenericLevelViewController {
 
                 }
 
-                self.controller.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
+//                self.controller.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
                 self.updateMootPoints()
             }
         }

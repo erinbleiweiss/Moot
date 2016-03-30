@@ -23,6 +23,16 @@ var rest_prefix = Networking.networkConfig.rest_prefix
 // Base 64 encoded secret key
 var api_key = "RFY3cEhHdFNTOUZKem1KNXVjRDNWdll1JHgyR3JmUDlGOWIk"
 
+var mootColors: [String: UIColor] = [
+    "red":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
+    "orange":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
+    "yellow":       UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
+    "greenyellow":  UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
+    "green":        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
+    "teal":         UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
+    "blue":         UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
+    "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
+]
 
 
 

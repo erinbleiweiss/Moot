@@ -8,12 +8,14 @@
 
 import UIKit
 import SwiftHEXColors
+import SwiftyJSON
 import SCLAlertView
 import Social
 
 class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol {
 
     var header: MootHeader?
+    var currentAlertView: SCLAlertView?
     
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +31,6 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         super.viewDidLoad()
         
         self.displayCamera = true
-        self.showTestPopup()
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -184,7 +185,8 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
      */
     func showAchievementPopUp(title: String, message: String){
         let alertView = SCLAlertView()
-        alertView.addSocialMedia()
+        let btns: [UIButton] = alertView.addSocialMedia()
+        self.addSocialMediaTargets(btns)
         alertView.showTitle(
             title,
             subTitle: message,
@@ -196,6 +198,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             circleIconImage: UIImage(named: "medal2"),
             topLabel: "Achievement Unlocked!"
         )
+        self.currentAlertView = alertView
     }
     
     
@@ -237,36 +240,12 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
      
      */
     func getColorFromName(color_name: String) -> UInt{
-        let colors: [String: UIColor] = [
-            "red":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
-            "orange":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
-            "yellow":       UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
-            "greenyellow":  UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
-            "green":        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
-            "teal":         UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
-            "blue":         UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
-            "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
-        ]
-        
-        let color: UIColor = colors[color_name]!
+        let color: UIColor = mootColors[color_name]!
         let colorHex = color.toHexString()
         let colorInt = UInt(colorHex, radix: 16)
         return colorInt!
     }
     
-    
-    
-    func showTestPopup(){
-        
-        let alertView = SCLAlertView()
-        let btns: [UIButton] = alertView.addSocialMedia()
-        self.addSocialMediaTargets(btns)
-        alertView.showTitle(
-            "Alert",
-            subTitle: "This is an alert.",
-            style: .Success)
-        
-    }
     
     
     /**
@@ -289,20 +268,35 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
      */
     @objc func facebookTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
-            var fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            
+            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             self.presentViewController(fbShare, animated: true, completion: nil)
-            
         } else {
-            var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-            
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
     @objc func twitterTapped(btn: UIButton){
-        print("my custom twitter button tapped")
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            let tweetShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            let prewrittenTweet = self.currentAlertView!.labelTitle.text
+            print("Prewritten tweet: \(prewrittenTweet)")
+            // Set the note text as the default post message.
+            if prewrittenTweet?.characters.count <= 140 {
+                tweetShare.setInitialText(prewrittenTweet)
+            }
+            else {
+                let index = prewrittenTweet!.startIndex.advancedBy(140)
+                let subText = prewrittenTweet!.substringToIndex(index)
+                tweetShare.setInitialText(subText)
+            }
+            self.presentViewController(tweetShare, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to tweet.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     @objc func googleplusTapped(btn: UIButton){
