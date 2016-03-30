@@ -233,14 +233,16 @@ def get_product_info_internal(user_id, upc):
     # Get dominant color as RGB value
     color_thief = ColorThief(StringIO(img_response.content))
     dominant_color = color_thief.get_color(quality=1)
+    dominant_color = tuple([color / 255.0 for color in dominant_color])
     red, green, blue = dominant_color[0], \
-                   dominant_color[1], \
-                   dominant_color[2]
+                       dominant_color[1], \
+                       dominant_color[2]
 
     # Convert RGB color to HSV color, then increase saturation
     # value to 100%
     hsv_color = colorsys.rgb_to_hsv(red, green, blue)
     hue = hsv_color[0]
+    saturation = hsv_color[1]
     value = hsv_color[2]
     new_rgb_color = colorsys.hsv_to_rgb(hue, 1.0, value)
     new_rgb_color = tuple([color * 255 for color in new_rgb_color])

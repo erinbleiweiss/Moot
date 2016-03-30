@@ -216,12 +216,12 @@ class GenericGameController{
             - color: (UIColor) Color of scanned product
      
     */
-    func showProductPopup(productName: String, color: UIColor, url: String){
+    func showProductPopup(productName: String, color: String, url: String){
         var img = UIImage()
         if let data = NSData(contentsOfURL: NSURL(string: url)!) {
             img = UIImage(data: data)!
         }
-        let colorString = color.toHexString()
+        let colorInt = getColorFromName(color)
         let alertView = SCLAlertView()
         alertView.addImage(img)
         alertView.addLowerTitle(productName)
@@ -230,12 +230,38 @@ class GenericGameController{
             subTitle: "",
             style: .Success,
             duration: 0.0,
-            colorStyle: UInt(colorString),
+            colorStyle: colorInt,
             colorTextButton: 0xFFFFFF
         )
     }
     
 
+    
+    /**
+        Helper function for use in product popup.  Get color of scanned product from name.
+     
+        - Parameters:
+            - color_name: (String) Name of color
+        - Returns: UInt representing color in hex
+     
+    */
+    func getColorFromName(color_name: String) -> UInt{
+        let colors: [String: UIColor] = [
+            "red":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
+            "orange":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
+            "yellow":       UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
+            "greenyellow":  UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
+            "green":        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
+            "teal":         UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
+            "blue":         UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
+            "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
+        ]
+        
+        let color: UIColor = colors[color_name]!
+        let colorHex = color.toHexString()
+        let colorInt = UInt(colorHex, radix: 16)
+        return colorInt!
+    }
     
     
     //// ==========================================================
