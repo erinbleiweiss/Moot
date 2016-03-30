@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SwiftSpinner
 
 class HangmanGameController: GenericGameController {
     
@@ -95,6 +96,10 @@ class HangmanGameController: GenericGameController {
                     }
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
+                    SwiftSpinner.show("Could not scan. Try again!")
+                    self.delay(2){
+                         SwiftSpinner.hide()
+                    }
                     NSLog("Request failed with error: \(result.error)")
             }
             

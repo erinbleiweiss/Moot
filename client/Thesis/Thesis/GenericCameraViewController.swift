@@ -108,7 +108,11 @@ class GenericCameraViewController: UIViewController, AVCaptureMetadataOutputObje
         
         // TODO: If detection string is nil
         // CAUSES GAME CRASH
-        doAfterScan(detectionString)
+        if detectionString != nil {
+            doAfterScan(detectionString)
+        } else {
+            NSLog("Barcode detection string returned nil")
+        }
         
     }
     
