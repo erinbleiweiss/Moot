@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SCLAlertView
+import Social
 
 class GenericGameController{
     var gameView: UIView!
@@ -18,7 +19,6 @@ class GenericGameController{
     var defaults: NSUserDefaults?
     var username: String?
     var password: String?
-    var popViewController: PopUpViewControllerSwift?
     var level: Int?
     var headers: [String: String]?
     
@@ -36,9 +36,7 @@ class GenericGameController{
         let headers = ["Authorization": "Basic \(base64Credentials)"]
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers
         self.headers = headers
-        
-        self.popViewController = PopUpViewControllerSwift(nibName: "PopUpViewController", bundle: nil)
-
+    
     }
     
     func setLevelProgress(level: Int) {
@@ -159,111 +157,7 @@ class GenericGameController{
     
     
     
-    /**
-        Determine whether an achievement was earned, and if so, display the appropriate popup message
-     
-        - Parameters: 
-            - achievements_earned: (JSON) A JSON object from the level's game controller containing a list of all achievements earned
-     
-    */
-    func displayAchievements(acheivements_earned: JSON){
-        if (acheivements_earned.count == 0) {
-            NSLog("No achievements earned")
-        } else {
-            for ach in acheivements_earned.arrayValue {
-                NSLog(ach.string!)
-                let message = "You just earned the \(ach.string!) achievement!"
-                self.showAchievementPopUp(ach.string!, message: message)
-            }
-        }
-    }
 
-    //// ==========================================================
-    //// POPUP DISPLAYS:
-    //// ==========================================================
-    
-    
-    /**
-        Use the SCLAlertView class to display a popup for the given achievements
-     
-        - Parameters:
-            - title: (String) Name of achievement
-            - message: (String) Description to be displayed
-            - image: (UI Image) Image associated with achievement
-    */
-    func showAchievementPopUp(title: String, message: String){
-        let alertView = SCLAlertView()
-        alertView.addSocialMedia()
-        alertView.showTitle(
-            title,
-            subTitle: message,
-            duration: 0.0,
-            completeText: "Ok",
-            style: .Custom,
-            colorStyle: 0x000000,
-            colorTextButton: 0xFFFFFF,
-            circleIconImage: UIImage(named: "medal2"),
-            topLabel: "Achievement Unlocked!"
-        )
-    }
-
-    
-    /**
-        Use the SCLAlertview class to display a popup for each item scanned
-     
-        - Parameters:
-            - productName: (String) Name of product
-            - color: (UIColor) Color of scanned product
-     
-    */
-    func showProductPopup(productName: String, color: String, url: String){
-        var img = UIImage()
-        if let data = NSData(contentsOfURL: NSURL(string: url)!) {
-            img = UIImage(data: data)!
-        }
-        let colorInt = getColorFromName(color)
-        let alertView = SCLAlertView()
-        alertView.addImage(img)
-        alertView.addLowerTitle(productName)
-        alertView.showTitle(
-            "Product Scanned!",
-            subTitle: "",
-            style: .Success,
-            duration: 0.0,
-            colorStyle: colorInt,
-            colorTextButton: 0xFFFFFF,
-            circleIconImage: UIImage(named: "camera")?.imageWithColor(UIColor.whiteColor())
-        )
-    }
-    
-
-    
-    /**
-        Helper function for use in product popup.  Get color of scanned product from name.
-     
-        - Parameters:
-            - color_name: (String) Name of color
-        - Returns: UInt representing color in hex
-     
-    */
-    func getColorFromName(color_name: String) -> UInt{
-        let colors: [String: UIColor] = [
-            "red":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
-            "orange":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
-            "yellow":       UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
-            "greenyellow":  UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
-            "green":        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
-            "teal":         UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
-            "blue":         UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
-            "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
-        ]
-        
-        let color: UIColor = colors[color_name]!
-        let colorHex = color.toHexString()
-        let colorInt = UInt(colorHex, radix: 16)
-        return colorInt!
-    }
-    
     
     //// ==========================================================
     //// LEVEL MANIPULATING FUNCTIONS:
