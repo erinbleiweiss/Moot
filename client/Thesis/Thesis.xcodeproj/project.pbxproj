@@ -36,7 +36,7 @@
 		80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2ADE1CA8B6660033E48D /* MootHeader.swift */; };
 		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
 		80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */; };
-		80AE2AE51CA90D6A0033E48D /* TabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE41CA90D6A0033E48D /* TabBarExtension.swift */; };
+		80AE2AE51CA90D6A0033E48D /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */; };
 		80AE50511CA774A800050457 /* ProxyLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50501CA774A800050457 /* ProxyLevelCell.swift */; };
 		80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50521CA780C900050457 /* LevelCollectionView.swift */; };
 		80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80B0EABE1BE7030800639ADC /* Anonymous.ttf */; };
@@ -126,7 +126,7 @@
 		80AE2ADE1CA8B6660033E48D /* MootHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootHeader.swift; sourceTree = "<group>"; };
 		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
 		80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelNavController.swift; sourceTree = "<group>"; };
-		80AE2AE41CA90D6A0033E48D /* TabBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarExtension.swift; sourceTree = "<group>"; };
+		80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		80AE50501CA774A800050457 /* ProxyLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyLevelCell.swift; sourceTree = "<group>"; };
 		80AE50521CA780C900050457 /* LevelCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCollectionView.swift; sourceTree = "<group>"; };
 		80B0EABE1BE7030800639ADC /* Anonymous.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anonymous.ttf; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */,
-				80AE2AE41CA90D6A0033E48D /* TabBarExtension.swift */,
+				80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */,
 				8024807D1CAB690700204F82 /* ColorExtensions.swift */,
 			);
 			name = Extensions;
@@ -582,7 +582,7 @@
 				80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */,
 				8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */,
 				804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */,
-				80AE2AE51CA90D6A0033E48D /* TabBarExtension.swift in Sources */,
+				80AE2AE51CA90D6A0033E48D /* UIImageExtensions.swift in Sources */,
 				80CBB5BD1C79926400D705A7 /* ScoreManager.swift in Sources */,
 				80B195051BF56C4500B5C3CE /* HangmanGameController.swift in Sources */,
 				80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */,

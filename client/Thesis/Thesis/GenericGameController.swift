@@ -231,7 +231,8 @@ class GenericGameController{
             style: .Success,
             duration: 0.0,
             colorStyle: colorInt,
-            colorTextButton: 0xFFFFFF
+            colorTextButton: 0xFFFFFF,
+            circleIconImage: UIImage(named: "camera")?.imageWithColor(UIColor.whiteColor())
         )
     }
     
