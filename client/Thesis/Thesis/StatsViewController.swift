@@ -38,14 +38,14 @@ class StatsViewController: MootViewController {
 //        }
 
         
-//        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-//        let controller = storyboard.instantiateViewControllerWithIdentifier("AchievementVC") as UIViewController
-//        controller.title = "Achievements"
-//        controllerArray.append(controller)
-//        
-//        let controller2 = storyboard.instantiateViewControllerWithIdentifier("HighScoreVC") as UIViewController
-//        controller2.title = "High Scores"
-//        controllerArray.append(controller2)
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let controller = storyboard.instantiateViewControllerWithIdentifier("AchievementVC") as UIViewController
+        controller.title = "Achievements"
+        controllerArray.append(controller)
+        
+        let controller2 = storyboard.instantiateViewControllerWithIdentifier("HighScoreVC") as UIViewController
+        controller2.title = "High Scores"
+        controllerArray.append(controller2)
         
         // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
         // Example:
