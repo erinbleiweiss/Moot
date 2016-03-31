@@ -200,7 +200,7 @@ def get_product_info():
     auth = request.authorization
     user_id = auth.username
 
-    upc = requests.get["upc"]
+    upc = request.args.get("upc")
     product_name = get_product_name(upc)
 
 
@@ -288,7 +288,7 @@ def save_product():
 @app.route('/v1/get_high_scores', methods=["GET"])
 def get_high_scores():
     logger_header('/get_high_scores')
-    num_scores = request.form["num_scores"]
+    num_scores = request.args.get('num_scores')
 
     db = MootDao()
     response = {}
