@@ -83,18 +83,7 @@
                     <view key="view" contentMode="scaleToFill" id="gfi-bz-KYW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4x-jI-bR0">
-                                <rect key="frame" x="230" y="453" width="139" height="47"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="z4x-jI-bR0" firstAttribute="centerX" secondItem="gfi-bz-KYW" secondAttribute="centerX" id="e3D-Zv-idv"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="sjm-5S-YrM" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
@@ -102,14 +91,29 @@
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="zKX-Ja-hYc"/>
-                    <connections>
-                        <outlet property="successLabel" destination="z4x-jI-bR0" id="VvN-dN-yqo"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJe-nj-7AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="p3O-xP-DR0" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="1551" y="2443"/>
+        </scene>
+        <!--GeoDDR Level View Controller-->
+        <scene sceneID="tFR-ou-j3U">
+            <objects>
+                <viewController storyboardIdentifier="GeoDDRVC" id="EdB-94-Zlf" customClass="GeoDDRLevelViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qds-vC-mdS"/>
+                        <viewControllerLayoutGuide type="bottom" id="EIN-GS-hke"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p2A-kY-jtd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jea-ne-11V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1551" y="3158"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XAE-JQ-y1Q">
@@ -312,6 +316,7 @@
                         <segue destination="s2J-Mq-6rJ" kind="show" id="C4G-Tu-ynu"/>
                         <segue destination="cjl-pC-x5L" kind="show" id="3l9-JH-Vi7"/>
                         <segue destination="lXw-5a-cOg" kind="show" id="LVm-HY-zWW"/>
+                        <segue destination="EdB-94-Zlf" kind="show" id="1eE-qh-447"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXm-rQ-VKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -346,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjZ-4k-S7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3016" y="-703"/>
+            <point key="canvasLocation" x="1524" y="-1207"/>
         </scene>
         <!--Level Completed View Controller-->
         <scene sceneID="x4P-Li-X1x">
@@ -375,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MUE-bU-5OB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3687" y="-703"/>
+            <point key="canvasLocation" x="2371" y="-1363"/>
         </scene>
         <!--Levels-->
         <scene sceneID="Oct-LH-Jpz">
@@ -401,10 +406,34 @@
             </objects>
             <point key="canvasLocation" x="1539" y="-480"/>
         </scene>
+        <!--Stats-->
+        <scene sceneID="qgr-tv-43r">
+            <objects>
+                <viewController id="VXC-aE-q3V" customClass="StatsViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ttM-Wc-kBT"/>
+                        <viewControllerLayoutGuide type="bottom" id="mIS-Tn-DAS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pya-bI-Vrt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stats" image="medal-1" id="wBa-PO-3lC" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="85F-Ou-dEX" id="Zo6-1e-bAy"/>
+                        </connections>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FLX-sU-PWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="85F-Ou-dEX" customClass="RAMRightRotationAnimation" customModule="RAMAnimatedTabBarController"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="-488"/>
+        </scene>
         <!--Achievements-->
         <scene sceneID="aSs-ob-cAS">
             <objects>
-                <viewController id="Hp3-uy-9zI" customClass="AchievementViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AchievementVC" id="Hp3-uy-9zI" customClass="AchievementViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zjw-h5-VlN"/>
                         <viewControllerLayoutGuide type="bottom" id="qoj-QQ-EmN"/>
@@ -478,7 +507,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbz-w0-muU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="P0Q-wI-KHL" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
-            <point key="canvasLocation" x="2244" y="-480"/>
+            <point key="canvasLocation" x="2967" y="-480"/>
+        </scene>
+        <!--High Score View Controller-->
+        <scene sceneID="iqK-jo-DpM">
+            <objects>
+                <viewController storyboardIdentifier="HighScoreVC" id="Tbd-Lt-KVL" customClass="HighScoreViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1lz-ex-jis"/>
+                        <viewControllerLayoutGuide type="bottom" id="c9q-af-MgP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dkg-iW-42Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KTD-9w-eI5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HighScoreCell" id="qBK-UM-PiO">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qBK-UM-PiO" id="siU-9N-SdN">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="KTD-9w-eI5" id="Mmc-QE-TWu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TtD-xX-6Hm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3642" y="-480"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="FtD-vH-zfk">
@@ -587,7 +653,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Br-kK-O6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="6ii-EN-n2h" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
-            <point key="canvasLocation" x="787" y="-447"/>
+            <point key="canvasLocation" x="781" y="-480"/>
         </scene>
         <!--Moot Tab Bar Controller-->
         <scene sceneID="5xg-81-A5z">
@@ -601,7 +667,7 @@
                     <connections>
                         <segue destination="cHU-Pl-GBJ" kind="relationship" relationship="viewControllers" id="e3l-KY-avH"/>
                         <segue destination="4YF-YA-p7k" kind="relationship" relationship="viewControllers" id="goN-W5-Sgn"/>
-                        <segue destination="Hp3-uy-9zI" kind="relationship" relationship="viewControllers" id="oEg-0s-RzA"/>
+                        <segue destination="VXC-aE-q3V" kind="relationship" relationship="viewControllers" id="8Nb-Ir-toz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMl-lR-vVb" userLabel="First Responder" sceneMemberID="firstResponder"/>

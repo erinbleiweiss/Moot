@@ -76,7 +76,11 @@ class MootDao(Base):
             c = conn.cursor()
             cmd = ('update user_score set score_value=score_value+%s where '
                  'user_id=%s')
+            conn.commit()
             c.execute(cmd, (points, user_id))
+            cmd = ('insert into points_earned (user_id, score_value) values '
+                   '(%s, %s)')
+            c.execute(cmd, (user_id, points))
             conn.commit()
 
     def get_points(self, user_id):

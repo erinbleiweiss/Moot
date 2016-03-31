@@ -16,7 +16,8 @@ class LevelManager{
     private var defaultLevels: [Level] = [
         Level(levelNumber: 1, VC: "Hangman", numStages: 2),
         Level(levelNumber: 2, VC: "Maze", numStages: 1),
-        Level(levelNumber: 3, VC: "Jigsaw", numStages: 1)
+        Level(levelNumber: 3, VC: "Jigsaw", numStages: 1),
+        Level(levelNumber: 4, VC: "GeoDDR", numStages: 1)
     ]
     private var userLevels = [Level]()
     
