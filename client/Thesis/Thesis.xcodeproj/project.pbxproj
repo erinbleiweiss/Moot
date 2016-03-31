@@ -17,6 +17,10 @@
 		801E76D51C6805D40077A379 /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E76D41C6805D40077A379 /* level1.plist */; };
 		802369471C73BEDE00840D30 /* LevelPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802369461C73BEDE00840D30 /* LevelPicker.xib */; };
 		8024807E1CAB690700204F82 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024807D1CAB690700204F82 /* ColorExtensions.swift */; };
+		802480841CACA91F00204F82 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802480811CACA91F00204F82 /* FBSDKCoreKit.framework */; };
+		802480851CACA91F00204F82 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802480821CACA91F00204F82 /* FBSDKLoginKit.framework */; };
+		802480861CACA91F00204F82 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802480831CACA91F00204F82 /* FBSDKShareKit.framework */; };
+		802480881CACAA3000204F82 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 802480871CACAA3000204F82 /* Info.plist */; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
 		804927871C97BAD200410B1A /* LevelBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804927861C97BAD200410B1A /* LevelBadge.swift */; };
 		804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E61C9E22F800F57992 /* QCMethod.swift */; };
@@ -107,6 +111,10 @@
 		801E76D41C6805D40077A379 /* level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level1.plist; sourceTree = "<group>"; };
 		802369461C73BEDE00840D30 /* LevelPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LevelPicker.xib; sourceTree = "<group>"; };
 		8024807D1CAB690700204F82 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		802480811CACA91F00204F82 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		802480821CACA91F00204F82 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		802480831CACA91F00204F82 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		802480871CACAA3000204F82 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804927861C97BAD200410B1A /* LevelBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBadge.swift; sourceTree = "<group>"; };
 		804E11E61C9E22F800F57992 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
@@ -159,7 +167,6 @@
 		80ED1F0E1BB25A400011A410 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80ED1F111BB25A400011A410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80ED1F171BB25A400011A410 /* Moot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Moot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		80ED1F1C1BB25A400011A410 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ThesisTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		80ED1F1D1BB25A400011A410 /* ThesisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisTests.swift; sourceTree = "<group>"; };
 		80F0DD4E1C5EBBB2002A8037 /* GenericGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericGameController.swift; sourceTree = "<group>"; };
 		A29897A7F59ED46F5CC3779B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,7 +177,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				802480861CACA91F00204F82 /* FBSDKShareKit.framework in Frameworks */,
 				D25535E7CE531B4FDEB88348 /* Pods.framework in Frameworks */,
+				802480841CACA91F00204F82 /* FBSDKCoreKit.framework in Frameworks */,
+				802480851CACA91F00204F82 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +206,9 @@
 		5495AD499A20477506B83285 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				802480811CACA91F00204F82 /* FBSDKCoreKit.framework */,
+				802480821CACA91F00204F82 /* FBSDKLoginKit.framework */,
+				802480831CACA91F00204F82 /* FBSDKShareKit.framework */,
 				3D0E432790B86DDDF9FF2648 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -285,7 +298,6 @@
 		80ED1F041BB25A400011A410 /* Thesis */ = {
 			isa = PBXGroup;
 			children = (
-				80ED1F1C1BB25A400011A410 /* Info.plist */,
 				80ED1F071BB25A400011A410 /* AppDelegate.swift */,
 				80B195021BF5685F00B5C3CE /* Config.swift */,
 				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
@@ -323,6 +335,7 @@
 		80ED1F1B1BB25A400011A410 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				802480871CACAA3000204F82 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -492,6 +505,7 @@
 				80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */,
 				80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */,
+				802480881CACAA3000204F82 /* Info.plist in Resources */,
 				80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */,
 				80B6E4A31C96338A002761D8 /* PopUpViewController_iPhone6.xib in Resources */,
 				801E76D51C6805D40077A379 /* level1.plist in Resources */,
@@ -742,9 +756,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Thesis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bleiweiss.Thesis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.erinbleiweiss.Moot;
 				PRODUCT_NAME = Moot;
 				PROVISIONING_PROFILE = "";
 			};
@@ -758,9 +776,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Thesis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bleiweiss.Thesis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.erinbleiweiss.Moot;
 				PRODUCT_NAME = Moot;
 				PROVISIONING_PROFILE = "";
 			};
