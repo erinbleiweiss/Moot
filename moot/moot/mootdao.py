@@ -177,3 +177,19 @@ class MootDao(Base):
                 d["date"] = row[3]
                 products.append(d)
             return products
+
+    def get_high_scores(self, num_scores):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('select name, score_value from user_score, gameuser where '
+                   'user_score.user_id=gameuser.user_id order by score_value '
+                   'desc limit %s')
+            c.execute(cmd, (num_scores,))
+            scores = []
+            for row in c.fetchall():
+                d = {}
+                d["name"] = row[0]
+                d["score"] = row[1]
+                scores.append(d)
+            return scores

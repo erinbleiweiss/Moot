@@ -284,6 +284,24 @@ def save_product():
         response["status"] = FAILURE
     return jsonify(response)
 
+
+@app.route('/v1/get_high_scores', methods=["GET"])
+def get_high_scores():
+    logger_header('/get_high_scores')
+    num_scores = request.form["num_scores"]
+
+    db = MootDao()
+    response = {}
+    try:
+        scores = db.get_high_scores(num_scores)
+        response["scores"] = scores
+        response["status"] = SUCCESS
+    except Exception as e:
+        response["status"] = FAILURE
+        logger.critical("Problem getting high scores: {0}".format(e))
+    return jsonify(response)
+
+
 ###########################################################
 # Level 1: Hangman                                        #
 ###########################################################
@@ -476,61 +494,6 @@ def get_product_nameOLD():
 ###########################################################
 # Level 2: Maze                                           #
 ###########################################################
-Point = namedtuple('Point', ('coords', 'n', 'ct'))
-Cluster = namedtuple('Cluster', ('points', 'center', 'n'))
-
-def get_color_points(img):
-    points = []
-    w, h = img.size
-    for count, color in img.getcolors(w * h):
-        points.append(Point(color, 3, count))
-    return points
-
-rtoh = lambda rgb: '#%s' % ''.join(('%02x' % p for p in rgb))
-
-
-def euclidean(p1, p2):
-    return sqrt(sum([
-        (p1.coords[i] - p2.coords[i]) ** 2 for i in range(p1.n)
-    ]))
-
-def calculate_center(points, n):
-    vals = [0.0 for i in range(n)]
-    plen = 0
-    for p in points:
-        plen += p.ct
-        for i in range(n):
-            vals[i] += (p.coords[i] * p.ct)
-    return Point([(v / plen) for v in vals], n, 1)
-
-def kmeans(points, k, min_diff):
-    clusters = [Cluster([p], p, p.n) for p in random.sample(points, k)]
-
-    while 1:
-        plists = [[] for i in range(k)]
-
-        for p in points:
-            smallest_distance = float('Inf')
-            for i in range(k):
-                distance = euclidean(p, clusters[i].center)
-                if distance < smallest_distance:
-                    smallest_distance = distance
-                    idx = i
-            plists[idx].append(p)
-
-        diff = 0
-        for i in range(k):
-            old = clusters[i]
-            center = calculate_center(plists[i], old.n)
-            new = Cluster(plists[i], center, old.n)
-            clusters[i] = new
-            diff = max(diff, euclidean(old.center, new.center))
-
-        if diff < min_diff:
-            break
-
-    return clusters
-
 def get_color_name(input_color):
     #           # Light           # Medium        # Dark
     # colors = [[255, 153, 153],  [255, 0, 0],    [113, 0, 0],    # Red
@@ -596,116 +559,6 @@ def get_color_name(input_color):
         return "teal"
     elif color_match in range (21, 27):
         return "purple"
-    # elif color_match in range (27, 30):
-    #     return "brown"
-    # elif color_match == 30:
-    #     return "black"
-    # elif color_match == 31:
-    #     return "white"
-
-    # if color_match == 0:
-    #     return "red"
-    # elif color_match == 1:
-    #     return "orange"
-    # elif color_match == 2:
-    #     return "yellow"
-    # elif color_match == 3:
-    #     return "greenyellow"
-    # elif color_match == 4:
-    #     return "green"
-    # elif color_match == 5:
-    #     return "teal"
-    # elif color_match == 6:
-    #     return "blue"
-    # elif color_match == 7:
-    #     return "purple"
-
-
-def find_colors(img, n=4):
-    img.thumbnail((200, 200))
-    w, h = img.size
-
-    points = get_color_points(img)
-    clusters = kmeans(points, n, 1)
-
-    rgb_values = [c.center.coords for c in clusters]
-    return rgb_values
-
-
-# @app.route('/v1/image_colors', methods=["GET"])
-# def image_colors():
-#     logger_header('/image_colors')
-#     upc = request.args.get('upc')
-#     url = get_product_img(upc)
-#     response = requests.get(url)
-#     img = Image.open(StringIO(response.content))
-#
-#     neutral_colors = ["black", "white", "brown"]
-#
-#     colors = find_colors(img)
-#     for color in colors:
-#         logger.debug([int(i) for i in color])
-#     logger.debug([get_color_name(c) for c in colors])
-#
-#     print(Fore.RED + 'some red text')
-#     print(Style.RESET_ALL)
-#
-#     result = {}
-#     dominant_colors = []
-#     for color in colors:
-#         color_name = get_color_name(color)
-#         if color_name not in neutral_colors:
-#             dominant_colors.append(color_name)
-#
-#     if len(dominant_colors) > 0:
-#         count = Counter(dominant_colors)
-#         result["status"] = SUCCESS
-#         result["dominant_color"] = count.most_common()[0][0]
-#         return jsonify(result)
-#
-#     result["status"] = FAILURE
-#     result["dominant_color"] = "none"
-#     return jsonify(result)
-
-@app.route('/v1/image_colors_OLD', methods=["GET"])
-def image_colors_OLD():
-    logger_header('/image_colors_OLD')
-    upc = request.args.get('upc')
-    url = get_product_img(upc)
-    response = requests.get(url)
-    logger.debug("Image: {0}".format(url))
-
-
-    color_thief = ColorThief(StringIO(response.content))
-    dominant_color = color_thief.get_color(quality = 1)
-
-    dominant_color = tuple([color / 255.0 for color in dominant_color])
-
-    red, green, blue = dominant_color[0], \
-                       dominant_color[1], \
-                       dominant_color[2]
-
-    hsv_color = colorsys.rgb_to_hsv(red, green, blue)
-    hue = hsv_color[0]
-    value = hsv_color[2]
-
-    new_rgb_color = colorsys.hsv_to_rgb(hue, 1.0, value)
-    new_rgb_color = tuple([color * 255 for color in new_rgb_color])
-
-    color_name = get_color_name(new_rgb_color)
-
-    logger.debug(new_rgb_color)
-    logger.debug(color_name)
-
-    # palette = color_thief.get_palette(color_count=3, quality=1)
-    # for color in palette:
-    #     logger.debug(color)
-    #     logger.debug(get_color_name(color))
-
-    response = {}
-    response["color"] = color_name
-    response["status"] = SUCCESS
-    return jsonify(response)
 
 
 @app.route('/v1/image_colors', methods=["GET"])

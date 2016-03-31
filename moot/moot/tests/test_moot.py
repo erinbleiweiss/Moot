@@ -197,8 +197,12 @@ class MootTest(unittest.TestCase):
         response = self.api_get('check_for_achievements', use_auth=True)
         self.assertEqual(response["status"], self.good_status)
 
-
-
+    def test_get_high_scores(self):
+        payload = {
+            'num_scores': '3',
+        }
+        response = self.api_get('get_high_scores', payload=payload)
+        self.assertEqual(response["status"], self.good_status)
 
 
 

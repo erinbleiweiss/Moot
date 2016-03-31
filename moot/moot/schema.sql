@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS scanned_product cascade;
 
 CREATE TABLE gameuser (
 	user_id 	varchar(80) primary key NOT NULL,
+	name		varchar(24) NOT NULL,
 	created_at	timestamp DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -25,17 +25,27 @@ class StatsViewController: MootViewController {
         
         // VC's will be displayed from left to right in the opposite order they 
         // are added to the following array
-        let controllersToGet: [String: String] = [
-            "HighScoreVC": "High Scores",
-            "AchievementVC": "Achievements"
-        ]
+//        let controllersToGet: [String: String] = [
+//            "AchievementVC": "Achievements",
+//            "HighScoreVC": "High Scores"
+//        ]
+//        
+//        for (identifier, title) in controllersToGet {
+//            let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+//            let controller = storyboard.instantiateViewControllerWithIdentifier(identifier) as UIViewController
+//            controller.title = title
+//            controllerArray.append(controller)
+//        }
+
         
-        for (identifier, title) in controllersToGet {
-            let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-            let controller = storyboard.instantiateViewControllerWithIdentifier(identifier) as UIViewController
-            controller.title = title
-            controllerArray.append(controller)
-        }
+//        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+//        let controller = storyboard.instantiateViewControllerWithIdentifier("AchievementVC") as UIViewController
+//        controller.title = "Achievements"
+//        controllerArray.append(controller)
+//        
+//        let controller2 = storyboard.instantiateViewControllerWithIdentifier("HighScoreVC") as UIViewController
+//        controller2.title = "High Scores"
+//        controllerArray.append(controller2)
         
         // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
         // Example:
