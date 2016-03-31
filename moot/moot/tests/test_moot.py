@@ -28,6 +28,8 @@ class MootTest(unittest.TestCase):
 
         self.logger = get_logger(__name__, isTestFile=True)
 
+        self.test_login()
+
     def tearDown(self):
         print("tearDown")
 
@@ -93,7 +95,7 @@ class MootTest(unittest.TestCase):
         payload = {'upc': '722252660091'}
         response = self.api_post('save_product', payload, use_auth=True)
         self.assertEqual(response["status"], self.good_status)
-
+    #
     # def test_all_scanned_product_letters(self):
     #     UPCS = {
     #         'A': '887386760502',

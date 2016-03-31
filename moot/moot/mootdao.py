@@ -101,6 +101,17 @@ class MootDao(Base):
             conn.commit()
 
 
+
+    def get_achievement_info(self, achievementname):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('select description from achievement where name=%s')
+            c.execute(cmd, (achievementname,))
+            info = {}
+            info["description"] = c.fetchone()[0]
+        return info
+
     def get_achievements(self, user_id):
         conn = self.get_db()
         with conn:

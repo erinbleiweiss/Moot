@@ -150,22 +150,22 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     
     /**
-     Determine whether an achievement was earned, and if so, display the appropriate popup message
-     
-     - Parameters:
-     - achievements_earned: (JSON) A JSON object from the level's game controller containing a list of all achievements earned
+        Determine whether an achievement was earned, using checkForAchievements() call from game controller, and if so, display the appropriate popup message
      
      */
-    func displayAchievements(acheivements_earned: JSON){
-        if (acheivements_earned.count == 0) {
-            NSLog("No achievements earned")
-        } else {
-            for ach in acheivements_earned.arrayValue {
-                NSLog(ach.string!)
-                let message = "You just earned the \(ach.string!) achievement!"
-                self.showAchievementPopUp(ach.string!, message: message)
+    func displayAchievements(){
+        self.controller.checkForAchievements({ (responseObject, error) in
+            if responseObject!["status"] == "success" {
+                let achievements = responseObject!["achievements"]
+                for ach in achievements {
+                    let achievementTitle = ach.1["name"].string
+                    let description = ach.1["description"].string
+                    self.showAchievementPopUp(achievementTitle!, description: description!)
+                }
             }
-        }
+            
+        })
+        
     }
     
     
@@ -183,13 +183,13 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
          - message: (String) Description to be displayed
          - image: (UI Image) Image associated with achievement
      */
-    func showAchievementPopUp(title: String, message: String){
+    func showAchievementPopUp(title: String, description: String){
         let alertView = SCLAlertView()
         let btns: [UIButton] = alertView.addSocialMedia()
         self.addSocialMediaTargets(btns)
         alertView.showTitle(
             title,
-            subTitle: message,
+            subTitle: description,
             duration: 0.0,
             completeText: "Ok",
             style: .Custom,

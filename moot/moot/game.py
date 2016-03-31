@@ -274,31 +274,13 @@ def save_product():
     user_id = auth.username
 
     upc = request.form["upc"]
-    try:
-        product_name = request.form["product_name"]
-    except KeyError:
-        logger.debug("key error")
-        product_name = get_product_name(upc)
-    except Exception:
-        logger.debug("exception")
-        product_name = ""
 
-    try:
-        color = request.form["color"]
-    except KeyError:
-        color = ""
-
-    try:
-        type = request.form["type"]
-    except KeyError:
-        type = ""
-
-    db = MootDao()
     response = {}
     try:
-        db.save_product(user_id, upc, product_name, color, type)
+        product_info = get_product_info_internal(user_id, upc)
         response["status"] = SUCCESS
-    except Exception:
+    except Exception as e:
+        logger.critical("Problem saving product '{0}': {1}".format(upc, e))
         response["status"] = FAILURE
     return jsonify(response)
 
@@ -422,15 +404,6 @@ def play_hangman():
         db.save_product(user_id, upc, product_name, "", "")
     except Exception as e:
         logger.critical(e)
-        response["status"] = FAILURE
-        return jsonify(response)
-
-    try:
-        achievements_earned = check_for_achievements_internal(user_id)
-        response["achievements_earned"] = achievements_earned
-    except Exception as e:
-        logger.critical(e)
-        response["achievements_earned"] = []
         response["status"] = FAILURE
         return jsonify(response)
 
@@ -1087,17 +1060,16 @@ def check_for_achievements():
     user_id = auth.username
 
     ach = Achievements(user_id)
-    ach.check_all_achievements()
 
     response = {}
-    response["status"] = SUCCESS
+    try:
+        response["achievements"] = ach.check_all_achievements()
+        response["status"] = SUCCESS
+    except Exception as e:
+        response["status"] = FAILURE
+        logger.debug("Problem checking user achievements {}".format(e))
     return jsonify(response)
 
-    # try:
-    #     db.check_for_achievements()
-    #     response["status"] = SUCCESS
-    # except Exception:
-    #     response["status"] = FAILURE
 
 
 def check_for_achievements_internal(user_id):

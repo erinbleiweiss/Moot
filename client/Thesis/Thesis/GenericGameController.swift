@@ -156,6 +156,26 @@ class GenericGameController{
     }
     
     
+    /**
+        Runs achievement checking script, and gets info for any new achievements earned
+    */
+    func checkForAchievements(completionHandler: (responseObject: JSON?, error: NSError?) -> ()){
+        let url: String = hostname + rest_prefix + "/check_for_achievements"
+        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
+            .responseJSON { (_, _, result) in
+                switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                    completionHandler(responseObject: json, error: result.error as? NSError)
+                case .Failure(_):
+                    NSLog("Request failed with error: \(result.error)")
+                }
+        }
+        
+        
+    }
+    
+    
     
 
     
