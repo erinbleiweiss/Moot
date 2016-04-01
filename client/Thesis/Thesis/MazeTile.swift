@@ -14,6 +14,7 @@ class MazeTile: UIView {
     var west: Bool?
     var south: Bool?
     var east: Bool?
+    var border: [String: Bool] = ["north": false, "east": false, "south": false, "west": false]
     var isStart = false
     var isEnd = false
 
@@ -41,57 +42,89 @@ class MazeTile: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        
         let path = UIBezierPath()
         path.lineWidth = borderWidth
         
+        let pathColor = UIColor.blueColor()
+        pathColor.setStroke()
+
         // Draw North
-        if (self.north!){
+        if (self.north! && self.border["north"]==true){
+            print("top border")
+            let borderPathN = UIBezierPath()
+            borderPathN.lineWidth = borderWidth*2
+            borderPathN.moveToPoint(CGPoint(x: 0, y: 0))
+            borderPathN.addLineToPoint(CGPoint(x: tileSize, y: 0))
+            borderPathN.stroke()
+        } else if (self.north!){
             path.moveToPoint(CGPoint(x: 0, y: 0))
             path.addLineToPoint(CGPoint(x: tileSize, y: 0))
         }
 
         
         // Draw West
-        if (self.west! && !isStart){
+        if (self.west! && self.border["west"]==true && !isStart){
+            print("top border")
+            let borderPathW = UIBezierPath()
+            borderPathW.lineWidth = borderWidth*2
+            borderPathW.moveToPoint(CGPoint(x: 0, y: 0))
+            borderPathW.addLineToPoint(CGPoint(x: 0, y: tileSize))
+            borderPathW.stroke()
+        } else if (self.west! && !isStart){
             path.moveToPoint(CGPoint(x: 0, y: 0))
             path.addLineToPoint(CGPoint(x: 0, y: tileSize))
         }
 
 
         // Draw South
-        if (self.south!){
+        if (self.south! && self.border["south"]==true){
+            print("top border")
+            let borderPathS = UIBezierPath()
+            borderPathS.lineWidth = borderWidth*2
+            borderPathS.moveToPoint(CGPoint(x: 0, y: tileSize))
+            borderPathS.addLineToPoint(CGPoint(x: tileSize, y: tileSize))
+            borderPathS.stroke()
+        } else if (self.south!){
             path.moveToPoint(CGPoint(x: 0, y: tileSize))
             path.addLineToPoint(CGPoint(x: tileSize, y: tileSize))
         }
 
         
         // Draw East
-        if (self.east! && !isEnd){
+        if (self.east! && self.border["east"]==true && !isEnd){
+            print("top border")
+            let borderPathE = UIBezierPath()
+            borderPathE.lineWidth = borderWidth*2
+            borderPathE.moveToPoint(CGPoint(x: tileSize, y: 0))
+            borderPathE.addLineToPoint(CGPoint(x: tileSize, y: tileSize))
+            borderPathE.stroke()
+        } else if (self.east! && !isEnd){
             path.moveToPoint(CGPoint(x: tileSize, y: 0))
             path.addLineToPoint(CGPoint(x: tileSize, y: tileSize))
         }
         
         
         // SE Corner
-        path.moveToPoint(CGPoint(x:0, y:tileSize-(borderWidth/2)))
-        path.addLineToPoint(CGPoint(x:0, y:tileSize))
+        if (!isStart){
+            path.moveToPoint(CGPoint(x:0, y:tileSize-(borderWidth/2)))
+            path.addLineToPoint(CGPoint(x:0, y:tileSize))
+        }
 
         // NE Corner
         path.moveToPoint(CGPoint(x:0, y:0))
         path.addLineToPoint(CGPoint(x:0, y:(borderWidth/2)))
         
         // NW Corner
-        path.moveToPoint(CGPoint(x:tileSize, y:0))
-        path.addLineToPoint(CGPoint(x:tileSize, y:(borderWidth/2)))
+        if (!isEnd){
+            path.moveToPoint(CGPoint(x:tileSize, y:0))
+            path.addLineToPoint(CGPoint(x:tileSize, y:(borderWidth/2)))
+        }
 
         // SW Corner
         path.moveToPoint(CGPoint(x:tileSize, y:tileSize-(borderWidth/2)))
         path.addLineToPoint(CGPoint(x:tileSize, y:tileSize))
 
 
-        UIColor.blueColor().setStroke()
-        
         path.stroke()
         
     }

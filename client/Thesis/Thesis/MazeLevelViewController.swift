@@ -92,6 +92,20 @@ class MazeLevelViewController: GenericLevelViewController {
                 }
                 
                 
+                // Determine if tile is a border tile
+                if row == 0 {
+                    tileView.border["north"] = true
+                }
+                if col == size-1 {
+                    tileView.border["east"] = true
+                }
+                if row == size-1 {
+                    tileView.border["south"] = true
+                }
+                if col == 0 {
+                    tileView.border["west"] = true
+                }
+                
                 mazeView.addSubview(tileView)
                 col+=1
                 if (col >= size){
