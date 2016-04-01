@@ -42,6 +42,7 @@
 		80AA55711CACFC8C00D6A81C /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */; };
 		80AA55731CAD023000D6A81C /* HighScoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55721CAD023000D6A81C /* HighScoreDataController.swift */; };
 		80AA55751CAD906500D6A81C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55741CAD906500D6A81C /* StatsViewController.swift */; };
+		80AA55791CAE276600D6A81C /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */; };
 		80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2ADE1CA8B6660033E48D /* MootHeader.swift */; };
 		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
 		80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */; };
@@ -141,6 +142,7 @@
 		80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		80AA55721CAD023000D6A81C /* HighScoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreDataController.swift; sourceTree = "<group>"; };
 		80AA55741CAD906500D6A81C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
 		80AE2ADE1CA8B6660033E48D /* MootHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootHeader.swift; sourceTree = "<group>"; };
 		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
 		80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelNavController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */,
 				80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */,
 				8024807D1CAB690700204F82 /* ColorExtensions.swift */,
+				80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */,
 				8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */,
 				80E05B2A1CA5040200EE96B3 /* FlipTransition.swift in Sources */,
+				80AA55791CAE276600D6A81C /* CLLocationExtensions.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,
 				80EB85931C8462C700AC37A7 /* AchievementTableViewCell.swift in Sources */,
 			);

@@ -26,7 +26,6 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         
         self.controller.getHighScores(){ responseObject, error in
             self.tableView.reloadData()
-            print(self.controller.highScores)
         }
     
     }

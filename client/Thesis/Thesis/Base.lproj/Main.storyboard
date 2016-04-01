@@ -108,7 +108,20 @@
                     <view key="view" contentMode="scaleToFill" id="p2A-kY-jtd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYD-1M-KFp">
+                                <rect key="frame" x="281" y="190" width="39" height="30"/>
+                                <state key="normal" title="STOP"/>
+                                <connections>
+                                    <action selector="displayAlert:" destination="EdB-94-Zlf" eventType="touchUpInside" id="Lfq-bI-zvU"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OYD-1M-KFp" firstAttribute="top" secondItem="qds-vC-mdS" secondAttribute="bottom" constant="126" id="lJa-uJ-kd5"/>
+                            <constraint firstItem="OYD-1M-KFp" firstAttribute="centerX" secondItem="p2A-kY-jtd" secondAttribute="centerX" id="pm0-qa-lrv"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jea-ne-11V" userLabel="First Responder" sceneMemberID="firstResponder"/>

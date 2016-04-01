@@ -25,11 +25,9 @@ class HighScoreDataController: GenericGameController{
                 switch result {
                 case .Success(let data):
                     let json = JSON(data)
-                    print(json["status"])
                     
                     for (item, subJson):(String, JSON) in json{
                         if (item == "scores"){
-                            print(subJson)
                             self.createScores(subJson)
                         }
                     }

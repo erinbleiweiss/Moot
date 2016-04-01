@@ -42,7 +42,7 @@ class MazeLevelViewController: GenericLevelViewController {
         self.controller.gameView = gameView
 
         
-        var tiles = [String]!()
+        var tiles: [String] = []
         
 //        let tiles = [12, 8, 10, 10, 9,
 //                      7, 5, 12, 9,  5,
@@ -91,11 +91,12 @@ class MazeLevelViewController: GenericLevelViewController {
                     tileView.setEnd()
                 }
                 
+                
                 mazeView.addSubview(tileView)
-                col++
+                col+=1
                 if (col >= size){
                     col=0
-                    row++
+                    row+=1
                 }
             }
             
