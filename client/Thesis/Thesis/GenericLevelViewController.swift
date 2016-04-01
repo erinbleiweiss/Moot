@@ -17,6 +17,11 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     var header: MootHeader?
     var currentAlertView: SCLAlertView?
     
+    var visibleWidth = ScreenWidth
+    var visibleHeight = ScreenHeight - yOffset
+    var navBarHeight = yOffset
+    var tabBarHeight: CGFloat?
+    
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
         controller = GenericGameController()
@@ -40,6 +45,10 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         // Y value should be inverse of height
         header = MootHeader(frame: CGRect(x: 0, y: -yOffset, width: ScreenWidth, height: yOffset))
         self.view.addSubview(header!)
+        
+        self.tabBarHeight = (self.parentViewController?.tabBarController!.tabBar.frame.height)! + 25.0
+        self.visibleHeight -= tabBarHeight!
+        
     }
     
     override func viewWillAppear(animated: Bool) {

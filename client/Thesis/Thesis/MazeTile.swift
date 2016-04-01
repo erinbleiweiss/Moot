@@ -18,9 +18,8 @@ class MazeTile: UIView {
     var isStart = false
     var isEnd = false
 
-    
     var tileSize: CGFloat!
-    let borderWidth: CGFloat = 5.0
+    var borderWidth: CGFloat = 5.0
     
     init(north: Bool, west: Bool, south: Bool, east: Bool, frame: CGRect) {
         self.north = north
@@ -28,6 +27,8 @@ class MazeTile: UIView {
         self.south = south
         self.east = east
         super.init(frame: frame)
+        
+        self.borderWidth = self.frame.width * 0.1
     }
     
     required init?(coder aDecoder: NSCoder) {

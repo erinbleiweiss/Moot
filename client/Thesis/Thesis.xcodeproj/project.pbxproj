@@ -43,6 +43,7 @@
 		80AA55731CAD023000D6A81C /* HighScoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55721CAD023000D6A81C /* HighScoreDataController.swift */; };
 		80AA55751CAD906500D6A81C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55741CAD906500D6A81C /* StatsViewController.swift */; };
 		80AA55791CAE276600D6A81C /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */; };
+		80AA557C1CAF19FA00D6A81C /* MazeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA557B1CAF19FA00D6A81C /* MazeTopView.swift */; };
 		80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2ADE1CA8B6660033E48D /* MootHeader.swift */; };
 		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
 		80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */; };
@@ -143,6 +144,7 @@
 		80AA55721CAD023000D6A81C /* HighScoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreDataController.swift; sourceTree = "<group>"; };
 		80AA55741CAD906500D6A81C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
+		80AA557B1CAF19FA00D6A81C /* MazeTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTopView.swift; sourceTree = "<group>"; };
 		80AE2ADE1CA8B6660033E48D /* MootHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootHeader.swift; sourceTree = "<group>"; };
 		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
 		80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelNavController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,14 @@
 				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
 			);
 			name = Animations;
+			sourceTree = "<group>";
+		};
+		80AA557A1CAF19DD00D6A81C /* Storyboard Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				80AA557B1CAF19FA00D6A81C /* MazeTopView.swift */,
+			);
+			name = "Storyboard Subviews";
 			sourceTree = "<group>";
 		};
 		80AE504A1CA5EF6B00050457 /* Extensions */ = {
@@ -369,6 +379,7 @@
 		80F0DD511C5EE91B002A8037 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80AA557A1CAF19DD00D6A81C /* Storyboard Subviews */,
 				80AE504D1CA5F05200050457 /* Subviews */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
 				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
@@ -643,6 +654,7 @@
 				80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */,
 				80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
+				80AA557C1CAF19FA00D6A81C /* MazeTopView.swift in Sources */,
 				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
 				80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */,

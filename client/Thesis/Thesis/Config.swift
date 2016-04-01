@@ -14,7 +14,7 @@ let ScreenBounds     = UIScreen.mainScreen().bounds
 let ScreenSize       = ScreenBounds.size
 let ScreenWidth      = ScreenSize.width
 let ScreenHeight     = ScreenSize.height
-var yOffset: CGFloat = 125.0
+var yOffset: CGFloat = 100.0
 //var yOffset: CGFloat = 0.0
 
 var hostname = Networking.networkConfig.hostname

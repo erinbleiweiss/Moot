@@ -13,14 +13,17 @@ import SwiftyJSON
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
     var compass: CompassView?
-    var tileSize: Int = Int(ScreenWidth) / 36
+    var mazeSize: CGFloat?
+    var tileSize: Int?
 
     @IBOutlet weak var colorLabel: UILabel!
     
 
 //    let tilesString = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
-    
 
+    var mazeTopView: UIView?
+    var mazeBottomView: UIView?
+    
     let controller: MazeGameController
     required init?(coder aDecoder: NSCoder){
         controller = MazeGameController()
@@ -35,12 +38,13 @@ class MazeLevelViewController: GenericLevelViewController {
         super.viewDidLoad()
         self.controller.level = 2
         self.setCameraButton(self.controller.level!)
-
-        // Add one layer for all game elements (-200 accounts for height of top bar)
-        let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight - yOffset))
-        self.view.addSubview(gameView)
-        self.controller.gameView = gameView
-
+        
+        self.mazeTopView = UIView(frame: CGRectMake(0, navBarHeight, visibleWidth, visibleHeight * 0.6))
+        let mazeTopHeight = (self.mazeTopView?.frame.height)!
+        let mazeBottomHeight = visibleHeight - mazeTopHeight
+        self.mazeBottomView = UIView(frame: CGRectMake(0, navBarHeight + mazeTopHeight, visibleWidth, mazeBottomHeight))
+        self.view.addSubview(mazeTopView!)
+        self.view.addSubview(mazeBottomView!)
         
         var tiles: [String] = []
         
@@ -58,14 +62,14 @@ class MazeLevelViewController: GenericLevelViewController {
             let size_double = sqrt(Double(length))
             let size = Int(size_double)
             
-            self.tileSize *= size
+            self.mazeSize = self.mazeTopView!.frame.height - 20.0
+            self.tileSize = Int(self.mazeSize!) / size
             
             var row = 0
             var col = 0
 
-            let mazeSize = CGFloat(self.tileSize * size)
-            let margin = (ScreenWidth - mazeSize) / 2
-            let mazeView = UIView(frame: CGRect(x: margin, y: 20, width: mazeSize, height: mazeSize))
+            let margin = (ScreenWidth - self.mazeSize!) / 2
+            let mazeView = UIView(frame: CGRect(x: margin, y: 20, width: self.mazeSize!, height: self.mazeSize!))
             
             for tile in tiles{
                 
@@ -77,10 +81,10 @@ class MazeLevelViewController: GenericLevelViewController {
                 let east = self.evaluateWall(walls[3])
                 
                 let frame = CGRect(
-                    x: self.tileSize * col,
-                    y: self.tileSize * row,
-                    width: self.tileSize,
-                    height: self.tileSize
+                    x: self.tileSize! * col,
+                    y: self.tileSize! * row,
+                    width: self.tileSize!,
+                    height: self.tileSize!
                 )
                 let tileView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
                 tileView.backgroundColor = UIColor(white: 1, alpha: 0.5)
@@ -114,27 +118,27 @@ class MazeLevelViewController: GenericLevelViewController {
                 }
             }
             
-            self.controller.gameView.addSubview(mazeView)
+            self.mazeTopView!.addSubview(mazeView)
          
             let tokenFrame = CGRect(
-                x: self.tileSize * self.controller.pos_col,
-                y: self.tileSize * self.controller.pos_row,
-                width: self.tileSize,
-                height: self.tileSize
+                x: self.tileSize! * self.controller.pos_col,
+                y: self.tileSize! * self.controller.pos_row,
+                width: self.tileSize!,
+                height: self.tileSize!
             )
             self.controller.tokenView = MazeToken(frame: tokenFrame)
             self.controller.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
             mazeView.addSubview(self.controller.tokenView)
             
-            let compassSize = self.controller.gameView.frame.height - mazeSize - 80
+            let compassSize = self.mazeBottomView!.frame.height
             let compassFrame = CGRect(
-                x: (ScreenWidth / 2) - (compassSize / 2),
-                y: self.controller.gameView.frame.height - compassSize - 60,
+                x: (self.view.frame.width/2) - (compassSize/2),
+                y: 0,
                 width: compassSize,
                 height: compassSize
             )
             self.compass = CompassView(frame: compassFrame)
-            self.controller.gameView.addSubview(self.compass!)
+            self.mazeBottomView!.addSubview(self.compass!)
             
         }
         
@@ -147,7 +151,7 @@ class MazeLevelViewController: GenericLevelViewController {
         super.touchesBegan(touches, withEvent: event)
         
         var point: CGPoint = (touches.first?.locationInView(self.compass))!
-        point = self.compass!.convertPoint(point, toView: self.controller.gameView)
+        point = self.compass!.convertPoint(point, toView: self.view)
         
         if (self.compass!.layer.presentationLayer()?.hitTest(point) != nil){
             var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
@@ -226,10 +230,10 @@ class MazeLevelViewController: GenericLevelViewController {
     
     func updateToken(){
         self.controller.tokenView.frame = CGRect(
-            x: self.tileSize * self.controller.pos_col,
-            y: self.tileSize * self.controller.pos_row,
-            width: self.tileSize,
-            height: self.tileSize
+            x: self.tileSize! * self.controller.pos_col,
+            y: self.tileSize! * self.controller.pos_row,
+            width: self.tileSize!,
+            height: self.tileSize!
         )
         self.controller.tokenView.setNeedsDisplay()
     }
