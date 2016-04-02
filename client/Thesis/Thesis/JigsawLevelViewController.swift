@@ -29,11 +29,7 @@ class JigsawLevelViewController: GenericLevelViewController {
         self.controller.level = 3
         self.setCameraButton(self.controller.level!)
 
-        let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight - yOffset))
-        self.view.addSubview(gameView)
-        self.controller.gameView = gameView
-
-        let scale = Int(self.controller.gameView.frame.height * 0.4)
+        let scale = Int(self.visibleHeight * 0.4)
         
         self.controller.getQRCode(scale, height: scale){ responseObject, error in
             let rows = 3
@@ -68,7 +64,7 @@ class JigsawLevelViewController: GenericLevelViewController {
                 
                 let tile = QRTile(id: id, image: image)
                 self.controller.tiles.append(tile)
-                id++
+                id+=1
             }
         }
     
@@ -77,60 +73,58 @@ class JigsawLevelViewController: GenericLevelViewController {
     func displayTiles(tileMargin: Int, rows: Int, cols: Int){
         var idx = 0
         
-        let tileWidth = self.controller.tiles[0].frame.width
-        let puzzleSize = tileWidth * sqrt(CGFloat(self.controller.tiles.count))
-        let tilesView = UIView(frame: CGRect(
-            x: ((ScreenWidth / 2) - (puzzleSize / 2) + (tileWidth / 2) - CGFloat(tileMargin)),
-            y: self.controller.gameView.frame.height - puzzleSize - 60,
-            width: puzzleSize,
-            height: puzzleSize)
-        )
+        let tileDim = sqrt(CGFloat(self.controller.tiles.count))
+        let puzzleSize = (visibleHeight / 2) * 0.8
+        let tileSize = puzzleSize / tileDim
+        let tileMargin = tileSize * 0.2
+        
+        let totalWidth = (tileSize + tileMargin) * CGFloat(tileDim)
+        let originX = (visibleWidth / 2) - (totalWidth / 2)
+        let originY = (visibleHeight / 2) + navBarHeight
         
         for row in 0...rows-1 {
             for col in 0...cols-1 {
-                self.controller.tiles[idx].center =
-                    CGPointMake(
-                        CGFloat(col) * tileWidth + (CGFloat(col) * CGFloat(tileMargin)),
-                        CGFloat(row) * tileWidth + (CGFloat(row) * CGFloat(tileMargin))
+                self.controller.tiles[idx].frame = CGRectMake(
+                    originX + ((tileSize + tileMargin) * CGFloat(col)),
+                    originY + ((tileSize + tileMargin) * CGFloat(row)),
+                    tileSize,
+                    tileSize
                 )
                 self.controller.tiles[idx].dragDelegate = self
-                tilesView.addSubview(self.controller.tiles[idx])
-                idx++
+                self.view.addSubview(self.controller.tiles[idx])
+                idx+=1
             }
         }
         
-        self.controller.gameView.addSubview(tilesView)
     }
     
     func generateTargets(rows: Int, cols: Int){
         
-        let width = self.controller.tiles[0].frame.width
-        let height = self.controller.tiles[0].frame.height
-        let targetsSize = width * sqrt(CGFloat(self.controller.tiles.count))
-        let targetsView = UIView(frame: CGRect(
-            x: ((ScreenWidth / 2) - (targetsSize / 2) + (width / 2)),
-            y: ScreenHeight - self.controller.gameView.frame.height - 80,
-            width: targetsSize,
-            height: targetsSize)
-        )
+        let tileDim = sqrt(CGFloat(self.controller.tiles.count))
+        let puzzleSize = (visibleHeight / 2) * 0.8
+        let tileSize = puzzleSize / tileDim
+        let tileMargin = tileSize * 0.2
 
-        var id = 0
+        let totalWidth = tileSize * CGFloat(tileDim)
+        let originX = (visibleWidth / 2) - (totalWidth / 2)
+        let originY = navBarHeight + tileMargin
+        
+        var idx = 0
         for row in 0...rows-1{
             for col in 0...cols-1{
-                let frame = CGRect(x: 0, y: 0, width: width, height: height)
-                let targetView = QRTileTarget(id: id, frame: frame)
-                targetView.center = CGPointMake(
-                    CGFloat(col) * width,
-                    CGFloat(row) * height
+                let frame = CGRectMake(
+                    originX + (tileSize * CGFloat(col)),
+                    originY + (tileSize * CGFloat(row)),
+                    tileSize,
+                    tileSize
                 )
+                let targetView = QRTileTarget(id: idx, frame: frame)
                 targetView.backgroundColor = UIColor(white: 1, alpha: 0.5)
                 self.controller.targets.append(targetView)
-                targetsView.addSubview(targetView)
-                id++
+                self.view.addSubview(targetView)
+                idx+=1
             }
         }
-        self.controller.gameView.addSubview(targetsView)
-        
     }
 
     
@@ -181,7 +175,7 @@ class JigsawLevelViewController: GenericLevelViewController {
 
 extension JigsawLevelViewController: TileDragDelegateProtocol {
     // A tile was dragged, check if matches target
-    
+
     func tileView(tileView: QRTile, didDragToPoint point: CGPoint) {
         var targetView: QRTileTarget?
         for tv in self.controller.targets {

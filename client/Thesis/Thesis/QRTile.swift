@@ -53,7 +53,7 @@ class QRTile: UIImageView {
     // Calculate distance from touch to tile's center
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first {
-            let point = touch.locationInView(self.superview)
+            let point = touch.locationInView(self.superview?.superview)
             xOffset = point.x - self.center.x
             yOffset = point.y - self.center.y
         }
@@ -63,7 +63,7 @@ class QRTile: UIImageView {
     // Adjust location by xOffset, yOffset, so tile doesn't center under finger
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first {
-            let point = touch.locationInView(self.superview)
+            let point = touch.locationInView(self.superview?.superview)
             self.center = CGPointMake(point.x - xOffset, point.y - yOffset)
         }
     }
