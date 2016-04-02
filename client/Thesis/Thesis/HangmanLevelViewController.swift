@@ -127,21 +127,26 @@ class HangmanLevelViewController: GenericLevelViewController {
             SwiftSpinner.show("Scanning")
             controller.playHangman(controller.upc){ responseObject, error in
                 // Display feedback message if letter is an incorrect guess
-                if (responseObject!["game_state"].string == "2"){
-                    SwiftSpinner.show("Not in word", animated: false)
+                print(responseObject!)
+                print(responseObject!["game_state"])
+                SwiftSpinner.show("", animated: false)
+                SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
+                if (responseObject!["game_state"] == 2){
+                    print("IF")
+                    SwiftSpinner.show(self.controller.currentGuess, animated: false).addTapHandler({}, subtitle: "Not in word")
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }
-                } else if (responseObject!["game_state"].string == "1"){
-                    SwiftSpinner.show("Already guessed!", animated: false)
+                } else if (responseObject!["game_state"] == 1){
+                    print("ELSE IF")
+                    SwiftSpinner.show(self.controller.currentGuess, animated: false).addTapHandler({}, subtitle: "Already guessed.")
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }
                 }
                 else{
                     // Guess is correct, check for success
-                    SwiftSpinner.show("", animated: false)
-                    SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
+                    print("ELSE")
                     SwiftSpinner.show(self.controller.currentGuess, animated: false)
                     self.delay(1.5){
                         SwiftSpinner.hide()
