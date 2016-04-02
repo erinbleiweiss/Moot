@@ -249,7 +249,9 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     @IBAction func cancelToMazeLevelViewController(segue:UIStoryboardSegue) {
-        self.compass!.unlockColor(color)
+        if color != nil{
+            self.compass!.unlockColor(color)
+        }
     }
     
 

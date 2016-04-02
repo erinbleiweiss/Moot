@@ -51,7 +51,6 @@ class MazeTile: UIView {
 
         // Draw North
         if (self.north! && self.border["north"]==true){
-            print("top border")
             let borderPathN = UIBezierPath()
             borderPathN.lineWidth = borderWidth*2
             borderPathN.moveToPoint(CGPoint(x: 0, y: 0))
@@ -65,7 +64,6 @@ class MazeTile: UIView {
         
         // Draw West
         if (self.west! && self.border["west"]==true && !isStart){
-            print("top border")
             let borderPathW = UIBezierPath()
             borderPathW.lineWidth = borderWidth*2
             borderPathW.moveToPoint(CGPoint(x: 0, y: 0))
@@ -79,7 +77,6 @@ class MazeTile: UIView {
 
         // Draw South
         if (self.south! && self.border["south"]==true){
-            print("top border")
             let borderPathS = UIBezierPath()
             borderPathS.lineWidth = borderWidth*2
             borderPathS.moveToPoint(CGPoint(x: 0, y: tileSize))
@@ -93,7 +90,6 @@ class MazeTile: UIView {
         
         // Draw East
         if (self.east! && self.border["east"]==true && !isEnd){
-            print("top border")
             let borderPathE = UIBezierPath()
             borderPathE.lineWidth = borderWidth*2
             borderPathE.moveToPoint(CGPoint(x: tileSize, y: 0))

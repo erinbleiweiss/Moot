@@ -27,8 +27,46 @@ class GenericCameraViewController: UIViewController, AVCaptureMetadataOutputObje
     
     var delegate: CameraDelegate?
     
+    var headers: [String: String]
+    
+    required init?(coder aDecoder: NSCoder) {
+        // Pre-authorize all API Requests with appropriate headers
+        let username = get_uuid()
+        let password = get_api_key()
+        let credentialData = "\(username):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
+        let header_info = ["Authorization": "Basic \(base64Credentials)"]
+        self.headers = header_info
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) != AVAuthorizationStatus.Authorized {
+            let settings = NSURL(string: UIApplicationOpenSettingsURLString)
+            //let settings = NSURL(string: UIApplicationOpen)
+            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { granted in
+                if !granted {
+                    // Create the alert controller
+                    let alertController = UIAlertController(title: "Access Camera", message: "Access to your Camera has been denied, please enable access in Privacy Settings.", preferredStyle: .Alert)
+                    // Create the actions
+                    let privacySettingsAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default) {
+                        UIAlertAction in
+                        //Take to Privacy Settings
+                        UIApplication.sharedApplication().openURL(settings!)
+                    }
+                    // Add the actions
+                    alertController.addAction(privacySettingsAction)
+                    // Present the controller
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    
+                }
+            })
+        }
+    
+        
         // Allow the view to resize freely
         self.highlightView.autoresizingMask = [UIViewAutoresizing.FlexibleTopMargin,
             UIViewAutoresizing.FlexibleBottomMargin,

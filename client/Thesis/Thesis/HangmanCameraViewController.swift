@@ -58,7 +58,7 @@ class HangmanCameraViewController: GenericCameraViewController, CameraDelegate {
      */
     func getProduct(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_product_nameOLD"
-        Alamofire.request(.GET, url, parameters: ["upc": upc]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["upc": upc], headers: headers).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
             if let name = json["product_name"].string{
