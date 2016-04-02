@@ -40,6 +40,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
+        self.view.backgroundColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
         
         // Header should start off-screen for animation
         // Y value should be inverse of height

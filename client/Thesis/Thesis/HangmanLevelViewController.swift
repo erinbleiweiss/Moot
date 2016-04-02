@@ -43,6 +43,7 @@ class HangmanLevelViewController: GenericLevelViewController {
         let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight - yOffset))
         self.view.addSubview(gameView)
         self.controller.gameView = gameView
+
         self.setUpLevel()
     
     }

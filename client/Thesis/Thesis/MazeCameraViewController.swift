@@ -44,9 +44,9 @@ class MazeCameraViewController: GenericCameraViewController, CameraDelegate {
 
 
             case .Failure(_):
-                NSLog("getRandomWord failed with error: \(result.error)")
-
-
+                NSLog("Get image color failed with error: \(result.error)")
+                completionHandler(responseObject: "Could not get image color", error: result.error as? NSError)
+            
             }
         
             

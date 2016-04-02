@@ -12,11 +12,10 @@ import SwiftyJSON
 
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
+    var tokenColor: UIColor?
     var compass: CompassView?
     var mazeSize: CGFloat?
     var tileSize: Int?
-
-    @IBOutlet weak var colorLabel: UILabel!
     
 
 //    let tilesString = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
@@ -173,7 +172,8 @@ class MazeLevelViewController: GenericLevelViewController {
                 let layerName = layer.descriptiveName
                 if color_layers[layerName!] != nil{
                     let touchedColor = color_layers[layerName!]
-                
+                    self.tokenColor = mootColors[touchedColor!]
+                    
                     let colorLayer = self.compass!.layers[touchedColor!] as! CALayer
                     if colorLayer.locked == false {
                         let directions: [String: CGFloat] = [
@@ -235,6 +235,7 @@ class MazeLevelViewController: GenericLevelViewController {
             width: self.tileSize!,
             height: self.tileSize!
         )
+        self.controller.tokenView.setColor(self.tokenColor!)
         self.controller.tokenView.setNeedsDisplay()
     }
     

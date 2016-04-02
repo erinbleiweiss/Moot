@@ -21,6 +21,8 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     var currentLocation: CLLocation?
     var destination: CLLocation?
     
+    var distanceTraveled: CLLocationDistance?
+    
     var currentLat: Double = 0
     var currentLong: Double = 0
     
@@ -30,6 +32,8 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     var bearing: Double?
     var bearing2: CLLocationDirection?
     
+    var testLabel: UILabel?
+    
     let controller: GeoDDRGameController
     required init?(coder aDecoder: NSCoder){
         controller = GeoDDRGameController()
@@ -38,26 +42,36 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     
     @IBAction func displayAlert(sender: AnyObject) {
         
-        let stringbearing = String(bearing2)
-//        let stringbearing2 = String(radiansToDegrees(bearing2!))
-        
-        
         let alertController = UIAlertController(title: "BEARING", message:
-            "\(stringbearing)", preferredStyle: UIAlertControllerStyle.Alert)
+            "\(distanceTraveled)", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         
         self.presentViewController(alertController, animated: true, completion: nil)
         
+    }
+    
+    func displaySecondAlert(){
+        let alertController = UIAlertController(title: "BEARING", message:
+            "\(distanceTraveled)", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 4
         
+        self.testLabel = UILabel(frame: CGRectMake(100, 200, 200, 200))
+        self.view.addSubview(testLabel!)
+        self.testLabel?.text = "0.00"
+        
+        self.locationManager.delegate = self
+        self.locationManager.startUpdatingHeading()
+        
 //        let gameView = UIView(frame: CGRectMake(0, yOffset, ScreenWidth, ScreenHeight - yOffset))
 //        self.view.addSubview(gameView)
 //        self.controller.gameView = gameView
-        
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -72,7 +86,7 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
             
-            locationUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(GeoDDRLevelViewController.updateLocation), userInfo: nil, repeats: true)
+//            locationUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(GeoDDRLevelViewController.updateLocation), userInfo: nil, repeats: true)
 
         }
         
@@ -83,75 +97,53 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     
     override func viewDidDisappear(animated: Bool) {
         locationManager.stopUpdatingLocation()
-        locationUpdateTimer!.invalidate()
-        locationUpdateTimer = nil
+//        locationUpdateTimer!.invalidate()
+//        locationUpdateTimer = nil
     }
     
 
-    func updateLocation() {
-        locationManager.startUpdatingLocation()
-    }
-    
-//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-////        print("locations = \(locValue.latitude) \(locValue.longitude)")
-//        if !gotLocation{
-//            self.originLat = locValue.latitude
-//            self.originLong = locValue.longitude
-//            self.gotLocation = true
-//            
-//            let current = CLLocation(latitude: originLat, longitude: originLong)
-//            self.destination = Away.buildLocation(0.5, from: current, bearing: 210)
-//        }
-//        
-//        self.currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-//        
-//        self.currentLat = locValue.latitude
-//        self.currentLong = locValue.longitude
-//        
-//        self.dLat = (currentLat - originLat) * 100000
-//        self.dLong = (currentLong - originLong) * 100000
-//        
-////        print ("dLat: \(self.dLat), dLong: \(self.dLong)")
-//        
-////        if self.destination?.distanceFromLocation(self.currentLocation!) <= 0.1 {
-////            print ("ARRIVED")
-////        } else {
-////            print ("not yet arrived")
-////        }
-////
-////        if (self.dLat > 0){
-////            print("NORTH")
-////        }
-////        if (self.dLat < 0){
-////            print("SOUTH")
-////        }
-////        if (self.dLong > 0){
-////            print("EAST")
-////        }
-////        if (self.dLong < 0){
-////            print("WEST")
-////        }
-////        print("")
-////        print("")
-////        print("")
-//        
-//        
-//        let origin = CLLocation(latitude: self.originLat, longitude: self.originLong)
-//        self.bearing = self.getBearingBetweenTwoPoints1(origin, point2: self.currentLocation!)
-//        print(self.bearing)
-//        
-//        // This should match your CLLocationManager()
-//        locationManager.stopUpdatingLocation()
-//        
-//        
+//    func updateLocation() {
+//        locationManager.startUpdatingLocation()
 //    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+//        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        if !gotLocation{
+            self.originLat = locValue.latitude
+            self.originLong = locValue.longitude
+            self.gotLocation = true
+            
+            let current = CLLocation(latitude: originLat, longitude: originLong)
+            self.destination = Away.buildLocation(0.5, from: current, bearing: 210)
+        }
+        
+        self.currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+        
+        self.currentLat = locValue.latitude
+        self.currentLong = locValue.longitude
+        
+        
+        let origin = CLLocation(latitude: self.originLat, longitude: self.originLong)
+        
+        self.distanceTraveled = (currentLocation?.distanceFromLocation(origin))!
+        self.testLabel?.text = String(distanceTraveled!)
+        self.testLabel?.layoutSubviews()
+        print(distanceTraveled!)
+
+        // This should match your CLLocationManager()
+        locationManager.stopUpdatingLocation()
+        
+        
+    }
     
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        self.bearing2 = newHeading.magneticHeading
+//        self.bearing2 = newHeading.magneticHeading
+        print(newHeading.magneticHeading)
         locationManager.stopUpdatingLocation()
     }
+    
     
     
     func degreesToRadians(degrees: Double) -> Double {

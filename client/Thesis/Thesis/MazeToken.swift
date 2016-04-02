@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import DynamicColor
 
 class MazeToken: UIView {
 
+    var tokenColor: UIColor = UIColor.grayColor()
+    
     override func drawRect(rect: CGRect) {
-        let tokenPath = UIBezierPath(ovalInRect: CGRect(x: 5, y: 5, width: rect.width - 10, height: rect.height - 10))
-        UIColor.redColor().setFill()
+        let inset: CGFloat = rect.width * 0.2
+        let tokenPath = UIBezierPath(ovalInRect: CGRect(x: inset, y: inset, width: rect.width - (inset * 2), height: rect.height - (inset * 2)))
+        tokenPath.lineWidth = rect.width * 0.1
+        self.tokenColor.shadeColor(amount: 0.4).setStroke()
+        tokenPath.stroke()
+        
+        self.tokenColor.setFill()
         tokenPath.fill()
+    }
+    
+    func setColor(color: UIColor){
+        self.tokenColor = color
     }
 
 }

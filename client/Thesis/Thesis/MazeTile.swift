@@ -46,7 +46,7 @@ class MazeTile: UIView {
         let path = UIBezierPath()
         path.lineWidth = borderWidth
         
-        let pathColor = UIColor.blueColor()
+        let pathColor = UIColor(red: 69/255, green: 69/255, blue: 66/255, alpha: 1)
         pathColor.setStroke()
 
         // Draw North
