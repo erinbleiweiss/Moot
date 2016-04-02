@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SwiftSpinner
 
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
@@ -16,6 +17,10 @@ class MazeLevelViewController: GenericLevelViewController {
     var compass: CompassView?
     var mazeSize: CGFloat?
     var tileSize: Int?
+    
+    var upc: String?          // UPC of product scanned
+    var productName: String?
+    var productImgUrl: String?
     
 
 //    let tilesString = "12_8_10_10_9_7_5_12_9_5_14_3_5_6_3_12_9_6_9_13_7_6_10_2_3"
@@ -155,9 +160,7 @@ class MazeLevelViewController: GenericLevelViewController {
         if (self.compass!.layer.presentationLayer()?.hitTest(point) != nil){
             var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
             layer = layer.modelLayer() as! CALayer
-        
-            print(layer.descriptiveName)
-        
+            
             if layer.descriptiveName != nil {
                 let color_layers: [String: String] = [
                     "red_touch": "red",
@@ -200,7 +203,6 @@ class MazeLevelViewController: GenericLevelViewController {
                             self.updateToken()
                             let direction = directions[touchedColor!]
                             self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void    in
-                                print("animated")
                                 if self.controller.checkForSuccess() {
                                     self.displayLevelCompletionView()
                                 }
@@ -242,18 +244,54 @@ class MazeLevelViewController: GenericLevelViewController {
 
 
 
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func cancelToMazeLevelViewController(segue:UIStoryboardSegue) {
-        if color != nil{
-            self.compass!.unlockColor(color)
+        updateGame()
+    }
+    
+    
+    
+    func updateGame(){
+        if self.upc != nil{
+//            self.compass!.unlockColor(color)
+            showSuccess()
+        } else {
+            showFailure()
         }
     }
+    
+    func showSuccess(){
+        SwiftSpinner.show("Scanning")
+        self.controller.getColor(self.upc!){ responseObject, error in
+            if (responseObject["status"] == "success"){
+                self.productName = responseObject["product_name"].string
+                self.color = responseObject["color"].string
+                self.productImgUrl = responseObject["product_img"].string
+                self.delay(1.5){
+                    SwiftSpinner.hide()
+                }
+                self.compass!.unlockColor(self.color)
+                self.showProductPopup(self.productName!, color: self.color, url: self.productImgUrl!)
+                
+            } else {
+                self.showFailure()
+            }
+        }
+    }
+    
+    
+    func showFailure(){
+        SwiftSpinner.show("Problem scanning. Try again!", animated: false)
+        self.delay(2){
+            SwiftSpinner.hide()
+        }
+    }
+    
+    
     
 
 }

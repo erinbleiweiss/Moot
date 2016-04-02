@@ -15,52 +15,29 @@ import SwiftyJSON
 
 class MazeCameraViewController: GenericCameraViewController, CameraDelegate {
     
-    var color: String!
-    
+    var upc: String?          // UPC of product scanned
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
     override func doAfterScan(upc: String) {
-        getColor(upc){ responseObject, error in
-            print("responseObject = \(responseObject); error = \(error)")
-            self.color = responseObject!
-            self.performSegueWithIdentifier("colorScannedSegue", sender: nil)
-        }
+        self.upc = upc
+        self.performSegueWithIdentifier("colorScannedSegue", sender: nil)
+
     }
     
     
-    // Get color name from UPC
-    func getColor(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
-        let url: String = hostname + rest_prefix + "/image_colors"
-        Alamofire.request(.GET, url, parameters: ["upc": upc], headers: headers).responseJSON { (_, _, result) in switch result {
-            
-            
-            case .Success(let data):
-                let json = JSON(data)
-                let color = json["color"].string
-                completionHandler(responseObject: color, error: result.error as? NSError)
 
-
-            case .Failure(_):
-                NSLog("Get image color failed with error: \(result.error)")
-                completionHandler(responseObject: "Could not get image color", error: result.error as? NSError)
-            
-            }
-        
-            
-        }
-        
-    }
-    
     
     // Send product name back to MazeLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if let _ = self.color{
+        if let _ = upc{
             let destinationVC = segue.destinationViewController as! MazeLevelViewController
-            destinationVC.color = self.color
+            destinationVC.upc = self.upc!
         }
+        
     }
     
     

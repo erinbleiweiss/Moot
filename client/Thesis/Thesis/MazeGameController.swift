@@ -53,6 +53,30 @@ class MazeGameController: GenericGameController {
     
     
     
+    // Get color name from UPC
+    func getColor(upc: String, completionHandler: (responseObject: JSON, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/image_colors"
+        Alamofire.request(.GET, url, parameters: ["upc": upc], headers: headers).responseJSON { (_, _, result) in switch result {
+            
+            
+        case .Success(let data):
+            let json = JSON(data)
+            completionHandler(responseObject: json, error: result.error as? NSError)
+            
+            
+        case .Failure(_):
+            NSLog("Get image color failed with error: \(result.error)")
+            completionHandler(responseObject: "Could not get image color", error: result.error as? NSError)
+            
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    
     func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/maze_move"
         Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.tileString, "row": String(self.pos_row), "col": String(self.pos_col)], headers: headers).responseJSON { (_, _, result) in
