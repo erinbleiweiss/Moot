@@ -132,7 +132,7 @@ class MazeLevelViewController: GenericLevelViewController {
             
             let compassSize = self.mazeBottomView!.frame.height
             let compassFrame = CGRect(
-                x: (self.view.frame.width/2) - (compassSize/2),
+                x: (self.mazeBottomView!.frame.width/2) - (compassSize/2),
                 y: 0,
                 width: compassSize,
                 height: compassSize
@@ -151,7 +151,7 @@ class MazeLevelViewController: GenericLevelViewController {
         super.touchesBegan(touches, withEvent: event)
         
         var point: CGPoint = (touches.first?.locationInView(self.compass))!
-        point = self.compass!.convertPoint(point, toView: self.view)
+        point = self.compass!.convertPoint(point, toView: self.mazeBottomView)
         
         if (self.compass!.layer.presentationLayer()?.hitTest(point) != nil){
             var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!

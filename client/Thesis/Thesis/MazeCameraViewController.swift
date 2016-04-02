@@ -34,15 +34,21 @@ class MazeCameraViewController: GenericCameraViewController, CameraDelegate {
     // Get color name from UPC
     func getColor(upc: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/image_colors"
-        Alamofire.request(.GET, url, parameters: ["upc": upc], headers: headers).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["upc": upc], headers: headers).responseJSON { (_, _, result) in switch result {
             
-            let json = JSON(result.value!)
-            if let color = json["color"].string{
+            
+            case .Success(let data):
+                let json = JSON(data)
+                let color = json["color"].string
                 completionHandler(responseObject: color, error: result.error as? NSError)
-            } else {
-                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
+
+
+            case .Failure(_):
+                NSLog("getRandomWord failed with error: \(result.error)")
+
+
             }
-            
+        
             
         }
         
