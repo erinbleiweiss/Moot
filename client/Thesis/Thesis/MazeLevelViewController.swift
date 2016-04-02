@@ -271,9 +271,7 @@ class MazeLevelViewController: GenericLevelViewController {
                 self.productName = responseObject["product_name"].string
                 self.color = responseObject["color"].string
                 self.productImgUrl = responseObject["product_img"].string
-                self.delay(1.5){
-                    SwiftSpinner.hide()
-                }
+                SwiftSpinner.hide()
                 self.compass!.unlockColor(self.color)
                 self.showProductPopup(self.productName!, color: self.color, url: self.productImgUrl!)
                 
