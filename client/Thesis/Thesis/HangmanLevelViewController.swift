@@ -160,20 +160,14 @@ class HangmanLevelViewController: GenericLevelViewController {
                 }
                 self.delay(1.5){
                     self.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
+                    
+                    self.displayAchievements()
                 }
-                
-                
-                self.displayAchievements()
                 
                 self.updateMootPoints()
             }
         }
     }
-    
-
-    
-
-
 
     
     override func didReceiveMemoryWarning() {
