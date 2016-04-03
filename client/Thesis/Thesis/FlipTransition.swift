@@ -34,22 +34,22 @@ let animationScale = UIScreen.mainScreen().bounds.size.width/300 // screenWidth 
 
 
 class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning {
-
+    
     enum TransitionState {
         case Initial
         case Final
     }
     
     typealias ZoomingViews = (coloredView: UIView, imageView: UIView)
-
+    
     var operation: UINavigationControllerOperation = .None
-
+    
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         // protocol needs to be @objc for conformance testing
         if fromVC is FlipTransitionProtocol &&
             toVC is FlipTransitionProtocol {
-                self.operation = operation
-                return self
+            self.operation = operation
+            return self
         }
         else {
             return nil
@@ -82,7 +82,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         if self.operation == .Push {
             fromViewController.view.addSubview(proxyView)
             let color = proxyView.color
-
+            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(color)
             UIView.animateWithDuration(
                 duration,
                 delay: 0,
@@ -96,8 +96,6 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                     proxyView.layoutIfNeeded()
                 }, completion: {
                     (finished) in
-//                    toViewController.navigationController?.tabBarController?.tabBar.barTintColor = color
-                    (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(color)
                     proxyView.hidden = true
                     toViewController.view.hidden = false
                     (toViewController as! GenericLevelViewController).header?.backgroundColor = color
@@ -105,25 +103,26 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                         fromViewController.view,
                         toView: toViewController.view!,
                         duration: self.transitionDuration(transitionContext),
-                        options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
-                            UIView.animateWithDuration(
-                                duration,
-                                delay: 0,
-                                usingSpringWithDamping: 1,
-                                initialSpringVelocity: 0,
-                                options: [.CurveEaseIn],
-                                animations: {
-                                    toViewController.navigationController?.navigationBarHidden = false
-                                    (toViewController as! GenericLevelViewController).addHeader()
-                                }, completion: { (finished) in
-                                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-                                })
-                            
+                    options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
+                        UIView.animateWithDuration(
+                            duration,
+                            delay: 0,
+                            usingSpringWithDamping: 1,
+                            initialSpringVelocity: 0,
+                            options: [.CurveEaseIn],
+                            animations: {
+                                toViewController.navigationController?.navigationBarHidden = false
+                                (toViewController as! GenericLevelViewController).addHeader()
+                            }, completion: { (finished) in
+                                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                        })
+                        
                     }
             })
         } else {
             toViewController.navigationController?.navigationBarHidden = true
             toViewController.view.hidden = false
+            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(UIColor.blackColor())
             proxyView.hidden = false
             proxyView.frame = containerView!.frame
             proxyView.levelLabel.frame = containerView!.frame
@@ -145,7 +144,6 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                             proxyView.levelLabel.frame = initialProxyViewFrame
                             proxyView.layoutIfNeeded()
                             toViewController.navigationController?.tabBarController?.tabBar.barTintColor = UIColor.whiteColor()
-                            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(UIColor.blackColor())
                         }, completion: {
                             (finished) in
                             proxyView.removeFromSuperview()
@@ -161,6 +159,6 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
     
     
     
-
+    
     
 }

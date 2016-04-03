@@ -23,6 +23,8 @@ var rest_prefix = Networking.networkConfig.rest_prefix
 // Base 64 encoded secret key
 var api_key = "RFY3cEhHdFNTOUZKem1KNXVjRDNWdll1JHgyR3JmUDlGOWIk"
 
+let mootGray = UIColor(red: 146/255, green: 146/255, blue: 146/255, alpha: 1)
+
 var mootColors: [String: UIColor] = [
     "red":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
     "orange":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),

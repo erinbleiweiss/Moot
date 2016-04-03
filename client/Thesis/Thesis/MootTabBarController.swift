@@ -14,7 +14,8 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     var cameraVC: String?
     var cameraButtonVisible: Bool = false
     var button: CameraTabButton?
-    
+    var selectedButtonColor: UIColor?
+
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +36,32 @@ public class MootTabBarController: RAMAnimatedTabBarController {
             tabBarItem.enabled = false
         }
         changeButtonColor(UIColor(red:180/255, green: 180/255, blue:180/255, alpha:1))
+    }
+
+    
+    func setupTabColors(){
+        var iconColor: UIColor?
+        if self.selectedButtonColor != nil {
+            iconColor = self.selectedButtonColor
+        }
+        else {
+            iconColor = UIColor.blackColor()
+        }
+        
+        for item in self.tabBar.items! as! [RAMAnimatedTabBarItem] {
+            let image = item.iconView!.icon.image
+            item.iconView!.icon.image = image!.imageWithColor(mootGray).imageWithRenderingMode(.AlwaysOriginal)
+            item.setTitleTextAttributes([NSForegroundColorAttributeName: mootGray], forState: .Normal)
+        }
+        
+        let selectedItem = self.tabBar.selectedItem
+        if selectedItem != nil {
+            let image = (selectedItem as! RAMAnimatedTabBarItem).iconView!.icon.image
+            (selectedItem as! RAMAnimatedTabBarItem).iconView!.icon.image = image!.imageWithColor(iconColor!).imageWithRenderingMode(.AlwaysOriginal)
+            selectedItem!.setTitleTextAttributes([NSForegroundColorAttributeName: iconColor!], forState:.Selected)
+        }
+        self.view.setNeedsDisplay()
+        self.view.layoutSubviews()
     }
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
@@ -86,12 +113,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     }
     
     public func changeButtonColor(color: UIColor){
-        for item in self.tabBar.items! as! [RAMAnimatedTabBarItem] {
-            let image = item.iconView!.icon.image
-            item.iconView!.icon.image = image!.imageWithColor(color).imageWithRenderingMode(.AlwaysOriginal)
-        }
-        let cameraImage = self.button?.imageView?.image
-        self.button?.imageView?.image = cameraImage?.imageWithColor(color)
+        self.selectedButtonColor = color
     }
     
 
