@@ -30,6 +30,10 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         return UIStatusBarStyle.LightContent
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         print("viewdidload")
         super.viewDidLoad()
