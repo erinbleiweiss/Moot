@@ -119,7 +119,9 @@ class HangmanGameController: GenericGameController {
     
     */
     func checkForSuccess() -> Int{
-        
+     
+        self.loadLevelData()
+
         for tile in gameTiles{
             if !tile.isFilled{
                 return 0 // Stage is not complete
@@ -130,15 +132,16 @@ class HangmanGameController: GenericGameController {
         if (!level_complete){
           self.advanceToNextStage()
           self.upc = ""
-          self.hangmanData.set_TargetWord("")
+          self.refeshData()
           self.clearTiles()
           return 1 // Not final stage; Level not complete
         } else {
           self.upc = ""
+          self.refeshData()
           self.succeed() // Final stage; Level is complete
           return 2
         }
-        
+     
     }
     
 
@@ -166,6 +169,14 @@ class HangmanGameController: GenericGameController {
           } else {
                print("Could not read data for level \(self.level!)")
           }
+     }
+     
+     /**
+          Save and load data
+     */
+     func refeshData(){
+          self.saveLevelData(self.hangmanData, levelNum: self.level!)
+          self.loadLevelData()
      }
      
      

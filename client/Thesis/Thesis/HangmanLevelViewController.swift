@@ -109,10 +109,9 @@ class HangmanLevelViewController: GenericLevelViewController {
         
         // For each letter in the target word, create a new tile object (initialized with a blank "_" by default)
         // Add each tile to the view, and append the tile to the controller's list of tile objects
-        print(self.controller.hangmanData.getCurrentGame())
         for (index, letter) in self.controller.hangmanData.getCurrentGame().characters.enumerate(){
             let tile = HangmanTile(letter: letter, sideLength: tileSide)
-            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/2 - (tileSide / 2) + yOffset)
+            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/2 - (tileSide / 2))
             self.view.addSubview(tile)
             self.controller.gameTiles.append(tile)
         }
@@ -152,7 +151,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }
-                    
+
                     let return_code = self.controller.checkForSuccess()
                     if (return_code == 1) {
                         // Stage is complete
