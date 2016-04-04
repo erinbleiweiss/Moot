@@ -25,6 +25,7 @@
 		8024808E1CACAD9B00204F82 /* GeoDDRLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
 		804455D81CB22EDE00924480 /* HangmanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D71CB22EDE00924480 /* HangmanData.swift */; };
+		804455DA1CB2607A00924480 /* MazeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D91CB2607A00924480 /* MazeData.swift */; };
 		804927871C97BAD200410B1A /* LevelBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804927861C97BAD200410B1A /* LevelBadge.swift */; };
 		804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E61C9E22F800F57992 /* QCMethod.swift */; };
 		804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */; };
@@ -44,7 +45,6 @@
 		80AA55731CAD023000D6A81C /* HighScoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55721CAD023000D6A81C /* HighScoreDataController.swift */; };
 		80AA55751CAD906500D6A81C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55741CAD906500D6A81C /* StatsViewController.swift */; };
 		80AA55791CAE276600D6A81C /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */; };
-		80AA557C1CAF19FA00D6A81C /* MazeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA557B1CAF19FA00D6A81C /* MazeTopView.swift */; };
 		80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2ADE1CA8B6660033E48D /* MootHeader.swift */; };
 		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
 		80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */; };
@@ -127,6 +127,7 @@
 		8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRLevelViewController.swift; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804455D71CB22EDE00924480 /* HangmanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanData.swift; sourceTree = "<group>"; };
+		804455D91CB2607A00924480 /* MazeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeData.swift; sourceTree = "<group>"; };
 		804927861C97BAD200410B1A /* LevelBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBadge.swift; sourceTree = "<group>"; };
 		804E11E61C9E22F800F57992 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompletedViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		80AA55721CAD023000D6A81C /* HighScoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreDataController.swift; sourceTree = "<group>"; };
 		80AA55741CAD906500D6A81C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
-		80AA557B1CAF19FA00D6A81C /* MazeTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTopView.swift; sourceTree = "<group>"; };
 		80AE2ADE1CA8B6660033E48D /* MootHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootHeader.swift; sourceTree = "<group>"; };
 		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
 		80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelNavController.swift; sourceTree = "<group>"; };
@@ -234,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				804455D71CB22EDE00924480 /* HangmanData.swift */,
+				804455D91CB2607A00924480 /* MazeData.swift */,
 			);
 			name = "Game Data";
 			sourceTree = "<group>";
@@ -245,14 +246,6 @@
 				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
 			);
 			name = Animations;
-			sourceTree = "<group>";
-		};
-		80AA557A1CAF19DD00D6A81C /* Storyboard Subviews */ = {
-			isa = PBXGroup;
-			children = (
-				80AA557B1CAF19FA00D6A81C /* MazeTopView.swift */,
-			);
-			name = "Storyboard Subviews";
 			sourceTree = "<group>";
 		};
 		80AE504A1CA5EF6B00050457 /* Extensions */ = {
@@ -390,7 +383,6 @@
 		80F0DD511C5EE91B002A8037 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80AA557A1CAF19DD00D6A81C /* Storyboard Subviews */,
 				80AE504D1CA5F05200050457 /* Subviews */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
 				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
@@ -655,6 +647,7 @@
 				80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */,
 				80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */,
 				80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */,
+				804455DA1CB2607A00924480 /* MazeData.swift in Sources */,
 				80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */,
 				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
 				80D69EC31CA1E9300076209C /* MootTabBarController.swift in Sources */,
@@ -666,7 +659,6 @@
 				80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */,
 				80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
-				80AA557C1CAF19FA00D6A81C /* MazeTopView.swift in Sources */,
 				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
 				80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */,

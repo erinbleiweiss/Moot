@@ -14,10 +14,10 @@ import SwiftyJSON
 class MazeGameController: GenericGameController {
     
     var tileString: String!
-
+    var tokenColor: UIColor?
     var pos_row = 0
     var pos_col = 0
-
+    
     var maze_size = 5
     
     var tokenView = MazeToken!()

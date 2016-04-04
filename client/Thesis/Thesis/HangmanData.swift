@@ -52,15 +52,15 @@ class HangmanData: NSObject, NSCoding{
 
     }
     
-    func getTargetWord() -> String{
+    func getTargetWord() -> String {
         return self.targetWord
     }
     
-    func getCurrentGuess() -> String{
+    func getCurrentGuess() -> String {
         return self.currentGuess
     }
     
-    func getCurrentGame() -> String{
+    func getCurrentGame() -> String {
         return self.currentGame
     }
     

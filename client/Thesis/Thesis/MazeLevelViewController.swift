@@ -13,7 +13,6 @@ import SwiftSpinner
 
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
-    var tokenColor: UIColor?
     var compass: CompassView?
     var mazeSize: CGFloat?
     var tileSize: Int?
@@ -175,7 +174,7 @@ class MazeLevelViewController: GenericLevelViewController {
                 let layerName = layer.descriptiveName
                 if color_layers[layerName!] != nil{
                     let touchedColor = color_layers[layerName!]
-                    self.tokenColor = mootColors[touchedColor!]
+                    self.controller.tokenColor = mootColors[touchedColor!]
                     
                     let colorLayer = self.compass!.layers[touchedColor!] as! CALayer
                     if colorLayer.locked == false {
@@ -237,7 +236,7 @@ class MazeLevelViewController: GenericLevelViewController {
             width: self.tileSize!,
             height: self.tileSize!
         )
-        self.controller.tokenView.setColor(self.tokenColor!)
+        self.controller.tokenView.setColor(self.controller.tokenColor!)
         self.controller.tokenView.setNeedsDisplay()
     }
     
@@ -257,7 +256,6 @@ class MazeLevelViewController: GenericLevelViewController {
     
     func updateGame(){
         if self.upc != nil{
-//            self.compass!.unlockColor(color)
             showSuccess()
         } else {
             showFailure()
