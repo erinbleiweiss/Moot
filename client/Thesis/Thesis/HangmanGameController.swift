@@ -15,13 +15,11 @@ import SwiftSpinner
 class HangmanGameController: GenericGameController {
     
     var upc: String = ""
-    var productName: String = ""
-    var targetWord: String = ""
-    var currentGuess: String = ""
-    var currentGame: String = ""
-    var guess: String!
     var loading: Bool = false;
-    
+    var productName: String = ""
+
+    var hangmanData = HangmanData()
+
     /// Array containing tile objects, each containing a letter
     var gameTiles = [HangmanTile]()
     
@@ -45,9 +43,8 @@ class HangmanGameController: GenericGameController {
                     print(json)
                     let word = json["word"].stringValue
                     print(word)
-                    self.targetWord = word
-                    self.currentGame = ""
-
+                    self.hangmanData.set_TargetWord(word)
+                    self.hangmanData.set_CurrentGame("")
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
                     // There was a problem retrieving a word from the database
@@ -82,15 +79,15 @@ class HangmanGameController: GenericGameController {
     func playHangman(upc: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         self.loading = true;
         let url: String = hostname + rest_prefix + "/play_hangman"
-        Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": targetWord, "letters_guessed": currentGame], headers: headers).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["upc": upc, "target_word": self.hangmanData.getTargetWord(), "letters_guessed": self.hangmanData.getCurrentGame()], headers: headers).responseJSON { (_, _, result) in
             
             switch result {
                 case .Success(let data):
                     let json = JSON(data)
                     // Update state of current game
-                    self.currentGuess = json["guess"].stringValue
+                    self.hangmanData.set_CurrentGuess(json["guess"].stringValue)
                     let game_state = json["letters_guessed"].stringValue
-                    self.currentGame = game_state
+                    self.hangmanData.set_CurrentGame(game_state)
                     for (index, letter) in game_state.characters.enumerate() {
                         self.gameTiles[index].updateLetter(letter)
                     }
@@ -130,7 +127,7 @@ class HangmanGameController: GenericGameController {
         if (!level_complete){
           self.advanceToNextStage()
           self.upc = ""
-          self.targetWord = ""
+          self.hangmanData.set_TargetWord("")
           self.clearTiles()
           return 1 // Not final stage; Level not complete
         } else {

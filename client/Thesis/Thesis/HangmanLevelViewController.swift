@@ -62,7 +62,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     */
     override func setUpLevel(){
         // Initial load, no target word
-        if (self.controller.targetWord == "") {
+        if (self.controller.hangmanData.getTargetWord() == "") {
             // Generate target word
             self.controller.getRandomWord(){ responseObject, error in
                 print("responseObject = \(responseObject); error = \(error)")
@@ -70,11 +70,13 @@ class HangmanLevelViewController: GenericLevelViewController {
                 // Set current game string in controller (if not first level)
                 let difficulty = self.controller.getCurrentStage()
                 
-                if (difficulty == 1 && self.controller.targetWord == "scan"){
-                    self.controller.currentGame = "sc_n"
+                if (difficulty == 1 && self.controller.hangmanData.getTargetWord() == "scan"){
+                    self.controller.hangmanData.set_CurrentGame("sc_n")
                 } else {
-                    for (_, _) in self.controller.targetWord.characters.enumerate() {
-                        self.controller.currentGame += "_"
+                    for (_, _) in self.controller.hangmanData.getTargetWord().characters.enumerate() {
+                        var currentGame = self.controller.hangmanData.getCurrentGame()
+                        currentGame += "_"
+                        self.controller.hangmanData.set_CurrentGame(currentGame)
                     }
                 }
                 
@@ -98,13 +100,13 @@ class HangmanLevelViewController: GenericLevelViewController {
      */
     func layoutTiles(){
         // Calculate the tile size and left margin (xOffset)
-        let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.targetWord.characters.count)) - self.TileMargin
-        var xOffset = (ScreenWidth - CGFloat(self.controller.targetWord.characters.count) * (tileSide + self.TileMargin)) / 2.0
+        let tileSide = ceil(ScreenWidth * 0.9 / CGFloat(self.controller.hangmanData.getTargetWord().characters.count)) - self.TileMargin
+        var xOffset = (ScreenWidth - CGFloat(self.controller.hangmanData.getTargetWord().characters.count) * (tileSide + self.TileMargin)) / 2.0
         xOffset += tileSide / 2.0 //adjust for tile center (instead of the tile's origin)
         
         // For each letter in the target word, create a new tile object (initialized with a blank "_" by default)
         // Add each tile to the view, and append the tile to the controller's list of tile objects
-        for (index, letter) in self.controller.currentGame.characters.enumerate(){
+        for (index, letter) in self.controller.hangmanData.getCurrentGame().characters.enumerate(){
             let tile = HangmanTile(letter: letter, sideLength: tileSide)
             tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/3)
             self.controller.gameView.addSubview(tile)
@@ -123,26 +125,26 @@ class HangmanLevelViewController: GenericLevelViewController {
      
      */
     func updateGame(){
-        if (controller.targetWord != "" && controller.upc != ""){
+        if (controller.hangmanData.getTargetWord() != "" && controller.upc != ""){
             SwiftSpinner.show("Scanning")
             controller.playHangman(controller.upc){ responseObject, error in
                 // Display feedback message if letter is an incorrect guess
                 SwiftSpinner.show("", animated: false)
                 SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
                 if (responseObject!["game_state"] == 2){
-                    SwiftSpinner.show(self.controller.currentGuess, animated: false).addTapHandler({}, subtitle: "Not in word")
+                    SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false).addTapHandler({}, subtitle: "Not in word")
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }
                 } else if (responseObject!["game_state"] == 1){
-                    SwiftSpinner.show(self.controller.currentGuess, animated: false).addTapHandler({}, subtitle: "Already guessed.")
+                    SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false).addTapHandler({}, subtitle: "Already guessed.")
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }
                 }
                 else{
                     // Guess is correct, check for success
-                    SwiftSpinner.show(self.controller.currentGuess, animated: false)
+                    SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false)
                     self.delay(1.5){
                         SwiftSpinner.hide()
                     }

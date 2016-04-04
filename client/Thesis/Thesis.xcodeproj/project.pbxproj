@@ -24,6 +24,7 @@
 		8024808C1CACAD3400204F82 /* GeoDDRGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */; };
 		8024808E1CACAD9B00204F82 /* GeoDDRLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
+		804455D81CB22EDE00924480 /* HangmanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D71CB22EDE00924480 /* HangmanData.swift */; };
 		804927871C97BAD200410B1A /* LevelBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804927861C97BAD200410B1A /* LevelBadge.swift */; };
 		804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E61C9E22F800F57992 /* QCMethod.swift */; };
 		804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */; };
@@ -125,6 +126,7 @@
 		8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRGameController.swift; sourceTree = "<group>"; };
 		8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRLevelViewController.swift; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
+		804455D71CB22EDE00924480 /* HangmanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanData.swift; sourceTree = "<group>"; };
 		804927861C97BAD200410B1A /* LevelBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBadge.swift; sourceTree = "<group>"; };
 		804E11E61C9E22F800F57992 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompletedViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,14 @@
 				3D0E432790B86DDDF9FF2648 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		804455D61CB22ED600924480 /* Game Data */ = {
+			isa = PBXGroup;
+			children = (
+				804455D71CB22EDE00924480 /* HangmanData.swift */,
+			);
+			name = "Game Data";
 			sourceTree = "<group>";
 		};
 		80A5B5B01CA500280074B48D /* Animations */ = {
@@ -366,6 +376,7 @@
 		80F0DD501C5EE90D002A8037 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				804455D61CB22ED600924480 /* Game Data */,
 				80B195071BF56CD900B5C3CE /* Level.swift */,
 				80CDFA8E1C7513DF002E44E6 /* LevelManager.swift */,
 				80CBB5BC1C79926400D705A7 /* ScoreManager.swift */,
@@ -638,6 +649,7 @@
 				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
 				80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */,
 				804927871C97BAD200410B1A /* LevelBadge.swift in Sources */,
+				804455D81CB22EDE00924480 /* HangmanData.swift in Sources */,
 				805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */,
 				8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */,
 				80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */,
