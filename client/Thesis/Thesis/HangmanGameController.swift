@@ -45,6 +45,7 @@ class HangmanGameController: GenericGameController {
                     print(word)
                     self.hangmanData.set_TargetWord(word)
                     self.hangmanData.set_CurrentGame("")
+                    self.saveLevelData(self.hangmanData, levelNum: 1)
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
                     // There was a problem retrieving a word from the database
@@ -91,6 +92,8 @@ class HangmanGameController: GenericGameController {
                     for (index, letter) in game_state.characters.enumerate() {
                         self.gameTiles[index].updateLetter(letter)
                     }
+                    
+                    self.saveLevelData(self.hangmanData, levelNum: self.level!)
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
                     SwiftSpinner.show("Could not scan. Try again!")
@@ -151,6 +154,20 @@ class HangmanGameController: GenericGameController {
         self.gameTiles.removeAll()
     }
     
-    
+ 
+     /**
+          Retrieve level from core data
+      */
+     func loadLevelData(){
+          let path = "mootLevel\(self.level!)Data"
+          let file = documentsDirectory().stringByAppendingPathComponent(path)
+          if let levelData = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? HangmanData {
+               self.hangmanData = levelData
+          } else {
+               print("Could not read data for level \(self.level!)")
+          }
+     }
+     
+     
 }
 

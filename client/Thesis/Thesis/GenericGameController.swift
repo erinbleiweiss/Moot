@@ -21,7 +21,7 @@ class GenericGameController{
     var password: String?
     var level: Int?
     var headers: [String: String]?
-    
+        
     // Status codes used to verify properly-formatted responseObjects from Alamofire API calls
     var SUCCESS: String = "success"
     var FAILURE: String = "failure"
@@ -183,6 +183,25 @@ class GenericGameController{
     //// LEVEL MANIPULATING FUNCTIONS:
     //// ==========================================================
     
+    func documentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentDirectory = paths[0] as String
+        return documentDirectory
+    }
+    
+    /**
+        Save level data to core data
+    */
+    func saveLevelData(level: NSObject, levelNum: Int) {
+        let path = "mootLevel\(levelNum)Data"
+        let file = documentsDirectory().stringByAppendingPathComponent(path)
+        if NSKeyedArchiver.archiveRootObject(level, toFile: file) {
+        } else {
+            print("Unable to write level data for level \(levelNum)!")
+        }
+    }
+    
+
     /**
         Get current stage of level from Level Manager
     

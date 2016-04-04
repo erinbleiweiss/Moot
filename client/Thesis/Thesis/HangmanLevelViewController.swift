@@ -36,6 +36,9 @@ class HangmanLevelViewController: GenericLevelViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 1
+        self.controller.loadLevelData()
+        self.layoutTiles()
+        
         self.setCameraButton(self.controller.level!)
 
 
@@ -106,10 +109,11 @@ class HangmanLevelViewController: GenericLevelViewController {
         
         // For each letter in the target word, create a new tile object (initialized with a blank "_" by default)
         // Add each tile to the view, and append the tile to the controller's list of tile objects
+        print(self.controller.hangmanData.getCurrentGame())
         for (index, letter) in self.controller.hangmanData.getCurrentGame().characters.enumerate(){
             let tile = HangmanTile(letter: letter, sideLength: tileSide)
-            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/3)
-            self.controller.gameView.addSubview(tile)
+            tile.center = CGPointMake(xOffset + CGFloat(index)*(tileSide + self.TileMargin), ScreenHeight/2 - (tileSide / 2) + yOffset)
+            self.view.addSubview(tile)
             self.controller.gameTiles.append(tile)
         }
     }
