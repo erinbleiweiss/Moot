@@ -115,5 +115,9 @@ class MazeData: NSObject, NSCoding{
         self.unlockedColors = unlockedColors
     }
     
+    func unlockColor(color: String) {
+        self.unlockedColors.append(color)
+    }
+    
 
 }
