@@ -15,7 +15,10 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.levelLabel = UILabel(frame: self.bounds)
+        let frame = CGRectMake(0, 0, self.bounds.width * 0.5, self.bounds.height * 0.5)
+        let x = (self.bounds.width / 2) - (frame.width / 2)
+        let y = (self.bounds.height / 2) - (frame.height / 2)
+        self.levelLabel = UILabel(frame: CGRectMake(x, y, frame.width, frame.height))
         self.levelLabel.textAlignment = NSTextAlignment.Center
         self.levelLabel.textColor = UIColor.whiteColor()
         self.addSubview(levelLabel)
@@ -34,6 +37,7 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         self.level = level
         self.VC = level.getVC()
         self.levelLabel.text = String(level.getLevelNum())
+        self.levelLabel.sizeLabel()
         if (self.level?.isLocked() == true){
             displayLock()
         }
@@ -50,7 +54,13 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     }
     
     func transitionViewForCell() -> UIView! {
-        let newView = ProxyLevelCell(level: (self.level?.getLevelNum())!, color: self.backgroundColor!, frame: self.frame)
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0.0);
+        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        
+        let newView = ProxyLevelCell(image: image, color: self.backgroundColor!, frame: self.frame)
         return newView
     }
     

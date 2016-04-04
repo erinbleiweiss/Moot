@@ -8,20 +8,14 @@
 
 import UIKit
 
-class ProxyLevelCell: UIView {
-    var levelLabel: UILabel!
+class ProxyLevelCell: UIImageView {
     var color: UIColor!
     
-    init(level: Int, color: UIColor, frame: CGRect) {
-        super.init(frame: frame)
+    init(image: UIImage, color: UIColor, frame: CGRect) {
+        super.init(image: image)
+        self.frame = frame
         self.color = color
         self.backgroundColor = color
-        self.levelLabel = UILabel(frame: self.frame)
-        self.levelLabel.bounds = self.bounds
-        self.levelLabel.text = String(level)
-        self.levelLabel.textAlignment = NSTextAlignment.Center
-        self.levelLabel.textColor = UIColor.whiteColor()
-        self.addSubview(self.levelLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
