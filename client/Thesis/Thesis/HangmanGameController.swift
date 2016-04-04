@@ -120,7 +120,7 @@ class HangmanGameController: GenericGameController {
     */
     func checkForSuccess() -> Int{
      
-        self.loadLevelData()
+        self.refreshData()
 
         for tile in gameTiles{
             if !tile.isFilled{
@@ -132,12 +132,12 @@ class HangmanGameController: GenericGameController {
         if (!level_complete){
           self.advanceToNextStage()
           self.upc = ""
-          self.refeshData()
           self.clearTiles()
+          self.refreshData()
           return 1 // Not final stage; Level not complete
         } else {
           self.upc = ""
-          self.refeshData()
+          self.refreshData()
           self.succeed() // Final stage; Level is complete
           return 2
         }
@@ -155,6 +155,9 @@ class HangmanGameController: GenericGameController {
             tile.removeFromSuperview()
         }
         self.gameTiles.removeAll()
+        self.hangmanData.set_CurrentGame("")
+        self.hangmanData.set_TargetWord("")
+        self.hangmanData.set_CurrentGuess("")
     }
     
  
@@ -174,7 +177,7 @@ class HangmanGameController: GenericGameController {
      /**
           Save and load data
      */
-     func refeshData(){
+     func refreshData(){
           self.saveLevelData(self.hangmanData, levelNum: self.level!)
           self.loadLevelData()
      }

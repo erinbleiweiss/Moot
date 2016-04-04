@@ -54,6 +54,7 @@ class HangmanLevelViewController: GenericLevelViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.controller.refreshData()
         self.updateGame()
     }
     
@@ -83,6 +84,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                     }
                 }
                 
+                self.controller.refreshData()
                 // Generate game with blank tiles
                 self.layoutTiles()
                 
@@ -128,6 +130,7 @@ class HangmanLevelViewController: GenericLevelViewController {
      
      */
     func updateGame(){
+        self.controller.refreshData()
         if (controller.hangmanData.getTargetWord() != "" && controller.upc != ""){
             SwiftSpinner.show("Scanning")
             controller.playHangman(controller.upc){ responseObject, error in
@@ -170,6 +173,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                 }
                 
                 self.updateMootPoints()
+                self.controller.refreshData()
             }
         }
     }
