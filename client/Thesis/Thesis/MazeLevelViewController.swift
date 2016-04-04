@@ -55,6 +55,9 @@ class MazeLevelViewController: GenericLevelViewController {
         } else {
             self.layoutMaze()
             self.updateToken()
+            for color in self.controller.mazeData.getUnlockedColors() {
+                self.compass!.unlockColor(color)
+            }
         }
         
     }
