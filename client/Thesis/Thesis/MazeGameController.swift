@@ -13,13 +13,13 @@ import SwiftyJSON
 
 class MazeGameController: GenericGameController {
     
-    var tileString: String!
-    var tokenColor: UIColor?
-    var pos_row = 0
-    var pos_col = 0
+//    var tileString: String!
+//    var tokenColor: UIColor?
+//    var pos_row = 0
+//    var pos_col = 0
+//    var maze_size = 5
     
-    var maze_size = 5
-    
+    var mazeData = MazeData()
     var tokenView = MazeToken!()
 
     
@@ -38,7 +38,7 @@ class MazeGameController: GenericGameController {
     
     func generateMaze(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/generate_maze"
-        Alamofire.request(.GET, url, parameters: ["width": maze_size, "height": maze_size]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["width": self.mazeData.getMazeSize(), "height": self.mazeData.getMazeSize()]).responseJSON { (_, _, result) in
             
             let json = JSON(result.value!)
             if let maze = json["maze"].string{
@@ -79,7 +79,7 @@ class MazeGameController: GenericGameController {
     
     func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/maze_move"
-        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.tileString, "row": String(self.pos_row), "col": String(self.pos_col)], headers: headers).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.mazeData.getTileString(), "row": String(self.mazeData.getPosRow()), "col": String(self.mazeData.getPosCol())], headers: headers).responseJSON { (_, _, result) in
             
             
             let json = JSON(result.value!)
@@ -88,8 +88,9 @@ class MazeGameController: GenericGameController {
                     let new_row = String(json["row"])
                     let new_col = String(json["col"])
                     
-                    self.pos_row = Int(new_row)!
-                    self.pos_col = Int(new_col)!
+                    self.mazeData.set_posRow(Int(new_row)!)
+                    self.mazeData.set_posCol(Int(new_col)!)
+                    self.refreshData()
                     
                     print("moved")
                 } else{
@@ -111,12 +112,36 @@ class MazeGameController: GenericGameController {
         - Returns: (Bool) True or False indicating level completion
      */
     func checkForSuccess() -> Bool {
-        if ((pos_row == maze_size-1) && (pos_col == maze_size-1)){
+        if ((self.mazeData.getPosRow() == self.mazeData.getMazeSize()-1) && (self.mazeData.getPosCol() == self.mazeData.getMazeSize()-1)){
             self.succeed()
             return true
         }
         return false
     }
+
+    
+    
+    /**
+         Retrieve level from core data
+     */
+    func loadLevelData(){
+        let path = "mootLevel\(self.level!)Data"
+        let file = documentsDirectory().stringByAppendingPathComponent(path)
+        if let levelData = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? MazeData {
+            self.mazeData = levelData
+        } else {
+            print("Could not read data for level \(self.level!)")
+        }
+    }
+    
+    /**
+         Save and load data
+     */
+    func refreshData(){
+        self.saveLevelData(self.mazeData, levelNum: self.level!)
+        self.loadLevelData()
+    }
+    
     
 
 }

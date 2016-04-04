@@ -11,6 +11,7 @@ import SwiftHEXColors
 import SwiftyJSON
 import SCLAlertView
 import Social
+import FBSDKShareKit
 
 class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol {
 
@@ -21,6 +22,12 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     var visibleHeight = ScreenHeight - yOffset
     var navBarHeight = yOffset
     var tabBarHeight: CGFloat?
+    
+    // Data for achievement popups
+    var achTitle: String?
+    var achDesc: String?
+    var achImgUrl: String?
+    
     
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
@@ -209,6 +216,8 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             topLabel: "Achievement Unlocked!"
         )
         self.currentAlertView = alertView
+        self.achTitle = title
+        self.achDesc = description
     }
     
     
@@ -278,8 +287,19 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
      */
     @objc func facebookTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
-            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            self.presentViewController(fbShare, animated: true, completion: nil)
+            let fbShare = FBSDKShareDialog()
+            fbShare.fromViewController = self
+            let content = FBSDKShareLinkContent()
+            content.contentURL = NSURL(string: "")
+            content.imageURL = NSURL(string: "")
+            content.contentTitle = "I just earned the \(self.achTitle) achievement"
+            content.contentDescription = self.achDesc
+            fbShare.shareContent = content
+            fbShare.mode = FBSDKShareDialogMode.ShareSheet
+            fbShare.show()
+            
+//            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+//            self.presentViewController(fbShare, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))

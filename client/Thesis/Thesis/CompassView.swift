@@ -87,16 +87,7 @@ class CompassView: UIView {
 
     
     func unlockColor(color: String){
-        let colors: [String: UIColor] = [
-            "red":          UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
-            "orange":       UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
-            "yellow":       UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
-            "greenyellow":  UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
-            "green":        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
-            "teal":         UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
-            "blue":         UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
-            "purple":       UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
-        ]
+        let colors = mootColors
         
         if colors[color] != nil {
             let layer = layers[color] as! CAShapeLayer
@@ -220,16 +211,7 @@ class CompassView: UIView {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
-        let colors: [String: UIColor] = [
-            "red":          UIColor(red:0.471, green:0.420, blue:0.420, alpha:1),
-            "orange":       UIColor(red:0.510, green:0.467, blue:0.416, alpha:1),
-            "yellow":       UIColor(red:0.667, green:0.647, blue:0.596, alpha:1),
-            "greenyellow":  UIColor(red:0.447, green:0.451, blue:0.369, alpha:1),
-            "green":        UIColor(red:0.345, green:0.353, blue:0.286, alpha:1),
-            "teal":         UIColor(red:0.290, green:0.333, blue:0.333, alpha:1),
-            "blue":         UIColor(red:0.365, green:0.404, blue:0.431, alpha:1),
-            "purple":       UIColor(red:0.490, green:0.463, blue:0.490, alpha:1)
-        ]
+        let colors = mootFadedColors
         
         for (name, color) in colors {
             if layerIds == nil || layerIds.contains(name){

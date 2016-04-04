@@ -26,6 +26,7 @@
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
 		804455D81CB22EDE00924480 /* HangmanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D71CB22EDE00924480 /* HangmanData.swift */; };
 		804455DA1CB2607A00924480 /* MazeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D91CB2607A00924480 /* MazeData.swift */; };
+		804455DE1CB2F0CC00924480 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455DD1CB2F0CC00924480 /* StringExtensions.swift */; };
 		804927871C97BAD200410B1A /* LevelBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804927861C97BAD200410B1A /* LevelBadge.swift */; };
 		804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E61C9E22F800F57992 /* QCMethod.swift */; };
 		804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */; };
@@ -128,6 +129,7 @@
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		804455D71CB22EDE00924480 /* HangmanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanData.swift; sourceTree = "<group>"; };
 		804455D91CB2607A00924480 /* MazeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeData.swift; sourceTree = "<group>"; };
+		804455DD1CB2F0CC00924480 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		804927861C97BAD200410B1A /* LevelBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBadge.swift; sourceTree = "<group>"; };
 		804E11E61C9E22F800F57992 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompletedViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,30 @@
 			name = "Game Data";
 			sourceTree = "<group>";
 		};
+		804455DB1CB2EE2400924480 /* Level Views */ = {
+			isa = PBXGroup;
+			children = (
+				80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */,
+				8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */,
+				8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */,
+				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
+				8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */,
+			);
+			name = "Level Views";
+			sourceTree = "<group>";
+		};
+		804455DC1CB2EE6300924480 /* Level Game Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				80F0DD4E1C5EBBB2002A8037 /* GenericGameController.swift */,
+				80B195041BF56C4500B5C3CE /* HangmanGameController.swift */,
+				80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */,
+				8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */,
+				8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */,
+			);
+			name = "Level Game Controllers";
+			sourceTree = "<group>";
+		};
 		80A5B5B01CA500280074B48D /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,10 +277,11 @@
 		80AE504A1CA5EF6B00050457 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */,
-				80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */,
 				8024807D1CAB690700204F82 /* ColorExtensions.swift */,
 				80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */,
+				80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */,
+				804455DD1CB2F0CC00924480 /* StringExtensions.swift */,
+				80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -385,6 +412,7 @@
 			children = (
 				80AE504D1CA5F05200050457 /* Subviews */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
+				804455DB1CB2EE2400924480 /* Level Views */,
 				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
 				80EB858E1C83ABC700AC37A7 /* MootViewController.swift */,
 				80AA55741CAD906500D6A81C /* StatsViewController.swift */,
@@ -392,11 +420,6 @@
 				80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */,
 				801590EB1C7FC0A70011872B /* LoginViewController.swift */,
 				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
-				80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */,
-				8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */,
-				8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */,
-				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
-				8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */,
 				80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */,
 				804E11E81CA0C94300F57992 /* LevelCompletedViewController.swift */,
 				80D69EC21CA1E9300076209C /* MootTabBarController.swift */,
@@ -407,13 +430,9 @@
 		80F0DD521C5EE91F002A8037 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				804455DC1CB2EE6300924480 /* Level Game Controllers */,
 				80ECB47D1C891CBC007559A8 /* AchievementDataController.swift */,
 				80AA55721CAD023000D6A81C /* HighScoreDataController.swift */,
-				80F0DD4E1C5EBBB2002A8037 /* GenericGameController.swift */,
-				80B195041BF56C4500B5C3CE /* HangmanGameController.swift */,
-				80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */,
-				8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */,
-				8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -659,6 +678,7 @@
 				80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */,
 				80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
+				804455DE1CB2F0CC00924480 /* StringExtensions.swift in Sources */,
 				8008EBAD1BDB4181003F038E /* MazeCameraViewController.swift in Sources */,
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
 				80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */,
