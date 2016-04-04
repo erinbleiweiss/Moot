@@ -36,10 +36,11 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         print("setting level \(level.levelNumber)")
         self.level = level
         self.VC = level.getVC()
-        self.levelLabel.text = String(level.getLevelNum())
-        self.levelLabel.sizeLabel()
         if (self.level?.isLocked() == true){
             displayLock()
+        } else {
+            self.levelLabel.text = String(level.getLevelNum())
+            self.levelLabel.sizeLabel()
         }
     }
  
