@@ -119,5 +119,14 @@ class MazeData: NSObject, NSCoding{
         self.unlockedColors.append(color)
     }
     
+    func resetData(){
+        self.tileString = ""
+        self.tokenColor = UIColor.grayColor()
+        self.pos_row = 0
+        self.pos_col = 0
+        self.maze_size = 5
+        self.unlockedColors = []
+    }
+    
 
 }

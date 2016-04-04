@@ -118,7 +118,7 @@ class Level: NSObject, NSCoding {
     }
     
     func advanceStage(){
-        self.currentStage++
+        self.currentStage += 1
     }
     
     

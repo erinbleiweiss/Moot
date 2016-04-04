@@ -75,6 +75,12 @@ class HangmanData: NSObject, NSCoding{
     func set_CurrentGame(currentGame: String) {
         self.currentGame = currentGame
     }
+    
+    func resetData() {
+        self.targetWord = ""
+        self.currentGuess = ""
+        self.currentGame = ""
+    }
 
     
 }

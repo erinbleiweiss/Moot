@@ -143,5 +143,14 @@ class MazeGameController: GenericGameController {
     }
     
     
-
+    /**
+         Reset level to default values
+     */
+    func reset(){
+        self.mazeData.resetData()
+        self.refreshData()
+    }
+    
+    
+    
 }

@@ -182,6 +182,14 @@ class HangmanGameController: GenericGameController {
           self.loadLevelData()
      }
      
+     /**
+         Reset level to default values
+     */
+     func reset(){
+          self.hangmanData.resetData()
+          self.refreshData()
+     }
+     
      
 }
 
