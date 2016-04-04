@@ -17,4 +17,5 @@ class LevelNavController: UINavigationController {
         super.viewDidLoad()
         self.navigationBar.tintColor = UIColor.whiteColor()
     }
+    
 }

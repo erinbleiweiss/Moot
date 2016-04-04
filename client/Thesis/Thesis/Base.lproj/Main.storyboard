@@ -24,7 +24,9 @@
                             <outlet property="animation" destination="zOQ-gK-jhl" id="c1q-aP-4Zu"/>
                         </connections>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" id="zUy-Kr-iyx"/>
+                    <navigationItem key="navigationItem" id="zUy-Kr-iyx">
+                        <barButtonItem key="backBarButtonItem" title="    " id="dgQ-uD-X2O"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="zOQ-gK-jhl" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
@@ -323,7 +325,9 @@
                             <outlet property="animation" destination="sAx-AV-mjT" id="CUS-Bg-hye"/>
                         </connections>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" id="lig-hV-zeV"/>
+                    <navigationItem key="navigationItem" id="lig-hV-zeV">
+                        <barButtonItem key="backBarButtonItem" title="    " id="Ag6-Li-g2D"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="levelCollectionView" destination="Yki-Nq-zA3" id="aQg-NS-bzc"/>
                         <segue destination="s2J-Mq-6rJ" kind="show" id="C4G-Tu-ynu"/>
