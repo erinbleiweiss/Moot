@@ -20,7 +20,9 @@ class MazeGameController: GenericGameController {
 //    var maze_size = 5
     
     var mazeData = MazeData()
-    var tokenView = MazeToken!()
+    var mazeView = UIView()
+    var compass = CompassView()
+    var tokenView = MazeToken()
 
     
     /**
@@ -37,6 +39,18 @@ class MazeGameController: GenericGameController {
      */
     
     func generateMaze(completionHandler: (responseObject: String?, error: NSError?) -> ()) {
+        
+        let difficulty = self.getCurrentStage()
+        let difficultyIndex: [Int: Int] = [
+            1: 4,
+            2: 5,
+            3: 6
+        ]
+        
+        let maze_size = difficultyIndex[difficulty]
+        self.mazeData.set_mazeSize(maze_size!)
+        self.refreshData()
+        
         let url: String = hostname + rest_prefix + "/generate_maze"
         Alamofire.request(.GET, url, parameters: ["width": self.mazeData.getMazeSize(), "height": self.mazeData.getMazeSize()]).responseJSON { (_, _, result) in
             
@@ -91,10 +105,6 @@ class MazeGameController: GenericGameController {
                     self.mazeData.set_posRow(Int(new_row)!)
                     self.mazeData.set_posCol(Int(new_col)!)
                     self.refreshData()
-                    
-                    print("moved")
-                } else{
-                    print("hit wall")
                 }
                 completionHandler(responseObject: "Success", error: result.error as? NSError)
             } else {
@@ -109,14 +119,28 @@ class MazeGameController: GenericGameController {
     /**
         Called after each "maveMove" to determine whether the level has been completed.  Critera for winning: Token has made it to bottom right corner of maze.
      
-        - Returns: (Bool) True or False indicating level completion
+         - Parameters: none
+         - Returns: a return code indicating the appropriate behavior
+         - 0: Current stage is not complete, take no action
+         - 1: Current stage is complete, and level should advance to next stage
+         - 2: Current stage is complete, and is the final stage in the level.  Should complete and advance to next level.
      */
-    func checkForSuccess() -> Bool {
+    func checkForSuccess() -> Int {
         if ((self.mazeData.getPosRow() == self.mazeData.getMazeSize()-1) && (self.mazeData.getPosCol() == self.mazeData.getMazeSize()-1)){
-            self.succeed()
-            return true
+            
+            let level_complete = self.checkLevelCompleted()
+            if (!level_complete){
+                self.advanceToNextStage()
+                self.mazeData.resetData()
+                self.refreshData()
+                self.mazeView.removeFromSuperview()
+                return 1
+            } else {
+                self.succeed()
+                return 2
+            }
         }
-        return false
+        return 0
     }
 
     

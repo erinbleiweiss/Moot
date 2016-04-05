@@ -153,6 +153,8 @@ class MootDao(Base):
 
     def save_product(self, user_id, upc, product_name, color, type):
         conn = self.get_db()
+        if len(product_name) > 120:
+            product_name = product_name[0:120]
         with conn:
             c = conn.cursor()
             cmd = ('insert into scanned_product (user_id, upc, product_name, '

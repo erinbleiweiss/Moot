@@ -13,7 +13,6 @@ import SwiftSpinner
 
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!
-    var compass: CompassView?
     var mazeSize: CGFloat?
     var tileSize: Int?
     
@@ -56,7 +55,7 @@ class MazeLevelViewController: GenericLevelViewController {
             self.layoutMaze()
             self.updateToken()
             for color in self.controller.mazeData.getUnlockedColors() {
-                self.compass!.unlockColor(color)
+                self.controller.compass.unlockColor(color)
             }
         }
         
@@ -93,7 +92,7 @@ class MazeLevelViewController: GenericLevelViewController {
         var col = 0
         
         let margin = (ScreenWidth - self.mazeSize!) / 2
-        let mazeView = UIView(frame: CGRect(x: margin, y: 20, width: self.mazeSize!, height: self.mazeSize!))
+        self.controller.mazeView = UIView(frame: CGRect(x: margin, y: 20, width: self.mazeSize!, height: self.mazeSize!))
         
         for tile in tiles{
             
@@ -134,7 +133,7 @@ class MazeLevelViewController: GenericLevelViewController {
                 tileView.border["west"] = true
             }
             
-            mazeView.addSubview(tileView)
+            self.controller.mazeView.addSubview(tileView)
             col+=1
             if (col >= size){
                 col=0
@@ -142,7 +141,7 @@ class MazeLevelViewController: GenericLevelViewController {
             }
         }
         
-        self.mazeTopView!.addSubview(mazeView)
+        self.mazeTopView!.addSubview(self.controller.mazeView)
         
         let tokenFrame = CGRect(
             x: self.tileSize! * self.controller.mazeData.getPosCol(),
@@ -152,7 +151,7 @@ class MazeLevelViewController: GenericLevelViewController {
         )
         self.controller.tokenView = MazeToken(frame: tokenFrame)
         self.controller.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
-        mazeView.addSubview(self.controller.tokenView)
+        self.controller.mazeView.addSubview(self.controller.tokenView)
         
         let compassSize = self.mazeBottomView!.frame.height
         let compassFrame = CGRect(
@@ -161,8 +160,8 @@ class MazeLevelViewController: GenericLevelViewController {
             width: compassSize,
             height: compassSize
         )
-        self.compass = CompassView(frame: compassFrame)
-        self.mazeBottomView!.addSubview(self.compass!)
+        self.controller.compass = CompassView(frame: compassFrame)
+        self.mazeBottomView!.addSubview(self.controller.compass)
     
     }
     
@@ -171,11 +170,11 @@ class MazeLevelViewController: GenericLevelViewController {
         
         super.touchesBegan(touches, withEvent: event)
         
-        var point: CGPoint = (touches.first?.locationInView(self.compass))!
-        point = self.compass!.convertPoint(point, toView: self.mazeBottomView)
+        var point: CGPoint = (touches.first?.locationInView(self.controller.compass))!
+        point = self.controller.compass.convertPoint(point, toView: self.mazeBottomView)
         
-        if (self.compass!.layer.presentationLayer()?.hitTest(point) != nil){
-            var layer: CALayer = (self.compass!.layer.presentationLayer()?.hitTest(point))!
+        if (self.controller.compass.layer.presentationLayer()?.hitTest(point) != nil){
+            var layer: CALayer = (self.controller.compass.layer.presentationLayer()?.hitTest(point))!
             layer = layer.modelLayer() as! CALayer
             
             if layer.descriptiveName != nil {
@@ -195,7 +194,7 @@ class MazeLevelViewController: GenericLevelViewController {
                     self.controller.mazeData.set_TokenColor(mootColors[touchedColor!]!)
                     self.controller.refreshData()
                     
-                    let colorLayer = self.compass!.layers[touchedColor!] as! CALayer
+                    let colorLayer = self.controller.compass.layers[touchedColor!] as! CALayer
                     if colorLayer.locked == false {
                         let directions: [String: CGFloat] = [
                             "red": 0,
@@ -220,9 +219,14 @@ class MazeLevelViewController: GenericLevelViewController {
                         self.controller.mazeMove(cardinal_directions[touchedColor!]!){ responseObject, error in
                             self.updateToken()
                             let direction = directions[touchedColor!]
-                            self.compass!.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void    in
-                                if self.controller.checkForSuccess() {
+                            self.controller.compass.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void    in
+                                let return_code = self.controller.checkForSuccess()
+                                if (return_code == 1){
+                                    self.displayStageCompletionView()
+                                    self.resetLevel()
+                                } else if (return_code == 2){
                                     self.displayLevelCompletionView()
+                                    self.resetLevel()
                                 }
                             })
                         }
@@ -289,7 +293,7 @@ class MazeLevelViewController: GenericLevelViewController {
                 self.color = responseObject["color"].string
                 self.productImgUrl = responseObject["product_img"].string
                 SwiftSpinner.hide()
-                self.compass!.unlockColor(self.color)
+                self.controller.compass.unlockColor(self.color)
                 self.controller.mazeData.unlockColor(self.color)
                 self.controller.refreshData()
                 self.showProductPopup(self.productName!, color: self.color, url: self.productImgUrl!)
@@ -308,6 +312,46 @@ class MazeLevelViewController: GenericLevelViewController {
         }
     }
     
+    
+    override func resetButtonTouched(sender: UIButton) {
+        
+        let alertController = UIAlertController(title: "Reset", message: "Reset the entire level or just this stage?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Reset Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            self.controller.resetCurrentLevel()
+            self.resetLevel()
+        })
+        alertController.addAction(deleteAction)
+        
+        let okAction = UIAlertAction(title: "Reset Stage", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            self.controller.reset()
+            self.resetLevel()
+        })
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(alert :UIAlertAction!) in
+        })
+        alertController.addAction(cancelAction)
+        
+        
+        
+        alertController.popoverPresentationController?.sourceView = view
+        alertController.popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+    func resetLevel(){
+        self.controller.mazeView.removeFromSuperview()
+        self.controller.compass.removeFromSuperview()
+        self.controller.reset()
+        self.generateMaze()
+        if self.controller.level != nil {
+            self.header?.levelBadge!.update(self.controller.level!)
+        }
+
+    }
     
     
 
