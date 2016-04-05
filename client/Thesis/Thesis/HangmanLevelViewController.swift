@@ -178,10 +178,38 @@ class HangmanLevelViewController: GenericLevelViewController {
         }
     }
     
-    override func resetButtonTouched(btn: UIButton) {
-        self.controller.reset()
-        self.layoutTiles()
-        self.setUpLevel()
+    func adaptivePresentationStyleForPresentationController(
+        controller: UIPresentationController!) -> UIModalPresentationStyle {
+        return .None
+    }
+
+    override func resetButtonTouched(sender: UIButton) {
+        
+        let alertController = UIAlertController(title: "Reset", message: "Reset the entire level or just this stage?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Entire Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            print("Entire Level")
+        })
+        alertController.addAction(deleteAction)
+        
+        let okAction = UIAlertAction(title: "This Stage", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            print("This Stage")
+        })
+        alertController.addAction(okAction)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(alert :UIAlertAction!) in
+            print("Cancel")
+        })
+        alertController.addAction(cancelAction)
+        
+        alertController.popoverPresentationController?.sourceView = view
+        alertController.popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(alertController, animated: true, completion: nil)
+        
+
+//        self.controller.reset()
+//        self.layoutTiles()
+//        self.setUpLevel()
         
     }
 
