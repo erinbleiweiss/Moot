@@ -40,9 +40,13 @@ class HighScoreDataController: GenericGameController{
     
     func createScores(scores: JSON){
         for (_, subJson):(String, JSON) in scores {
-            let name = subJson["name"].string
+            var name = subJson["name"].string
             let score = String(subJson["score"].int!)
             // TODO: crashes if nil
+            
+            if name == nil {
+                name = "A Moot User"
+            }
             highScores.append([name!: score])
         }
     }

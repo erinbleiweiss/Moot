@@ -16,7 +16,6 @@ class LevelCompletedViewController: MootViewController {
         super.viewDidLoad()
         
         self.delay(3){
-//            self.dismissViewControllerAnimated(false, completion: nil)
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
         
