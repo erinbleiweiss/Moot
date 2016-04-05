@@ -187,29 +187,28 @@ class HangmanLevelViewController: GenericLevelViewController {
         
         let alertController = UIAlertController(title: "Reset", message: "Reset the entire level or just this stage?", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        let deleteAction = UIAlertAction(title: "Entire Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
-            print("Entire Level")
+        let deleteAction = UIAlertAction(title: "Reset Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            self.controller.resetCurrentLevel()
+            self.controller.reset()
+            self.layoutTiles()
+            self.setUpLevel()
         })
         alertController.addAction(deleteAction)
         
-        let okAction = UIAlertAction(title: "This Stage", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
-            print("This Stage")
+        let okAction = UIAlertAction(title: "Reset Stage", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            self.controller.reset()
+            self.layoutTiles()
+            self.setUpLevel()
         })
         alertController.addAction(okAction)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(alert :UIAlertAction!) in
-            print("Cancel")
         })
         alertController.addAction(cancelAction)
         
         alertController.popoverPresentationController?.sourceView = view
         alertController.popoverPresentationController?.sourceRect = sender.frame
         presentViewController(alertController, animated: true, completion: nil)
-        
-
-//        self.controller.reset()
-//        self.layoutTiles()
-//        self.setUpLevel()
         
     }
 

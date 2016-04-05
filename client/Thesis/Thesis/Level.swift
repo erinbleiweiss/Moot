@@ -121,6 +121,10 @@ class Level: NSObject, NSCoding {
         self.currentStage += 1
     }
     
+    func resetLevel(){
+        self.currentStage = 1
+    }
+    
     
 
     

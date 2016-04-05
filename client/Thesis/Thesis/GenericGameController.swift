@@ -255,5 +255,13 @@ class GenericGameController{
     }
     
     
+    /**
+        Reset current level to stage 1
+    */
+    func resetCurrentLevel(){
+        LevelManager.sharedInstance.resetCurrentLevel(self.level!)
+    }
+    
+    
     
 }

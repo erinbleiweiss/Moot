@@ -76,6 +76,12 @@ class LevelManager{
         saveLevels()
     }
     
+    func resetCurrentLevel(currentLevel: Int){
+        let level = userLevels[currentLevel - 1]
+        level.resetLevel()
+        saveLevels()
+    }
+    
 
     private func documentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
