@@ -329,12 +329,12 @@ def generate_random_word():
         response["status"] = "success"
         return jsonify(response)
     elif difficulty == 2:
-        minLength = 5
-        maxLength = 5
+        minLength = 4
+        maxLength = 4
         minCorpusCount= 100000
     elif difficulty == 3:
-        minLength = 6
-        maxLength = 6
+        minLength = 5
+        maxLength = 5
         minCorpusCount= 100000
 
 

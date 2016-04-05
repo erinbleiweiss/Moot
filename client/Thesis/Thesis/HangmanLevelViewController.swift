@@ -56,6 +56,10 @@ class HangmanLevelViewController: GenericLevelViewController {
         super.viewDidAppear(animated)
         self.controller.refreshData()
         self.updateGame()
+        if self.controller.level != nil {
+            self.header?.levelBadge!.update(self.controller.level!)
+            self.view.layoutSubviews()
+        }
     }
     
     
@@ -192,6 +196,9 @@ class HangmanLevelViewController: GenericLevelViewController {
             self.controller.reset()
             self.layoutTiles()
             self.setUpLevel()
+            if self.controller.level != nil {
+                self.header?.levelBadge!.update(self.controller.level!)
+            }
         })
         alertController.addAction(deleteAction)
         
@@ -199,12 +206,17 @@ class HangmanLevelViewController: GenericLevelViewController {
             self.controller.reset()
             self.layoutTiles()
             self.setUpLevel()
+            if self.controller.level != nil {
+                self.header?.levelBadge!.update(self.controller.level!)
+            }
         })
         alertController.addAction(okAction)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(alert :UIAlertAction!) in
         })
         alertController.addAction(cancelAction)
+        
+
         
         alertController.popoverPresentationController?.sourceView = view
         alertController.popoverPresentationController?.sourceRect = sender.frame

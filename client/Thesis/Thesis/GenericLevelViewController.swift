@@ -70,7 +70,6 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.header?.levelBadge!.update()
     }
 
     func addHeader(){
@@ -134,6 +133,9 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
         self.presentViewController(successVC, animated: false, completion: nil)
         self.setUpLevel()
+        if self.controller.level != nil {
+            self.header?.levelBadge!.update(self.controller.level!)
+        }
     }
     
     

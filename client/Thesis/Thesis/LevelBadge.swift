@@ -37,10 +37,9 @@ class LevelBadge: UIView{
     }
     
     
-    func update(){
-        let currentLevel = LevelManager.sharedInstance.getCurrentLevel()
-        let currentStage = LevelManager.sharedInstance.getCurrentStage(currentLevel)
-        self.currentLevelLabel.text = "\(currentLevel) - \(currentStage)"
+    func update(level: Int){
+        let currentStage = LevelManager.sharedInstance.getCurrentStage(level)
+        self.currentLevelLabel.text = "\(level) - \(currentStage)"
         self.currentLevelLabel.sizeLabel()
     }
     
