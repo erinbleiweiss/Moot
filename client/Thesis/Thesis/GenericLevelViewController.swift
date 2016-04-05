@@ -146,12 +146,13 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         Transition to the "Level Completed" controller, then prepare for new nevel
      */
     func displayLevelCompletionView(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let successVC = storyboard.instantiateViewControllerWithIdentifier("LevelCompleteVC")
-        self.presentViewController(successVC, animated: false, completion: nil)
-        self.setUpLevel()
+        print("alright alright alright alright")
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let successVC = storyboard.instantiateViewControllerWithIdentifier("LevelCompleteVC")
+//        self.presentViewController(successVC, animated: false, completion: nil)
+
     }
-    
+
     
     func flipViewForTransition(transition: FlipTransition) -> UIView? {
         return self.view

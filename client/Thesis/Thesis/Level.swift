@@ -91,6 +91,10 @@ class Level: NSObject, NSCoding {
         
     }
     
+    func getVCName() -> String{
+        return self.VC
+    }
+    
     func getCameraVC() -> String {
         var viewControllerType = ""
         viewControllerType = self.VC + "CameraRootVC"

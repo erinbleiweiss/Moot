@@ -224,6 +224,24 @@ class HangmanLevelViewController: GenericLevelViewController {
     }
 
     
+    /**
+     Transition to the "Level Completed" controller, then prepare for new nevel
+     */
+    override func displayLevelCompletionView(){
+        if self.controller.level != nil {
+            print("ok")
+            let level = LevelManager.sharedInstance.getLevelByNumber(self.controller.level!)
+            let identifier = "\(level.getVCName())Complete"
+            self.performSegueWithIdentifier(identifier, sender: nil)
+            self.setUpLevel()
+        }
+    }
+    
+    // Put this in your FirstViewController
+    @IBAction func returnToLevelFromAnimation(segue:UIStoryboardSegue) {
+        print("RETURNED FROM ANIMATION")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

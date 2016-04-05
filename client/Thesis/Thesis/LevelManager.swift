@@ -40,6 +40,10 @@ class LevelManager{
         return level
     }
     
+    func getLevelByNumber(currentLevel: Int) -> Level {
+        return userLevels[currentLevel - 1]
+    }
+    
     func isLocked(level: Int) -> Bool {
         let level = userLevels[level - 1]
         return level.isLocked()

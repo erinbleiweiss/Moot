@@ -27,6 +27,9 @@
                     <navigationItem key="navigationItem" id="zUy-Kr-iyx">
                         <barButtonItem key="backBarButtonItem" title="    " id="dgQ-uD-X2O"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="mXM-se-bXz" kind="show" identifier="HangmanComplete" id="vtA-jE-S8g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0F-Yn-HNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="zOQ-gK-jhl" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
@@ -68,6 +71,9 @@
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="Ad5-PM-k6W"/>
+                    <connections>
+                        <segue destination="mXM-se-bXz" kind="show" identifier="MazeComplete" id="Ji2-hg-Vsm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GP3-hy-jiC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="anj-Q5-1Ap" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
@@ -93,6 +99,9 @@
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="zKX-Ja-hYc"/>
+                    <connections>
+                        <segue destination="mXM-se-bXz" kind="show" identifier="JigsawComplete" id="KQh-Hp-CON"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oJe-nj-7AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="p3O-xP-DR0" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
@@ -368,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjZ-4k-S7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1524" y="-1207"/>
+            <point key="canvasLocation" x="4294" y="203"/>
         </scene>
         <!--Level Completed View Controller-->
         <scene sceneID="x4P-Li-X1x">
@@ -397,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MUE-bU-5OB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2371" y="-1363"/>
+            <point key="canvasLocation" x="3642" y="203"/>
         </scene>
         <!--Levels-->
         <scene sceneID="Oct-LH-Jpz">
@@ -703,4 +712,7 @@
         <image name="categorize" width="25" height="25"/>
         <image name="medal-1" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vtA-jE-S8g"/>
+    </inferredMetricsTieBreakers>
 </document>
