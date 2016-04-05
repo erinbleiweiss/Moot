@@ -97,7 +97,6 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     }
     
     @objc func resetButtonTouched(btn: UIButton) {
-        print("reset button touched")
     }
     
     

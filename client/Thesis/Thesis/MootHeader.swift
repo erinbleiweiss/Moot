@@ -39,6 +39,7 @@ class MootHeader: UIView {
         self.addSubview(levelBadge!)
         
         let resetImg = UIImage(named: "replay")!
+        let resetImgPressed = UIImage(named: "replay")!.imageWithColor(UIColor(white: 1, alpha: 0.5))
         self.resetButton = UIButton(type: UIButtonType.Custom)
         let buttonSize = self.frame.height / 3
         let margin = buttonSize / 2
@@ -46,6 +47,7 @@ class MootHeader: UIView {
         y = (yOffset / 2) - (buttonSize / 2) + 5
         self.resetButton!.frame = CGRectMake(x, y, buttonSize, buttonSize)
         self.resetButton!.setImage(resetImg, forState: .Normal)
+        self.resetButton!.setImage(resetImgPressed, forState: .Highlighted)
     }
     
 

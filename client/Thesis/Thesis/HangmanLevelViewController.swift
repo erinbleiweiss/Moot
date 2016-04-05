@@ -177,6 +177,13 @@ class HangmanLevelViewController: GenericLevelViewController {
             }
         }
     }
+    
+    override func resetButtonTouched(btn: UIButton) {
+        self.controller.reset()
+        self.layoutTiles()
+        self.setUpLevel()
+        
+    }
 
     
     override func didReceiveMemoryWarning() {

@@ -188,6 +188,7 @@ class HangmanGameController: GenericGameController {
      func reset(){
           self.hangmanData.resetData()
           self.refreshData()
+          self.clearTiles()
      }
      
      
