@@ -28,6 +28,8 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     var achDesc: String?
     var achImgUrl: String?
     
+    var shouldDisplayStageCompleted: Bool = false
+    var shouldDisplayLevelCompleted: Bool = false
     
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
@@ -182,11 +184,17 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         self.controller.checkForAchievements({ (responseObject, error) in
             if responseObject!["status"] == "success" {
                 let achievements = responseObject!["achievements"]
-                for ach in achievements {
-                    let achievementTitle = ach.1["name"].string
-                    let description = ach.1["description"].string
-                    self.showAchievementPopUp(achievementTitle!, description: description!)
+                
+                if achievements.count == 0 {
+                    self.doAfterAchievementPopup()
+                } else {
+                    for ach in achievements {
+                        let achievementTitle = ach.1["name"].string
+                        let description = ach.1["description"].string
+                        self.showAchievementPopUp(achievementTitle!, description: description!)
+                    }
                 }
+
             }
             
         })
@@ -212,6 +220,10 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         let alertView = SCLAlertView()
         let btns: [UIButton] = alertView.addSocialMedia()
         self.addSocialMediaTargets(btns)
+        alertView.showCloseButton = false
+        alertView.addButton("Done") {
+            self.doAfterAchievementPopup()
+        }
         alertView.showTitle(
             title,
             subTitle: description,
@@ -246,6 +258,10 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         let alertView = SCLAlertView()
         alertView.addImage(img)
         alertView.addLowerTitle(productName)
+        alertView.showCloseButton = false
+        alertView.addButton("Done") {
+            self.doAfterProductPopup()
+        }
         alertView.showTitle(
             "Product Scanned!",
             subTitle: "",
@@ -255,6 +271,20 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             colorTextButton: 0xFFFFFF,
             circleIconImage: UIImage(named: "camera")?.imageWithColor(UIColor.whiteColor())
         )
+    }
+    
+    func doAfterProductPopup(){
+        self.displayAchievements()
+    }
+    
+    func doAfterAchievementPopup(){
+        if self.shouldDisplayStageCompleted{
+            self.shouldDisplayStageCompleted = false
+            self.displayStageCompletionView()
+        } else if self.shouldDisplayLevelCompleted{
+            self.shouldDisplayLevelCompleted = false
+            self.displayLevelCompletionView()
+        }
     }
     
     

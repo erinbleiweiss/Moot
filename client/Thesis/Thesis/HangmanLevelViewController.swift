@@ -160,20 +160,19 @@ class HangmanLevelViewController: GenericLevelViewController {
                     }
 
                     let return_code = self.controller.checkForSuccess()
+                    print(return_code)
                     if (return_code == 1) {
                         // Stage is complete
-                        self.displayStageCompletionView()
+                        self.shouldDisplayStageCompleted = true
                     } else if (return_code == 2){
                         // Level is complete
-                        self.displayLevelCompletionView()
+                        self.shouldDisplayLevelCompleted = true
                     }
                     
 
                 }
                 self.delay(1.5){
                     self.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
-                    
-                    self.displayAchievements()
                 }
                 
                 self.updateMootPoints()
@@ -181,6 +180,7 @@ class HangmanLevelViewController: GenericLevelViewController {
             }
         }
     }
+    
     
     func adaptivePresentationStyleForPresentationController(
         controller: UIPresentationController!) -> UIModalPresentationStyle {

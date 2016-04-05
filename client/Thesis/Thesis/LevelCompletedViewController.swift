@@ -16,7 +16,10 @@ class LevelCompletedViewController: MootViewController {
         super.viewDidLoad()
         
         self.delay(3){
-            self.dismissViewControllerAnimated(true, completion: nil)
+//            self.dismissViewControllerAnimated(true, completion: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let successVC = storyboard.instantiateViewControllerWithIdentifier("TabRootVC")
+            self.presentViewController(successVC, animated: false, completion: nil)
         }
         
         // Do any additional setup after loading the view.
