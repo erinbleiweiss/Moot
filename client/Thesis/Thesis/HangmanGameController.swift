@@ -169,8 +169,6 @@ class HangmanGameController: GenericGameController {
           let file = documentsDirectory().stringByAppendingPathComponent(path)
           if let levelData = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? HangmanData {
                self.hangmanData = levelData
-          } else {
-               print("Could not read data for level \(self.level!)")
           }
      }
      

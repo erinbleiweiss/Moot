@@ -130,7 +130,6 @@ class MazeGameController: GenericGameController {
         if let levelData = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? MazeData {
             self.mazeData = levelData
         } else {
-            print("Could not read data for level \(self.level!)")
         }
     }
     

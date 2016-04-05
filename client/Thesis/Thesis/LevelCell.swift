@@ -33,7 +33,6 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     }
     
     func setLevelforCell(level: Level){
-        print("setting level \(level.levelNumber)")
         self.level = level
         self.VC = level.getVC()
         if (self.level?.isLocked() == true){

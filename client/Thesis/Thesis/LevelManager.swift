@@ -115,7 +115,6 @@ class LevelManager{
             if let level = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? Level {
                 self.userLevels.append(level)
             } else {
-                print("Could not read level \(idx+1)")
                 self.userLevels.append(self.defaultLevels[idx])
             }
         }

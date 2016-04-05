@@ -160,7 +160,6 @@ class HangmanLevelViewController: GenericLevelViewController {
                     }
 
                     let return_code = self.controller.checkForSuccess()
-                    print(return_code)
                     if (return_code == 1) {
                         // Stage is complete
                         self.shouldDisplayStageCompleted = true
