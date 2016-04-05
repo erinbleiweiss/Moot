@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreLocation
+import CoreMotion
 import Away
 
 class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDelegate {
@@ -90,7 +91,18 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
 
         }
         
+        if(CMMotionActivityManager.isActivityAvailable()){
+            print("activity is available")
+        } else {
+            print("activity not available")
+        }
         
+        
+        if(CMPedometer.isStepCountingAvailable()){
+            print("step counting available")
+        } else {
+            print("step counting not available")
+        }
         
     }
 

@@ -13,7 +13,7 @@ import SCLAlertView
 import Social
 import FBSDKShareKit
 
-class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol {
+class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol, FBSDKSharingDelegate {
 
     var header: MootHeader?
     var currentAlertView: SCLAlertView?
@@ -54,9 +54,12 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         header = MootHeader(frame: CGRect(x: 0, y: -yOffset, width: ScreenWidth, height: yOffset))
         self.view.addSubview(header!)
         
+        self.header!.resetButton!.addTarget(self, action: #selector(self.resetButtonTouched(_:)), forControlEvents: .TouchUpInside)
+        let buttonItem = UIBarButtonItem(customView: self.header!.resetButton!)
+        self.navigationItem.rightBarButtonItem = buttonItem
+        
         self.tabBarHeight = (self.parentViewController?.tabBarController!.tabBar.frame.height)! + 25.0
         self.visibleHeight -= tabBarHeight!
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -91,6 +94,10 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
 
     func provideVCClass() -> UIViewController.Type {
         return GenericLevelViewController.self
+    }
+    
+    @objc func resetButtonTouched(btn: UIButton) {
+        print("reset button touched")
     }
     
     
@@ -287,16 +294,27 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
      */
     @objc func facebookTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+            print("alright alright alright alright")
             let fbShare = FBSDKShareDialog()
             fbShare.fromViewController = self
             let content = FBSDKShareLinkContent()
-            content.contentURL = NSURL(string: "")
-            content.imageURL = NSURL(string: "")
+            content.contentURL = NSURL(string: "http://www.erinbleiweiss.com")
+            content.imageURL = NSURL(string: "http://i.imgur.com/jUTICVi.png")
             content.contentTitle = "I just earned the \(self.achTitle) achievement"
             content.contentDescription = self.achDesc
             fbShare.shareContent = content
+            
+//            if UIApplication.sharedApplication().canOpenURL(NSURL(string: "fbauth2://")!) {
+//                fbShare.mode = FBSDKShareDialogMode.Native
+//            }
+//            else {
+//                fbShare.mode = FBSDKShareDialogMode.Browser
+//                //or FBSDKShareDialogModeAutomatic
+//            }
             fbShare.mode = FBSDKShareDialogMode.ShareSheet
+            fbShare.delegate = self
             fbShare.show()
+
             
 //            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
 //            self.presentViewController(fbShare, animated: true, completion: nil)
@@ -306,6 +324,20 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
+    
+    func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject: AnyObject]) {
+        print(results)
+    }
+    
+    func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!) {
+        print("sharer NSError")
+        print(error.description)
+    }
+    
+    func sharerDidCancel(sharer: FBSDKSharing!) {
+        print("sharerDidCancel")
+    }
+    
     
     @objc func twitterTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
