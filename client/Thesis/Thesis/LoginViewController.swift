@@ -17,16 +17,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = mootBackground
+        
+        let scale = ScreenWidth / 320
+        
         let loginButton: UIButton = UIButton(type: UIButtonType.Custom)
         let buttonHeight = ScreenHeight * 0.3
         loginButton.frame = CGRectMake(0, ScreenHeight - buttonHeight, ScreenWidth, buttonHeight)
         loginButton.setTitle("Login", forState: UIControlState.Normal)
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.familyName)!, size: 50)
+        loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.familyName)!, size: 50 * scale)
         loginButton.backgroundColor = mootColors["blue"]
         self.view.addSubview(loginButton)
-
+        
+        let height = 40 * scale
+        let width = ScreenWidth * 0.6
+        let x = (ScreenWidth / 2) - (width / 2)
+        var y = ScreenHeight * 0.3
+        let nameTextField = MootTextField(frame: CGRectMake(x, y, width, height))
+        nameTextField.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(nameTextField)
+        
+        y += height
+        let nameLabel = UILabel(frame: CGRectMake(x, y, width, height))
+        nameLabel.text = "Enter Your Name"
+        nameLabel.textAlignment = .Center
+        nameLabel.font = UIFont(name: (nameLabel.font?.familyName)!, size: 12 * scale)
+        nameLabel.textColor = mootBlack
+        self.view.addSubview(nameLabel)
+        
+        
         // Do any additional setup after loading the view.
         
 //        usernameTextField.displayErrorText("Username cannot be blank")

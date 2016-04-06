@@ -24,6 +24,7 @@
 		8024808C1CACAD3400204F82 /* GeoDDRGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */; };
 		8024808E1CACAD9B00204F82 /* GeoDDRLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
+		802769D71CB4D518000F23B7 /* MootTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769D61CB4D518000F23B7 /* MootTextField.swift */; };
 		804455D81CB22EDE00924480 /* HangmanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D71CB22EDE00924480 /* HangmanData.swift */; };
 		804455DA1CB2607A00924480 /* MazeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D91CB2607A00924480 /* MazeData.swift */; };
 		804455DE1CB2F0CC00924480 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455DD1CB2F0CC00924480 /* StringExtensions.swift */; };
@@ -127,6 +128,7 @@
 		8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRGameController.swift; sourceTree = "<group>"; };
 		8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRLevelViewController.swift; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
+		802769D61CB4D518000F23B7 /* MootTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootTextField.swift; sourceTree = "<group>"; };
 		804455D71CB22EDE00924480 /* HangmanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanData.swift; sourceTree = "<group>"; };
 		804455D91CB2607A00924480 /* MazeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeData.swift; sourceTree = "<group>"; };
 		804455DD1CB2F0CC00924480 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				80CBB5BE1C79952900D705A7 /* AchievementManager.swift */,
 				80EB85941C8479F400AC37A7 /* Achievement.swift */,
 				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
+				802769D61CB4D518000F23B7 /* MootTextField.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */,
 				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
 				80D69EC31CA1E9300076209C /* MootTabBarController.swift in Sources */,
+				802769D71CB4D518000F23B7 /* MootTextField.swift in Sources */,
 				80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */,
 				80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */,
 				80ECB4801C896722007559A8 /* AchievementViewController.swift in Sources */,
