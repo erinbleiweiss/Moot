@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     
     
     var nameTextField: MootTextField!
+    let prefs = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +54,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         nameLabel.font = UIFont(name: (nameLabel.font?.familyName)!, size: 12 * scale)
         nameLabel.textColor = mootBlack
         self.view.addSubview(nameLabel)
-        
-//        usernameTextField.displayErrorText("Username cannot be blank")
     }
 
+    override func viewDidAppear(animated: Bool) {
+        // User has logged in before
+        if prefs.stringForKey("uuid") != nil{
+            self.goToLevelPicker(false)
+        }
+    }
 
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -66,9 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     func loginButtonPressed(sender: AnyObject) {
         self.tryLogin(self.nameTextField.text!){ responseObject, error in
             if responseObject!["status"] == "success"{
-                let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-                let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
-                self.presentViewController(revealViewController, animated: true, completion: nil)
+                self.goToLevelPicker(true)
             }
         }
         
@@ -90,7 +93,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
             switch result {
             case .Success(let data):
                 let json = JSON(data)
-                    print(json["status"])
+                    self.prefs.setObject(uuid, forKey: "uuid")
                 completionHandler(responseObject: json, error: result.error as? NSError)
             case .Failure(_):
                 NSLog("Request failed with error: \(result.error)")
@@ -100,6 +103,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         
     }
     
+    
+    func goToLevelPicker(animated: Bool){
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
+        self.presentViewController(revealViewController, animated: animated, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
