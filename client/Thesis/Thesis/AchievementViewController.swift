@@ -57,6 +57,13 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         return self.controller.allAchievements.count
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let cellHeight = (4 * AchievementTableViewCell().cellMargin) + AchievementTableViewCell().kDescriptionSize + AchievementTableViewCell().kTitleSize + AchievementTableViewCell().kDateSize
+        
+        return cellHeight
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("AchievementCell", forIndexPath: indexPath) as! AchievementTableViewCell
         
@@ -75,6 +82,11 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
             cell.achievementDateLabel.text = "Locked"
             cell.achievementDateLabel.textColor = UIColor.grayColor()
         }
+        
+//        cell.achievementNameLabel.sizeLabel()
+//        cell.achievementDescriptionLabel.sizeLabel()
+//        cell.achievementDateLabel.sizeLabel()
+        
         
         
         return cell

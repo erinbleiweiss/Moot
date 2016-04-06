@@ -233,7 +233,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             style: .Custom,
             colorStyle: 0x000000,
             colorTextButton: 0xFFFFFF,
-            circleIconImage: UIImage(named: "medal2"),
+            circleIconImage: UIImage(named: "medal"),
             topLabel: "Achievement Unlocked!"
         )
         self.currentAlertView = alertView

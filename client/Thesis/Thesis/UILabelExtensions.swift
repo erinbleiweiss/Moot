@@ -9,10 +9,10 @@
 import UIKit
 
 extension UILabel {
-    func sizeLabel() {
+    func sizeLabel(maxSize: CGFloat?=300) {
         
         // Try all font sizes from largest to smallest font size
-        var fontSize: CGFloat = 300
+        var fontSize: CGFloat = maxSize!
         let minFontSize: CGFloat = 5
         
         // Fit label width wize

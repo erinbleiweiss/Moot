@@ -47,7 +47,7 @@
 		80AA55751CAD906500D6A81C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55741CAD906500D6A81C /* StatsViewController.swift */; };
 		80AA55791CAE276600D6A81C /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */; };
 		80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2ADE1CA8B6660033E48D /* MootHeader.swift */; };
-		80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */; };
+		80AE2AE11CA8C3F80033E48D /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE01CA8C3F80033E48D /* UILabelExtensions.swift */; };
 		80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */; };
 		80AE2AE51CA90D6A0033E48D /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */; };
 		80AE50511CA774A800050457 /* ProxyLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE50501CA774A800050457 /* ProxyLevelCell.swift */; };
@@ -150,7 +150,7 @@
 		80AA55741CAD906500D6A81C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
 		80AE2ADE1CA8B6660033E48D /* MootHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootHeader.swift; sourceTree = "<group>"; };
-		80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
+		80AE2AE01CA8C3F80033E48D /* UILabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelNavController.swift; sourceTree = "<group>"; };
 		80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		80AE50501CA774A800050457 /* ProxyLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyLevelCell.swift; sourceTree = "<group>"; };
@@ -279,9 +279,9 @@
 			children = (
 				8024807D1CAB690700204F82 /* ColorExtensions.swift */,
 				80AA55781CAE276600D6A81C /* CLLocationExtensions.swift */,
-				80AE2AE01CA8C3F80033E48D /* FontExtensions.swift */,
 				804455DD1CB2F0CC00924480 /* StringExtensions.swift */,
 				80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */,
+				80AE2AE01CA8C3F80033E48D /* UILabelExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				8024807E1CAB690700204F82 /* ColorExtensions.swift in Sources */,
 				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
 				804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */,
-				80AE2AE11CA8C3F80033E48D /* FontExtensions.swift in Sources */,
+				80AE2AE11CA8C3F80033E48D /* UILabelExtensions.swift in Sources */,
 				8024808E1CACAD9B00204F82 /* GeoDDRLevelViewController.swift in Sources */,
 				80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */,
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
