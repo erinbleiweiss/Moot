@@ -454,7 +454,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLX-sU-PWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="85F-Ou-dEX" customClass="RAMRightRotationAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
-            <point key="canvasLocation" x="2244" y="-488"/>
+            <point key="canvasLocation" x="2171" y="-1626"/>
         </scene>
         <!--Achievements-->
         <scene sceneID="aSs-ob-cAS">
@@ -502,11 +502,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbz-w0-muU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="P0Q-wI-KHL" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="P0Q-wI-KHL" customClass="RAMFlipLeftTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
-            <point key="canvasLocation" x="2967" y="-480"/>
+            <point key="canvasLocation" x="2231" y="-480"/>
         </scene>
-        <!--High Score View Controller-->
+        <!--High Scores-->
         <scene sceneID="iqK-jo-DpM">
             <objects>
                 <viewController storyboardIdentifier="HighScoreVC" id="Tbd-Lt-KVL" customClass="HighScoreViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
@@ -518,7 +518,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KTD-9w-eI5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KTD-9w-eI5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -541,11 +541,41 @@
                             <constraint firstItem="KTD-9w-eI5" firstAttribute="top" secondItem="Dkg-iW-42Q" secondAttribute="topMargin" id="z1J-DK-NIK"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="High Scores" image="highscores" id="20q-d6-q0v" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="OpE-9d-8Pc" id="nME-Cm-Mjz"/>
+                        </connections>
+                    </tabBarItem>
                     <connections>
                         <outlet property="tableView" destination="KTD-9w-eI5" id="Mmc-QE-TWu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TtD-xX-6Hm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="OpE-9d-8Pc" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
+            </objects>
+            <point key="canvasLocation" x="2906" y="-480"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="d5t-Pc-IUK">
+            <objects>
+                <viewController id="0xU-NJ-byN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4gI-3g-ESf"/>
+                        <viewControllerLayoutGuide type="bottom" id="ndE-z6-9wt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zbe-cQ-ayZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings_filled" id="bEs-gI-NeR" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="7sO-Lg-MKC" id="Heb-EZ-v3c"/>
+                        </connections>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TEg-7H-dBf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="7sO-Lg-MKC" customClass="RAMFlipRightTransitionItemAnimations" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="3642" y="-480"/>
         </scene>
@@ -669,8 +699,10 @@
                     </tabBar>
                     <connections>
                         <segue destination="cHU-Pl-GBJ" kind="relationship" relationship="viewControllers" id="e3l-KY-avH"/>
+                        <segue destination="Hp3-uy-9zI" kind="relationship" relationship="viewControllers" id="hD3-ZC-O5q"/>
                         <segue destination="4YF-YA-p7k" kind="relationship" relationship="viewControllers" id="goN-W5-Sgn"/>
-                        <segue destination="VXC-aE-q3V" kind="relationship" relationship="viewControllers" id="8Nb-Ir-toz"/>
+                        <segue destination="Tbd-Lt-KVL" kind="relationship" relationship="viewControllers" id="sNX-cR-dRj"/>
+                        <segue destination="0xU-NJ-byN" kind="relationship" relationship="viewControllers" id="Nel-kF-WiI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMl-lR-vVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -681,7 +713,9 @@
     <resources>
         <image name="blank" width="25" height="25"/>
         <image name="categorize" width="25" height="25"/>
+        <image name="highscores" width="25" height="25"/>
         <image name="medal-1" width="25" height="25"/>
+        <image name="settings_filled" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vtA-jE-S8g"/>
