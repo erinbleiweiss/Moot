@@ -19,25 +19,6 @@ class StatsViewController: MootViewController {
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []
         
-        // Create variables for all view controllers you want to put in the
-        // page menu, initialize them, and add each to the controller array.
-        // (Can be any UIViewController subclass)
-        
-        // VC's will be displayed from left to right in the opposite order they 
-        // are added to the following array
-//        let controllersToGet: [String: String] = [
-//            "AchievementVC": "Achievements",
-//            "HighScoreVC": "High Scores"
-//        ]
-//        
-//        for (identifier, title) in controllersToGet {
-//            let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-//            let controller = storyboard.instantiateViewControllerWithIdentifier(identifier) as UIViewController
-//            controller.title = title
-//            controllerArray.append(controller)
-//        }
-
-        
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let controller = storyboard.instantiateViewControllerWithIdentifier("AchievementVC") as UIViewController
         controller.title = "Achievements"

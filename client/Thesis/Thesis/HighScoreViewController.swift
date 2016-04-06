@@ -23,8 +23,12 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let header = ScreenHeight * 0.25
+        
+        tableView.frame = CGRectMake(0, header, ScreenWidth, ScreenHeight - header)
         tableView.delegate = self
         tableView.dataSource = self
+        self.view.layoutSubviews()
         
         self.controller.getHighScores(){ responseObject, error in
             self.tableView.reloadData()

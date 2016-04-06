@@ -17,10 +17,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let uuid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
-            print(uuid)
-        }
-
+        let loginButton: UIButton = UIButton(type: UIButtonType.Custom)
+        let buttonHeight = ScreenHeight * 0.3
+        loginButton.frame = CGRectMake(0, ScreenHeight - buttonHeight, ScreenWidth, buttonHeight)
+        loginButton.setTitle("Login", forState: UIControlState.Normal)
+        loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.familyName)!, size: 50)
+        loginButton.backgroundColor = mootColors["blue"]
+        self.view.addSubview(loginButton)
 
         // Do any additional setup after loading the view.
         
@@ -33,7 +38,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     }
 
     
-    @IBAction func loginButtonPressed(sender: AnyObject) {
+    func loginButtonPressed(sender: AnyObject) {
         self.tryLogin(){ responseObject, error in
             if responseObject!["status"] == "success"{
 
