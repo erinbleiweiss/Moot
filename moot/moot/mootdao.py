@@ -40,7 +40,7 @@ class MootDao(Base):
                                 host=self.pghostname)
 
 
-    def login(self, user_id):
+    def login(self, user_id, name):
         self.logger.debug("login()")
         conn = self.get_db()
         with conn:
@@ -51,8 +51,8 @@ class MootDao(Base):
             if exists:
                 return True
             else:
-                c.execute('INSERT INTO gameuser (user_id) VALUES (%s)',
-                          (user_id,))
+                c.execute('INSERT INTO gameuser (user_id, name) VALUES '
+                          '(%s, %s)', (user_id, name))
                 conn.commit()
                 self.setup_points(user_id)
                 return True

@@ -11,13 +11,20 @@ import Alamofire
 import SwiftyJSON
 
 class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialTextFieldDelegate  {
+    
     @IBAction func cancelToLogin(segue:UIStoryboardSegue) {
     }
+    
+    
+    var nameTextField: MootTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = mootBackground
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
         let scale = ScreenWidth / 320
         
@@ -35,8 +42,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         let width = ScreenWidth * 0.6
         let x = (ScreenWidth / 2) - (width / 2)
         var y = ScreenHeight * 0.3
-        let nameTextField = MootTextField(frame: CGRectMake(x, y, width, height))
-        nameTextField.backgroundColor = UIColor.whiteColor()
+        self.nameTextField = MootTextField(frame: CGRectMake(x, y, width, height))
+        self.nameTextField.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(nameTextField)
         
         y += height
@@ -47,22 +54,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         nameLabel.textColor = mootBlack
         self.view.addSubview(nameLabel)
         
-        
-        // Do any additional setup after loading the view.
-        
 //        usernameTextField.displayErrorText("Username cannot be blank")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
-    
     func loginButtonPressed(sender: AnyObject) {
-        self.tryLogin(){ responseObject, error in
+        self.tryLogin(self.nameTextField.text!){ responseObject, error in
             if responseObject!["status"] == "success"{
-
                 let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
                 let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
                 self.presentViewController(revealViewController, animated: true, completion: nil)
@@ -72,7 +75,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     }
     
     
-    func tryLogin(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+    func tryLogin(name: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         
         let url: String = hostname + rest_prefix + "/login"
         
@@ -82,7 +85,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         let base64Credentials = credentialData.base64EncodedStringWithOptions([])
         let headers = ["Authorization": "Basic \(base64Credentials)"]
 
-        Alamofire.request(.GET, url, parameters: nil, encoding: .JSON, headers: headers)
+        Alamofire.request(.GET, url, parameters: ["name": name], headers: headers)
             .responseJSON { (_, _, result) in
             switch result {
             case .Success(let data):

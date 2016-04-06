@@ -112,10 +112,12 @@ def login():
     auth = request.authorization
     user_id = auth.username
     password = auth.password
+    name = request.args.get('name')
+
     response = {}
 
-    if (password == config.get('mootapp', 'moot_password') and \
-            db.login(user_id)):
+    if (password == config.get('mootapp', 'moot_password') and
+            db.login(user_id, name)):
             response["status"] = SUCCESS
     else:
         response["status"] = FAILURE
