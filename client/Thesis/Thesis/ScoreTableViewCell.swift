@@ -19,25 +19,24 @@ class ScoreTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let halfWidth = ScreenWidth / 2
-        let scoreWidth = ScreenWidth * 0.275
-        let margin = halfWidth * 0.05
-        let indent = 20 * scale
+        let numberWidth = ScreenWidth * 0.15
+        let nameWidth = ScreenWidth * 0.45
+        let scoreWidth = ScreenWidth * 0.20
+        let margin = ScreenWidth * 0.05 // 4 total margins, for a width of 20%
         
-        let numberLabelSize = 45 * scale
-        self.numberLabel = UILabel(frame: CGRectMake(indent, 0, numberLabelSize, self.frame.height))
+        self.numberLabel = UILabel(frame: CGRectMake(margin, 0, numberWidth, self.frame.height))
         
-        self.nameLabel = UILabel(frame: CGRectMake(indent, 0, halfWidth - margin, self.frame.height))
+        self.nameLabel = UILabel(frame: CGRectMake((margin * 2) + numberWidth, 0, nameWidth, self.frame.height))
         self.nameLabel.textAlignment = .Center
         
-        self.scoreLabel = UILabel(frame: CGRectMake(ScreenWidth - scoreWidth - margin, 0, scoreWidth - margin, self.frame.height))
+        self.scoreLabel = UILabel(frame: CGRectMake((margin * 3) + numberWidth + nameWidth, 0, scoreWidth, self.frame.height))
         self.scoreLabel.textAlignment = .Left
         
 
         self.nameLabel.font = UIFont(name: (self.nameLabel.font?.familyName)!, size: 20 * scale)
         self.scoreLabel.font = UIFont(name: (self.scoreLabel.font?.familyName)!, size: 20 * scale)
         self.numberLabel.font = UIFont(name: (self.numberLabel.font?.familyName)!, size: 20 * scale)
-        
+                
         self.addSubview(self.nameLabel)
         self.addSubview(self.scoreLabel)
         self.addSubview(self.numberLabel)
