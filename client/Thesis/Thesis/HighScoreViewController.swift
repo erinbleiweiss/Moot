@@ -12,8 +12,7 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var tableView: UITableView!
     let scale: CGFloat = ScreenWidth / 320
-    
-    
+
     let controller: HighScoreDataController
     required init?(coder aDecoder: NSCoder) {
         controller = HighScoreDataController()
@@ -28,7 +27,8 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         tableView.frame = CGRectMake(0, header, ScreenWidth, ScreenHeight - header)
         tableView.delegate = self
         tableView.dataSource = self
-        self.view.layoutSubviews()
+        
+//        self.tableView.registerClass(ScoreTableViewCell.self, forCellReuseIdentifier: "HighScoreCell")
         
         self.controller.getHighScores(){ responseObject, error in
             self.tableView.reloadData()
@@ -57,39 +57,22 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier("HighScoreCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("HighScoreCell", forIndexPath: indexPath) as! ScoreTableViewCell
         
         let scoreInfo = self.controller.highScores[indexPath.row]
-        let halfWidth = cell.frame.width / 2
-        let margin = halfWidth * 0.05
-        let indent = 35 * scale
-        
-        let numberLabelSize = 25 * scale
-        let numberLabel = UILabel(frame: CGRectMake(indent, 0, numberLabelSize, cell.frame.height))
-        numberLabel.text = "\(indexPath.row + 1))"
-        
-        
-        let nameLabel = UILabel(frame: CGRectMake(numberLabelSize + indent, 0, halfWidth - margin, cell.frame.height))
-        nameLabel.textAlignment = .Center
+
+        cell.numberLabel.text = ("\(indexPath.row + 1))")
+        cell.nameLabel.text = (scoreInfo.getName())
         
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        cell.scoreLabel.text = (numberFormatter.stringFromNumber(scoreInfo.getScore())!)
         
-        let scoreLabel = UILabel(frame: CGRectMake(halfWidth + indent + numberLabelSize, 0, halfWidth - margin, cell.frame.height))
-        scoreLabel.textAlignment = .Left
-        
-        for scoreItem in scoreInfo{
-            nameLabel.text = scoreItem.0
-            scoreLabel.text = numberFormatter.stringFromNumber((Int(scoreItem.1))!)!
+        if scoreInfo.isCurrentUser(){
+            cell.nameLabel.textColor = mootColors["blue"]
+            cell.scoreLabel.textColor = mootColors["blue"]
+            cell.numberLabel.textColor = mootColors["blue"]
         }
-        
-        nameLabel.font = UIFont(name: (nameLabel.font?.familyName)!, size: 20 * scale)
-        scoreLabel.font = UIFont(name: (scoreLabel.font?.familyName)!, size: 20 * scale)
-        numberLabel.font = UIFont(name: (numberLabel.font?.familyName)!, size: 20 * scale)
-        
-        cell.addSubview(nameLabel)
-        cell.addSubview(scoreLabel)
-        cell.addSubview(numberLabel)
         
         return cell
     }

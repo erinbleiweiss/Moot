@@ -26,7 +26,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        // User has logged in before
+        if prefs.stringForKey("uuid") != nil{
+            self.goToLevelPicker(false)
+        } else {
+            self.setupScreen()
+        }
+    }
+
+    func setupScreen(){
         let scale = ScreenWidth / 320
         
         let loginButton: UIButton = UIButton(type: UIButtonType.Custom)
@@ -55,14 +66,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         nameLabel.textColor = mootBlack
         self.view.addSubview(nameLabel)
     }
-
-    override func viewDidAppear(animated: Bool) {
-        // User has logged in before
-        if prefs.stringForKey("uuid") != nil{
-            self.goToLevelPicker(false)
-        }
-    }
-
+    
+    
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)

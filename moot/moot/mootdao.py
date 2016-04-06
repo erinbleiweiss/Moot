@@ -184,14 +184,21 @@ class MootDao(Base):
         conn = self.get_db()
         with conn:
             c = conn.cursor()
-            cmd = ('select name, score_value from user_score, gameuser where '
-                   'user_score.user_id=gameuser.user_id order by score_value '
-                   'desc limit %s')
-            c.execute(cmd, (num_scores,))
+            if num_scores == "0":
+                cmd = ('select name, score_value, gameuser.user_id from '
+                       'user_score, gameuser where user_score.user_id='
+                       'gameuser.user_id order by score_value desc')
+                c.execute(cmd)
+            else:
+                cmd = ('select name, score_value, gameuser.user_id from '
+                       'user_score, gameuser where user_score.user_id='
+                       'gameuser.user_id order by score_value desc limit %s')
+                c.execute(cmd, (num_scores,))
             scores = []
             for row in c.fetchall():
                 d = {}
                 d["name"] = row[0]
                 d["score"] = row[1]
+                d["uuid"] = row[2]
                 scores.append(d)
             return scores

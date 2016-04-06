@@ -29,6 +29,8 @@
 		802769DB1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */; };
 		802769DD1CB4E145000F23B7 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769DC1CB4E145000F23B7 /* HelpViewController.swift */; };
 		802769DF1CB4E1C1000F23B7 /* SettingsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769DE1CB4E1C1000F23B7 /* SettingsTabViewController.swift */; };
+		802769E21CB4ECF7000F23B7 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769E11CB4ECF7000F23B7 /* Score.swift */; };
+		802769E41CB4F3CC000F23B7 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769E31CB4F3CC000F23B7 /* ScoreTableViewCell.swift */; };
 		804455D81CB22EDE00924480 /* HangmanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D71CB22EDE00924480 /* HangmanData.swift */; };
 		804455DA1CB2607A00924480 /* MazeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455D91CB2607A00924480 /* MazeData.swift */; };
 		804455DE1CB2F0CC00924480 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804455DD1CB2F0CC00924480 /* StringExtensions.swift */; };
@@ -136,6 +138,8 @@
 		802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		802769DC1CB4E145000F23B7 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		802769DE1CB4E1C1000F23B7 /* SettingsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTabViewController.swift; sourceTree = "<group>"; };
+		802769E11CB4ECF7000F23B7 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		802769E31CB4F3CC000F23B7 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		804455D71CB22EDE00924480 /* HangmanData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanData.swift; sourceTree = "<group>"; };
 		804455D91CB2607A00924480 /* MazeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeData.swift; sourceTree = "<group>"; };
 		804455DD1CB2F0CC00924480 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				804927861C97BAD200410B1A /* LevelBadge.swift */,
 				80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */,
 				80AE2ADE1CA8B6660033E48D /* MootHeader.swift */,
+				802769E31CB4F3CC000F23B7 /* ScoreTableViewCell.swift */,
 			);
 			name = Subviews;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				80EB85941C8479F400AC37A7 /* Achievement.swift */,
 				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
 				802769D61CB4D518000F23B7 /* MootTextField.swift */,
+				802769E11CB4ECF7000F23B7 /* Score.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -658,6 +664,7 @@
 				80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */,
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
+				802769E41CB4F3CC000F23B7 /* ScoreTableViewCell.swift in Sources */,
 				804E11E91CA0C94300F57992 /* LevelCompletedViewController.swift in Sources */,
 				80AA55711CACFC8C00D6A81C /* HighScoreViewController.swift in Sources */,
 				80B195031BF5685F00B5C3CE /* Config.swift in Sources */,
@@ -682,6 +689,7 @@
 				80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */,
 				802769DF1CB4E1C1000F23B7 /* SettingsTabViewController.swift in Sources */,
 				804927871C97BAD200410B1A /* LevelBadge.swift in Sources */,
+				802769E21CB4ECF7000F23B7 /* Score.swift in Sources */,
 				804455D81CB22EDE00924480 /* HangmanData.swift in Sources */,
 				805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */,
 				8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */,

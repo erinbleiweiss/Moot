@@ -15,8 +15,8 @@ import SwiftyJSON
 
 class HighScoreDataController: GenericGameController{
 
-    var highScores: [[String: String]] = []
-    let num_scores_to_retrieve = 4
+    var highScores: [Score] = []
+    let num_scores_to_retrieve = 0 // If this value is 0, all scores will be retrieved
     
     func getHighScores(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_high_scores"
@@ -41,13 +41,16 @@ class HighScoreDataController: GenericGameController{
     func createScores(scores: JSON){
         for (_, subJson):(String, JSON) in scores {
             var name = subJson["name"].string
-            let score = String(subJson["score"].int!)
+            let score = subJson["score"].int!
             // TODO: crashes if nil
             
-            if name == nil {
+            if name == nil || name == ""{
                 name = "A Moot User"
             }
-            highScores.append([name!: score])
+            
+            let uuid = subJson["uuid"].string
+            
+            highScores.append(Score(name: name!, score: score, uuid: uuid!))
         }
     }
     
