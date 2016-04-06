@@ -34,7 +34,7 @@ class CameraTabButton: SpringButton {
         // Drawing code
         self.layer.contentsScale = UIScreen.mainScreen().scale
 
-        let frame = CGRectMake(2.0, 2.0, self.bounds.width - 4.0, self.bounds.height - 4.0)
+        let frame = CGRectMake(4.0, 4.0, self.bounds.width - 8.0, self.bounds.height - 8.0)
         let path = UIBezierPath(ovalInRect: frame)
         UIColor.whiteColor().setFill()
         path.fill()

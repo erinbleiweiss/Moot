@@ -34,7 +34,8 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         // Disable middle tab bar item
         if  let arrayOfTabBarItems = self.tabBar.items as! AnyObject as? NSArray,tabBarItem = arrayOfTabBarItems[2] as? UITabBarItem {
             tabBarItem.enabled = false
-        }
+        }        
+        
         changeButtonColor(UIColor(red:180/255, green: 180/255, blue:180/255, alpha:1))
     }
 
