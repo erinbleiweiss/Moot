@@ -66,7 +66,7 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         
         
         let nameLabel = UILabel(frame: CGRectMake(numberLabelSize + indent, 0, halfWidth - margin, cell.frame.height))
-        nameLabel.textAlignment = .Right
+        nameLabel.textAlignment = .Center
         
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
@@ -75,7 +75,7 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         scoreLabel.textAlignment = .Left
         
         for scoreItem in scoreInfo{
-            nameLabel.text = "\(scoreItem.0): "
+            nameLabel.text = scoreItem.0
             scoreLabel.text = numberFormatter.stringFromNumber((Int(scoreItem.1))!)!
         }
         
