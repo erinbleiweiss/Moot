@@ -22,9 +22,6 @@ protocol FlipTransitionCVProtocol {
     func transitionViewForCell() -> UIView!
 }
 
-//@objc protocol FlipPageViewControllerProtocol : FlipTransitionCVProtocol{
-//    func pageViewCellScrollViewContentOffset() -> CGPoint
-//}
 
 private let FlipTransitionDuration: NSTimeInterval = 0.6
 

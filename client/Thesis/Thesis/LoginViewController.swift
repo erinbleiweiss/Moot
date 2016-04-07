@@ -10,14 +10,15 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialTextFieldDelegate  {
+class LoginViewController: UIViewController {
     
     @IBAction func cancelToLogin(segue:UIStoryboardSegue) {
     }
     
     
     var nameTextField: MootTextField!
-    
+    let transitionManager = FadeTransition()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,8 +91,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         nameLabel.font = Raleway.Regular.withSize(16 * scale)
         nameLabel.textColor = UIColor.whiteColor()
         self.view.addSubview(nameLabel)
-        
-        
     }
     
     
@@ -139,9 +138,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     func goToLevelPicker(animated: Bool){
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let levelPickerVC: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
+        levelPickerVC.transitioningDelegate = self.transitionManager
         self.presentViewController(levelPickerVC, animated: animated, completion: nil)
     }
 
+        
     /*
     // MARK: - Navigation
 

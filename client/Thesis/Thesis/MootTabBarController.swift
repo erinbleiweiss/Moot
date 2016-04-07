@@ -155,6 +155,9 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         return image
     }
     
+    func fadeViewForTransition(transition: FadeTransition) -> UIView? {
+        return self.view
+    }
     
     /**
      Wrapper around Apple's dispatch_after() function in order to execute a code

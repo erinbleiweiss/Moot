@@ -262,10 +262,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="JHj-iI-3hF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1p3-u0-upw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="739" y="-1195"/>
+            <point key="canvasLocation" x="777" y="-1155"/>
         </scene>
         <!--Levels-->
         <scene sceneID="mTs-UA-ous">
@@ -571,7 +572,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqa-cX-CHL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4291" y="-1821"/>
+            <point key="canvasLocation" x="5103" y="-1821"/>
         </scene>
         <!--Help View Controller-->
         <scene sceneID="Z2E-j9-bkz">
@@ -589,7 +590,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9SV-rx-2VJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4287" y="-1155"/>
+            <point key="canvasLocation" x="5099" y="-1155"/>
         </scene>
         <!--Privacy Policy View Controller-->
         <scene sceneID="K4N-Xi-C80">

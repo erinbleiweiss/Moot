@@ -51,6 +51,7 @@
 		805066381CB64A9900C9C081 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662E1CB642AE00C9C081 /* Raleway-Regular.ttf */; };
 		805066391CB64A9900C9C081 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */; };
 		8050663B1CB64C4E00C9C081 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */; };
+		8050663D1CB6534D00C9C081 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050663C1CB6534D00C9C081 /* FadeTransition.swift */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
@@ -171,6 +172,7 @@
 		8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		805066301CB6435700C9C081 /* Raleway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Raleway.swift; sourceTree = "<group>"; };
 		8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
+		8050663C1CB6534D00C9C081 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			children = (
 				804E11E61C9E22F800F57992 /* QCMethod.swift */,
 				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
+				8050663C1CB6534D00C9C081 /* FadeTransition.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				805066261CB6355800C9C081 /* UIViewExtensions.swift in Sources */,
 				80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */,
 				8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */,
+				8050663D1CB6534D00C9C081 /* FadeTransition.swift in Sources */,
 				804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */,
 				802769DB1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift in Sources */,
 				80AE2AE51CA90D6A0033E48D /* UIImageExtensions.swift in Sources */,
