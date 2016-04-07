@@ -59,8 +59,21 @@ class MazeLevelViewController: GenericLevelViewController {
             }
         }
         
+        if self.controller.level != nil {
+            self.header?.levelBadge!.update(self.controller.level!)
+            self.view.layoutSubviews()
+        }
+        
     }
 
+
+    override func viewDidAppear(animated: Bool) {
+        if self.controller.level != nil {
+            self.header?.levelBadge!.update(self.controller.level!)
+            self.view.layoutSubviews()
+        }
+    }
+    
     
     func generateMaze() {
         self.controller.generateMaze(){ responseObject, error in
@@ -314,6 +327,18 @@ class MazeLevelViewController: GenericLevelViewController {
         }
     }
     
+    
+    /**
+        Transition to the "Level Completed" controller, then prepare for new nevel
+     */
+    override func displayLevelCompletionView(){
+        if self.controller.level != nil {
+            let level = LevelManager.sharedInstance.getLevelByNumber(self.controller.level!)
+            let identifier = "\(level.getVCName())Complete"
+            self.performSegueWithIdentifier(identifier, sender: nil)
+            self.setUpLevel()
+        }
+    }
     
     override func resetButtonTouched(sender: UIButton) {
         

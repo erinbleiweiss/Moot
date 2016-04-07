@@ -225,7 +225,7 @@ class HangmanLevelViewController: GenericLevelViewController {
 
     
     /**
-     Transition to the "Level Completed" controller, then prepare for new nevel
+        Transition to the "Level Completed" controller, then prepare for new nevel
      */
     override func displayLevelCompletionView(){
         if self.controller.level != nil {
