@@ -387,7 +387,7 @@
         <scene sceneID="Oct-LH-Jpz">
             <objects>
                 <navigationController id="cHU-Pl-GBJ" customClass="LevelNavController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Levels" image="categorize" id="YNz-gQ-S2B" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" title="Levels" image="categorize" selectedImage="categorize_filled" id="YNz-gQ-S2B" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
                             <outlet property="animation" destination="Ia4-KO-jBd" id="LQh-6V-Gf4"/>
                         </connections>
@@ -442,7 +442,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="mG7-UB-rz0" secondAttribute="trailing" constant="-20" id="XMq-9z-jBO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Achievements" image="medal-1" id="4pO-Zz-6ap" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" tag="1" title="Achievements" image="medal-1" selectedImage="medal_filled" id="4pO-Zz-6ap" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                         <connections>
                             <outlet property="animation" destination="P0Q-wI-KHL" id="qno-fJ-Fcd"/>
                         </connections>
@@ -490,7 +491,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="KTD-9w-eI5" secondAttribute="trailing" constant="-20" id="pjD-et-5CE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="High Scores" image="highscores" id="20q-d6-q0v" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" tag="3" title="High Scores" image="highscores" selectedImage="highscores_filled" id="20q-d6-q0v" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
                             <outlet property="animation" destination="OpE-9d-8Pc" id="nME-Cm-Mjz"/>
                         </connections>
@@ -504,7 +505,7 @@
             </objects>
             <point key="canvasLocation" x="2898" y="-459"/>
         </scene>
-        <!--Settings-->
+        <!--More-->
         <scene sceneID="d5t-Pc-IUK">
             <objects>
                 <viewController id="0xU-NJ-byN" customClass="SettingsTabViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
@@ -517,7 +518,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings_filled" id="bEs-gI-NeR" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" title="More" image="more" selectedImage="more_filled" id="bEs-gI-NeR" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
                             <outlet property="animation" destination="7sO-Lg-MKC" id="Heb-EZ-v3c"/>
                         </connections>
@@ -639,9 +640,13 @@
     <resources>
         <image name="blank" width="25" height="25"/>
         <image name="categorize" width="25" height="25"/>
+        <image name="categorize_filled" width="25" height="25"/>
         <image name="highscores" width="25" height="25"/>
+        <image name="highscores_filled" width="25" height="25"/>
         <image name="medal-1" width="25" height="25"/>
-        <image name="settings_filled" width="25" height="25"/>
+        <image name="medal_filled" width="25" height="25"/>
+        <image name="more" width="25" height="25"/>
+        <image name="more_filled" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vtA-jE-S8g"/>

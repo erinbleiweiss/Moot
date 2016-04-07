@@ -53,6 +53,7 @@
 		8050663B1CB64C4E00C9C081 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */; };
 		8050663D1CB6534D00C9C081 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050663C1CB6534D00C9C081 /* FadeTransition.swift */; };
 		805066411CB672A700C9C081 /* EmoticonParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066401CB672A700C9C081 /* EmoticonParticleView.swift */; };
+		805066451CB6FFAD00C9C081 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066441CB6FFAD00C9C081 /* File.swift */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
@@ -175,6 +176,7 @@
 		8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		8050663C1CB6534D00C9C081 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		805066401CB672A700C9C081 /* EmoticonParticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonParticleView.swift; sourceTree = "<group>"; };
+		805066441CB6FFAD00C9C081 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				804E11E61C9E22F800F57992 /* QCMethod.swift */,
 				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
 				8050663C1CB6534D00C9C081 /* FadeTransition.swift */,
+				805066441CB6FFAD00C9C081 /* File.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
 				80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */,
 				8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */,
+				805066451CB6FFAD00C9C081 /* File.swift in Sources */,
 				80E05B2A1CA5040200EE96B3 /* FlipTransition.swift in Sources */,
 				80AA55791CAE276600D6A81C /* CLLocationExtensions.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,

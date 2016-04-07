@@ -15,7 +15,9 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     var cameraButtonVisible: Bool = false
     var button: CameraTabButton?
     var selectedButtonColor: UIColor?
-
+    
+    var originalImages: [UIImage] = []
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,9 +25,15 @@ public class MootTabBarController: RAMAnimatedTabBarController {
 //        self.tabBar.barStyle = UIBarStyle.Black
         self.tabBar.translucent = false
 
-//        let color = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
         let color = UIColor.whiteColor()
         UITabBar.appearance().barTintColor = color
+        
+        for item in self.tabBar.items! as! [RAMAnimatedTabBarItem]{
+            if (item.iconView?.icon.image) != nil{
+                self.originalImages.append((item.iconView?.icon.image)!)
+            }
+        }
+        
     }
     
     override public func viewWillAppear(animated: Bool) {
@@ -34,13 +42,19 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         // Disable middle tab bar item
         if  let arrayOfTabBarItems = self.tabBar.items as! AnyObject as? NSArray,tabBarItem = arrayOfTabBarItems[2] as? UITabBarItem {
             tabBarItem.enabled = false
-        }        
+        }
         
         changeButtonColor(UIColor(red:180/255, green: 180/255, blue:180/255, alpha:1))
+        
+        self.setupTabColors()
     }
-
+    
+    public override func viewDidLayoutSubviews() {
+        self.setupTabColors()
+    }
     
     func setupTabColors(){
+        print("doing the thing")
         var iconColor: UIColor?
         if self.selectedButtonColor != nil {
             iconColor = self.selectedButtonColor
@@ -48,21 +62,24 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         else {
             iconColor = UIColor.blackColor()
         }
-        
-        for item in self.tabBar.items! as! [RAMAnimatedTabBarItem] {
-            let image = item.iconView!.icon.image
-            item.iconView!.icon.image = image!.imageWithColor(mootGray).imageWithRenderingMode(.AlwaysOriginal)
-            item.setTitleTextAttributes([NSForegroundColorAttributeName: mootGray], forState: .Normal)
-        }
-        
+
         let selectedItem = self.tabBar.selectedItem
         if selectedItem != nil {
-            let image = (selectedItem as! RAMAnimatedTabBarItem).iconView!.icon.image
+            let image = (selectedItem! as UITabBarItem).selectedImage
             (selectedItem as! RAMAnimatedTabBarItem).iconView!.icon.image = image!.imageWithColor(iconColor!).imageWithRenderingMode(.AlwaysOriginal)
             selectedItem!.setTitleTextAttributes([NSForegroundColorAttributeName: iconColor!], forState:.Selected)
         }
+        
+        for (idx, item) in (self.tabBar.items! as! [RAMAnimatedTabBarItem]).enumerate(){
+            if item != selectedItem{
+                let newImage = self.originalImages[idx].imageWithColor(mootGray).imageWithRenderingMode(.AlwaysOriginal)
+                item.iconView?.icon.image = newImage
+            }
+        }
+        
+        
         self.view.setNeedsDisplay()
-        self.view.layoutSubviews()
+//        self.view.layoutSubviews()
     }
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {
@@ -122,6 +139,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         if !cameraButtonVisible{
             // Raise the center button with image
             let img = UIImage(named: "camera")
+            img?.imageWithColor(mootGray)
             self.createRaisedButton(img, highlightImage: nil)
             self.cameraButtonVisible = true
         }

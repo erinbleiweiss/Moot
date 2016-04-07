@@ -25,16 +25,14 @@ class FadeTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewCon
         container!.addSubview(fromView)
         container!.addSubview(toViewController.view)
         toViewController.view.alpha = 0
-        print(toViewController)
-
+        
         UIView.animateWithDuration(
             duration,
             delay: 0.0,
-            usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0.8,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0,
             options: [],
             animations: {
-                print("oooook")
                 toViewController.view.alpha = 1
             }, completion: { finished in
                 // tell our transitionContext object that we've finished animating
