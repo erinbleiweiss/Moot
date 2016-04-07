@@ -56,6 +56,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
 //        LevelManager.sharedInstance.unlockLevel(4)
     
     }
+    
 
     override func viewWillAppear(animated: Bool) {
         let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
@@ -63,7 +64,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     }
     
     override func viewDidAppear(animated: Bool) {
-//        self.levelCollectionView.reloadData()
+        self.levelCollectionView.layoutSubviews()
     }
     
     /**

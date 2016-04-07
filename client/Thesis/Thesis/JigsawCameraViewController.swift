@@ -16,8 +16,20 @@ class JigsawCameraViewController: GenericCameraViewController, CameraDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.clearResponse()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.clearResponse()
+    }
+    
+    /**
+        Reset upc on load
+     */
+    func clearResponse(){
+        self.response = ""
+    }
+    
     
     override func doAfterScan(detectionString: String) {
         checkQRCode(detectionString){ responseObject, error in

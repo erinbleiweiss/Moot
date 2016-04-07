@@ -286,20 +286,22 @@ class MazeLevelViewController: GenericLevelViewController {
     }
     
     func showSuccess(){
-        SwiftSpinner.show("Scanning")
-        self.controller.getColor(self.upc!){ responseObject, error in
-            if (responseObject["status"] == "success"){
-                self.productName = responseObject["product_name"].string
-                self.color = responseObject["color"].string
-                self.productImgUrl = responseObject["product_img"].string
-                SwiftSpinner.hide()
-                self.controller.compass.unlockColor(self.color)
-                self.controller.mazeData.unlockColor(self.color)
-                self.controller.refreshData()
-                self.showProductPopup(self.productName!, color: self.color, url: self.productImgUrl!)
-                
-            } else {
-                self.showFailure()
+        if self.upc != "" {
+            SwiftSpinner.show("Scanning")
+            self.controller.getColor(self.upc!){ responseObject, error in
+                if (responseObject["status"] == "success"){
+                    self.productName = responseObject["product_name"].string
+                    self.color = responseObject["color"].string
+                    self.productImgUrl = responseObject["product_img"].string
+                    SwiftSpinner.hide()
+                    self.controller.compass.unlockColor(self.color)
+                    self.controller.mazeData.unlockColor(self.color)
+                    self.controller.refreshData()
+                    self.showProductPopup(self.productName!, color: self.color, url: self.productImgUrl!)
+                    
+                } else {
+                    self.showFailure()
+                }
             }
         }
     }

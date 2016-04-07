@@ -19,8 +19,20 @@ class MazeCameraViewController: GenericCameraViewController, CameraDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.clearUpc()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.clearUpc()
+    }
+    
+    /**
+        Reset upc on load
+     */
+    func clearUpc(){
+        self.upc = ""
+    }
+    
     
     override func doAfterScan(upc: String) {
         self.upc = upc
