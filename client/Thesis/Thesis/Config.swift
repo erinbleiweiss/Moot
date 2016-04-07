@@ -17,8 +17,9 @@ let ScreenHeight     = ScreenSize.height
 var yOffset: CGFloat = 75.0
 let StatusBarHeight  = UIApplication.sharedApplication().statusBarFrame.size.height
 
-
 //var yOffset: CGFloat = 0.0
+
+let prefs = NSUserDefaults.standardUserDefaults()
 
 var hostname = Networking.networkConfig.hostname
 var rest_prefix = Networking.networkConfig.rest_prefix
@@ -59,7 +60,11 @@ var mootFadedColors: [String: UIColor] = [
     - returns: (String) Device UUID
  */
 func get_uuid() -> String {
-    return UIDevice.currentDevice().identifierForVendor!.UUIDString
+    if prefs.stringForKey("uuid") != nil{
+        return prefs.stringForKey("uuid")!
+    } else {
+        return UIDevice.currentDevice().identifierForVendor!.UUIDString
+    }
 }
 
 

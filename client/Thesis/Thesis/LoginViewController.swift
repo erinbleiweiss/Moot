@@ -17,7 +17,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     
     
     var nameTextField: MootTextField!
-    let prefs = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
             switch result {
             case .Success(let data):
                 let json = JSON(data)
-                    self.prefs.setObject(uuid, forKey: "uuid")
+                    prefs.setObject(uuid, forKey: "uuid")
                 completionHandler(responseObject: json, error: result.error as? NSError)
             case .Failure(_):
                 NSLog("Request failed with error: \(result.error)")

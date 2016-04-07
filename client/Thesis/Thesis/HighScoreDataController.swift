@@ -18,6 +18,9 @@ class HighScoreDataController: GenericGameController{
     var highScores: [Score] = []
     let num_scores_to_retrieve = 0 // If this value is 0, all scores will be retrieved
     
+    let score_limit = 10
+    var is_top_scorer = false
+    
     func getHighScores(completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/get_high_scores"
         Alamofire.request(.GET, url, parameters: ["num_scores": num_scores_to_retrieve])
@@ -50,7 +53,17 @@ class HighScoreDataController: GenericGameController{
             
             let uuid = subJson["uuid"].string
             
-            highScores.append(Score(name: name!, score: score, uuid: uuid!))
+            let rank = subJson["rank"].int!
+            
+            if self.highScores.count < score_limit {
+                highScores.append(Score(name: name!, score: score, uuid: uuid!, rank: rank))
+                if uuid == get_uuid() {
+                    self.is_top_scorer = true
+                }
+            } else if (uuid == get_uuid()) && !is_top_scorer{
+                highScores.append(Score(name: name!, score: score, uuid: uuid!, rank: rank))
+            }
+        
         }
     }
     

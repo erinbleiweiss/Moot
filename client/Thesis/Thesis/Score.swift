@@ -13,11 +13,13 @@ class Score{
     var name: String
     var score: Int
     var uuid: String
+    var rank: Int
     
-    init(name: String, score: Int, uuid: String) {
+    init(name: String, score: Int, uuid: String, rank: Int) {
         self.name = name
         self.score = score
         self.uuid = uuid
+        self.rank = rank
     }
     
     func getName() -> String{
@@ -30,6 +32,10 @@ class Score{
     
     func isCurrentUser() -> Bool {
         return self.uuid == get_uuid()
+    }
+    
+    func getRank() -> Int{
+        return self.rank
     }
     
 }

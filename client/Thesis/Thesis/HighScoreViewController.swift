@@ -81,7 +81,7 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         
         let scoreInfo = self.controller.highScores[indexPath.row]
 
-        cell.numberLabel.text = ("\(indexPath.row + 1).")
+        cell.numberLabel.text = ("\(scoreInfo.getRank()).")
         cell.nameLabel.text = (scoreInfo.getName())
         
         let numberFormatter = NSNumberFormatter()

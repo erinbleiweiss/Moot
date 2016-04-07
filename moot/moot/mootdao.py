@@ -185,20 +185,23 @@ class MootDao(Base):
         with conn:
             c = conn.cursor()
             if num_scores == "0":
-                cmd = ('select name, score_value, gameuser.user_id from '
-                       'user_score, gameuser where user_score.user_id='
-                       'gameuser.user_id order by score_value desc')
+                cmd = ('select name, row_number() over (order by score_value '
+                       'desc), score_value, gameuser.user_id from user_score, '
+                       'gameuser where user_score.user_id=gameuser.user_id '
+                       'order by score_value desc')
                 c.execute(cmd)
             else:
-                cmd = ('select name, score_value, gameuser.user_id from '
-                       'user_score, gameuser where user_score.user_id='
+                cmd = ('select name, row_number() over (order by '
+                       'score_value desc), score_value, gameuser.user_id '
+                       'from user_score, gameuser where user_score.user_id='
                        'gameuser.user_id order by score_value desc limit %s')
                 c.execute(cmd, (num_scores,))
             scores = []
             for row in c.fetchall():
                 d = {}
                 d["name"] = row[0]
-                d["score"] = row[1]
-                d["uuid"] = row[2]
+                d["rank"] = row[1]
+                d["score"] = row[2]
+                d["uuid"] = row[3]
                 scores.append(d)
             return scores
