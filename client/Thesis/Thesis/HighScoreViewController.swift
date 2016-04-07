@@ -24,8 +24,11 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         
         // Set top constraint
         let headerHeight = ScreenHeight * 0.15
+        let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
+        let tableViewHeight = ScreenHeight - headerHeight - tabBarHeight
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: tableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: headerHeight).active = true
+        NSLayoutConstraint(item: tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: tableViewHeight).active = true
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
