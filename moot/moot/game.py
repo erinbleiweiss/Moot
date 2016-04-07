@@ -435,6 +435,7 @@ def play_hangman():
         response["product_name"] = product_name
         response["color"] = product_info["color"]
         response["product_img"] = product_info["product_img"]
+        response["points_earned"] = points_earned
         response["game_state"] = 1
         response["letters_guessed"] = ''.join(letters_guessed)
     # If guess is correct
@@ -449,6 +450,7 @@ def play_hangman():
         response["product_name"] = product_name
         response["color"] = product_info["color"]
         response["product_img"] = product_info["product_img"]
+        response["points_earned"] = points_earned
         response["game_state"] = 0
         response["letters_guessed"] = ''.join(new_letters)
     # If guess is incorrect
@@ -458,6 +460,7 @@ def play_hangman():
         response["product_name"] = product_name
         response["color"] = product_info["color"]
         response["product_img"] = product_info["product_img"]
+        response["points_earned"] = points_earned
         response["game_state"] = 2
         response["letters_guessed"] = ''.join(letters_guessed)
     return jsonify(response)

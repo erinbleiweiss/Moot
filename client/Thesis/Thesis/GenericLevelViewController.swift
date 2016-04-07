@@ -31,6 +31,9 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     var shouldDisplayStageCompleted: Bool = false
     var shouldDisplayLevelCompleted: Bool = false
     
+    var particles: [String] = []
+    var pointsShower: EmoticonParticleView!
+
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
         controller = GenericGameController()
@@ -121,6 +124,21 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
                 self.header!.scoreBox?.setNeedsDisplay()
             }
         }
+    }
+    
+    func stopPointsShower(){
+        UIView.animateWithDuration(
+            0.5,
+            delay: 2,
+            options: [],
+            animations: {
+                self.pointsShower.alpha = 0
+            },
+            completion: { (finished: Bool) -> Void in
+                self.pointsShower.removeFromSuperview()
+                self.particles = []
+            })
+
     }
    
     /**
@@ -268,10 +286,13 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             colorTextButton: 0xFFFFFF,
             circleIconImage: UIImage(named: "camera")?.imageWithColor(UIColor.whiteColor())
         )
+        self.pointsShower = EmoticonParticleView(frame: self.view.frame, emoticons: self.particles)
+        self.view.addSubview(pointsShower)
     }
     
     func doAfterProductPopup(){
         self.displayAchievements()
+        self.stopPointsShower()
     }
     
     func doAfterAchievementPopup(){

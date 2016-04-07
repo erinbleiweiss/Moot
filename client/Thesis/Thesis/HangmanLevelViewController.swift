@@ -32,7 +32,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 1
@@ -174,7 +174,9 @@ class HangmanLevelViewController: GenericLevelViewController {
                     self.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
                 }
                 
-                self.updateMootPoints()
+                let points_earned = responseObject!["points_earned"].string!
+                self.particles = ["+\(points_earned)"]
+                self.updateMootPoints()                
                 self.controller.refreshData()
             }
         }
