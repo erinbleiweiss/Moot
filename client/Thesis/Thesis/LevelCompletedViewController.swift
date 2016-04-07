@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import DynamicColor
 
 class LevelCompletedViewController: MootViewController {
 
@@ -18,16 +19,18 @@ class LevelCompletedViewController: MootViewController {
         
         let scale = ScreenWidth / 320
         
-//        self.delay(3){
-//            self.navigationController?.popToRootViewControllerAnimated(true)
-//        }
+        self.delay(4.5){
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }
         
         var x: CGFloat = 0
         var y: CGFloat = ScreenHeight * 0.15
         let width = ScreenWidth
         var height = ScreenHeight * 0.5
-        let mainView = UIView(frame: CGRectMake(x, y, width, height))
+        let mainView = SpringView(frame: CGRectMake(x, y, width, height))
         self.view.addSubview(mainView)
+        
+        self.view.backgroundColor = mootBackground
         
         x = 0
         y = 0
@@ -36,6 +39,7 @@ class LevelCompletedViewController: MootViewController {
         levelLabel.text = "Level"
         levelLabel.textAlignment = .Center
         levelLabel.font = Raleway.Bold.withSize(50 * scale)
+        levelLabel.textColor = mootColors["blue"]?.saturatedColor()
         mainView.addSubview(levelLabel)
         
         y += (height / 2)
@@ -44,6 +48,7 @@ class LevelCompletedViewController: MootViewController {
         completedLabel.text = "Completed"
         completedLabel.textAlignment = .Center
         completedLabel.font = Raleway.Bold.withSize(50 * scale)
+        completedLabel.textColor = mootColors["green"]
         
         levelLabel.animation = "squeezeRight"
         levelLabel.delay = 0.5
@@ -58,7 +63,11 @@ class LevelCompletedViewController: MootViewController {
             completedLabel.scaleY = 2.0
             completedLabel.y = 100.0
             completedLabel.duration = 1.5
-            completedLabel.animate()
+            completedLabel.animateNext({
+                mainView.animation = "zoomOut"
+                mainView.duration = 1.5
+                mainView.animate()
+            })
         })
         
         
