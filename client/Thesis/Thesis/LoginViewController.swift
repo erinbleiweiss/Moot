@@ -62,8 +62,9 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("Login", forState: UIControlState.Normal)
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.titleLabel?.font = Raleway.SemiBold.withSize(50 * scale)
-        loginButton.backgroundColor = mootBlack
+        loginButton.titleLabel!.font = Raleway.SemiBold.withSize(50 * scale)
+        loginButton.backgroundColor = UIColor.blackColor()
+        loginButton.alpha = 0.6
         self.view.addSubview(loginButton)
         
         var y = ScreenHeight * 0.1
