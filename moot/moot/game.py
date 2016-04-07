@@ -428,6 +428,8 @@ def play_hangman():
         return jsonify(response)
 
 
+    logger.debug(points_earned)
+
     # If character has already been revealed
     if current_letter in letters_guessed:
         response["guess"] = current_letter

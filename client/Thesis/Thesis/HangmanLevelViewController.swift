@@ -174,7 +174,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                     self.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
                 }
                 
-                let points_earned = responseObject!["points_earned"].string!
+                let points_earned = responseObject!["points_earned"]
                 self.particles = ["+\(points_earned)"]
                 self.updateMootPoints()                
                 self.controller.refreshData()
