@@ -95,6 +95,10 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
             cell.nameLabel.textColor = mootColors["blue"]
             cell.scoreLabel.textColor = mootColors["blue"]
             cell.numberLabel.textColor = mootColors["blue"]
+        } else {
+            cell.nameLabel.textColor = UIColor.blackColor()
+            cell.scoreLabel.textColor = UIColor.blackColor()
+            cell.numberLabel.textColor = UIColor.blackColor()
         }
         
         return cell
