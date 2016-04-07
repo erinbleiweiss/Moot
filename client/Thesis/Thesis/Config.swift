@@ -78,3 +78,7 @@ func get_api_key() -> String {
     let decodedString = NSString(data: decodedData!, encoding: NSUTF8StringEncoding)
     return decodedString as! String
 }
+
+func randomNumber(MAX: UInt32, MIN: UInt32) -> Int{
+    return Int(arc4random_uniform(MAX) + MIN)
+}

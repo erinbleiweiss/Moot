@@ -12,14 +12,19 @@ class EmoticonParticleView: UIView {
 
     
     // MARK: Particles
-    
     var emoticons: [String]
+    let colors = ["red", "orange", "yellow", "greenyellow", "green", "teal", "blue", "purple"]
 
     func CGImageRefOfString (string: String) -> CGImageRef {
+    
+        let rand = randomNumber(7, MIN: 0)
+        let randColor = self.colors[rand]
+        let color = mootColors[randColor]
         
         let label = UILabel (frame: CGRectMake(0, 0, 100, 30))
         label.text = string
-        label.font = UIFont.systemFontOfSize(20)
+        label.font = Raleway.Bold.withSize(20)
+        label.textColor = color
         label.textAlignment = .Center
         
         UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
@@ -32,6 +37,12 @@ class EmoticonParticleView: UIView {
     
     func emitterCells () -> [CAEmitterCell] {
         var cells: [CAEmitterCell] = []
+        
+        // increase particle frequency
+        for _ in 0...5 {
+            emoticons.append(emoticons[0])
+        }
+        
         for e in emoticons {
             let emitterCell = CAEmitterCell()
             emitterCell.scale = 0.4
