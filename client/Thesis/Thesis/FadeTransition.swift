@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let duration: NSTimeInterval = 1.0
+private let duration: NSTimeInterval = 1.5
 
 class FadeTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate  {
     
@@ -22,16 +22,21 @@ class FadeTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewCon
         let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         
-        container!.addSubview(toViewController.view)
         container!.addSubview(fromView)
+        container!.addSubview(toViewController.view)
         toViewController.view.alpha = 0
+        print(toViewController)
 
-        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: [], animations: {
-            
+        UIView.animateWithDuration(
+            duration,
+            delay: 0.0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.8,
+            options: [],
+            animations: {
+                print("oooook")
                 toViewController.view.alpha = 1
-            
             }, completion: { finished in
-                
                 // tell our transitionContext object that we've finished animating
                 transitionContext.completeTransition(true)
                 
