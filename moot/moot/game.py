@@ -578,9 +578,19 @@ def image_colors():
     product_info = get_product_info_internal(user_id, upc)
     color_name = product_info["color"]
 
+    product_name = product_info["product_name"]
+    points_earned = moot_points(product_name, MAX_POINTS_FOR_PRODUCT)
+    db = MootDao()
+    try:
+        db.award_points(user_id, points_earned)
+    except Exception as e:
+        logger.critical("Awarding points to user '{0}' failed with exception "
+                        "{1}".format(user_id, e))
+
     response = {}
-    response["product_name"] = product_info["product_name"]
+    response["product_name"] = product_name
     response["product_img"] = product_info["product_img"]
+    response["points_earned"] = points_earned
     response["color"] = color_name
     response["status"] = SUCCESS
     return jsonify(response)

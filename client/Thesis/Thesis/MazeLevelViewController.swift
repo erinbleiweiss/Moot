@@ -314,8 +314,10 @@ class MazeLevelViewController: GenericLevelViewController {
                     self.controller.compass.unlockColor(self.color)
                     self.controller.mazeData.unlockColor(self.color)
                     self.controller.refreshData()
-                    self.showProductPopup(self.productName!, color: self.color, url: self.productImgUrl!)
+                    let points_earned = responseObject["points_earned"]
+                    self.particles = ["+\(points_earned)"]
                     
+                    self.showProductPopup(self.productName!, color: self.color, url: self.productImgUrl!)
                 } else {
                     self.showFailure()
                 }

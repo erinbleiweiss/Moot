@@ -11,7 +11,7 @@ import UIKit
 class EmoticonParticleView: UIView {
     
     // MARK: Particles
-    var emoticons: [String]
+    var emoticons: [String] = []
     let colors = ["red", "orange", "yellow", "greenyellow", "green", "teal", "blue", "purple"]
 
     func CGImageRefOfString (string: String) -> CGImageRef {
@@ -39,7 +39,9 @@ class EmoticonParticleView: UIView {
         
         // increase particle frequency
         for _ in 0...20 {
-            emoticons.append(emoticons[0])
+            if emoticons.count > 0 {
+                emoticons.append(emoticons[0])
+            }
         }
         
         for e in emoticons {

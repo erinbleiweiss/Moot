@@ -292,7 +292,6 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     func doAfterProductPopup(){
         self.displayAchievements()
-        self.stopPointsShower()
     }
     
     func doAfterAchievementPopup(){
@@ -303,6 +302,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             self.shouldDisplayLevelCompleted = false
             self.displayLevelCompletionView()
         }
+        self.stopPointsShower()
     }
     
     
