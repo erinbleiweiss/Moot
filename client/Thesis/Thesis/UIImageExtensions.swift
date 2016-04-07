@@ -28,4 +28,14 @@ extension UIImage {
         
         return newImage
     }
+    
+    func applyBlurEffect() -> UIImage{
+        let imageToBlur = UIKit.CIImage(image: self)
+        let blurfilter = CIFilter(name: "CIGaussianBlur")
+        blurfilter!.setValue(imageToBlur, forKey: "inputImage")
+        let resultImage = blurfilter!.valueForKey("outputImage") as! UIKit.CIImage
+        let blurredImage = UIImage(CIImage: resultImage)
+        return blurredImage
+    }
+    
 }

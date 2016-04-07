@@ -40,6 +40,7 @@
 		804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */; };
 		804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55A1BEFEDA00091ED22 /* QRTile.swift */; };
 		804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55C1BF001580091ED22 /* QRTileTarget.swift */; };
+		805066261CB6355800C9C081 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066251CB6355800C9C081 /* UIViewExtensions.swift */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
@@ -149,6 +150,7 @@
 		804EF5551BEFE1920091ED22 /* JigsawCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawCameraViewController.swift; sourceTree = "<group>"; };
 		804EF55A1BEFEDA00091ED22 /* QRTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTile.swift; sourceTree = "<group>"; };
 		804EF55C1BF001580091ED22 /* QRTileTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTileTarget.swift; sourceTree = "<group>"; };
+		805066251CB6355800C9C081 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				804455DD1CB2F0CC00924480 /* StringExtensions.swift */,
 				80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */,
 				80AE2AE01CA8C3F80033E48D /* UILabelExtensions.swift */,
+				805066251CB6355800C9C081 /* UIViewExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */,
 				8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */,
 				801590F21C7FC7F50011872B /* UIMaterialTextField.swift in Sources */,
+				805066261CB6355800C9C081 /* UIViewExtensions.swift in Sources */,
 				80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */,
 				8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */,
 				804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */,

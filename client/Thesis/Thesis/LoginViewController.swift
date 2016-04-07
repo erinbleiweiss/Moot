@@ -39,18 +39,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     func setupScreen(){
         let scale = ScreenWidth / 320
         
+        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let tabVC = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as! MootTabBarController
+        let bgImg = tabVC.getScreenshot()
+        let bgImgView = UIImageView(image: bgImg)
+        bgImgView.frame = CGRectMake(0, -20, self.view.bounds.width, self.view.bounds.height + 20)
+        self.view.addSubview(bgImgView)
+        
+        let blurredView = bgImgView.createBlurredView()
+        self.view.addSubview(blurredView)
+        
+        let blackView = UIView(frame: self.view.bounds)
+        blackView.backgroundColor = UIColor.blackColor()
+        blackView.alpha = 0.4
+        self.view.addSubview(blackView)
+
+        
         let loginButton: UIButton = UIButton(type: UIButtonType.Custom)
-        let buttonHeight = ScreenHeight * 0.3
+        let buttonHeight = ScreenHeight * 0.2
         loginButton.frame = CGRectMake(0, ScreenHeight - buttonHeight, ScreenWidth, buttonHeight)
         loginButton.setTitle("Login", forState: UIControlState.Normal)
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.familyName)!, size: 50 * scale)
-        loginButton.backgroundColor = mootColors["blue"]
+        loginButton.backgroundColor = mootBlack
         self.view.addSubview(loginButton)
         
         let height = 40 * scale
-        let width = ScreenWidth * 0.6
+        let width = ScreenWidth * 0.7
         let x = (ScreenWidth / 2) - (width / 2)
         var y = ScreenHeight * 0.3
         self.nameTextField = MootTextField(frame: CGRectMake(x, y, width, height))
@@ -61,9 +77,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         let nameLabel = UILabel(frame: CGRectMake(x, y, width, height))
         nameLabel.text = "Enter Your Name"
         nameLabel.textAlignment = .Center
-        nameLabel.font = UIFont(name: (nameLabel.font?.familyName)!, size: 12 * scale)
-        nameLabel.textColor = mootBlack
+        nameLabel.font = UIFont(name: (nameLabel.font?.familyName)!, size: 20 * scale)
+        nameLabel.textColor = UIColor.whiteColor()
         self.view.addSubview(nameLabel)
+        
+        
     }
     
     
@@ -110,8 +128,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
     
     func goToLevelPicker(animated: Bool){
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let revealViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
-        self.presentViewController(revealViewController, animated: animated, completion: nil)
+        let levelPickerVC: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TabRootVC") as UIViewController
+        self.presentViewController(levelPickerVC, animated: animated, completion: nil)
     }
 
     /*

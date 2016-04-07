@@ -146,6 +146,16 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         self.cameraVC = vc
     }
     
+    func getScreenshot() -> UIImage! {
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
+        self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    
     /**
      Wrapper around Apple's dispatch_after() function in order to execute a code
      block after a specified amount of time

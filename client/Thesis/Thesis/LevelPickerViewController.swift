@@ -118,6 +118,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     func flipViewForTransition(transition: FlipTransition) -> UIView? {
         return self.view
     }
+    
 
     func transitionCollectionView() -> UICollectionView!{
         return self.levelCollectionView
@@ -127,8 +128,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         return levelCollectionView.cellForItemAtIndexPath(self.selectedIndexPath!) as! LevelCell
     }
     
-
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
