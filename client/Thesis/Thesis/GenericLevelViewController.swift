@@ -150,6 +150,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     func displayStageCompletionView(){
         
         let blurredView = self.view.createBlurredView()
+        blurredView.alpha = 0
         self.view.addSubview(blurredView)
         
         let checkmarkView = UIImageView(image: UIImage(named: "checkmark")?.imageWithColor(mootColors["green"]!.saturatedColor()))
@@ -157,19 +158,43 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         let x = (ScreenWidth / 2) - (size / 2)
         let y = (ScreenHeight / 2) - (size / 2)
         checkmarkView.frame = CGRectMake(x, y, size, size)
+        checkmarkView.alpha = 0
         self.view.addSubview(checkmarkView)
         
-        self.delay(1.5){
-            blurredView.removeFromSuperview()
-            checkmarkView.removeFromSuperview()
-            self.setUpLevel()
-            if self.controller.level != nil{
-                self.header?.levelBadge!.update(self.controller.level!)
-                self.view.layoutSubviews()
-            }
-        }
+        
+        let duration: NSTimeInterval = 0.5
 
-    }
+        UIView.animateWithDuration(
+            duration,
+            delay: 0.5,
+            options: [],
+            animations: {
+                blurredView.alpha = 1
+                checkmarkView.alpha = 1
+            },
+            completion: {(finished: Bool) -> Void in
+                self.delay(2){
+                    UIView.animateWithDuration(
+                        duration,
+                        delay: 0,
+                        options: [],
+                        animations: {
+                            blurredView.alpha = 0
+                            checkmarkView.alpha = 0
+                        },
+                        completion: {(finished: Bool) -> Void in
+                            blurredView.removeFromSuperview()
+                            checkmarkView.removeFromSuperview()
+                            self.setUpLevel()
+                            if self.controller.level != nil{
+                                self.header?.levelBadge!.update(self.controller.level!)
+                                self.view.layoutSubviews()
+                            }
+                    
+                    })
+                }
+            })
+        }
     
     
     
