@@ -19,10 +19,14 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         super.init(coder: aDecoder)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tabBar = self.tabBarController as! MootTabBarController
+        tabBar.removeCameraButton()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Set top constraint
         let headerHeight = ScreenHeight * 0.15
         let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!

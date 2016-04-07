@@ -14,6 +14,11 @@ class LevelCompletedViewController: MootViewController {
 
     var sender: UIViewController?
     
+    override func viewWillAppear(animated: Bool) {
+        let tabBar = self.tabBarController as! MootTabBarController
+        tabBar.removeCameraButton()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

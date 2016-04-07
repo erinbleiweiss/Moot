@@ -19,6 +19,11 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         super.init(coder: aDecoder)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let tabBar = self.tabBarController as! MootTabBarController
+        tabBar.removeCameraButton()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
