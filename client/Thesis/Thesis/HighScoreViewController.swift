@@ -34,13 +34,14 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         
         
         let header = UIView(frame: CGRectMake(0, 0, ScreenWidth, headerHeight))
-        header.backgroundColor = mootBackground
+        header.backgroundColor = mootBlack
         self.view.addSubview(header)
         
         let headerLabel = UILabel(frame: header.frame)
         headerLabel.text = "High Scores"
-        headerLabel.font = UIFont(name: (headerLabel.font?.familyName)!, size: 30 * scale)
+        headerLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30 * scale)
         headerLabel.textAlignment = .Center
+        headerLabel.textColor = UIColor.whiteColor()
         header.addSubview(headerLabel)
         
         self.controller.getHighScores(){ responseObject, error in
