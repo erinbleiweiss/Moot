@@ -9,7 +9,6 @@
 import UIKit
 
 class EmoticonParticleView: UIView {
-
     
     // MARK: Particles
     var emoticons: [String]
@@ -23,7 +22,7 @@ class EmoticonParticleView: UIView {
         
         let label = UILabel (frame: CGRectMake(0, 0, 100, 30))
         label.text = string
-        label.font = Raleway.Bold.withSize(20)
+        label.font = Raleway.Bold.withSize(30)
         label.textColor = color
         label.textAlignment = .Center
         
@@ -39,7 +38,7 @@ class EmoticonParticleView: UIView {
         var cells: [CAEmitterCell] = []
         
         // increase particle frequency
-        for _ in 0...5 {
+        for _ in 0...20 {
             emoticons.append(emoticons[0])
         }
         
