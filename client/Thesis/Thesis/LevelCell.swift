@@ -11,6 +11,7 @@ import UIKit
 class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
     var level: Level?
     var levelLabel: UILabel!
+    var lockView: UIImageView!
     var VC: UIViewController?
     
     override init(frame: CGRect) {
@@ -40,17 +41,31 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         } else {
             self.levelLabel.text = String(level.getLevelNum())
             self.levelLabel.sizeLabel()
+
+        }
+    }
+    
+    override func prepareForReuse() {
+        if self.levelLabel != nil {
+            self.levelLabel.text = ""
+            self.setNeedsDisplay()
+        }
+        if self.lockView != nil {
+            self.lockView.removeFromSuperview()
+            self.lockView = UIImageView(frame: CGRectMake(0, 0, 0, 0))
+            self.addSubview(lockView)
+            self.setNeedsDisplay()
         }
     }
  
     
     func displayLock(){
-        let lockView = UIImageView(image: UIImage(named: "lock"))
+        self.lockView = UIImageView(image: UIImage(named: "lock"))
         let dim = self.bounds.width / 2
         let x = self.bounds.width/2 - dim/2
         let y = self.bounds.height/2 - dim/2
-        lockView.frame = CGRectMake(x, y, dim, dim)
-        self.addSubview(lockView)
+        self.lockView.frame = CGRectMake(x, y, dim, dim)
+        self.addSubview(self.lockView)
     }
     
     func transitionViewForCell() -> UIView! {

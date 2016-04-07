@@ -61,6 +61,8 @@ class MazeLevelViewController: GenericLevelViewController {
         
         if self.controller.level != nil {
             self.header?.levelBadge!.update(self.controller.level!)
+            LevelManager.sharedInstance.loadLevels()
+            self.controller.refreshData()
             self.view.layoutSubviews()
         }
         
@@ -70,6 +72,8 @@ class MazeLevelViewController: GenericLevelViewController {
     override func viewDidAppear(animated: Bool) {
         if self.controller.level != nil {
             self.header?.levelBadge!.update(self.controller.level!)
+            LevelManager.sharedInstance.loadLevels()
+            self.controller.refreshData()
             self.view.layoutSubviews()
         }
     }
