@@ -11,22 +11,43 @@ import UIKit
 class AchievementViewController: MootViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    let scale: CGFloat = ScreenWidth / 320
+
     let controller: AchievementDataController
     required init?(coder aDecoder: NSCoder) {
         controller = AchievementDataController()
         super.init(coder: aDecoder)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gameView = UIView(frame: CGRectMake(0, -200, ScreenWidth, ScreenHeight))
-        self.view.addSubview(gameView)
-        self.controller.gameView = gameView
+
+        // Set top constraint
+        let headerHeight = ScreenHeight * 0.15
+        let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
+        let tableViewHeight = ScreenHeight - headerHeight - tabBarHeight
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: tableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: headerHeight).active = true
+        NSLayoutConstraint(item: tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: tableViewHeight).active = true
         
         tableView.delegate = self
         tableView.dataSource = self
 
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        let header = UIView(frame: CGRectMake(0, 0, ScreenWidth, headerHeight))
+        header.backgroundColor = mootBlack
+        self.view.addSubview(header)
+        
+        let headerLabel = UILabel(frame: header.frame)
+        headerLabel.text = "Achievements"
+        headerLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30 * scale)
+        headerLabel.textAlignment = .Center
+        headerLabel.textColor = UIColor.whiteColor()
+        header.addSubview(headerLabel)
+        
+        
         self.controller.getAchievements(){ responseObject, error in
             self.tableView.reloadData()
         }
@@ -64,6 +85,12 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("AchievementCell", forIndexPath: indexPath) as! AchievementTableViewCell
+        
+        if ((indexPath.row % 2) == 0) {
+            cell.backgroundColor = UIColor.whiteColor()
+        } else {
+            cell.backgroundColor = mootBackground
+        }
         
         let achievement = self.controller.allAchievements[indexPath.row]
         if achievement.isEarned(){

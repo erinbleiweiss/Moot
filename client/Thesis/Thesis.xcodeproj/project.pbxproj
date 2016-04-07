@@ -25,7 +25,6 @@
 		8024808E1CACAD9B00204F82 /* GeoDDRLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
 		802769D71CB4D518000F23B7 /* MootTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769D61CB4D518000F23B7 /* MootTextField.swift */; };
-		802769D91CB4E096000F23B7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769D81CB4E096000F23B7 /* SettingsViewController.swift */; };
 		802769DB1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */; };
 		802769DD1CB4E145000F23B7 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769DC1CB4E145000F23B7 /* HelpViewController.swift */; };
 		802769DF1CB4E1C1000F23B7 /* SettingsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769DE1CB4E1C1000F23B7 /* SettingsTabViewController.swift */; };
@@ -69,6 +68,7 @@
 		80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E4A01C96338A002761D8 /* PopUpViewController.xib */; };
 		80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */; };
 		80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */; };
+		80BB26E31CB6038900C6EB3D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */; };
 		80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */; };
 		80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */; };
 		80CBB5BD1C79926400D705A7 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBB5BC1C79926400D705A7 /* ScoreManager.swift */; };
@@ -134,7 +134,6 @@
 		8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRLevelViewController.swift; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		802769D61CB4D518000F23B7 /* MootTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootTextField.swift; sourceTree = "<group>"; };
-		802769D81CB4E096000F23B7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		802769DC1CB4E145000F23B7 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		802769DE1CB4E1C1000F23B7 /* SettingsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTabViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +177,7 @@
 		80B6E4A01C96338A002761D8 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewControllerSwift.swift; sourceTree = "<group>"; };
 		80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageCompletedViewController.swift; sourceTree = "<group>"; };
+		80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewController.swift; sourceTree = "<group>"; };
 		80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraTabButton.swift; sourceTree = "<group>"; };
 		80CBB5BC1C79926400D705A7 /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
@@ -249,8 +249,8 @@
 			children = (
 				802769DE1CB4E1C1000F23B7 /* SettingsTabViewController.swift */,
 				802769DC1CB4E145000F23B7 /* HelpViewController.swift */,
-				802769D81CB4E096000F23B7 /* SettingsViewController.swift */,
 				802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */,
+				80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -655,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8024808C1CACAD3400204F82 /* GeoDDRGameController.swift in Sources */,
+				80BB26E31CB6038900C6EB3D /* SettingsTableViewController.swift in Sources */,
 				809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */,
 				8024807E1CAB690700204F82 /* ColorExtensions.swift in Sources */,
 				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
@@ -683,7 +684,6 @@
 				80CBB5BD1C79926400D705A7 /* ScoreManager.swift in Sources */,
 				80B195051BF56C4500B5C3CE /* HangmanGameController.swift in Sources */,
 				80AE2AE31CA8D49D0033E48D /* LevelNavController.swift in Sources */,
-				802769D91CB4E096000F23B7 /* SettingsViewController.swift in Sources */,
 				804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */,
 				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
 				80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */,
