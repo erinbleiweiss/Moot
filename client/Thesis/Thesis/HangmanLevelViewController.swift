@@ -69,6 +69,7 @@ class HangmanLevelViewController: GenericLevelViewController {
 
     */
     override func setUpLevel(){
+        self.controller.refreshData()
         // Initial load, no target word
         if (self.controller.hangmanData.getTargetWord() == "") {
             // Generate target word
@@ -94,6 +95,10 @@ class HangmanLevelViewController: GenericLevelViewController {
                 
             }
             
+        }
+        if self.controller.level != nil {
+            self.header?.levelBadge!.update(self.controller.level!)
+            self.view.layoutSubviews()
         }
     }
     
@@ -176,8 +181,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                 
                 let points_earned = responseObject!["points_earned"]
                 self.particles = ["+\(points_earned)"]
-                self.updateMootPoints()                
-                self.controller.refreshData()
+                self.updateMootPoints()
             }
         }
     }

@@ -12,6 +12,7 @@ import SwiftyJSON
 import SCLAlertView
 import Social
 import FBSDKShareKit
+import DynamicColor
 
 class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol, FBSDKSharingDelegate {
 
@@ -142,20 +143,32 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     }
    
     /**
-        Transition to the "Stage completed" controller, then prepare for new level:
+        Display "stage completed" view then prepare for new level:
             - Clear scanned UPC value and target word
             - Set up level with new word
-     
-        Note that a segue must be created in the storyboard from the level's root navigation controller to the "Stage Complete" view controller
      */
     func displayStageCompletionView(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let successVC = storyboard.instantiateViewControllerWithIdentifier("StageCompleteVC")
-        self.presentViewController(successVC, animated: false, completion: nil)
-        self.setUpLevel()
-        if self.controller.level != nil {
-            self.header?.levelBadge!.update(self.controller.level!)
+        
+        let blurredView = self.view.createBlurredView()
+        self.view.addSubview(blurredView)
+        
+        let checkmarkView = UIImageView(image: UIImage(named: "checkmark")?.imageWithColor(mootColors["green"]!.saturatedColor()))
+        let size = ScreenWidth * 0.75
+        let x = (ScreenWidth / 2) - (size / 2)
+        let y = (ScreenHeight / 2) - (size / 2)
+        checkmarkView.frame = CGRectMake(x, y, size, size)
+        self.view.addSubview(checkmarkView)
+        
+        self.delay(1.5){
+            blurredView.removeFromSuperview()
+            checkmarkView.removeFromSuperview()
+            self.setUpLevel()
+            if self.controller.level != nil{
+                self.header?.levelBadge!.update(self.controller.level!)
+                self.view.layoutSubviews()
+            }
         }
+
     }
     
     
