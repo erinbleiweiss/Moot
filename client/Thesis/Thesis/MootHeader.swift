@@ -21,13 +21,14 @@ class MootHeader: UIView {
         let subviewHeight = self.bounds.height/2
         let subviewWidth = self.bounds.width/2
         
-        let mootLogo = UIImageView(image: UIImage(named: "moot_logo"))
-        let height = self.frame.height * 0.2
-        let scale = height / mootLogo.frame.height
-        let width = scale * mootLogo.frame.width
-        var x = (ScreenWidth / 2) - (width / 2)
-        var y = StatusBarHeight * 1.25
-        mootLogo.frame = CGRectMake(x, y, width, height)
+        let height = self.frame.height * 0.3
+        var x: CGFloat = 0
+        var y: CGFloat = 10
+        let mootLogo = UILabel(frame: CGRectMake(x, y, ScreenWidth, height * 2))
+        mootLogo.text = "Moot"
+        mootLogo.font = Raleway.Black.withSize(height)
+        mootLogo.textColor = UIColor.whiteColor()
+        mootLogo.textAlignment = .Center
         self.addSubview(mootLogo)
         
         let scoreBoxFrame = CGRect(x: 0, y: self.bounds.height - subviewHeight, width: subviewWidth, height: subviewHeight)
