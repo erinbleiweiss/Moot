@@ -21,14 +21,27 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set top constraint
+        let headerHeight = ScreenHeight * 0.15
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: tableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: headerHeight).active = true
 
-        let header = ScreenHeight * 0.25
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
-        tableView.frame = CGRectMake(0, header, ScreenWidth, ScreenHeight - header)
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
-//        self.tableView.registerClass(ScoreTableViewCell.self, forCellReuseIdentifier: "HighScoreCell")
+        
+        let header = UIView(frame: CGRectMake(0, 0, ScreenWidth, headerHeight))
+        header.backgroundColor = mootBackground
+        self.view.addSubview(header)
+        
+        let headerLabel = UILabel(frame: header.frame)
+        headerLabel.text = "High Scores"
+        headerLabel.font = UIFont(name: (headerLabel.font?.familyName)!, size: 30 * scale)
+        headerLabel.textAlignment = .Center
+        header.addSubview(headerLabel)
         
         self.controller.getHighScores(){ responseObject, error in
             self.tableView.reloadData()
@@ -59,9 +72,15 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("HighScoreCell", forIndexPath: indexPath) as! ScoreTableViewCell
         
+        if ((indexPath.row % 2) == 0) {
+            cell.backgroundColor = UIColor.whiteColor()
+        } else {
+            cell.backgroundColor = mootBackground
+        }
+        
         let scoreInfo = self.controller.highScores[indexPath.row]
 
-        cell.numberLabel.text = ("\(indexPath.row + 1))")
+        cell.numberLabel.text = ("\(indexPath.row + 1).")
         cell.nameLabel.text = (scoreInfo.getName())
         
         let numberFormatter = NSNumberFormatter()
