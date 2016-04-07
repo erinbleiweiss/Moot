@@ -42,7 +42,7 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         
         let headerLabel = UILabel(frame: header.frame)
         headerLabel.text = "Achievements"
-        headerLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30 * scale)
+        headerLabel.font = Raleway.Regular.withSize(30 * scale)
         headerLabel.textAlignment = .Center
         headerLabel.textColor = UIColor.whiteColor()
         header.addSubview(headerLabel)
