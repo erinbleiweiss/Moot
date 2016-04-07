@@ -41,6 +41,15 @@
 		804EF55B1BEFEDA00091ED22 /* QRTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55A1BEFEDA00091ED22 /* QRTile.swift */; };
 		804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804EF55C1BF001580091ED22 /* QRTileTarget.swift */; };
 		805066261CB6355800C9C081 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066251CB6355800C9C081 /* UIViewExtensions.swift */; };
+		805066311CB6435700C9C081 /* Raleway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066301CB6435700C9C081 /* Raleway.swift */; };
+		805066321CB64A9500C9C081 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 805066281CB642AE00C9C081 /* Raleway-Black.ttf */; };
+		805066331CB64A9900C9C081 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 805066291CB642AE00C9C081 /* Raleway-Bold.ttf */; };
+		805066341CB64A9900C9C081 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662A1CB642AE00C9C081 /* Raleway-ExtraBold.ttf */; };
+		805066351CB64A9900C9C081 /* Raleway-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662B1CB642AE00C9C081 /* Raleway-ExtraLight.ttf */; };
+		805066361CB64A9900C9C081 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662C1CB642AE00C9C081 /* Raleway-Light.ttf */; };
+		805066371CB64A9900C9C081 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662D1CB642AE00C9C081 /* Raleway-Medium.ttf */; };
+		805066381CB64A9900C9C081 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662E1CB642AE00C9C081 /* Raleway-Regular.ttf */; };
+		805066391CB64A9900C9C081 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
@@ -151,6 +160,15 @@
 		804EF55A1BEFEDA00091ED22 /* QRTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTile.swift; sourceTree = "<group>"; };
 		804EF55C1BF001580091ED22 /* QRTileTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRTileTarget.swift; sourceTree = "<group>"; };
 		805066251CB6355800C9C081 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		805066281CB642AE00C9C081 /* Raleway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Black.ttf"; sourceTree = "<group>"; };
+		805066291CB642AE00C9C081 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		8050662A1CB642AE00C9C081 /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8050662B1CB642AE00C9C081 /* Raleway-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraLight.ttf"; sourceTree = "<group>"; };
+		8050662C1CB642AE00C9C081 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
+		8050662D1CB642AE00C9C081 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		8050662E1CB642AE00C9C081 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		805066301CB6435700C9C081 /* Raleway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Raleway.swift; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +308,21 @@
 			name = "Level Game Controllers";
 			sourceTree = "<group>";
 		};
+		805066271CB6427D00C9C081 /* Raleway */ = {
+			isa = PBXGroup;
+			children = (
+				805066281CB642AE00C9C081 /* Raleway-Black.ttf */,
+				805066291CB642AE00C9C081 /* Raleway-Bold.ttf */,
+				8050662A1CB642AE00C9C081 /* Raleway-ExtraBold.ttf */,
+				8050662B1CB642AE00C9C081 /* Raleway-ExtraLight.ttf */,
+				8050662C1CB642AE00C9C081 /* Raleway-Light.ttf */,
+				8050662D1CB642AE00C9C081 /* Raleway-Medium.ttf */,
+				8050662E1CB642AE00C9C081 /* Raleway-Regular.ttf */,
+				8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */,
+			);
+			name = Raleway;
+			sourceTree = "<group>";
+		};
 		80A5B5B01CA500280074B48D /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +372,7 @@
 			children = (
 				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
 				80B0EABE1BE7030800639ADC /* Anonymous.ttf */,
+				805066271CB6427D00C9C081 /* Raleway */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -381,6 +415,7 @@
 				80ED1F071BB25A400011A410 /* AppDelegate.swift */,
 				80B195021BF5685F00B5C3CE /* Config.swift */,
 				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
+				805066301CB6435700C9C081 /* Raleway.swift */,
 				80ED1F0B1BB25A400011A410 /* Main.storyboard */,
 				802369461C73BEDE00840D30 /* LevelPicker.xib */,
 				80F0DD551C5EEE19002A8037 /* Levels */,
@@ -581,14 +616,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				805066391CB64A9900C9C081 /* Raleway-SemiBold.ttf in Resources */,
 				80B6E4A21C96338A002761D8 /* PopUpViewController_iPad.xib in Resources */,
+				805066331CB64A9900C9C081 /* Raleway-Bold.ttf in Resources */,
+				805066351CB64A9900C9C081 /* Raleway-ExtraLight.ttf in Resources */,
 				80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */,
 				80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */,
 				802480881CACAA3000204F82 /* Info.plist in Resources */,
+				805066361CB64A9900C9C081 /* Raleway-Light.ttf in Resources */,
+				805066371CB64A9900C9C081 /* Raleway-Medium.ttf in Resources */,
+				805066341CB64A9900C9C081 /* Raleway-ExtraBold.ttf in Resources */,
 				80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */,
 				80B6E4A31C96338A002761D8 /* PopUpViewController_iPhone6.xib in Resources */,
 				801E76D51C6805D40077A379 /* level1.plist in Resources */,
+				805066381CB64A9900C9C081 /* Raleway-Regular.ttf in Resources */,
+				805066321CB64A9500C9C081 /* Raleway-Black.ttf in Resources */,
 				802369471C73BEDE00840D30 /* LevelPicker.xib in Resources */,
 				80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */,
 				80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */,
@@ -679,6 +722,7 @@
 				809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */,
 				8008EBA91BDB40D6003F038E /* HangmanCameraViewController.swift in Sources */,
 				801590F21C7FC7F50011872B /* UIMaterialTextField.swift in Sources */,
+				805066311CB6435700C9C081 /* Raleway.swift in Sources */,
 				805066261CB6355800C9C081 /* UIViewExtensions.swift in Sources */,
 				80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */,
 				8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */,
