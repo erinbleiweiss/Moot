@@ -50,6 +50,7 @@
 		805066371CB64A9900C9C081 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662D1CB642AE00C9C081 /* Raleway-Medium.ttf */; };
 		805066381CB64A9900C9C081 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662E1CB642AE00C9C081 /* Raleway-Regular.ttf */; };
 		805066391CB64A9900C9C081 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */; };
+		8050663B1CB64C4E00C9C081 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
@@ -169,6 +170,7 @@
 		8050662E1CB642AE00C9C081 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		805066301CB6435700C9C081 /* Raleway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Raleway.swift; sourceTree = "<group>"; };
+		8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -311,14 +313,15 @@
 		805066271CB6427D00C9C081 /* Raleway */ = {
 			isa = PBXGroup;
 			children = (
-				805066281CB642AE00C9C081 /* Raleway-Black.ttf */,
-				805066291CB642AE00C9C081 /* Raleway-Bold.ttf */,
-				8050662A1CB642AE00C9C081 /* Raleway-ExtraBold.ttf */,
+				8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */,
 				8050662B1CB642AE00C9C081 /* Raleway-ExtraLight.ttf */,
 				8050662C1CB642AE00C9C081 /* Raleway-Light.ttf */,
-				8050662D1CB642AE00C9C081 /* Raleway-Medium.ttf */,
 				8050662E1CB642AE00C9C081 /* Raleway-Regular.ttf */,
+				8050662D1CB642AE00C9C081 /* Raleway-Medium.ttf */,
 				8050662F1CB642AE00C9C081 /* Raleway-SemiBold.ttf */,
+				805066291CB642AE00C9C081 /* Raleway-Bold.ttf */,
+				805066281CB642AE00C9C081 /* Raleway-Black.ttf */,
+				8050662A1CB642AE00C9C081 /* Raleway-ExtraBold.ttf */,
 			);
 			name = Raleway;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				805066331CB64A9900C9C081 /* Raleway-Bold.ttf in Resources */,
 				805066351CB64A9900C9C081 /* Raleway-ExtraLight.ttf in Resources */,
 				80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */,
+				8050663B1CB64C4E00C9C081 /* Raleway-Thin.ttf in Resources */,
 				80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */,
 				802480881CACAA3000204F82 /* Info.plist in Resources */,

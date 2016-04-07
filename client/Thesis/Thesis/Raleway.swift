@@ -21,6 +21,7 @@ enum Raleway: String {
     case Medium = "Medium"
     case Regular = "Regular"
     case SemiBold = "SemiBold"
+    case Thin = "Thin"
     
     func withSize(size: CGFloat) -> UIFont {
         if let font = UIFont(name: fullFontName, size: size){

@@ -61,13 +61,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         loginButton.setTitle("Login", forState: UIControlState.Normal)
         loginButton.addTarget(self, action: #selector(LoginViewController.loginButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 50 * scale)
+        loginButton.titleLabel?.font = Raleway.SemiBold.withSize(50 * scale)
         loginButton.backgroundColor = mootBlack
         self.view.addSubview(loginButton)
         
         var y = ScreenHeight * 0.1
         var height = 80 * scale
-        let mootLogo = UILabel(frame: CGRectMake(0, y, ScreenWidth, height))
+        let xOffset = ScreenWidth * 0.01
+        let mootLogo = UILabel(frame: CGRectMake(-xOffset, y, ScreenWidth, height))
         mootLogo.text = "Moot"
         mootLogo.textAlignment = .Center
         mootLogo.font = Raleway.ExtraBold.withSize(80 * scale)
@@ -77,7 +78,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         height = 40 * scale
         let width = ScreenWidth * 0.75
         let x = (ScreenWidth / 2) - (width / 2)
-        y = ScreenHeight * 0.35
+        y = ScreenHeight * 0.4
         self.nameTextField = MootTextField(frame: CGRectMake(x, y, width, height))
         self.nameTextField.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(nameTextField)
@@ -86,7 +87,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIMaterialText
         let nameLabel = UILabel(frame: CGRectMake(x, y, width, height))
         nameLabel.text = "Enter Your Name"
         nameLabel.textAlignment = .Center
-        nameLabel.font = UIFont(name: "HelveticaNeue", size: 16 * scale)
+        nameLabel.font = Raleway.Regular.withSize(16 * scale)
         nameLabel.textColor = UIColor.whiteColor()
         self.view.addSubview(nameLabel)
         
