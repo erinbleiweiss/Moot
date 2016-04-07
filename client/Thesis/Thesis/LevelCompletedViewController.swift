@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 class LevelCompletedViewController: MootViewController {
 
@@ -15,9 +16,51 @@ class LevelCompletedViewController: MootViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.delay(3){
-            self.navigationController?.popToRootViewControllerAnimated(true)
-        }
+        let scale = ScreenWidth / 320
+        
+//        self.delay(3){
+//            self.navigationController?.popToRootViewControllerAnimated(true)
+//        }
+        
+        var x: CGFloat = 0
+        var y: CGFloat = ScreenHeight * 0.15
+        let width = ScreenWidth
+        var height = ScreenHeight * 0.5
+        let mainView = UIView(frame: CGRectMake(x, y, width, height))
+        self.view.addSubview(mainView)
+        
+        x = 0
+        y = 0
+        height = ScreenHeight * 0.25
+        let levelLabel = SpringLabel(frame: CGRectMake(x, y, width, height))
+        levelLabel.text = "Level"
+        levelLabel.textAlignment = .Center
+        levelLabel.font = Raleway.Bold.withSize(50 * scale)
+        mainView.addSubview(levelLabel)
+        
+        y += (height / 2)
+        
+        let completedLabel = SpringLabel(frame: CGRectMake(x, y, width, height))
+        completedLabel.text = "Completed"
+        completedLabel.textAlignment = .Center
+        completedLabel.font = Raleway.Bold.withSize(50 * scale)
+        
+        levelLabel.animation = "squeezeRight"
+        levelLabel.delay = 0.5
+        levelLabel.force = 1.5
+        levelLabel.rotate = 1.5
+        levelLabel.duration = 1.5
+        levelLabel.animateNext({
+            mainView.addSubview(completedLabel)
+            completedLabel.animation = "fadeUp"
+            completedLabel.force = 1.5
+            completedLabel.scaleX = 2.0
+            completedLabel.scaleY = 2.0
+            completedLabel.y = 100.0
+            completedLabel.duration = 1.5
+            completedLabel.animate()
+        })
+        
         
         // Do any additional setup after loading the view.
     }

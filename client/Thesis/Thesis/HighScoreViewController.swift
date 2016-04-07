@@ -42,7 +42,7 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         
         let headerLabel = UILabel(frame: header.frame)
         headerLabel.text = "High Scores"
-        headerLabel.font = Raleway.Regular.withSize(30 * scale)
+        headerLabel.font = Raleway.SemiBold.withSize(30 * scale)
         headerLabel.textAlignment = .Center
         headerLabel.textColor = UIColor.whiteColor()
         header.addSubview(headerLabel)
