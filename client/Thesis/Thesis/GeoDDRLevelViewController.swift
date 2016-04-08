@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import CoreLocation
 import CoreMotion
-import Away
 
 class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDelegate {
 
@@ -119,33 +118,33 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
 //    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-//        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        if !gotLocation{
-            self.originLat = locValue.latitude
-            self.originLong = locValue.longitude
-            self.gotLocation = true
-            
-            let current = CLLocation(latitude: originLat, longitude: originLong)
-            self.destination = Away.buildLocation(0.5, from: current, bearing: 210)
-        }
-        
-        self.currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
-        
-        self.currentLat = locValue.latitude
-        self.currentLong = locValue.longitude
-        
-        
-        let origin = CLLocation(latitude: self.originLat, longitude: self.originLong)
-        
-        self.distanceTraveled = (currentLocation?.distanceFromLocation(origin))!
-        self.testLabel?.text = String(distanceTraveled!)
-        self.testLabel?.layoutSubviews()
-        print(distanceTraveled!)
-
-        // This should match your CLLocationManager()
-        locationManager.stopUpdatingLocation()
-        
+//        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+////        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        if !gotLocation{
+//            self.originLat = locValue.latitude
+//            self.originLong = locValue.longitude
+//            self.gotLocation = true
+//            
+//            let current = CLLocation(latitude: originLat, longitude: originLong)
+//            self.destination = Away.buildLocation(0.5, from: current, bearing: 210)
+//        }
+//        
+//        self.currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+//        
+//        self.currentLat = locValue.latitude
+//        self.currentLong = locValue.longitude
+//        
+//        
+//        let origin = CLLocation(latitude: self.originLat, longitude: self.originLong)
+//        
+//        self.distanceTraveled = (currentLocation?.distanceFromLocation(origin))!
+//        self.testLabel?.text = String(distanceTraveled!)
+//        self.testLabel?.layoutSubviews()
+//        print(distanceTraveled!)
+//
+//        // This should match your CLLocationManager()
+//        locationManager.stopUpdatingLocation()
+//        
         
     }
     
