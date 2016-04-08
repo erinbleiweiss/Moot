@@ -112,25 +112,31 @@ class LoginViewController: UIViewController {
     
     func tryLogin(name: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         
-        let url: String = hostname + rest_prefix + "/login"
-        
-        let uuid = UIDevice.currentDevice().identifierForVendor!.UUIDString
-        let password = get_api_key()
-        let credentialData = "\(uuid):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
-        let base64Credentials = credentialData.base64EncodedStringWithOptions([])
-        let headers = ["Authorization": "Basic \(base64Credentials)"]
-
-        Alamofire.request(.GET, url, parameters: ["name": name], headers: headers)
-            .responseJSON { (_, _, result) in
-            switch result {
-            case .Success(let data):
-                let json = JSON(data)
-                    prefs.setObject(uuid, forKey: "uuid")
-                completionHandler(responseObject: json, error: result.error as? NSError)
-            case .Failure(_):
-                NSLog("Request failed with error: \(result.error)")
-            }
+        if name == "" {
+            let alert = UIAlertController(title: "Name", message: "Please enter your name", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let url: String = hostname + rest_prefix + "/login"
             
+            let uuid = UIDevice.currentDevice().identifierForVendor!.UUIDString
+            let password = get_api_key()
+            let credentialData = "\(uuid):\(password)".dataUsingEncoding(NSUTF8StringEncoding)!
+            let base64Credentials = credentialData.base64EncodedStringWithOptions([])
+            let headers = ["Authorization": "Basic \(base64Credentials)"]
+
+            Alamofire.request(.GET, url, parameters: ["name": name], headers: headers)
+                .responseJSON { (_, _, result) in
+                switch result {
+                case .Success(let data):
+                    let json = JSON(data)
+                        prefs.setObject(uuid, forKey: "uuid")
+                    completionHandler(responseObject: json, error: result.error as? NSError)
+                case .Failure(_):
+                    NSLog("Request failed with error: \(result.error)")
+                }
+                
+            }
         }
         
     }

@@ -26,7 +26,7 @@ class AchievementManager{
     ]
     
     func getImg(title: String) -> String {
-        let imgname = self.imageUrls[title]
+        let imgname = self.imageUrls[title]!
         let imgURL = "\(baseURL)\(imgname)_medal.png"
         return imgURL
     }

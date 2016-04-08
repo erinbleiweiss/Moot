@@ -124,6 +124,24 @@ def login():
     return jsonify(response)
 
 
+@app.route('/v1/edit_name', methods=["POST"])
+def edit_name():
+    logger_header('/edit_name')
+    auth = request.authorization
+    user_id = auth.username
+    name = request.form["name"]
+
+    db = MootDao()
+    try:
+        db.edit_name(user_id, name)
+    except Exception as e:
+        logger.critical("Could not edit name for {0}. Error: {1}".format(
+            user_id, e))
+
+    response = {}
+    response["status"] = SUCCESS
+    return jsonify(response)
+
 @app.route('/v1/get_achievements', methods=["GET"])
 def get_achievements():
     logger_header('/get_achievements')

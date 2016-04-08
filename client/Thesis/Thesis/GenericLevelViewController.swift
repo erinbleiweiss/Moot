@@ -12,11 +12,12 @@ import SwiftyJSON
 import SCLAlertView
 import Social
 import FBSDKCoreKit
-import FBSDKLoginKit
 import FBSDKShareKit
+import SafariServices
 import DynamicColor
+import MGInstagram
 
-class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol {
+class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol, SFSafariViewControllerDelegate, UIDocumentInteractionControllerDelegate {
 
     var header: MootHeader?
     var currentAlertView: SCLAlertView?
@@ -387,8 +388,9 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             let content = FBSDKShareLinkContent()
             content.contentURL = NSURL(string: "http://www.erinbleiweiss.com/moot")
             content.imageURL = NSURL(string: self.achImgUrl!)
-            content.contentTitle = self.achTitle
-            content.contentDescription = "I just earned the '\(self.achTitle)' achievement on Moot"
+            print(self.achImgUrl!)
+            content.contentTitle = self.achTitle!
+            content.contentDescription = "I just earned the '\(self.achTitle!)' achievement on Moot"
             
             let dialog: FBSDKShareDialog = FBSDKShareDialog()
             dialog.fromViewController = self
@@ -411,7 +413,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     @objc func twitterTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let tweetShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            let prewrittenTweet = "I just earned the '\(self.achTitle)' Achievement on Moot http://erinbleiweiss.com/moot"
+            let prewrittenTweet = "I just earned the '\(self.achTitle!)' Achievement on Moot http://erinbleiweiss.com/moot"
             // Set the note text as the default post message.
             if prewrittenTweet.characters.count <= 140 {
                 tweetShare.setInitialText(prewrittenTweet)
@@ -430,13 +432,57 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     }
     
     @objc func googleplusTapped(btn: UIButton){
-        print("my custom google plus button tapped")
+        // Construct the Google+ share URL
+//        let shareURL = NSURL(string: "http://www.erinbleiweiss.com/moot")
+        let urlComponents: NSURLComponents = NSURLComponents(string: "https://plus.google.com/share")!
+//        urlComponents.queryItems = [NSURLQueryItem(name: "url", value: shareURL!.absoluteString)]
+        let url: NSURL = urlComponents.URL!
+        if #available(iOS 9.0, *) {
+            // Open the URL in SFSafariViewController (iOS 9+)
+            let controller: SFSafariViewController = SFSafariViewController(URL: url)
+            controller.delegate = self
+            self.presentViewController(controller, animated: true, completion: { _ in })
+        } else {
+            // Open the URL in the device's browser
+            UIApplication.sharedApplication().openURL(url)
+        }
+
     }
     
     @objc func instagramTapped(btn: UIButton){
-        print("my custom instagram button tapped")
+        let image: UIImage = self.getScreenshot()
+
+        let instagramURL = NSURL(string: "instagram://app")
+        
+        if (UIApplication.sharedApplication().canOpenURL(instagramURL!)) {
+//            let imageData = UIImageJPEGRepresentation(image, 100)
+//            let captionString = achTitle!
+//            let writePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("instagram.igo")
+//            if imageData?.writeToFile(writePath, atomically: true) == false {
+//                return
+//            } else {
+//                let fileURL = NSURL(fileURLWithPath: writePath)
+//                let documentController = UIDocumentInteractionController(URL: fileURL)
+//                documentController.delegate = self
+//                documentController.UTI = "com.instagram.exlusivegram"
+//                documentController.annotation = NSDictionary(object: captionString, forKey: "InstagramCaption")
+//                documentController.presentOpenInMenuFromRect(self.view.frame, inView: self.view, animated: true)
+//            }
+        } else {
+            print(" Instagram isn't installed ")
+        }
+        
     }
     
+    
+    func getScreenshot() -> UIImage! {
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
+        self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
     
     /*
     // MARK: - Navigation

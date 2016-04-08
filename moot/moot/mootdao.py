@@ -205,3 +205,11 @@ class MootDao(Base):
                 d["uuid"] = row[3]
                 scores.append(d)
             return scores
+
+    def edit_name(self, user_id, name):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('update gameuser set name=%s where user_id=%s')
+            c.execute(cmd, (name, user_id))
+            conn.commit()
