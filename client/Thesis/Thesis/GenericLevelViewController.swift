@@ -411,17 +411,16 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     @objc func twitterTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let tweetShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-//            let prewrittenTweet = self.currentAlertView!.labelTitle.text
-//            print("Prewritten tweet: \(prewrittenTweet)")
-//            // Set the note text as the default post message.
-//            if prewrittenTweet?.characters.count <= 140 {
-//                tweetShare.setInitialText(prewrittenTweet)
-//            }
-//            else {
-//                let index = prewrittenTweet!.startIndex.advancedBy(140)
-//                let subText = prewrittenTweet!.substringToIndex(index)
-//                tweetShare.setInitialText(subText)
-//            }
+            let prewrittenTweet = "I just earned the '\(self.achTitle)' Achievement on Moot http://erinbleiweiss.com/moot"
+            // Set the note text as the default post message.
+            if prewrittenTweet.characters.count <= 140 {
+                tweetShare.setInitialText(prewrittenTweet)
+            }
+            else {
+                let index = prewrittenTweet.startIndex.advancedBy(140)
+                let subText = prewrittenTweet.substringToIndex(index)
+                tweetShare.setInitialText(subText)
+            }
             self.presentViewController(tweetShare, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to tweet.", preferredStyle: UIAlertControllerStyle.Alert)
