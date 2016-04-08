@@ -21,6 +21,7 @@ class LevelCell: UICollectionViewCell, FlipTransitionCellProtocol {
         let y = (self.bounds.height / 2) - (frame.height / 2)
         self.levelLabel = UILabel(frame: CGRectMake(x, y, frame.width, frame.height))
         self.levelLabel.textAlignment = NSTextAlignment.Center
+        self.levelLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 64)
         self.levelLabel.textColor = UIColor.whiteColor()
         self.addSubview(levelLabel)
     }

@@ -213,3 +213,12 @@ class MootDao(Base):
             cmd = ('update gameuser set name=%s where user_id=%s')
             c.execute(cmd, (name, user_id))
             conn.commit()
+
+    def get_name(self, user_id):
+        conn = self.get_db()
+        with conn:
+            c = conn.cursor()
+            cmd = ('select name from gameuser where user_id=%s')
+            c.execute(cmd, (user_id,))
+            name = c.fetchone()[0]
+        return name

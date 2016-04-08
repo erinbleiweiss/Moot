@@ -21,4 +21,10 @@ extension String {
     subscript (r: Range<Int>) -> String {
         return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
     }
+    
+}
+
+extension String
+{
+
 }

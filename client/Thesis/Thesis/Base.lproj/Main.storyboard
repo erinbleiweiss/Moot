@@ -119,20 +119,7 @@
                     <view key="view" contentMode="scaleToFill" id="p2A-kY-jtd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYD-1M-KFp">
-                                <rect key="frame" x="281" y="190" width="39" height="30"/>
-                                <state key="normal" title="STOP"/>
-                                <connections>
-                                    <action selector="displayAlert:" destination="EdB-94-Zlf" eventType="touchUpInside" id="Lfq-bI-zvU"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="OYD-1M-KFp" firstAttribute="top" secondItem="qds-vC-mdS" secondAttribute="bottom" constant="126" id="lJa-uJ-kd5"/>
-                            <constraint firstItem="OYD-1M-KFp" firstAttribute="centerX" secondItem="p2A-kY-jtd" secondAttribute="centerX" id="pm0-qa-lrv"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jea-ne-11V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -533,17 +520,17 @@
         <scene sceneID="nFW-kn-c9k">
             <objects>
                 <tableViewController storyboardIdentifier="SettingsVC" id="Hla-c1-P5P" customClass="SettingsTableViewController" customModule="Moot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hmb-cC-0Ka">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="hmb-cC-0Ka">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection headerTitle="Edit Name" id="dfS-b3-KlN">
+                            <tableViewSection id="Xsa-hO-d3w">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7M4-Ec-7cJ">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="o0Z-qT-F4r">
+                                        <rect key="frame" x="0.0" y="35" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7M4-Ec-7cJ" id="kUw-7z-yMs">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o0Z-qT-F4r">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -557,12 +544,12 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="editNameCell" destination="7M4-Ec-7cJ" id="XjA-BB-pO9"/>
+                        <outlet property="tableView" destination="hmb-cC-0Ka" id="ZCK-t1-HT0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqa-cX-CHL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5103" y="-1821"/>
+            <point key="canvasLocation" x="4294" y="-486"/>
         </scene>
         <!--Help View Controller-->
         <scene sceneID="Z2E-j9-bkz">
@@ -580,7 +567,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9SV-rx-2VJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5099" y="-1155"/>
+            <point key="canvasLocation" x="5631" y="-480"/>
         </scene>
         <!--Privacy Policy View Controller-->
         <scene sceneID="K4N-Xi-C80">
@@ -598,7 +585,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HPX-ds-ggi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4294" y="-480"/>
+            <point key="canvasLocation" x="4962" y="-480"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="b5R-zU-jys">

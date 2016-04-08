@@ -15,7 +15,6 @@
 		801590EC1C7FC0A70011872B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801590EB1C7FC0A70011872B /* LoginViewController.swift */; };
 		801590F21C7FC7F50011872B /* UIMaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801590F11C7FC7F50011872B /* UIMaterialTextField.swift */; };
 		801E76D51C6805D40077A379 /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E76D41C6805D40077A379 /* level1.plist */; };
-		802369471C73BEDE00840D30 /* LevelPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802369461C73BEDE00840D30 /* LevelPicker.xib */; };
 		8024807E1CAB690700204F82 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024807D1CAB690700204F82 /* ColorExtensions.swift */; };
 		802480841CACA91F00204F82 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802480811CACA91F00204F82 /* FBSDKCoreKit.framework */; };
 		802480851CACA91F00204F82 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802480821CACA91F00204F82 /* FBSDKLoginKit.framework */; };
@@ -54,6 +53,7 @@
 		8050663D1CB6534D00C9C081 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050663C1CB6534D00C9C081 /* FadeTransition.swift */; };
 		805066411CB672A700C9C081 /* EmoticonParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066401CB672A700C9C081 /* EmoticonParticleView.swift */; };
 		805066451CB6FFAD00C9C081 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066441CB6FFAD00C9C081 /* File.swift */; };
+		8050664C1CB7C77900C9C081 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050664B1CB7C77900C9C081 /* Timer.swift */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
@@ -76,11 +76,6 @@
 		80B195031BF5685F00B5C3CE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195021BF5685F00B5C3CE /* Config.swift */; };
 		80B195051BF56C4500B5C3CE /* HangmanGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195041BF56C4500B5C3CE /* HangmanGameController.swift */; };
 		80B195081BF56CD900B5C3CE /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B195071BF56CD900B5C3CE /* Level.swift */; };
-		80B6E4A21C96338A002761D8 /* PopUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E49D1C96338A002761D8 /* PopUpViewController_iPad.xib */; };
-		80B6E4A31C96338A002761D8 /* PopUpViewController_iPhone6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E49E1C96338A002761D8 /* PopUpViewController_iPhone6.xib */; };
-		80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */; };
-		80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B6E4A01C96338A002761D8 /* PopUpViewController.xib */; };
-		80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */; };
 		80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */; };
 		80BB26E31CB6038900C6EB3D /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */; };
 		80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */; };
@@ -138,7 +133,6 @@
 		801590EB1C7FC0A70011872B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		801590F11C7FC7F50011872B /* UIMaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMaterialTextField.swift; sourceTree = "<group>"; };
 		801E76D41C6805D40077A379 /* level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level1.plist; sourceTree = "<group>"; };
-		802369461C73BEDE00840D30 /* LevelPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LevelPicker.xib; sourceTree = "<group>"; };
 		8024807D1CAB690700204F82 /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		802480811CACA91F00204F82 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		802480821CACA91F00204F82 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -178,6 +172,7 @@
 		805066401CB672A700C9C081 /* EmoticonParticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonParticleView.swift; sourceTree = "<group>"; };
 		805066441CB6FFAD00C9C081 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		8050664A1CB7796E00C9C081 /* Thesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thesis-Bridging-Header.h"; sourceTree = "<group>"; };
+		8050664B1CB7C77900C9C081 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -200,11 +195,6 @@
 		80B195021BF5685F00B5C3CE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		80B195041BF56C4500B5C3CE /* HangmanGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = HangmanGameController.swift; sourceTree = "<group>"; };
 		80B195071BF56CD900B5C3CE /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
-		80B6E49D1C96338A002761D8 /* PopUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPad.xib; sourceTree = "<group>"; };
-		80B6E49E1C96338A002761D8 /* PopUpViewController_iPhone6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6.xib; sourceTree = "<group>"; };
-		80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6Plus.xib; sourceTree = "<group>"; };
-		80B6E4A01C96338A002761D8 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
-		80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewControllerSwift.swift; sourceTree = "<group>"; };
 		80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageCompletedViewController.swift; sourceTree = "<group>"; };
 		80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		80BE27E61BDC3580000E9F6C /* GenericLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelViewController.swift; sourceTree = "<group>"; };
@@ -390,18 +380,6 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
-		80B6E4921C963344002761D8 /* NMPopUpView */ = {
-			isa = PBXGroup;
-			children = (
-				80B6E49D1C96338A002761D8 /* PopUpViewController_iPad.xib */,
-				80B6E49E1C96338A002761D8 /* PopUpViewController_iPhone6.xib */,
-				80B6E49F1C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib */,
-				80B6E4A01C96338A002761D8 /* PopUpViewController.xib */,
-				80B6E4A11C96338A002761D8 /* PopUpViewControllerSwift.swift */,
-			);
-			name = NMPopUpView;
-			sourceTree = "<group>";
-		};
 		80ED1EF91BB25A400011A410 = {
 			isa = PBXGroup;
 			children = (
@@ -430,13 +408,11 @@
 				80131A8D1BD2F1E6004D1247 /* Networking.swift */,
 				805066301CB6435700C9C081 /* Raleway.swift */,
 				80ED1F0B1BB25A400011A410 /* Main.storyboard */,
-				802369461C73BEDE00840D30 /* LevelPicker.xib */,
 				80F0DD551C5EEE19002A8037 /* Levels */,
 				80AE504A1CA5EF6B00050457 /* Extensions */,
 				80A5B5B01CA500280074B48D /* Animations */,
 				80F0DD541C5EEDEE002A8037 /* Classes */,
 				80B0EABD1BE702CE00639ADC /* Assets */,
-				80B6E4921C963344002761D8 /* NMPopUpView */,
 				80ED1F101BB25A400011A410 /* LaunchScreen.xib */,
 				80ED1F051BB25A400011A410 /* Supporting Files */,
 			);
@@ -481,6 +457,7 @@
 				801590F11C7FC7F50011872B /* UIMaterialTextField.swift */,
 				802769D61CB4D518000F23B7 /* MootTextField.swift */,
 				802769E11CB4ECF7000F23B7 /* Score.swift */,
+				8050664B1CB7C77900C9C081 /* Timer.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -631,23 +608,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				805066391CB64A9900C9C081 /* Raleway-SemiBold.ttf in Resources */,
-				80B6E4A21C96338A002761D8 /* PopUpViewController_iPad.xib in Resources */,
 				805066331CB64A9900C9C081 /* Raleway-Bold.ttf in Resources */,
 				805066351CB64A9900C9C081 /* Raleway-ExtraLight.ttf in Resources */,
-				80B6E4A51C96338A002761D8 /* PopUpViewController.xib in Resources */,
 				8050663B1CB64C4E00C9C081 /* Raleway-Thin.ttf in Resources */,
-				80B6E4A41C96338A002761D8 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				80B0EAC01BE7031400639ADC /* Anonymous.ttf in Resources */,
 				802480881CACAA3000204F82 /* Info.plist in Resources */,
 				805066361CB64A9900C9C081 /* Raleway-Light.ttf in Resources */,
 				805066371CB64A9900C9C081 /* Raleway-Medium.ttf in Resources */,
 				805066341CB64A9900C9C081 /* Raleway-ExtraBold.ttf in Resources */,
 				80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */,
-				80B6E4A31C96338A002761D8 /* PopUpViewController_iPhone6.xib in Resources */,
 				801E76D51C6805D40077A379 /* level1.plist in Resources */,
 				805066381CB64A9900C9C081 /* Raleway-Regular.ttf in Resources */,
 				805066321CB64A9500C9C081 /* Raleway-Black.ttf in Resources */,
-				802369471C73BEDE00840D30 /* LevelPicker.xib in Resources */,
 				80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */,
 				80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */,
 			);
@@ -715,6 +687,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8050664C1CB7C77900C9C081 /* Timer.swift in Sources */,
 				8024808C1CACAD3400204F82 /* GeoDDRGameController.swift in Sources */,
 				80BB26E31CB6038900C6EB3D /* SettingsTableViewController.swift in Sources */,
 				809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */,
@@ -772,7 +745,6 @@
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
 				802769DD1CB4E145000F23B7 /* HelpViewController.swift in Sources */,
 				80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */,
-				80B6E4A61C96338A002761D8 /* PopUpViewControllerSwift.swift in Sources */,
 				80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
 				804455DE1CB2F0CC00924480 /* StringExtensions.swift in Sources */,

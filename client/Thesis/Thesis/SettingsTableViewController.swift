@@ -10,20 +10,28 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    @IBOutlet weak var editNameCell: UITableViewCell!
+    var nameCell: UITableViewCell = UITableViewCell()
+    var nameText: UITextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        
-        
     }
+    
+//    override func loadView() {
+//        self.title = "Settings"
+//        
+//        self.nameCell.backgroundColor = UIColor.whiteColor()
+//        self.nameText = UITextField(frame: CGRectInset(self.nameCell.contentView.bounds, 15, 0))
+//        self.nameText.placeholder = "First Name"
+//        self.nameCell.addSubview(self.nameText)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

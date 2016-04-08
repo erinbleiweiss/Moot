@@ -20,7 +20,7 @@ class SettingsTabViewController: MootViewController {
         var controllerArray : [UIViewController] = []
         
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let controller = storyboard.instantiateViewControllerWithIdentifier("SettingsVC") as! UITableViewController
+        let controller = storyboard.instantiateViewControllerWithIdentifier("SettingsVC") as UIViewController
         controller.title = "Settings"
         controllerArray.append(controller)
         

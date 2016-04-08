@@ -124,22 +124,25 @@ def login():
     return jsonify(response)
 
 
-@app.route('/v1/edit_name', methods=["POST"])
+@app.route('/v1/edit_name', methods=["GET", "POST"])
 def edit_name():
     logger_header('/edit_name')
     auth = request.authorization
     user_id = auth.username
-    name = request.form["name"]
+    posted_name = request.form["name"]
 
     db = MootDao()
     try:
-        db.edit_name(user_id, name)
+        if request.method == 'POST':
+            db.edit_name(user_id, posted_name)
+        name = db.get_name(user_id)
     except Exception as e:
         logger.critical("Could not edit name for {0}. Error: {1}".format(
             user_id, e))
 
     response = {}
     response["status"] = SUCCESS
+    response["name"] = name
     return jsonify(response)
 
 @app.route('/v1/get_achievements', methods=["GET"])
@@ -376,6 +379,13 @@ def generate_random_word():
             word_data = requests.get(WORDNIK_URL, params=params)
             word_data = word_data.json()
             random_word = word_data["word"]
+
+            # no proper nouns or special characters
+            while random_word[0].isupper() or not random_word.isalpha():
+                word_data = requests.get(WORDNIK_URL, params=params)
+                word_data = word_data.json()
+                random_word = word_data["word"]
+
             logger.info("Game data for user '{}': Hangman Word = '{}'".format(
                 user_id, random_word))
             response["word"] = random_word
