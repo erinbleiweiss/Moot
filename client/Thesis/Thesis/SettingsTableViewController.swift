@@ -16,6 +16,11 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.nameCell.backgroundColor = UIColor.whiteColor()
+        self.nameText = UITextField(frame: CGRectInset(self.nameCell.contentView.bounds, 15, 0))
+        self.nameText.placeholder = "First Name"
+        self.nameCell.addSubview(self.nameText)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,15 +28,6 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
     }
-    
-//    override func loadView() {
-//        self.title = "Settings"
-//        
-//        self.nameCell.backgroundColor = UIColor.whiteColor()
-//        self.nameText = UITextField(frame: CGRectInset(self.nameCell.contentView.bounds, 15, 0))
-//        self.nameText.placeholder = "First Name"
-//        self.nameCell.addSubview(self.nameText)
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,15 +46,21 @@ class SettingsTableViewController: UITableViewController {
         return 1
     }
 
-    /*
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        
+        switch(indexPath.section){
+            case 0:
+                switch(indexPath.row){
+                    case 0: return self.nameCell
+                    default: fatalError("Unknown row in section")
+                }
+            default: fatalError("Unknown section")
+            
+        }
+        
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
