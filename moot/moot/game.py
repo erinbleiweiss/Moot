@@ -940,21 +940,3 @@ def check_for_achievements():
         logger.debug("Problem checking user achievements {}".format(e))
     return jsonify(response)
 
-
-
-def check_for_achievements_internal(user_id):
-    ach = Achievements(user_id)
-    try:
-        return ach.check_all_achievements()
-    except Exception:
-        return []
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
-
-
-
-

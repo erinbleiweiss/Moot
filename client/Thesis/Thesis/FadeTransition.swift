@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let duration: NSTimeInterval = 1.5
+private let duration: NSTimeInterval = 0.6
 
 class FadeTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate  {
     

@@ -36,6 +36,9 @@ class GenericGameController{
         let headers = ["Authorization": "Basic \(base64Credentials)"]
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers
         self.headers = headers
+        
+        Alamofire.Manager.sharedInstance.session.configuration.timeoutIntervalForRequest = 10
+        Alamofire.Manager.sharedInstance.session.configuration.timeoutIntervalForResource = 10
     
     }
     

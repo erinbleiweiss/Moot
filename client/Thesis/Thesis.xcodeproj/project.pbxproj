@@ -177,6 +177,7 @@
 		8050663C1CB6534D00C9C081 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		805066401CB672A700C9C081 /* EmoticonParticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonParticleView.swift; sourceTree = "<group>"; };
 		805066441CB6FFAD00C9C081 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		8050664A1CB7796E00C9C081 /* Thesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thesis-Bridging-Header.h"; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
@@ -445,6 +446,7 @@
 		80ED1F051BB25A400011A410 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8050664A1CB7796E00C9C081 /* Thesis-Bridging-Header.h */,
 				80ED1F061BB25A400011A410 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -590,7 +592,7 @@
 		80ED1EFA1BB25A400011A410 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Erin Bleiweiss";
 				TargetAttributes = {
@@ -909,6 +911,7 @@
 			baseConfigurationReference = A29897A7F59ED46F5CC3779B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -921,6 +924,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.erinbleiweiss.Moot;
 				PRODUCT_NAME = Moot;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Thesis/Thesis-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -929,6 +934,7 @@
 			baseConfigurationReference = 30C934D8C887B31102363E45 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -941,6 +947,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.erinbleiweiss.Moot;
 				PRODUCT_NAME = Moot;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Thesis/Thesis-Bridging-Header.h";
 			};
 			name = Release;
 		};

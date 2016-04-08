@@ -53,6 +53,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         self.setupTabColors()
     }
     
+    
     func setupTabColors(){
         print("doing the thing")
         var iconColor: UIColor?
@@ -79,7 +80,11 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         
         
         self.view.setNeedsDisplay()
-//        self.view.layoutSubviews()
+    }
+    
+    func triggerUpdate(){
+        print("triggered update")
+        self.setupTabColors()
     }
     
     public func createRaisedButton(buttonImage: UIImage?, highlightImage: UIImage?) {

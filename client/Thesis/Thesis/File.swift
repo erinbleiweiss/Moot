@@ -12,8 +12,7 @@ import RAMAnimatedTabBarController
 
 class mootFlipLeftAnimation: RAMTransitionItemAnimations {
     
-    
-    
+
     override func playAnimation(icon : UIImageView, textLabel : UILabel) {
         
 

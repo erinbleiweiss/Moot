@@ -16,4 +16,19 @@ class AchievementManager{
     
     private init() {}
     
+    private var baseURL: String = "http://www.erinbleiweiss.com/moot/img/"
+
+    let imageUrls = [
+        "New Moot on the Block": "new_moot",
+        "Savings Account": "savings_account",
+        "Taste The Rainbow": "rainbow",
+        "Easy as ABC": "abc"
+    ]
+    
+    func getImg(title: String) -> String {
+        let imgname = self.imageUrls[title]
+        let imgURL = "\(baseURL)\(imgname)_medal.png"
+        return imgURL
+    }
+    
 }

@@ -11,10 +11,12 @@ import SwiftHEXColors
 import SwiftyJSON
 import SCLAlertView
 import Social
+import FBSDKCoreKit
+import FBSDKLoginKit
 import FBSDKShareKit
 import DynamicColor
 
-class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol, FBSDKSharingDelegate {
+class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol {
 
     var header: MootHeader?
     var currentAlertView: SCLAlertView?
@@ -291,6 +293,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         self.currentAlertView = alertView
         self.achTitle = title
         self.achDesc = description
+        self.achImgUrl = AchievementManager.sharedInstance.getImg(title)
     }
     
     
@@ -381,50 +384,29 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
      */
     @objc func facebookTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
-            print("alright alright alright alright")
-            let fbShare = FBSDKShareDialog()
-            fbShare.fromViewController = self
             let content = FBSDKShareLinkContent()
-            content.contentURL = NSURL(string: "http://www.erinbleiweiss.com")
-            content.imageURL = NSURL(string: "http://i.imgur.com/jUTICVi.png")
-            content.contentTitle = "I just earned the \(self.achTitle) achievement"
-            content.contentDescription = self.achDesc
-            fbShare.shareContent = content
+            content.contentURL = NSURL(string: "http://www.erinbleiweiss.com/moot")
+            content.imageURL = NSURL(string: self.achImgUrl!)
+            content.contentTitle = self.achTitle
+            content.contentDescription = "I just earned the '\(self.achTitle)' achievement on Moot"
             
-//            if UIApplication.sharedApplication().canOpenURL(NSURL(string: "fbauth2://")!) {
-//                fbShare.mode = FBSDKShareDialogMode.Native
-//            }
-//            else {
-//                fbShare.mode = FBSDKShareDialogMode.Browser
-//                //or FBSDKShareDialogModeAutomatic
-//            }
-            fbShare.mode = FBSDKShareDialogMode.ShareSheet
-            fbShare.delegate = self
-            fbShare.show()
-
-            
-//            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-//            self.presentViewController(fbShare, animated: true, completion: nil)
+            let dialog: FBSDKShareDialog = FBSDKShareDialog()
+            dialog.fromViewController = self
+            dialog.shareContent = content
+            dialog.mode = .Native
+            // if you don't set this before canShow call, canShow would always return YES
+            if !dialog.canShow() {
+                // fallback presentation when there is no FB app
+                dialog.mode = .Browser
+            }
+            dialog.show()
         } else {
             let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+
     }
-    
-    func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject: AnyObject]) {
-        print(results)
-    }
-    
-    func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!) {
-        print("sharer NSError")
-        print(error.description)
-    }
-    
-    func sharerDidCancel(sharer: FBSDKSharing!) {
-        print("sharerDidCancel")
-    }
-    
     
     @objc func twitterTapped(btn: UIButton){
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
