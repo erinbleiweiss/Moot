@@ -49,6 +49,7 @@ class SettingsTableViewController: UITableViewController {
         self.cancelButton.layer.borderColor = mootColors["red"]!.CGColor
         self.cancelButton.titleLabel?.textColor = mootColors["red"]!
         self.cancelButton.setAttributedTitle(NSAttributedString(string: "Cancel"), forState: .Normal)
+        self.cancelButton.addTarget(self, action:#selector(self.cancelButtonPressed), forControlEvents: .TouchUpInside)
         
         self.saveButton = UIButton(frame: CGRectMake(rightAlignX, alignY, buttonWidth, buttonHeight))
         self.saveButton.layer.borderWidth = 1
@@ -56,13 +57,24 @@ class SettingsTableViewController: UITableViewController {
         self.saveButton.layer.borderColor = mootColors["blue"]!.CGColor
         self.saveButton.titleLabel?.textColor = mootColors["blue"]!
         self.saveButton.setAttributedTitle(NSAttributedString(string: "Save"), forState: .Normal)
-    
+        self.saveButton.addTarget(self, action:#selector(self.saveButtonPressed), forControlEvents: .TouchUpInside)
+
         
         self.buttonCell.addSubview(self.saveButton)
         self.buttonCell.addSubview(self.cancelButton)
     }
 
 
+    func cancelButtonPressed(sender: UIButton){
+        self.nameText.text = self.storedName
+    }
+    
+    func saveButtonPressed(sender: UIButton){
+        self.controller.editName(self.nameText.text!){ responseObject, error in
+            
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
