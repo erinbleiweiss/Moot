@@ -123,7 +123,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
             proxyView.frame = containerView!.frame
             proxyView.layoutIfNeeded()
             toViewController.view.addSubview(proxyView)
-            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(mootGray)
+            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(mootBlack)
             UIView.transitionFromView(
                 fromViewController.view,
                 toView: toViewController.view,

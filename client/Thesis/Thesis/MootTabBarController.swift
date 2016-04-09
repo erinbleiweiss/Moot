@@ -60,7 +60,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
             iconColor = self.selectedButtonColor
         }
         else {
-            iconColor = mootGray
+            iconColor = mootBlack
         }
 
         let selectedItem = self.tabBar.selectedItem
@@ -72,8 +72,8 @@ public class MootTabBarController: RAMAnimatedTabBarController {
         
         for (idx, item) in (self.tabBar.items! as! [RAMAnimatedTabBarItem]).enumerate(){
             if item != selectedItem{
-                item.iconView?.textLabel.textColor = mootGray
-                let newImage = self.originalImages[idx].imageWithColor(mootGray).imageWithRenderingMode(.AlwaysOriginal)
+                item.iconView?.textLabel.textColor = mootBlack
+                let newImage = self.originalImages[idx].imageWithColor(mootBlack).imageWithRenderingMode(.AlwaysOriginal)
                 item.iconView?.icon.image = newImage
             }
         }
@@ -146,7 +146,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     public func addCameraButton(){
         if !cameraButtonVisible{
             // Raise the center button with image
-            let img = UIImage(named: "camera")!.imageWithColor(mootGray)
+            let img = UIImage(named: "camera")!.imageWithColor(mootBlack)
             self.createRaisedButton(img, highlightImage: nil)
             self.cameraButtonVisible = true
         }
