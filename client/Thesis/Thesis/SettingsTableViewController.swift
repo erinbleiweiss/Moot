@@ -63,8 +63,15 @@ class SettingsTableViewController: UITableViewController {
         
         self.buttonCell.addSubview(self.saveButton)
         self.buttonCell.addSubview(self.cancelButton)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
-
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
 
     func cancelButtonPressed(sender: UIButton){
         self.nameText.text = self.storedName

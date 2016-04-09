@@ -24,8 +24,8 @@ class ScoreTableViewCell: UITableViewCell {
         
         let y = (height/2) - (fontSize)
         
-        let numberWidth = ScreenWidth * 0.13
-        let nameWidth = ScreenWidth * 0.47
+        let numberWidth = ScreenWidth * 0.14
+        let nameWidth = ScreenWidth * 0.46
         let scoreWidth = ScreenWidth * 0.20
         let margin = ScreenWidth * 0.05 // 4 total margins, for a width of 20%
         
