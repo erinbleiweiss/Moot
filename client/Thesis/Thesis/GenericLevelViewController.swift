@@ -280,6 +280,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         alertView.addButton("Done") {
             self.doAfterAchievementPopup()
         }
+        let imgURL = AchievementManager.sharedInstance.getLocalImg(title)
         alertView.showTitle(
             title,
             subTitle: description,
@@ -288,7 +289,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             style: .Custom,
             colorStyle: 0x000000,
             colorTextButton: 0xFFFFFF,
-            circleIconImage: UIImage(named: "medal"),
+            circleIconImage: UIImage(named: imgURL),
             topLabel: "Achievement Unlocked!"
         )
         self.currentAlertView = alertView

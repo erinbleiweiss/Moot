@@ -108,7 +108,8 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         
         let achievement = self.controller.allAchievements[indexPath.row]
         if achievement.isEarned(){
-            cell.achievementImage.image = UIImage(named: "medal")
+            let imgURL = AchievementManager.sharedInstance.getLocalImg(achievement.getName())
+            cell.achievementImage.image = UIImage(named: imgURL)
             cell.achievementNameLabel.text = achievement.getName()
             cell.achievementDescriptionLabel.text = achievement.getDescription()
             cell.achievementDateLabel.text = "Earned " + achievement.getDate()

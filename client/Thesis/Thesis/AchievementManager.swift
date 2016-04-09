@@ -31,4 +31,15 @@ class AchievementManager{
         return imgURL
     }
     
+    func getLocalImg(title: String) -> String{
+        let imgname = self.imageUrls[title]
+        if imgname != nil {
+            let imgURL = "\(imgname!)_medal.png"
+            return imgURL
+        } else {
+            let imgURL = "medal.png"
+            return imgURL
+        }
+    }
+    
 }
