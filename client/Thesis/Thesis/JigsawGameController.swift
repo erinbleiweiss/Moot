@@ -33,13 +33,16 @@ class JigsawGameController: GenericGameController{
     }
     
     
+    
+    
     /**
         Called after scanning barcode to determine whether scanned barcode is the level's QR code
      
         - Returns: (Bool) True or false indicating level completion
      */
-    func checkForSuccess(barcode: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
-        let url: String = hostname + rest_prefix + "/check_qr_code"
+    func checkQRCode(barcode: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+        let url: String = barcode
+        print(url)
         Alamofire.request(.GET, url, parameters: nil, headers: headers).responseJSON { (_, _, result) in switch result {
             
             case .Success(let data):
@@ -48,7 +51,7 @@ class JigsawGameController: GenericGameController{
                 
             
             case .Failure(_):
-                NSLog("Get image color failed with error: \(result.error)")
+                NSLog("Check barcode failed with error: \(result.error)")
                 completionHandler(responseObject: "Could not get image color", error: result.error as? NSError)
             
             }
@@ -56,5 +59,8 @@ class JigsawGameController: GenericGameController{
 
         }
     }
+
+    
+    
     
 }

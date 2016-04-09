@@ -234,7 +234,7 @@ class JigsawLevelViewController: GenericLevelViewController {
 
     @IBAction func cancelToJigsawLevelViewController(segue:UIStoryboardSegue) {
         if response != nil{
-            self.controller.checkForSuccess(response){ responseObject, error in
+            self.controller.checkQRCode(response){ responseObject, error in
                 if responseObject!["correcthorsebatterystaple"] == "success"{
                     self.displayLevelCompletionView()
                 }
