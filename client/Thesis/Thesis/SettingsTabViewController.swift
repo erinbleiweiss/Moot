@@ -50,7 +50,7 @@ class SettingsTabViewController: MootViewController {
             .SelectedMenuItemLabelColor(UIColor.whiteColor()),
             .SelectionIndicatorColor(UIColor.whiteColor()),
             .BottomMenuHairlineColor(mootBlack),
-            .MenuItemFont(Raleway.Bold.withSize(fontSize))
+            .MenuItemFont(Raleway.SemiBold.withSize(fontSize))
         ]
         
         // Initialize page menu with controller array, frame, and optional parameters
