@@ -269,9 +269,9 @@
 			isa = PBXGroup;
 			children = (
 				802769DE1CB4E1C1000F23B7 /* SettingsTabViewController.swift */,
+				80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */,
 				802769DC1CB4E145000F23B7 /* HelpViewController.swift */,
 				802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */,
-				80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";

@@ -13,8 +13,13 @@ class SettingsTabViewController: MootViewController {
 
     var pageMenu : CAPSPageMenu?
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = mootBlack
         
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []
@@ -38,9 +43,10 @@ class SettingsTabViewController: MootViewController {
             .MenuItemSeparatorWidth(0),
             .UseMenuLikeSegmentedControl(true),
             .MenuItemSeparatorPercentageHeight(0.1),
-            .ScrollMenuBackgroundColor(UIColor.whiteColor()),
-            .SelectedMenuItemLabelColor(UIColor.blackColor()),
-            .SelectionIndicatorColor(UIColor.blueColor())
+            .ScrollMenuBackgroundColor(mootBlack),
+            .SelectedMenuItemLabelColor(UIColor.whiteColor()),
+            .SelectionIndicatorColor(UIColor.whiteColor()),
+            .BottomMenuHairlineColor(mootBlack)
         ]
         
         // Initialize page menu with controller array, frame, and optional parameters

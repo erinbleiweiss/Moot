@@ -24,6 +24,10 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         tabBar.removeCameraButton()
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

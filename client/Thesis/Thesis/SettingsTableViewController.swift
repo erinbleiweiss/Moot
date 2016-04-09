@@ -26,6 +26,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = mootBackground
         
         self.nameCell.backgroundColor = UIColor.whiteColor()
         self.nameText = UITextField(frame: CGRectInset(self.nameCell.contentView.bounds, 15, 0))
