@@ -55,6 +55,7 @@
 		805066451CB6FFAD00C9C081 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066441CB6FFAD00C9C081 /* File.swift */; };
 		8050664C1CB7C77900C9C081 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050664B1CB7C77900C9C081 /* Timer.swift */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
+		806656201CB8768500378849 /* SettingsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8066561F1CB8768500378849 /* SettingsDataController.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
 		8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */; };
@@ -174,6 +175,7 @@
 		8050664A1CB7796E00C9C081 /* Thesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thesis-Bridging-Header.h"; sourceTree = "<group>"; };
 		8050664B1CB7C77900C9C081 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
+		8066561F1CB8768500378849 /* SettingsDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataController.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
 		8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawGameController.swift; sourceTree = "<group>"; };
@@ -466,12 +468,12 @@
 			isa = PBXGroup;
 			children = (
 				80AE504D1CA5F05200050457 /* Subviews */,
+				802769E01CB4E1D4000F23B7 /* Settings */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
 				804455DB1CB2EE2400924480 /* Level Views */,
-				802769E01CB4E1D4000F23B7 /* Settings */,
-				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
 				80EB858E1C83ABC700AC37A7 /* MootViewController.swift */,
 				801590EB1C7FC0A70011872B /* LoginViewController.swift */,
+				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
 				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
 				80ECB47F1C896722007559A8 /* AchievementViewController.swift */,
 				80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */,
@@ -488,6 +490,7 @@
 				804455DC1CB2EE6300924480 /* Level Game Controllers */,
 				80ECB47D1C891CBC007559A8 /* AchievementDataController.swift */,
 				80AA55721CAD023000D6A81C /* HighScoreDataController.swift */,
+				8066561F1CB8768500378849 /* SettingsDataController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */,
 				80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */,
 				80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */,
+				806656201CB8768500378849 /* SettingsDataController.swift in Sources */,
 				80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */,
 				804455DA1CB2607A00924480 /* MazeData.swift in Sources */,
 				80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */,

@@ -10,24 +10,57 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
+    var storedName: String!
     var nameCell: UITableViewCell = UITableViewCell()
     var nameText: UITextField = UITextField()
+    
+    var buttonCell: UITableViewCell = UITableViewCell()
+    var saveButton: UIButton = UIButton()
+    var cancelButton: UIButton = UIButton()
+    
+    let controller: SettingsDataController
+    required init?(coder aDecoder: NSCoder) {
+        controller = SettingsDataController()
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.nameCell.backgroundColor = UIColor.whiteColor()
         self.nameText = UITextField(frame: CGRectInset(self.nameCell.contentView.bounds, 15, 0))
-        self.nameText.placeholder = "First Name"
+        
+        self.controller.getName { (responseObject, error) in
+            self.storedName = responseObject!["name"].string!
+            self.nameText.text = self.storedName
+        }
         self.nameCell.addSubview(self.nameText)
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.buttonCell.backgroundColor = UIColor.whiteColor()
+        let buttonWidth = ScreenWidth / 4
+        let buttonHeight = self.buttonCell.bounds.height * 0.7
+        let leftAlignX = ScreenWidth * 0.1
+        let rightAlignX = ScreenWidth * 0.65
+        let alignY = self.buttonCell.bounds.height * 0.15
         
+        self.saveButton = UIButton(frame: CGRectMake(leftAlignX, alignY, buttonWidth, buttonHeight))
+        self.saveButton.layer.borderWidth = 1
+        self.saveButton.layer.cornerRadius = 2
+        self.saveButton.layer.borderColor = mootColors["blue"]!.CGColor
+        self.saveButton.titleLabel?.textColor = mootColors["blue"]!
+        self.saveButton.titleLabel?.text = "Save"
+        
+        self.cancelButton = UIButton(frame: CGRectMake(rightAlignX, alignY, buttonWidth, buttonHeight))
+        self.cancelButton.layer.borderWidth = 1
+        self.cancelButton.layer.cornerRadius = 2
+        self.cancelButton.layer.borderColor = mootColors["red"]!.CGColor
+        self.cancelButton.titleLabel?.textColor = mootColors["red"]!
+        self.cancelButton.titleLabel?.text = "Cancel"
+        
+        self.buttonCell.addSubview(self.saveButton)
+        self.buttonCell.addSubview(self.cancelButton)
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,12 +70,10 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 1
     }
 
@@ -53,6 +84,11 @@ class SettingsTableViewController: UITableViewController {
             case 0:
                 switch(indexPath.row){
                     case 0: return self.nameCell
+                    default: fatalError("Unknown row in section")
+                }
+            case 1:
+                switch(indexPath.row){
+                    case 0: return self.buttonCell
                     default: fatalError("Unknown row in section")
                 }
             default: fatalError("Unknown section")

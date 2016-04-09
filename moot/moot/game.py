@@ -129,7 +129,9 @@ def edit_name():
     logger_header('/edit_name')
     auth = request.authorization
     user_id = auth.username
-    posted_name = request.form["name"]
+
+    if request.method == 'POST':
+        posted_name = request.form["name"]
 
     db = MootDao()
     try:
