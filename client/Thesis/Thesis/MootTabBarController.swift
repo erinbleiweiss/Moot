@@ -44,7 +44,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
             tabBarItem.enabled = false
         }
         
-        changeButtonColor(UIColor(red:180/255, green: 180/255, blue:180/255, alpha:1))
+        changeButtonColor(mootBlack)
         
         self.setupTabColors()
     }
