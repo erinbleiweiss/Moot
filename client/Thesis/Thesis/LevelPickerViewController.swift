@@ -60,6 +60,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     override func viewWillAppear(animated: Bool) {
         let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
         tabBar.removeCameraButton()
+        (self.tabBarController as! MootTabBarController).setupTabColors()
     }
     
     override func viewDidAppear(animated: Bool) {

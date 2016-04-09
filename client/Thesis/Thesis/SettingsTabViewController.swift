@@ -66,6 +66,7 @@ class SettingsTabViewController: MootViewController {
     override func viewWillAppear(animated: Bool) {
         let tabBar = self.tabBarController as! MootTabBarController
         tabBar.removeCameraButton()
+        (self.tabBarController as! MootTabBarController).setupTabColors()
     }
     
     override func didReceiveMemoryWarning() {
