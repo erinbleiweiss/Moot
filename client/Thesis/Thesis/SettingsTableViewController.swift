@@ -48,14 +48,14 @@ class SettingsTableViewController: UITableViewController {
         self.saveButton.layer.cornerRadius = 2
         self.saveButton.layer.borderColor = mootColors["blue"]!.CGColor
         self.saveButton.titleLabel?.textColor = mootColors["blue"]!
-        self.saveButton.titleLabel?.text = "Save"
+        self.saveButton.setAttributedTitle(NSAttributedString(string: "Save"), forState: .Normal)
         
         self.cancelButton = UIButton(frame: CGRectMake(rightAlignX, alignY, buttonWidth, buttonHeight))
         self.cancelButton.layer.borderWidth = 1
         self.cancelButton.layer.cornerRadius = 2
         self.cancelButton.layer.borderColor = mootColors["red"]!.CGColor
         self.cancelButton.titleLabel?.textColor = mootColors["red"]!
-        self.cancelButton.titleLabel?.text = "Cancel"
+        self.cancelButton.setAttributedTitle(NSAttributedString(string: "Cancel"), forState: .Normal)
         
         self.buttonCell.addSubview(self.saveButton)
         self.buttonCell.addSubview(self.cancelButton)
