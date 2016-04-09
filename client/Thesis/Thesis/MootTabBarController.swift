@@ -146,8 +146,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     public func addCameraButton(){
         if !cameraButtonVisible{
             // Raise the center button with image
-            let img = UIImage(named: "camera")
-            img?.imageWithColor(mootGray)
+            let img = UIImage(named: "camera")!.imageWithColor(mootGray)
             self.createRaisedButton(img, highlightImage: nil)
             self.cameraButtonVisible = true
         }
