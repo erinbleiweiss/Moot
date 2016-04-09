@@ -39,6 +39,9 @@ class SettingsTabViewController: MootViewController {
         
         // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
         // Example:
+        let topMargin = self.view.frame.height * 0.025
+        let fontSize = topMargin * 1.2
+        
         let parameters: [CAPSPageMenuOption] = [
             .MenuItemSeparatorWidth(0),
             .UseMenuLikeSegmentedControl(true),
@@ -46,11 +49,11 @@ class SettingsTabViewController: MootViewController {
             .ScrollMenuBackgroundColor(mootBlack),
             .SelectedMenuItemLabelColor(UIColor.whiteColor()),
             .SelectionIndicatorColor(UIColor.whiteColor()),
-            .BottomMenuHairlineColor(mootBlack)
+            .BottomMenuHairlineColor(mootBlack),
+            .MenuItemFont(Raleway.Bold.withSize(fontSize))
         ]
         
         // Initialize page menu with controller array, frame, and optional parameters
-        let topMargin = self.view.frame.height * 0.025
         pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0.0, topMargin, self.view.frame.width, self.view.frame.height - topMargin), pageMenuOptions: parameters)
         
         
