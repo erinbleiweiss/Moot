@@ -18,25 +18,36 @@ class JigsawLevelViewController: GenericLevelViewController {
     }
     
     var response: String!
-    @IBOutlet weak var successLabel: UILabel!
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    
+    let scale = Int((ScreenHeight - yOffset) * 0.4)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 3
         self.setCameraButton(self.controller.level!)
 
-        let scale = Int(self.visibleHeight * 0.4)
-        
+        self.setUpLevel()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if self.controller.level != nil {
+            self.header?.levelBadge!.update(self.controller.level!)
+            self.view.layoutSubviews()
+        }
+    }
+    
+    
+    override func setUpLevel() {
         self.controller.getQRCode(scale, height: scale){ responseObject, error in
             let rows = 3
             let cols = 3
             let tileMargin = 10
             
-//            let image: UIImage = UIImage(named: "qr2")!
+            //            let image: UIImage = UIImage(named: "qr2")!
             self.generateTiles(self.controller.QRImage, rows: rows, cols: cols)
             self.generateTargets(rows, cols: cols)
             
@@ -45,15 +56,6 @@ class JigsawLevelViewController: GenericLevelViewController {
             
         }
         
-        if self.controller.level != nil {
-            self.header?.levelBadge!.update(self.controller.level!)
-            self.view.layoutSubviews()
-        }
-        
-    
-    }
-    
-    override func viewDidAppear(animated: Bool) {
         if self.controller.level != nil {
             self.header?.levelBadge!.update(self.controller.level!)
             self.view.layoutSubviews()
@@ -67,7 +69,7 @@ class JigsawLevelViewController: GenericLevelViewController {
         
         let width = qr.size.width / cols
         let height = qr.size.height / rows
-    
+        
         var id = 0
         for row in 0...Int(rows)-1 {
             for col in 0...Int(cols)-1 {
@@ -165,9 +167,6 @@ class JigsawLevelViewController: GenericLevelViewController {
             completion: {
                 (value: Bool) in
                 targetView.hidden = true
-                if self.controller.checkForSuccess(){
-                    self.displayLevelCompletionView()
-                }
         })
         
     }
@@ -186,6 +185,47 @@ class JigsawLevelViewController: GenericLevelViewController {
     }
     
 
+    override func resetButtonTouched(sender: UIButton) {
+        
+        let alertController = UIAlertController(title: "Reset", message: "Reset the entire level or just this stage?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Reset Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            self.controller.resetCurrentLevel()
+            self.resetLevel()
+        })
+        alertController.addAction(deleteAction)
+        
+        let okAction = UIAlertAction(title: "Reset Stage", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+//            self.controller.reset()
+            self.resetLevel()
+        })
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(alert :UIAlertAction!) in
+        })
+        alertController.addAction(cancelAction)
+        
+        
+        
+        alertController.popoverPresentationController?.sourceView = view
+        alertController.popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func resetLevel(){
+        for tile in self.controller.tiles{
+            tile.removeFromSuperview()
+        }
+        self.controller.tiles = []
+        for target in self.controller.targets{
+            target.removeFromSuperview()
+        }
+        self.controller.targets = []
+        self.setUpLevel()
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -193,7 +233,14 @@ class JigsawLevelViewController: GenericLevelViewController {
     
 
     @IBAction func cancelToJigsawLevelViewController(segue:UIStoryboardSegue) {
-        self.successLabel.text = response
+        if response != nil{
+            self.controller.checkForSuccess(response){ responseObject, error in
+                if responseObject!["correcthorsebatterystaple"] == "success"{
+                    self.displayLevelCompletionView()
+                }
+            }
+        }
+
     }
 
 }

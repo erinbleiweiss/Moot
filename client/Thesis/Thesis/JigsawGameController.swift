@@ -34,18 +34,27 @@ class JigsawGameController: GenericGameController{
     
     
     /**
-        Called after every tile placement to determine whether the level has been completed.  Level is considered complete when all tiles are in place.
+        Called after scanning barcode to determine whether scanned barcode is the level's QR code
      
         - Returns: (Bool) True or false indicating level completion
      */
-    func checkForSuccess() -> Bool {
-        for tile in self.tiles {
-            if !tile.isMatched{
-                return false
+    func checkForSuccess(barcode: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
+        let url: String = hostname + rest_prefix + "/check_qr_code"
+        Alamofire.request(.GET, url, parameters: nil, headers: headers).responseJSON { (_, _, result) in switch result {
+            
+            case .Success(let data):
+                let json = JSON(data)
+                completionHandler(responseObject: json, error: result.error as? NSError)
+                
+            
+            case .Failure(_):
+                NSLog("Get image color failed with error: \(result.error)")
+                completionHandler(responseObject: "Could not get image color", error: result.error as? NSError)
+            
             }
+
+
         }
-        self.succeed()
-        return true
     }
     
 }

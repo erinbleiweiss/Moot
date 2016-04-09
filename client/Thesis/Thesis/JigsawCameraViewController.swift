@@ -66,8 +66,10 @@ class JigsawCameraViewController: GenericCameraViewController, CameraDelegate {
     
     // Send product name back to JigsawLevelViewController via segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        let destinationVC = segue.destinationViewController as! JigsawLevelViewController
-        destinationVC.response = self.response
+        if let _ = response{
+            let destinationVC = segue.destinationViewController as! JigsawLevelViewController
+            destinationVC.response = self.response
+        }
     }
     
     

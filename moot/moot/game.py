@@ -28,6 +28,9 @@ config_path = os.path.join(os.getcwd(), "moot/config.ini")
 config.read(config_path)
 logger = get_logger(__name__)
 
+HOSTNAME = config.get('server', 'hostname')
+REST_PREFIX = config.get('server', 'rest_prefix')
+
 SEARCH_UPC_URL = config.get('api', 'search_upc_url')
 UPC_REQUEST_TYPE = config.get('api', 'upc_request_type')
 UPC_ACCESS_TOKEN = config.get('api', 'upc_access_token')
@@ -35,7 +38,7 @@ WORDNIK_URL = config.get('api', 'wordnik_url')
 WORDNIK_API_KEY = config.get('api', 'wordnik_api_key')
 QR_CODE_URL = config.get('api', 'qr_code_url')
 
-MAX_POINTS_FOR_PRODUCT = 100
+MAX_POINTS_FOR_PRODUCT = 101
 SUCCESS = "success"
 FAILURE = "failure"
 
@@ -606,6 +609,7 @@ def image_colors():
     upc = request.args.get('upc')
 
     product_info = get_product_info_internal(user_id, upc)
+    logger.debug("Product info: {0}".format(product_info))
     color_name = product_info["color"]
 
     product_name = product_info["product_name"]
@@ -623,6 +627,7 @@ def image_colors():
     response["points_earned"] = points_earned
     response["color"] = color_name
     response["status"] = SUCCESS
+    logger.debug(response)
     return jsonify(response)
 
 
@@ -918,7 +923,7 @@ def get_qr_code():
     # target_url = 'http://www.google.com'
     # TODO: Obtain endpoint URL (and route?) dynamically
     # TODO: Make qr code unique for user_id
-    target_url = "http://52.26.94.97:5000/v1/check_qr_code"
+    target_url = "{}/{}/check_qr_code".format(HOSTNAME, REST_PREFIX)
 
     request_url = ("{}?size={}x{}&data={}").format(base_url,
                                                    width,
