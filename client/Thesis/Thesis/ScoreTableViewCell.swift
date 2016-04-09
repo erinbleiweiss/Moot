@@ -21,21 +21,19 @@ class ScoreTableViewCell: UITableViewCell {
         
         let height = 50 * scale
         let fontSize = 20 * scale
-        
-        let y = (height/2) - (fontSize)
-        
+                
         let numberWidth = ScreenWidth * 0.14
         let nameWidth = ScreenWidth * 0.46
         let scoreWidth = ScreenWidth * 0.20
         let margin = ScreenWidth * 0.05 // 4 total margins, for a width of 20%
         
-        self.numberLabel = UILabel(frame: CGRectMake(margin, y, numberWidth, self.frame.height))
+        self.numberLabel = UILabel(frame: CGRectMake(margin, 0, numberWidth, height))
         self.numberLabel.textAlignment = .Right
         
-        self.nameLabel = UILabel(frame: CGRectMake((margin * 2) + numberWidth, y, nameWidth, self.frame.height))
+        self.nameLabel = UILabel(frame: CGRectMake((margin * 2) + numberWidth, 0, nameWidth, height))
         self.nameLabel.textAlignment = .Left
         
-        self.scoreLabel = UILabel(frame: CGRectMake((margin * 3) + numberWidth + nameWidth, y, scoreWidth, self.frame.height))
+        self.scoreLabel = UILabel(frame: CGRectMake((margin * 3) + numberWidth + nameWidth, 0, scoreWidth, height))
         self.scoreLabel.textAlignment = .Left
         
 

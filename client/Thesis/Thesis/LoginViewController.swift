@@ -83,6 +83,7 @@ class LoginViewController: UIViewController {
         y = ScreenHeight * 0.4
         self.nameTextField = MootTextField(frame: CGRectMake(x, y, width, height))
         self.nameTextField.backgroundColor = UIColor.whiteColor()
+        self.nameTextField.font = UIFont(name: (self.nameTextField.font?.familyName)!, size: 20 * scale)
         self.view.addSubview(nameTextField)
         
         y += height
