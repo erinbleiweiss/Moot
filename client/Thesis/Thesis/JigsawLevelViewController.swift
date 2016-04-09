@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftSpinner
 
 class JigsawLevelViewController: GenericLevelViewController {
     
@@ -233,11 +234,28 @@ class JigsawLevelViewController: GenericLevelViewController {
     
 
     @IBAction func cancelToJigsawLevelViewController(segue:UIStoryboardSegue) {
+        SwiftSpinner.show("Scanning")
         if response != nil{
             self.controller.checkQRCode(response){ responseObject, error in
-                if responseObject!["correcthorsebatterystaple"] == "success"{
+                if responseObject!["barcode"] == "wrong_barcode"{
+                    SwiftSpinner.show("Invalid barcode. Try again!", animated: false)
+                    self.delay(2){
+                        SwiftSpinner.hide()
+                    }
+                } else if responseObject!["correcthorsebatterystaple"] == "success"{
+                    SwiftSpinner.hide()
                     self.displayLevelCompletionView()
+                } else{
+                    SwiftSpinner.show("Problem scanning. Try again!", animated: false)
+                    self.delay(3){
+                        SwiftSpinner.hide()
+                    }
                 }
+            }
+        } else {
+            SwiftSpinner.show("Problem scanning. Try again!", animated: false)
+            self.delay(3){
+                SwiftSpinner.hide()
             }
         }
 

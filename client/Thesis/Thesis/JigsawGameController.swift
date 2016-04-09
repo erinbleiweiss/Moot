@@ -42,22 +42,28 @@ class JigsawGameController: GenericGameController{
      */
     func checkQRCode(barcode: String, completionHandler: (responseObject: JSON?, error: NSError?) -> ()) {
         let url: String = barcode
-        print(url)
-        Alamofire.request(.GET, url, parameters: nil, headers: headers).responseJSON { (_, _, result) in switch result {
-            
-            case .Success(let data):
-                let json = JSON(data)
-                completionHandler(responseObject: json, error: result.error as? NSError)
+        let target_url: String =  hostname + rest_prefix + "/check_qr_code"
+        if url != target_url{
+            print(url)
+            print(target_url)
+            completionHandler(responseObject: JSON(["barcode": "wrong_barcode"]), error: NSError(domain: "mootbarcodeerro", code: 6373463, userInfo: nil))
+        } else {
+            Alamofire.request(.GET, url, parameters: nil, headers: headers).responseJSON { (_, _, result) in switch result {
                 
-            
-            case .Failure(_):
-                NSLog("Check barcode failed with error: \(result.error)")
-                completionHandler(responseObject: "Could not get image color", error: result.error as? NSError)
-            
+                case .Success(let data):
+                    let json = JSON(data)
+                    completionHandler(responseObject: json, error: result.error as? NSError)
+                    
+                
+                case .Failure(_):
+                    NSLog("Check barcode failed with error: \(result.error)")
+                    completionHandler(responseObject: "Could not get image color", error: result.error as? NSError)
+                
+                }
             }
-
-
+            
         }
+        
     }
 
     

@@ -923,7 +923,7 @@ def get_qr_code():
     # target_url = 'http://www.google.com'
     # TODO: Obtain endpoint URL (and route?) dynamically
     # TODO: Make qr code unique for user_id
-    target_url = "{}/{}/check_qr_code".format(HOSTNAME, REST_PREFIX)
+    target_url = "{}{}/check_qr_code".format(HOSTNAME, REST_PREFIX)
 
     request_url = ("{}?size={}x{}&data={}").format(base_url,
                                                    width,
