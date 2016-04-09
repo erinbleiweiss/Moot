@@ -73,6 +73,7 @@ class SettingsTableViewController: UITableViewController {
         self.controller.editName(self.nameText.text!){ responseObject, error in
             if responseObject!["status"] == "success"{
                 self.storedName = responseObject!["name"].string
+            }
         }
     }
     
