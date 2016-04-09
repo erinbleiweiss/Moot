@@ -48,7 +48,7 @@ class JigsawGameController: GenericGameController{
             print(target_url)
             completionHandler(responseObject: JSON(["barcode": "wrong_barcode"]), error: NSError(domain: "mootbarcodeerro", code: 6373463, userInfo: nil))
         } else {
-            Alamofire.request(.GET, url, parameters: nil, headers: headers).responseJSON { (_, _, result) in switch result {
+            Alamofire.request(.GET, url, parameters: ["frommootapp": "yesindeed"], headers: headers).responseJSON { (_, _, result) in switch result {
                 
                 case .Success(let data):
                     let json = JSON(data)

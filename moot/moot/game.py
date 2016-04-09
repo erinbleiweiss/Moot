@@ -946,12 +946,18 @@ def check_qr_code():
     return:                 true
     """
     logger_header('/check_qr_code')
-    response = {}
-    # Totally unique, definitely obfuscated identification string
-    response["status"] = SUCCESS
-    response["correcthorsebatterystaple"] = SUCCESS
+    request_came_from_app = request.args.get('frommootapp')
+    if (request_came_from_app) == "yesindeed":
+        response = {}
+        # Totally unique, definitely obfuscated identification string
+        response["status"] = SUCCESS
+        response["correcthorsebatterystaple"] = SUCCESS
 
-    return jsonify(response)
+        return jsonify(response)
+    else:
+        return "\"This is all a moo point.  It\'s like a cow's opinion, " \
+               "you know, it just doesn't matter. It's \'moo\'\" <br>" \
+               "<br> - Joey Tribbiani, <i>Friends</i>"
 
 
 
