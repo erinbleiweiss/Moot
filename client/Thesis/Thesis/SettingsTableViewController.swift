@@ -74,6 +74,13 @@ class SettingsTableViewController: UITableViewController {
         self.controller.editName(self.nameText.text!){ responseObject, error in
             if responseObject!["status"] == "success"{
                 self.storedName = responseObject!["name"].string
+                self.nameCell.accessoryType = .Checkmark
+                
+                self.delay(3.0){
+                    self.nameCell.accessoryType = .None
+                }
+                
+                
             }
         }
     }
@@ -114,6 +121,28 @@ class SettingsTableViewController: UITableViewController {
     }
 
 
+    /**
+         Wrapper around Apple's dispatch_after() function in order to execute a code
+         block after a specified amount of time
+         
+         - Parameters:
+         - delay: (Double) time in seconds
+         
+         - Returns: none
+     
+     */
+    func delay(delay: Double, closure: ()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            closure
+        )
+    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

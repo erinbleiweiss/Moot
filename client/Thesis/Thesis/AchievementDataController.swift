@@ -61,6 +61,7 @@ class AchievementDataController: GenericGameController{
     }
     
     func createAchievements(achievements: JSON){
+        allAchievements = []
         for (_, subJson):(String, JSON) in achievements {
             let name = subJson["name"].string
             let description = subJson["description"].string

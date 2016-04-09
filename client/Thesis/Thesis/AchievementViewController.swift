@@ -24,6 +24,7 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         let tabBar = self.tabBarController as! MootTabBarController
         tabBar.removeCameraButton()
         (self.tabBarController as! MootTabBarController).setupTabColors()
+        self.reloadAchievements()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -58,15 +59,18 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
         header.addSubview(headerLabel)
         
         
-        self.controller.getAchievements(){ responseObject, error in
-            self.tableView.reloadData()
-        }
-        self.controller.getUnearnedAchievements(){ responseObject, error in
-            self.tableView.reloadData()
-        }
-
+//        self.reloadAchievements()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func reloadAchievements(){
+        self.controller.getAchievements(){ responseObject, error in
+            self.controller.getUnearnedAchievements(){ responseObject, error in
+                self.tableView.reloadData()
+            }
+        }
+
     }
     
 

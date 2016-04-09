@@ -23,6 +23,10 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         let tabBar = self.tabBarController as! MootTabBarController
         tabBar.removeCameraButton()
         (self.tabBarController as! MootTabBarController).setupTabColors()
+        
+        self.controller.getHighScores(){ responseObject, error in
+            self.tableView.reloadData()
+        }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -56,10 +60,6 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         headerLabel.textAlignment = .Center
         headerLabel.textColor = UIColor.whiteColor()
         header.addSubview(headerLabel)
-        
-        self.controller.getHighScores(){ responseObject, error in
-            self.tableView.reloadData()
-        }
     
     }
 
