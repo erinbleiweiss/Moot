@@ -51,9 +51,6 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         self.levelCollectionView.backgroundColor = UIColor.whiteColor()
     
         LevelManager.sharedInstance.unlockLevel(1)    
-//        LevelManager.sharedInstance.unlockLevel(2)
-//        LevelManager.sharedInstance.unlockLevel(3)
-//        LevelManager.sharedInstance.unlockLevel(4)
     }
     
 
@@ -65,6 +62,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     
     override func viewDidAppear(animated: Bool) {
         self.levelCollectionView.reloadData()
+        (self.tabBarController as! MootTabBarController).setupTabColors()
     }
     
     /**

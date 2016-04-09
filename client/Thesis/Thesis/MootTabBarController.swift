@@ -55,35 +55,38 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     
     
     func setupTabColors(){
-        print("doing the thing")
         var iconColor: UIColor?
         if self.selectedButtonColor != nil {
             iconColor = self.selectedButtonColor
         }
         else {
-            iconColor = UIColor.blackColor()
+            iconColor = mootGray
         }
 
         let selectedItem = self.tabBar.selectedItem
         if selectedItem != nil {
             let image = (selectedItem! as UITabBarItem).selectedImage
+            (selectedItem as! RAMAnimatedTabBarItem).iconView?.textLabel.textColor = iconColor!
             (selectedItem as! RAMAnimatedTabBarItem).iconView!.icon.image = image!.imageWithColor(iconColor!).imageWithRenderingMode(.AlwaysOriginal)
-            selectedItem!.setTitleTextAttributes([NSForegroundColorAttributeName: iconColor!], forState:.Selected)
         }
         
         for (idx, item) in (self.tabBar.items! as! [RAMAnimatedTabBarItem]).enumerate(){
             if item != selectedItem{
+                item.iconView?.textLabel.textColor = mootGray
                 let newImage = self.originalImages[idx].imageWithColor(mootGray).imageWithRenderingMode(.AlwaysOriginal)
                 item.iconView?.icon.image = newImage
             }
         }
         
+        for item in self.tabBar.items!{
+            item.setTitleTextAttributes([NSForegroundColorAttributeName: iconColor!], forState: .Normal)
+            item.setTitleTextAttributes([NSForegroundColorAttributeName: iconColor!], forState: .Selected)
+        }
         
         self.view.setNeedsDisplay()
     }
     
     func triggerUpdate(){
-        print("triggered update")
         self.setupTabColors()
     }
     
@@ -114,7 +117,7 @@ public class MootTabBarController: RAMAnimatedTabBarController {
                 self.button!.center = center
             }
             
-            self.button!.addTarget(self, action: "onRaisedButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            self.button!.addTarget(self, action: #selector(MootTabBarController.onRaisedButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             self.button!.animation = "squeezeUp"
             self.button!.force = 0.5
             self.button!.animate()

@@ -79,7 +79,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         if self.operation == .Push {
             fromViewController.view.addSubview(proxyView)
             let color = proxyView.color
-
+            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(color)
             UIView.animateWithDuration(
                 duration,
                 delay: 0,
@@ -93,7 +93,6 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                 }, completion: {
                     (finished) in
 //                    toViewController.navigationController?.tabBarController?.tabBar.barTintColor = color
-                    (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(color)
                     proxyView.hidden = true
                     toViewController.view.hidden = false
                     (toViewController as! GenericLevelViewController).header?.backgroundColor = color
@@ -124,6 +123,7 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
             proxyView.frame = containerView!.frame
             proxyView.layoutIfNeeded()
             toViewController.view.addSubview(proxyView)
+            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(mootGray)
             UIView.transitionFromView(
                 fromViewController.view,
                 toView: toViewController.view,
@@ -139,7 +139,6 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
                             proxyView.frame = initialProxyViewFrame
                             proxyView.layoutIfNeeded()
                             toViewController.navigationController?.tabBarController?.tabBar.barTintColor = UIColor.whiteColor()
-                            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(UIColor.blackColor())
                         }, completion: {
                             (finished) in
                             proxyView.removeFromSuperview()

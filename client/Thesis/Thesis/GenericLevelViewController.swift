@@ -48,6 +48,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         return UIStatusBarStyle.LightContent
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,6 +76,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         super.viewWillAppear(animated)
         let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
         tabBar.addCameraButton()
+        (self.tabBarController as! MootTabBarController).setupTabColors()
     }
     
     override func viewDidAppear(animated: Bool) {

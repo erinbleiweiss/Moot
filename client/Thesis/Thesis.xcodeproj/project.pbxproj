@@ -329,9 +329,9 @@
 			isa = PBXGroup;
 			children = (
 				805066401CB672A700C9C081 /* EmoticonParticleView.swift */,
-				804E11E61C9E22F800F57992 /* QCMethod.swift */,
 				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
 				8050663C1CB6534D00C9C081 /* FadeTransition.swift */,
+				804E11E61C9E22F800F57992 /* QCMethod.swift */,
 				805066441CB6FFAD00C9C081 /* File.swift */,
 			);
 			name = Animations;
@@ -471,10 +471,10 @@
 				802769E01CB4E1D4000F23B7 /* Settings */,
 				80F0DD531C5EE969002A8037 /* Camera Views */,
 				804455DB1CB2EE2400924480 /* Level Views */,
+				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
 				80EB858E1C83ABC700AC37A7 /* MootViewController.swift */,
 				801590EB1C7FC0A70011872B /* LoginViewController.swift */,
 				80AE2AE21CA8D49D0033E48D /* LevelNavController.swift */,
-				807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */,
 				80ECB47F1C896722007559A8 /* AchievementViewController.swift */,
 				80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */,
 				80B6E4A71C9685E2002761D8 /* StageCompletedViewController.swift */,
