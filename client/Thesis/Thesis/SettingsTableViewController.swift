@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
     
     var storedName: String!
     var nameCell: UITableViewCell = UITableViewCell()
@@ -17,6 +18,8 @@ class SettingsTableViewController: UITableViewController {
     var buttonCell: UITableViewCell = UITableViewCell()
     var saveButton: UIButton = UIButton()
     var cancelButton: UIButton = UIButton()
+    
+    var mailComposerVC: MFMailComposeViewController!
     
     let controller: SettingsDataController
     required init?(coder aDecoder: NSCoder) {
@@ -32,8 +35,12 @@ class SettingsTableViewController: UITableViewController {
         self.nameText = UITextField(frame: CGRectInset(self.nameCell.contentView.bounds, 15, 0))
         
         self.controller.getName { (responseObject, error) in
-            self.storedName = responseObject!["name"].string!
-            self.nameText.text = self.storedName
+            if error != nil {
+                self.displayNetworkAlert("displaying settings.")
+            } else {
+                self.storedName = responseObject!["name"].string!
+                self.nameText.text = self.storedName
+            }
         }
         self.nameCell.addSubview(self.nameText)
         
@@ -148,6 +155,41 @@ class SettingsTableViewController: UITableViewController {
             closure
         )
     }
+    
+    func displayNetworkAlert(actionDescription: String){
+        let alert = UIAlertController(title: "Network Problem", message: "There was a problem connecting to the Moot servers.  Please check your network connection and contact the developer if this problem persists.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Contact Developer", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
+            self.mailComposerVC = MFMailComposeViewController()
+            if MFMailComposeViewController.canSendMail() {
+                self.mailComposerVC.mailComposeDelegate = self
+                self.mailComposerVC.setToRecipients(["mootthegame@gmail.com"])
+                self.mailComposerVC.setSubject("Moot Bug Report")
+                self.mailComposerVC.setMessageBody("A problem was encountered when \(actionDescription).<br><br>More details: ", isHTML: true)
+                self.presentViewController(self.mailComposerVC, animated: true, completion: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue:
+            print("Mail cancelled")
+        case MFMailComposeResultSaved.rawValue:
+            print("Mail saved")
+        case MFMailComposeResultSent.rawValue:
+            print("Mail sent")
+        case MFMailComposeResultFailed.rawValue:
+            print("Mail sent failure: \(error!.localizedDescription)")
+        default:
+            break
+        }
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     
     /*

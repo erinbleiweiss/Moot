@@ -32,6 +32,7 @@ class AchievementDataController: GenericGameController{
                     }
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
+                    completionHandler(responseObject: JSON([:]), error: result.error as? NSError)
                     NSLog("Request failed with error: \(result.error)")
                 }
         }
@@ -55,6 +56,7 @@ class AchievementDataController: GenericGameController{
                     }
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
+                    completionHandler(responseObject: JSON([:]), error: result.error as? NSError)
                     NSLog("Request failed with error: \(result.error)")
                 }
         }

@@ -66,8 +66,12 @@ class AchievementViewController: MootViewController, UITableViewDelegate, UITabl
     
     func reloadAchievements(){
         self.controller.getAchievements(){ responseObject, error in
-            self.controller.getUnearnedAchievements(){ responseObject, error in
-                self.tableView.reloadData()
+            if error != nil {
+                self.displayNetworkAlert("displaying achievements.")
+            } else {
+                self.controller.getUnearnedAchievements(){ responseObject, error in
+                    self.tableView.reloadData()
+                }
             }
         }
 

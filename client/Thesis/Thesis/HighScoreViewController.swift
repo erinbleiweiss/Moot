@@ -25,7 +25,11 @@ class HighScoreViewController: MootViewController, UITableViewDelegate, UITableV
         (self.tabBarController as! MootTabBarController).setupTabColors()
         
         self.controller.getHighScores(){ responseObject, error in
-            self.tableView.reloadData()
+            if error != nil {
+                self.displayNetworkAlert("displaying high scores.")
+            } else {
+                self.tableView.reloadData()
+            }
         }
     }
     
