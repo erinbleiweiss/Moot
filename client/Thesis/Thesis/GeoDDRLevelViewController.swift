@@ -25,6 +25,8 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         super.init(coder: aDecoder)
     }
     
+    let scale = ScreenWidth / 320
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 4
@@ -34,7 +36,7 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         self.timerLabel = TimerLabel(frame: CGRectMake(0, y, ScreenWidth, height))
         self.timerLabel.textAlignment = .Center
         self.timerLabel.textColor = mootBlack
-        self.timerLabel.font = UIFont(name: "Anonymous", size: 30.0)
+        self.timerLabel.font = UIFont(name: "Droid Sans Mono", size: 40 * scale)
         self.timerLabel.text = ""
         self.view.addSubview(self.timerLabel)
         
@@ -77,6 +79,10 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     }
     
     
+    override func viewWillDisappear(animated: Bool) {
+        self.motionManager.stopAccelerometerUpdates()
+    }
+    
     func startTimer(duration: NSTimeInterval){
         self.timerLabel.startWithDuration(duration)
         self.timerLabel.update()
@@ -86,6 +92,13 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     func checkTime(){
         if !self.timerLabel.hasFinished(){
             self.timerLabel.update()
+        } else {
+            self.timer.invalidate()
+            self.timer = nil
+            self.motionManager.stopAccelerometerUpdates()
+            self.delay(2){
+                self.displayLevelCompletionView()
+            }
         }
     }
     
@@ -94,6 +107,18 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         self.timer = nil
         self.timerLabel.resetTimer()
         self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(self.checkTime), userInfo: nil, repeats: true)
+    }
+    
+    
+    /**
+        Transition to the "Level Completed" controller, then prepare for new nevel
+     */
+    override func displayLevelCompletionView(){
+        if self.controller.level != nil {
+            let level = LevelManager.sharedInstance.getLevelByNumber(self.controller.level!)
+            let identifier = "\(level.getVCName())Complete"
+            self.performSegueWithIdentifier(identifier, sender: nil)
+        }
     }
     
     

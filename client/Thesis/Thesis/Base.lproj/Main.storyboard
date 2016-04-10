@@ -121,6 +121,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="mXM-se-bXz" kind="show" identifier="GeoDDRComplete" id="dek-FT-YOr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jea-ne-11V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -648,6 +651,6 @@
         <image name="more_filled" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vtA-jE-S8g"/>
+        <segue reference="dek-FT-YOr"/>
     </inferredMetricsTieBreakers>
 </document>

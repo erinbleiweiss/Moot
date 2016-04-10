@@ -58,6 +58,7 @@
 		806656201CB8768500378849 /* SettingsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8066561F1CB8768500378849 /* SettingsDataController.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		8072B9871CB9DD0A001D29D2 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072B9861CB9DD0A001D29D2 /* TimerLabel.swift */; };
+		8072B9891CB9F205001D29D2 /* DroidSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8072B9881CB9F074001D29D2 /* DroidSansMono.ttf */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
 		8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */; };
 		809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866611BE9BE9C00B3FE9D /* MazeTile.swift */; };
@@ -179,6 +180,7 @@
 		8066561F1CB8768500378849 /* SettingsDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataController.swift; sourceTree = "<group>"; };
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		8072B9861CB9DD0A001D29D2 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
+		8072B9881CB9F074001D29D2 /* DroidSansMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansMono.ttf; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
 		8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawGameController.swift; sourceTree = "<group>"; };
 		809866611BE9BE9C00B3FE9D /* MazeTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTile.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			children = (
 				80ED1F0E1BB25A400011A410 /* Images.xcassets */,
 				80B0EABE1BE7030800639ADC /* Anonymous.ttf */,
+				8072B9881CB9F074001D29D2 /* DroidSansMono.ttf */,
 				805066271CB6427D00C9C081 /* Raleway */,
 			);
 			name = Assets;
@@ -626,6 +629,7 @@
 				801E76D51C6805D40077A379 /* level1.plist in Resources */,
 				805066381CB64A9900C9C081 /* Raleway-Regular.ttf in Resources */,
 				805066321CB64A9500C9C081 /* Raleway-Black.ttf in Resources */,
+				8072B9891CB9F205001D29D2 /* DroidSansMono.ttf in Resources */,
 				80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */,
 				80ED1F0F1BB25A400011A410 /* Images.xcassets in Resources */,
 			);
