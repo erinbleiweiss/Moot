@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class TimerLabel: UILabel{
+    
+    var duration: NSTimeInterval!
     var endTime: NSDate!
     
     func update(){
@@ -32,8 +34,9 @@ class TimerLabel: UILabel{
     }
     
     func startWithDuration(duration: NSTimeInterval){
+        self.duration = duration
         let timeNow = NSDate()
-        self.endTime = timeNow.dateByAddingTimeInterval(duration)
+        self.endTime = timeNow.dateByAddingTimeInterval(self.duration)
     }
     
     func hasFinished() -> Bool{
@@ -44,6 +47,12 @@ class TimerLabel: UILabel{
         let now = NSDate()
         let remainingSeconds = endTime.timeIntervalSinceDate(now)
         return max(remainingSeconds, 0)
+    }
+    
+    
+    func resetTimer(){
+        let timeNow = NSDate()
+        self.endTime = timeNow.dateByAddingTimeInterval(self.duration)
     }
     
 }
