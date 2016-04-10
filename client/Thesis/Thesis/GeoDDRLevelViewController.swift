@@ -40,7 +40,8 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         self.timerLabel.text = ""
         self.view.addSubview(self.timerLabel)
         
-        self.startTimer(20)
+        let minutes: Double = 5.0
+        self.startTimer(60 * minutes)
         
         
         var prevX: Double = 1
