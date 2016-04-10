@@ -194,6 +194,7 @@ class JigsawLevelViewController: GenericLevelViewController {
             let identifier = "\(level.getVCName())Complete"
             self.performSegueWithIdentifier(identifier, sender: nil)
             self.setUpLevel()
+            self.controller.succeed()
         }
     }
     
