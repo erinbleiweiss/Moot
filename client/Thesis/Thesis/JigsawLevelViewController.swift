@@ -26,6 +26,11 @@ class JigsawLevelViewController: GenericLevelViewController {
     
     let scale = Int((ScreenHeight - yOffset) * 0.4)
     
+    override func viewWillAppear(animated: Bool) {
+        self.displayCamera = true
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 3

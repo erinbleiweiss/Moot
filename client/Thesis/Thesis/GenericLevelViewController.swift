@@ -39,6 +39,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     var pointsShower: EmoticonParticleView!
     
     var docController = UIDocumentInteractionController()
+    
 
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
@@ -53,8 +54,6 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.displayCamera = true
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -76,9 +75,11 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
-        tabBar.addCameraButton()
-        (self.tabBarController as! MootTabBarController).setupTabColors()
+        if self.displayCamera{
+            let tabBar = self.parentViewController?.tabBarController as! MootTabBarController
+            tabBar.addCameraButton()
+            (self.tabBarController as! MootTabBarController).setupTabColors()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

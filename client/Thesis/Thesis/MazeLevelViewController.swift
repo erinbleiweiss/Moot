@@ -34,6 +34,11 @@ class MazeLevelViewController: GenericLevelViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.displayCamera = true
+        super.viewWillAppear(animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
