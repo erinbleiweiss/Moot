@@ -9,21 +9,31 @@
 import UIKit
 
 class LevelPickerViewController: MootViewController, UICollectionViewDataSource, UICollectionViewDelegate, FlipTransitionProtocol, FlipTransitionCVProtocol {
+    
+    var finishedTransitioning = true
+    
     @IBAction func cancelToLevelPicker(segue:UIStoryboardSegue) {
     }
     
     @IBOutlet weak var levelCollectionView: UICollectionView!
     var tabBar: MootTabBarController?
     var selectedIndexPath: NSIndexPath?
+//    let colors: [UIColor] = [
+//        UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),   // red
+////        UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),       // orange
+//        UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),   // yellow
+////        UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),       // green
+//        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),   // greenyellow
+////        UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),   // teal
+//        UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),       // blue
+////        UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)        // purple
+//    ]
+//    
     let colors: [UIColor] = [
-        UIColor(red:0.718,   green: 0.196, blue:0.2,     alpha:1),
-        UIColor(red:0.937,   green: 0.498, blue:0.00392, alpha:1),
-        UIColor(red:0.988,   green: 0.792, blue:0.31,    alpha:1),
-        UIColor(red:0.784,   green: 0.824, blue:0.098,   alpha:1),
-        UIColor(red:0.545,   green: 0.643, blue:0.0314,  alpha:1),
-        UIColor(red:0.00392, green: 0.533, blue:0.518,   alpha:1),
-        UIColor(red:0,       green: 0.447, blue:0.725,   alpha:1),
-        UIColor(red:0.627,   green: 0.333, blue:0.596,   alpha:1)
+        mootColors["red"]!,
+        mootColors["yellow"]!,
+        mootColors["blue"]!,
+        mootColors["green"]!
     ]
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -49,7 +59,9 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         levelCollectionView.delegate = self
         self.levelCollectionView!.registerClass(LevelCell.self, forCellWithReuseIdentifier: "LevelCell")
         self.levelCollectionView.backgroundColor = UIColor.whiteColor()
-    
+        self.levelCollectionView.scrollEnabled = false
+        self.levelCollectionView.pagingEnabled = false
+        
         LevelManager.sharedInstance.unlockLevel(1)
         LevelManager.sharedInstance.unlockLevel(2)
         LevelManager.sharedInstance.unlockLevel(3)
@@ -99,8 +111,10 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let level: Level = LevelManager.sharedInstance.listLevels()[indexPath.row]
         if !level.isLocked(){
-            selectedIndexPath = indexPath
-            self.navigationController?.pushViewController(level.getVC(), animated: true)
+            if finishedTransitioning{
+                selectedIndexPath = indexPath
+                self.navigationController?.pushViewController(level.getVC(), animated: true)
+            }
         }
         
     }

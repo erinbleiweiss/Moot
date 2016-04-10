@@ -72,79 +72,82 @@ class FlipTransition: NSObject, UINavigationControllerDelegate, UIViewController
         toViewController.view.hidden = true
         
         let levelViewCell = (fromViewController as! FlipTransitionCVProtocol).getSelectedCell()
-        let proxyView = (levelViewCell as FlipTransitionCellProtocol).transitionViewForCell() as! ProxyLevelCell
-        let initialProxyViewFrame = proxyView.frame
-        proxyView.hidden = true
-        
-        if self.operation == .Push {
-            fromViewController.view.addSubview(proxyView)
-            let color = proxyView.color
-            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(color)
-            UIView.animateWithDuration(
-                duration,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 0,
-                options: [],
-                animations: {
-                    proxyView.hidden = false
-                    proxyView.frame = toViewController.view.frame
-                    proxyView.layoutIfNeeded()
-                }, completion: {
-                    (finished) in
-//                    toViewController.navigationController?.tabBarController?.tabBar.barTintColor = color
-                    proxyView.hidden = true
-                    toViewController.view.hidden = false
-                    (toViewController as! GenericLevelViewController).header?.backgroundColor = color
-                    UIView.transitionFromView(
-                        fromViewController.view,
-                        toView: toViewController.view!,
-                        duration: self.transitionDuration(transitionContext),
-                        options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
-                            UIView.animateWithDuration(
-                                duration,
-                                delay: 0,
-                                usingSpringWithDamping: 1,
-                                initialSpringVelocity: 0,
-                                options: [.CurveEaseIn],
-                                animations: {
-                                    toViewController.navigationController?.navigationBarHidden = false
-                                    (toViewController as! GenericLevelViewController).addHeader()
-                                }, completion: { (finished) in
-                                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-                                })
-                            
-                    }
-            })
-        } else {
-            toViewController.navigationController?.navigationBarHidden = true
-            toViewController.view.hidden = false
-            proxyView.hidden = false
-            proxyView.frame = containerView!.frame
-            proxyView.layoutIfNeeded()
-            toViewController.view.addSubview(proxyView)
-            (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(mootBlack)
-            UIView.transitionFromView(
-                fromViewController.view,
-                toView: toViewController.view,
-                duration: self.transitionDuration(transitionContext),
-                options: UIViewAnimationOptions.TransitionFlipFromLeft) { finished in
-                    UIView.animateWithDuration(
-                        duration,
-                        delay: 0,
-                        usingSpringWithDamping: 1,
-                        initialSpringVelocity: 0,
-                        options: [],
-                        animations: {
-                            proxyView.frame = initialProxyViewFrame
-                            proxyView.layoutIfNeeded()
-                            toViewController.navigationController?.tabBarController?.tabBar.barTintColor = UIColor.whiteColor()
-                        }, completion: {
-                            (finished) in
-                            proxyView.removeFromSuperview()
-                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-                    })
-                    
+        if levelViewCell != nil {
+            let proxyView = (levelViewCell as FlipTransitionCellProtocol).transitionViewForCell() as! ProxyLevelCell
+            let initialProxyViewFrame = proxyView.frame
+            proxyView.hidden = true
+            
+            if self.operation == .Push {
+                fromViewController.view.addSubview(proxyView)
+                let color = proxyView.color
+                (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(color)
+                UIView.animateWithDuration(
+                    duration,
+                    delay: 0,
+                    usingSpringWithDamping: 1,
+                    initialSpringVelocity: 0,
+                    options: [],
+                    animations: {
+                        proxyView.hidden = false
+                        proxyView.frame = toViewController.view.frame
+                        proxyView.layoutIfNeeded()
+                    }, completion: {
+                        (finished) in
+                        proxyView.hidden = true
+                        toViewController.view.hidden = false
+                        (toViewController as! GenericLevelViewController).header?.backgroundColor = color
+                        UIView.transitionFromView(
+                            fromViewController.view,
+                            toView: toViewController.view!,
+                            duration: self.transitionDuration(transitionContext),
+                            options: UIViewAnimationOptions.TransitionFlipFromRight) { finished in
+                                UIView.animateWithDuration(
+                                    duration,
+                                    delay: 0,
+                                    usingSpringWithDamping: 1,
+                                    initialSpringVelocity: 0,
+                                    options: [.CurveEaseIn],
+                                    animations: {
+                                        toViewController.navigationController?.navigationBarHidden = false
+                                        (toViewController as! GenericLevelViewController).addHeader()
+                                    }, completion: { (finished) in
+                                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                                    })
+                                
+                        }
+                })
+            } else {
+                (toViewController as! LevelPickerViewController).finishedTransitioning = false
+                toViewController.navigationController?.navigationBarHidden = true
+                toViewController.view.hidden = false
+                proxyView.hidden = false
+                proxyView.frame = containerView!.frame
+                proxyView.layoutIfNeeded()
+                toViewController.view.addSubview(proxyView)
+                (toViewController.navigationController?.tabBarController as! MootTabBarController).changeButtonColor(mootBlack)
+                UIView.transitionFromView(
+                    fromViewController.view,
+                    toView: toViewController.view,
+                    duration: self.transitionDuration(transitionContext),
+                    options: UIViewAnimationOptions.TransitionFlipFromLeft) { finished in
+                        UIView.animateWithDuration(
+                            duration,
+                            delay: 0,
+                            usingSpringWithDamping: 1,
+                            initialSpringVelocity: 0,
+                            options: [],
+                            animations: {
+                                proxyView.frame = initialProxyViewFrame
+                                proxyView.layoutIfNeeded()
+                                toViewController.navigationController?.tabBarController?.tabBar.barTintColor = UIColor.whiteColor()
+                            }, completion: {
+                                (finished) in
+                                proxyView.removeFromSuperview()
+                                (toViewController as! LevelPickerViewController).finishedTransitioning = true
+                                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                        })
+                        
+                }
             }
         }
         
