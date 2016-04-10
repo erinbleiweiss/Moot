@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SwiftSpinner
 import MessageUI
 
 /// View controller for the hangman scanning level

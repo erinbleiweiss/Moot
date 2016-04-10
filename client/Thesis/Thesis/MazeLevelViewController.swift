@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SwiftSpinner
 
 class MazeLevelViewController: GenericLevelViewController {
     var color: String!

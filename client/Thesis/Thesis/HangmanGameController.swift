@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SwiftSpinner
 
 class HangmanGameController: GenericGameController {
     
