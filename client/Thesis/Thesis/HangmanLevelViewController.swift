@@ -60,6 +60,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.controller.refreshData()
+        self.controller.upc = ""
         self.updateGame()
         if self.controller.level != nil {
             self.header?.levelBadge!.update(self.controller.level!)
