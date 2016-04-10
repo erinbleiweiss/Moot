@@ -37,6 +37,8 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     var particles: [String] = []
     var pointsShower: EmoticonParticleView!
+    
+    var docController = UIDocumentInteractionController()
 
     private var controller: GenericGameController
     required init?(coder aDecoder: NSCoder) {
@@ -454,33 +456,33 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
     
     @objc func instagramTapped(btn: UIButton){
         let image: UIImage = self.getScreenshot()
-
         let instagramURL = NSURL(string: "instagram://app")
         
-        if (UIApplication.sharedApplication().canOpenURL(instagramURL!)) {
-//            let imageData = UIImageJPEGRepresentation(image, 100)
-//            let captionString = achTitle!
-//            let writePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("instagram.igo")
-//            if imageData?.writeToFile(writePath, atomically: true) == false {
-//                return
-//            } else {
-//                let fileURL = NSURL(fileURLWithPath: writePath)
-//                let documentController = UIDocumentInteractionController(URL: fileURL)
-//                documentController.delegate = self
-//                documentController.UTI = "com.instagram.exlusivegram"
-//                documentController.annotation = NSDictionary(object: captionString, forKey: "InstagramCaption")
-//                documentController.presentOpenInMenuFromRect(self.view.frame, inView: self.view, animated: true)
-//            }
-        } else {
-            print(" Instagram isn't installed ")
+        if UIApplication.sharedApplication().canOpenURL(instagramURL!) {
+            let imageData = UIImageJPEGRepresentation(image, 100)
+            let writePath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("instagram.igo")
+            
+            guard let _ = imageData?.writeToFile(writePath, atomically: true) else {
+                return
+            }
+            
+            let fileURL = NSURL(fileURLWithPath: writePath)
+            self.docController.URL = fileURL
+            self.docController.delegate = self
+            self.docController.UTI = "com.instagram.exclusivegram"
+            self.docController.presentOpenInMenuFromRect(CGRectZero, inView: self.view, animated: true)
+        }
+        else {
+            // alert displayed when the instagram application is not available in the device
+            UIAlertView(title: "Instagram Not Available", message: "Please install Instagram to share", delegate:nil, cancelButtonTitle:"Ok").show()
         }
         
     }
     
     
     func getScreenshot() -> UIImage! {
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
-        self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0)
+        self.view.window?.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
