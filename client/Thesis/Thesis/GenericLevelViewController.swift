@@ -436,24 +436,6 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
         }
     }
     
-    @objc func googleplusTapped(btn: UIButton){
-        // Construct the Google+ share URL
-//        let shareURL = NSURL(string: "http://www.erinbleiweiss.com/moot")
-        let urlComponents: NSURLComponents = NSURLComponents(string: "https://plus.google.com/share")!
-//        urlComponents.queryItems = [NSURLQueryItem(name: "url", value: shareURL!.absoluteString)]
-        let url: NSURL = urlComponents.URL!
-        if #available(iOS 9.0, *) {
-            // Open the URL in SFSafariViewController (iOS 9+)
-            let controller: SFSafariViewController = SFSafariViewController(URL: url)
-            controller.delegate = self
-            self.presentViewController(controller, animated: true, completion: { _ in })
-        } else {
-            // Open the URL in the device's browser
-            UIApplication.sharedApplication().openURL(url)
-        }
-
-    }
-    
     @objc func instagramTapped(btn: UIButton){
         let image: UIImage = self.getScreenshot()
         let instagramURL = NSURL(string: "instagram://app")
