@@ -130,7 +130,6 @@ class GenericGameController{
                 switch result {
                 case .Success(let data):
                     let json = JSON(data)
-                    print(json["status"])
                     
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
@@ -243,7 +242,6 @@ class GenericGameController{
         Increments the current stage for level in level manager
      */
     func advanceToNextStage(){
-        print("pressed")
         LevelManager.sharedInstance.advancetoNextStage(self.level!)
     }
     

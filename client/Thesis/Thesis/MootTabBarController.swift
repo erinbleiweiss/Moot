@@ -128,10 +128,8 @@ public class MootTabBarController: RAMAnimatedTabBarController {
     public func onRaisedButton(sender: UIButton!) {
         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let modalVC = storyboard.instantiateViewControllerWithIdentifier(self.cameraVC!) as UIViewController
-        self.selectedViewController?.presentViewController(modalVC, animated: true, completion: { () -> Void in
+        self.selectedViewController?.presentViewController(modalVC, animated: true, completion: { () -> Void in  
             
-            
-            print("")
         })
         
     

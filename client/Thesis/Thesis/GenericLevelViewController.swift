@@ -393,7 +393,6 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
             let content = FBSDKShareLinkContent()
             content.contentURL = NSURL(string: "http://www.erinbleiweiss.com/moot")
             content.imageURL = NSURL(string: self.achImgUrl!)
-            print(self.achImgUrl!)
             content.contentTitle = self.achTitle!
             content.contentDescription = "I just earned the '\(self.achTitle!)' achievement on Moot"
             

@@ -22,11 +22,9 @@ class AchievementDataController: GenericGameController{
                 switch result {
                 case .Success(let data):
                     let json = JSON(data)
-                    print(json["status"])
                     
                     for (item, subJson):(String, JSON) in json{
                         if (item == "achievements"){
-                            print(subJson)
                             self.createAchievements(subJson)
                         }
                     }
@@ -46,11 +44,9 @@ class AchievementDataController: GenericGameController{
                 switch result {
                 case .Success(let data):
                     let json = JSON(data)
-                    print(json["status"])
                     
                     for (item, subJson):(String, JSON) in json{
                         if (item == "achievements"){
-                            print(subJson)
                             self.createUnearnedAchievements(subJson)
                         }
                     }

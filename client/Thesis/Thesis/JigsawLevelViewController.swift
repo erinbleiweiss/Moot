@@ -53,7 +53,6 @@ class JigsawLevelViewController: GenericLevelViewController {
     
     override func setUpLevel() {
         self.controller.getQRCode(scale, height: scale){ responseObject, error in
-            print(responseObject)
             if self.controller.QRImage == nil {
                 self.displayNetworkAlert("playing level 3.")
             } else {

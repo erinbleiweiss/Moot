@@ -87,7 +87,6 @@ class GenericCameraViewController: UIViewController, AVCaptureMetadataOutputObje
             // If input is not nil then add it to the session
             session.addInput(input)
         } catch let error as NSError{
-            print(error)
         }
         
         let output = AVCaptureMetadataOutput()

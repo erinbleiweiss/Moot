@@ -80,7 +80,6 @@ class HangmanLevelViewController: GenericLevelViewController {
             // Generate target word
             self.controller.getRandomWord(){ responseObject, error in
                 if error != nil {
-                    print("there was an error")
                     self.displayNetworkAlert("playing level 1.")
                 } else {
                     // Set current game string in controller (if not first level)

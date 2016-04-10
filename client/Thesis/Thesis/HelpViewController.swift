@@ -60,7 +60,6 @@ class HelpViewController: MootViewController {
                 self.mootDescription.setAttributes([NSFontAttributeName: font], range: NSRange(location: 0, length: self.mootDescription.length))
                 
             } catch {
-                print(error)
             }
             
             descView.userInteractionEnabled = false

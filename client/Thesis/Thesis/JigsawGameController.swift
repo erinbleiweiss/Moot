@@ -44,8 +44,6 @@ class JigsawGameController: GenericGameController{
         let url: String = barcode
         let target_url: String =  hostname + rest_prefix + "/check_qr_code"
         if url != target_url{
-            print(url)
-            print(target_url)
             completionHandler(responseObject: JSON(["barcode": "wrong_barcode"]), error: NSError(domain: "mootbarcodeerro", code: 6373463, userInfo: nil))
         } else {
             Alamofire.request(.GET, url, parameters: ["frommootapp": "yesindeed"], headers: headers).responseJSON { (_, _, result) in switch result {
