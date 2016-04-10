@@ -377,7 +377,7 @@ class GenericLevelViewController: MootViewController, FlipTransitionProtocol, Fl
      
      */
     func addSocialMediaTargets(btns: [UIButton]){
-        let platforms = ["facebook", "twitter", "googleplus", "instagram"]
+        let platforms = ["facebook", "twitter", "instagram"]
         for (idx, btn) in btns.enumerate() {
             btn.addTarget(self, action: Selector("\(platforms[idx])Tapped:"), forControlEvents: .TouchUpInside)
         }
