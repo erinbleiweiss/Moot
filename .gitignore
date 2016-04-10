@@ -35,4 +35,4 @@ server/.cache/*
 server/.tox/*
 config.ini
 *.certSigningRequest
-
+*.cer
