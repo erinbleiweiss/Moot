@@ -13,8 +13,22 @@ class TimerLabel: UILabel{
     var endTime: NSDate!
     
     func update(){
-        let timeLeftInteger = Int(timeLeft())
-        self.text = String(timeLeftInteger)
+        var remainingTime = timeLeft()
+        
+        let minutes = UInt8(remainingTime / 60.0)
+        remainingTime -= (NSTimeInterval(minutes) * 60)
+
+        let seconds = UInt8(remainingTime)
+        remainingTime -= NSTimeInterval(seconds)
+        
+        let fraction = UInt8(remainingTime * 100)
+                
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        let strFraction = String(format: "%02d", fraction)
+        
+        //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+        self.text = "\(strMinutes):\(strSeconds):\(strFraction)"
     }
     
     func startWithDuration(duration: NSTimeInterval){
