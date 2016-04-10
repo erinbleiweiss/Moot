@@ -153,6 +153,7 @@ class HangmanLevelViewController: GenericLevelViewController {
                 // Display feedback message if letter is an incorrect guess
                 if error != nil {
                     SwiftSpinner.show("Problem scanning. Try again!", animated: false)
+                    self.controller.upc = ""
                 } else {
                     SwiftSpinner.show("", animated: false)
                     SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
