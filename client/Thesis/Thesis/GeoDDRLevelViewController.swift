@@ -13,8 +13,9 @@ import CoreMotion
 
 class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDelegate {
     
-    var timerLabel: UILabel!
-    var timer: Timer!
+    var timerLabel: TimerLabel!
+    var timer: NSTimer!
+    
 
     let controller: GeoDDRGameController
     required init?(coder aDecoder: NSCoder){
@@ -28,20 +29,27 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         
         let y = ScreenHeight * 0.25
         let height = ScreenHeight * 0.5
-        self.timerLabel = UILabel(frame: CGRectMake(0, y, ScreenWidth, height))
-//        self.timerLabel.sizeLabel()
+        self.timerLabel = TimerLabel(frame: CGRectMake(0, y, ScreenWidth, height))
         self.timerLabel.textAlignment = .Center
         self.timerLabel.textColor = mootBlack
         self.timerLabel.text = ""
         self.view.addSubview(self.timerLabel)
         
-//        let duration = Utils.getTotalDurationInSeconds(textTimeInMinutesAndSeconds: textTime!.text);
-//        timer = Timer(duration: duration ){
-//
-//        }
+        self.timerLabel.startWithDuration(20)
+        self.timerLabel.update()
+
         
-        
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(self.checkTime), userInfo: nil, repeats: true)
+
     }
+    
+    
+    func checkTime(){
+        if !self.timerLabel.hasFinished(){
+            self.timerLabel.update()
+        }
+    }
+    
     
 
     

@@ -50,7 +50,11 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         self.levelCollectionView!.registerClass(LevelCell.self, forCellWithReuseIdentifier: "LevelCell")
         self.levelCollectionView.backgroundColor = UIColor.whiteColor()
     
-        LevelManager.sharedInstance.unlockLevel(1)    
+        LevelManager.sharedInstance.unlockLevel(1)
+        LevelManager.sharedInstance.unlockLevel(2)
+        LevelManager.sharedInstance.unlockLevel(3)
+        LevelManager.sharedInstance.unlockLevel(4)
+    
     }
     
 
