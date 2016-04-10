@@ -45,6 +45,7 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         var prevY: Double = 1
         var prevZ: Double = 1
         let threshhold = 0.015
+        motionManager.accelerometerUpdateInterval = 0.01
         if motionManager.deviceMotionAvailable {
             //sleep(2)
             motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()){ data, error in
@@ -58,11 +59,11 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
                 let dz = z - prevZ
                
                 if (dx <= threshhold && dy <= threshhold && dz <= threshhold){
-                    print("still")
+                    // Device is still
                 } else {
-                    print("moved")
+                    // Device moved
+                    self.resetTime()
                 }
-                print("")
                 
                 prevX = x
                 prevY = y
