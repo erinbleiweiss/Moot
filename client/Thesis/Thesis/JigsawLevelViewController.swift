@@ -44,22 +44,30 @@ class JigsawLevelViewController: GenericLevelViewController {
             self.header?.levelBadge!.update(self.controller.level!)
             self.view.layoutSubviews()
         }
+        
+        if self.controller.tiles.count == 0 {
+            self.setUpLevel()
+        }
     }
-    
+
     
     override func setUpLevel() {
         self.controller.getQRCode(scale, height: scale){ responseObject, error in
-            let rows = 3
-            let cols = 3
-            let tileMargin = 10
-            
-            //            let image: UIImage = UIImage(named: "qr2")!
-            self.generateTiles(self.controller.QRImage, rows: rows, cols: cols)
-            self.generateTargets(rows, cols: cols)
-            
-            self.controller.tiles = self.controller.tiles.shuffle()
-            self.displayTiles(tileMargin, rows: rows, cols: cols)
-            
+            print(responseObject)
+            if self.controller.QRImage == nil {
+                self.displayNetworkAlert("playing level 3.")
+            } else {
+                let rows = 3
+                let cols = 3
+                let tileMargin = 10
+                
+                //            let image: UIImage = UIImage(named: "qr2")!
+                self.generateTiles(self.controller.QRImage!, rows: rows, cols: cols)
+                self.generateTargets(rows, cols: cols)
+                
+                self.controller.tiles = self.controller.tiles.shuffle()
+                self.displayTiles(tileMargin, rows: rows, cols: cols)
+            }
         }
         
         if self.controller.level != nil {
@@ -193,19 +201,13 @@ class JigsawLevelViewController: GenericLevelViewController {
 
     override func resetButtonTouched(sender: UIButton) {
         
-        let alertController = UIAlertController(title: "Reset", message: "Reset the entire level or just this stage?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alertController = UIAlertController(title: "Reset", message: "Reset the current level?", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        let deleteAction = UIAlertAction(title: "Reset Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+        let action = UIAlertAction(title: "Reset Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
             self.controller.resetCurrentLevel()
             self.resetLevel()
         })
-        alertController.addAction(deleteAction)
-        
-        let okAction = UIAlertAction(title: "Reset Stage", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
-//            self.controller.reset()
-            self.resetLevel()
-        })
-        alertController.addAction(okAction)
+        alertController.addAction(action)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(alert :UIAlertAction!) in
         })
@@ -242,6 +244,9 @@ class JigsawLevelViewController: GenericLevelViewController {
         SwiftSpinner.show("Scanning")
         if response != nil{
             self.controller.checkQRCode(response){ responseObject, error in
+                if error != nil {
+                    self.displayNetworkAlert("playing level 3.")
+                }
                 if responseObject!["barcode"] == "wrong_barcode"{
                     SwiftSpinner.show("Invalid barcode. Try again!", animated: false)
                     self.delay(2){

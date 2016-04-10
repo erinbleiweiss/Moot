@@ -52,16 +52,21 @@ class MazeGameController: GenericGameController {
         self.refreshData()
         
         let url: String = hostname + rest_prefix + "/generate_maze"
-        Alamofire.request(.GET, url, parameters: ["width": self.mazeData.getMazeSize(), "height": self.mazeData.getMazeSize()]).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["width": self.mazeData.getMazeSize(), "height": self.mazeData.getMazeSize()]).responseJSON { (_, _, result) in switch result {
             
-            let json = JSON(result.value!)
-            if let maze = json["maze"].string{
-                completionHandler(responseObject: maze, error: result.error as? NSError)
-            } else {
-                completionHandler(responseObject: "Could not generate maze", error: result.error as? NSError)
+            case .Success(_):
+                let json = JSON(result.value!)
+                if let maze = json["maze"].string{
+                    completionHandler(responseObject: maze, error: result.error as? NSError)
+                } else {
+                    completionHandler(responseObject: "Could not generate maze", error: result.error as? NSError)
+                }
+            case .Failure(_):
+                NSLog("generateMaze failed with error: \(result.error)")
+                completionHandler(responseObject: "", error: result.error as? NSError)
+
             }
-            
-            
+    
         }
     }
     
@@ -93,25 +98,27 @@ class MazeGameController: GenericGameController {
     
     func mazeMove(dir: String, completionHandler: (responseObject: String?, error: NSError?) -> ()) {
         let url: String = hostname + rest_prefix + "/maze_move"
-        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.mazeData.getTileString(), "row": String(self.mazeData.getPosRow()), "col": String(self.mazeData.getPosCol())], headers: headers).responseJSON { (_, _, result) in
+        Alamofire.request(.GET, url, parameters: ["dir": dir, "maze": self.mazeData.getTileString(), "row": String(self.mazeData.getPosRow()), "col": String(self.mazeData.getPosCol())], headers: headers).responseJSON { (_, _, result) in switch result{
             
-            
-            let json = JSON(result.value!)
-            if let success = json["status"].string{
-                if success == "success" {
-                    let new_row = String(json["row"])
-                    let new_col = String(json["col"])
-                    
-                    self.mazeData.set_posRow(Int(new_row)!)
-                    self.mazeData.set_posCol(Int(new_col)!)
-                    self.refreshData()
-                }
-                completionHandler(responseObject: "Success", error: result.error as? NSError)
-            } else {
-                completionHandler(responseObject: "Not Found", error: result.error as? NSError)
+                case .Success(_):
+                    let json = JSON(result.value!)
+                    if let success = json["status"].string{
+                        if success == "success" {
+                            let new_row = String(json["row"])
+                            let new_col = String(json["col"])
+                            
+                            self.mazeData.set_posRow(Int(new_row)!)
+                            self.mazeData.set_posCol(Int(new_col)!)
+                            self.refreshData()
+                        }
+                        completionHandler(responseObject: "Success", error: result.error as? NSError)
+                    } else {
+                        completionHandler(responseObject: "Not Found", error: result.error as? NSError)
+                    }
+
+                case .Failure(_):
+                    completionHandler(responseObject: "Not Found", error: result.error as? NSError)
             }
-            
-            
         }
     }
     

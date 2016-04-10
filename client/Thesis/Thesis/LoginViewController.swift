@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class LoginViewController: UIViewController {
+class LoginViewController: MootViewController {
     
     @IBAction func cancelToLogin(segue:UIStoryboardSegue) {
     }
@@ -18,7 +18,11 @@ class LoginViewController: UIViewController {
     
     var nameTextField: MootTextField!
     let transitionManager = FadeTransition()
-
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -134,7 +138,7 @@ class LoginViewController: UIViewController {
                         prefs.setObject(uuid, forKey: "uuid")
                     completionHandler(responseObject: json, error: result.error as? NSError)
                 case .Failure(_):
-                    NSLog("Request failed with error: \(result.error)")
+                    self.displayNetworkAlert("logging in")
                 }
                 
             }
@@ -149,6 +153,8 @@ class LoginViewController: UIViewController {
         levelPickerVC.transitioningDelegate = self.transitionManager
         self.presentViewController(levelPickerVC, animated: animated, completion: nil)
     }
+
+    
 
         
     /*

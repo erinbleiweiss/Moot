@@ -86,9 +86,13 @@ class MazeLevelViewController: GenericLevelViewController {
     
     func generateMaze() {
         self.controller.generateMaze(){ responseObject, error in
-            self.controller.mazeData.set_TileString(responseObject!)
-            self.controller.refreshData()
-            self.layoutMaze()
+            if error != nil {
+                self.displayNetworkAlert("playing level 2.")
+            } else {
+                self.controller.mazeData.set_TileString(responseObject!)
+                self.controller.refreshData()
+                self.layoutMaze()
+            }
         }
     }
     
@@ -102,89 +106,90 @@ class MazeLevelViewController: GenericLevelViewController {
 
         var tiles: [String] = []
         tiles = self.controller.mazeData.getTileString().componentsSeparatedByString("_")
-        
-        let length = tiles.count
-        let size_double = sqrt(Double(length))
-        let size = Int(size_double)
-        
-        self.mazeSize = self.mazeTopView!.frame.height - 20.0
-        self.tileSize = Int(self.mazeSize!) / size
-        
-        var row = 0
-        var col = 0
-        
-        let margin = (ScreenWidth - self.mazeSize!) / 2
-        self.controller.mazeView = UIView(frame: CGRect(x: margin, y: 20, width: self.mazeSize!, height: self.mazeSize!))
-        
-        for tile in tiles{
+        if tiles.count > 0 {
             
-            let walls = self.getWalls(Int(tile)!)
+            let length = tiles.count
+            let size_double = sqrt(Double(length))
+            let size = Int(size_double)
             
-            let north = self.evaluateWall(walls[0])
-            let west = self.evaluateWall(walls[1])
-            let south = self.evaluateWall(walls[2])
-            let east = self.evaluateWall(walls[3])
+            self.mazeSize = self.mazeTopView!.frame.height - 20.0
+            self.tileSize = Int(self.mazeSize!) / size
             
-            let frame = CGRect(
-                x: self.tileSize! * col,
-                y: self.tileSize! * row,
+            var row = 0
+            var col = 0
+            
+            let margin = (ScreenWidth - self.mazeSize!) / 2
+            self.controller.mazeView = UIView(frame: CGRect(x: margin, y: 20, width: self.mazeSize!, height: self.mazeSize!))
+            
+            for tile in tiles{
+                
+                let walls = self.getWalls(Int(tile)!)
+                
+                let north = self.evaluateWall(walls[0])
+                let west = self.evaluateWall(walls[1])
+                let south = self.evaluateWall(walls[2])
+                let east = self.evaluateWall(walls[3])
+                
+                let frame = CGRect(
+                    x: self.tileSize! * col,
+                    y: self.tileSize! * row,
+                    width: self.tileSize!,
+                    height: self.tileSize!
+                )
+                let tileView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
+                tileView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+                
+                if (row == 0 && col == 0){
+                    tileView.setStart()
+                } else if ((row == size-1) && (col == size-1)){
+                    tileView.setEnd()
+                }
+                
+                
+                // Determine if tile is a border tile
+                if row == 0 {
+                    tileView.border["north"] = true
+                }
+                if col == size-1 {
+                    tileView.border["east"] = true
+                }
+                if row == size-1 {
+                    tileView.border["south"] = true
+                }
+                if col == 0 {
+                    tileView.border["west"] = true
+                }
+                
+                self.controller.mazeView.addSubview(tileView)
+                col+=1
+                if (col >= size){
+                    col=0
+                    row+=1
+                }
+            }
+            
+            self.mazeTopView!.addSubview(self.controller.mazeView)
+            
+            let tokenFrame = CGRect(
+                x: self.tileSize! * self.controller.mazeData.getPosCol(),
+                y: self.tileSize! * self.controller.mazeData.getPosRow(),
                 width: self.tileSize!,
                 height: self.tileSize!
             )
-            let tileView = MazeTile(north: north, west: west, south: south, east: east, frame: frame)
-            tileView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+            self.controller.tokenView = MazeToken(frame: tokenFrame)
+            self.controller.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
+            self.controller.mazeView.addSubview(self.controller.tokenView)
             
-            if (row == 0 && col == 0){
-                tileView.setStart()
-            } else if ((row == size-1) && (col == size-1)){
-                tileView.setEnd()
-            }
-            
-            
-            // Determine if tile is a border tile
-            if row == 0 {
-                tileView.border["north"] = true
-            }
-            if col == size-1 {
-                tileView.border["east"] = true
-            }
-            if row == size-1 {
-                tileView.border["south"] = true
-            }
-            if col == 0 {
-                tileView.border["west"] = true
-            }
-            
-            self.controller.mazeView.addSubview(tileView)
-            col+=1
-            if (col >= size){
-                col=0
-                row+=1
-            }
+            let compassSize = self.mazeBottomView!.frame.height
+            let compassFrame = CGRect(
+                x: (self.mazeBottomView!.frame.width/2) - (compassSize/2),
+                y: 0,
+                width: compassSize,
+                height: compassSize
+            )
+            self.controller.compass = CompassView(frame: compassFrame)
+            self.mazeBottomView!.addSubview(self.controller.compass)
         }
-        
-        self.mazeTopView!.addSubview(self.controller.mazeView)
-        
-        let tokenFrame = CGRect(
-            x: self.tileSize! * self.controller.mazeData.getPosCol(),
-            y: self.tileSize! * self.controller.mazeData.getPosRow(),
-            width: self.tileSize!,
-            height: self.tileSize!
-        )
-        self.controller.tokenView = MazeToken(frame: tokenFrame)
-        self.controller.tokenView.backgroundColor = UIColor(white: 1, alpha: 0)
-        self.controller.mazeView.addSubview(self.controller.tokenView)
-        
-        let compassSize = self.mazeBottomView!.frame.height
-        let compassFrame = CGRect(
-            x: (self.mazeBottomView!.frame.width/2) - (compassSize/2),
-            y: 0,
-            width: compassSize,
-            height: compassSize
-        )
-        self.controller.compass = CompassView(frame: compassFrame)
-        self.mazeBottomView!.addSubview(self.controller.compass)
-    
     }
     
     
@@ -239,18 +244,22 @@ class MazeLevelViewController: GenericLevelViewController {
                             "purple": "northwest"
                         ]
                         self.controller.mazeMove(cardinal_directions[touchedColor!]!){ responseObject, error in
-                            self.updateToken()
-                            let direction = directions[touchedColor!]
-                            self.controller.compass.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void    in
-                                let return_code = self.controller.checkForSuccess()
-                                if (return_code == 1){
-                                    self.displayStageCompletionView()
-                                    self.resetLevel()
-                                } else if (return_code == 2){
-                                    self.displayLevelCompletionView()
-                                    self.resetLevel()
-                                }
-                            })
+                            if error != nil {
+                                self.displayNetworkAlert("playing level 2.")
+                            } else {
+                                self.updateToken()
+                                let direction = directions[touchedColor!]
+                                self.controller.compass.addarrowAnimationCompletionBlock(direction!, completionBlock: { (finished) -> Void    in
+                                    let return_code = self.controller.checkForSuccess()
+                                    if (return_code == 1){
+                                        self.displayStageCompletionView()
+                                        self.resetLevel()
+                                    } else if (return_code == 2){
+                                        self.displayLevelCompletionView()
+                                        self.resetLevel()
+                                    }
+                                })
+                            }
                         }
                     }
                 }

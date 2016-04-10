@@ -50,6 +50,7 @@ class HangmanGameController: GenericGameController {
                 case .Failure(_):
                     // There was a problem retrieving a word from the database
                     NSLog("getRandomWord failed with error: \(result.error)")
+                    completionHandler(responseObject: JSON([:]), error: result.error as? NSError)
             }
                 
         }
@@ -101,6 +102,8 @@ class HangmanGameController: GenericGameController {
                          SwiftSpinner.hide()
                     }
                     NSLog("Request failed with error: \(result.error)")
+                    completionHandler(responseObject: JSON([:]), error: result.error as? NSError)
+               
             }
             
         }

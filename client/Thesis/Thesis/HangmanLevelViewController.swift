@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SwiftSpinner
-
+import MessageUI
 
 /// View controller for the hangman scanning level
 
@@ -19,7 +19,7 @@ class HangmanLevelViewController: GenericLevelViewController {
     /// Display margin between tiles
     // TODO: adapt margin based on screen size
     let TileMargin: CGFloat = ScreenWidth / 20
-    
+
     @IBAction func cancelToHangmanLevelViewController(segue:UIStoryboardSegue) {
     }
     
@@ -79,24 +79,27 @@ class HangmanLevelViewController: GenericLevelViewController {
         if (self.controller.hangmanData.getTargetWord() == "") {
             // Generate target word
             self.controller.getRandomWord(){ responseObject, error in
-                print("responseObject = \(responseObject); error = \(error)")
-                
-                // Set current game string in controller (if not first level)
-                let difficulty = self.controller.getCurrentStage()
-                
-                if (difficulty == 1 && self.controller.hangmanData.getTargetWord() == "scan"){
-                    self.controller.hangmanData.set_CurrentGame("sc_n")
+                if error != nil {
+                    print("there was an error")
+                    self.displayNetworkAlert("playing level 1.")
                 } else {
-                    for (_, _) in self.controller.hangmanData.getTargetWord().characters.enumerate() {
-                        var currentGame = self.controller.hangmanData.getCurrentGame()
-                        currentGame += "_"
-                        self.controller.hangmanData.set_CurrentGame(currentGame)
+                    // Set current game string in controller (if not first level)
+                    let difficulty = self.controller.getCurrentStage()
+                    
+                    if (difficulty == 1 && self.controller.hangmanData.getTargetWord() == "scan"){
+                        self.controller.hangmanData.set_CurrentGame("sc_n")
+                    } else {
+                        for (_, _) in self.controller.hangmanData.getTargetWord().characters.enumerate() {
+                            var currentGame = self.controller.hangmanData.getCurrentGame()
+                            currentGame += "_"
+                            self.controller.hangmanData.set_CurrentGame(currentGame)
+                        }
                     }
+                    
+                    self.controller.refreshData()
+                    // Generate game with blank tiles
+                    self.layoutTiles()
                 }
-                
-                self.controller.refreshData()
-                // Generate game with blank tiles
-                self.layoutTiles()
                 
             }
             
@@ -149,44 +152,48 @@ class HangmanLevelViewController: GenericLevelViewController {
             SwiftSpinner.show("Scanning")
             controller.playHangman(controller.upc){ responseObject, error in
                 // Display feedback message if letter is an incorrect guess
-                SwiftSpinner.show("", animated: false)
-                SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
-                if (responseObject!["game_state"] == 2){
-                    SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false).addTapHandler({}, subtitle: "Not in word")
-                    self.delay(1.5){
-                        SwiftSpinner.hide()
+                if error != nil {
+                    SwiftSpinner.show("Problem scanning. Try again!", animated: false)
+                } else {
+                    SwiftSpinner.show("", animated: false)
+                    SwiftSpinner.setTitleFont(UIFont.systemFontOfSize(100))
+                    if (responseObject!["game_state"] == 2){
+                        SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false).addTapHandler({}, subtitle: "Not in word")
+                        self.delay(1.5){
+                            SwiftSpinner.hide()
+                        }
+                    } else if (responseObject!["game_state"] == 1){
+                        SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false).addTapHandler({}, subtitle: "Already guessed.")
+                        self.delay(1.5){
+                            SwiftSpinner.hide()
+                        }
                     }
-                } else if (responseObject!["game_state"] == 1){
-                    SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false).addTapHandler({}, subtitle: "Already guessed.")
-                    self.delay(1.5){
-                        SwiftSpinner.hide()
-                    }
-                }
-                else{
-                    // Guess is correct, check for success
-                    SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false)
-                    self.delay(1.5){
-                        SwiftSpinner.hide()
-                    }
+                    else{
+                        // Guess is correct, check for success
+                        SwiftSpinner.show(self.controller.hangmanData.getCurrentGuess(), animated: false)
+                        self.delay(1.5){
+                            SwiftSpinner.hide()
+                        }
 
-                    let return_code = self.controller.checkForSuccess()
-                    if (return_code == 1) {
-                        // Stage is complete
-                        self.shouldDisplayStageCompleted = true
-                    } else if (return_code == 2){
-                        // Level is complete
-                        self.shouldDisplayLevelCompleted = true
+                        let return_code = self.controller.checkForSuccess()
+                        if (return_code == 1) {
+                            // Stage is complete
+                            self.shouldDisplayStageCompleted = true
+                        } else if (return_code == 2){
+                            // Level is complete
+                            self.shouldDisplayLevelCompleted = true
+                        }
+                        
+
+                    }
+                    self.delay(1.5){
+                        self.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
                     }
                     
-
+                    let points_earned = responseObject!["points_earned"]
+                    self.particles = ["+\(points_earned)"]
+                    self.updateMootPoints()
                 }
-                self.delay(1.5){
-                    self.showProductPopup(responseObject!["product_name"].string!, color: responseObject!["color"].string!, url: responseObject!["product_img"].string!)
-                }
-                
-                let points_earned = responseObject!["points_earned"]
-                self.particles = ["+\(points_earned)"]
-                self.updateMootPoints()
             }
         }
     }
@@ -252,7 +259,5 @@ class HangmanLevelViewController: GenericLevelViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-
     
 }

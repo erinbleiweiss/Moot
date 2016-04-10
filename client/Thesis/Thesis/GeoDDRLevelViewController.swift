@@ -122,10 +122,28 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     }
     
     
-    override func viewDidDisappear(animated: Bool) {
-//        locationManager.stopUpdatingLocation()
-//        locationUpdateTimer!.invalidate()
-//        locationUpdateTimer = nil
+    override func resetButtonTouched(sender: UIButton) {
+        
+        let alertController = UIAlertController(title: "Reset", message: "Reset the current level?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let action = UIAlertAction(title: "Reset Level", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            self.controller.resetCurrentLevel()
+            self.resetTime()
+        })
+        alertController.addAction(action)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {(alert :UIAlertAction!) in
+        })
+        alertController.addAction(cancelAction)
+        
+        
+        
+        alertController.popoverPresentationController?.sourceView = view
+        alertController.popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(alertController, animated: true, completion: nil)
+        
     }
+    
+    
     
 }

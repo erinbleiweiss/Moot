@@ -935,6 +935,7 @@ def get_qr_code():
     r = requests.get(request_url)
     response = make_response(r.content)
     response.content_type = "image/png"
+    logger.debug(response)
     return response
 
 
