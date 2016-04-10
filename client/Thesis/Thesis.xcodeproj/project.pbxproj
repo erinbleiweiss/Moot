@@ -63,6 +63,7 @@
 		8072B98F1CBA4C33001D29D2 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 8072B98E1CBA4C33001D29D2 /* privacy.html */; };
 		8072B9921CBA5270001D29D2 /* tick-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8072B9901CBA5270001D29D2 /* tick-off.png */; };
 		8072B9931CBA5270001D29D2 /* tick-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8072B9911CBA5270001D29D2 /* tick-on.png */; };
+		8072B9951CBA7A58001D29D2 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072B9941CBA7A58001D29D2 /* SwiftSpinner.swift */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
 		8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */; };
 		809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866611BE9BE9C00B3FE9D /* MazeTile.swift */; };
@@ -189,6 +190,7 @@
 		8072B98E1CBA4C33001D29D2 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 		8072B9901CBA5270001D29D2 /* tick-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-off.png"; sourceTree = "<group>"; };
 		8072B9911CBA5270001D29D2 /* tick-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-on.png"; sourceTree = "<group>"; };
+		8072B9941CBA7A58001D29D2 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
 		8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawGameController.swift; sourceTree = "<group>"; };
 		809866611BE9BE9C00B3FE9D /* MazeTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTile.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				805066401CB672A700C9C081 /* EmoticonParticleView.swift */,
 				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
 				8050663C1CB6534D00C9C081 /* FadeTransition.swift */,
+				8072B9941CBA7A58001D29D2 /* SwiftSpinner.swift */,
 				804E11E61C9E22F800F57992 /* QCMethod.swift */,
 			);
 			name = Animations;
@@ -769,6 +772,7 @@
 				80D69EC31CA1E9300076209C /* MootTabBarController.swift in Sources */,
 				802769D71CB4D518000F23B7 /* MootTextField.swift in Sources */,
 				80CDFA8F1C7513DF002E44E6 /* LevelManager.swift in Sources */,
+				8072B9951CBA7A58001D29D2 /* SwiftSpinner.swift in Sources */,
 				80CBB5BF1C79952900D705A7 /* AchievementManager.swift in Sources */,
 				80ECB4801C896722007559A8 /* AchievementViewController.swift in Sources */,
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
@@ -912,7 +916,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Erin Bleiweiss (K4SGE5A3WA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -935,7 +939,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Erin Bleiweiss (K4SGE5A3WA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
