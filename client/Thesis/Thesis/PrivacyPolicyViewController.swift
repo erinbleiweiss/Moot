@@ -12,6 +12,17 @@ class PrivacyPolicyViewController: MootViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let topMargin = self.view.frame.height * 0.025
+        let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
+
+        let webView = UIWebView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - topMargin - tabBarHeight))
+        self.view.addSubview(webView)
+        
+        // Load Webpage
+        let url = NSBundle.mainBundle().URLForResource("privacy", withExtension: "html");
+        let requestObj = NSURLRequest(URL: url!);
+        webView.loadRequest(requestObj);
 
         // Do any additional setup after loading the view.
     }

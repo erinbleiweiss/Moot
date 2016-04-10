@@ -15,7 +15,6 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import SafariServices
 import DynamicColor
-import MGInstagram
 
 class GenericLevelViewController: MootViewController, FlipTransitionProtocol, FlipTransitionCVProtocol, SFSafariViewControllerDelegate, UIDocumentInteractionControllerDelegate {
 

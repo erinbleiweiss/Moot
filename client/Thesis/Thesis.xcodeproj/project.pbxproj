@@ -52,13 +52,17 @@
 		8050663B1CB64C4E00C9C081 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */; };
 		8050663D1CB6534D00C9C081 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050663C1CB6534D00C9C081 /* FadeTransition.swift */; };
 		805066411CB672A700C9C081 /* EmoticonParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066401CB672A700C9C081 /* EmoticonParticleView.swift */; };
-		805066451CB6FFAD00C9C081 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805066441CB6FFAD00C9C081 /* File.swift */; };
 		8050664C1CB7C77900C9C081 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050664B1CB7C77900C9C081 /* Timer.swift */; };
 		805BCC141C9D28F1008B4536 /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805BCC131C9D28F1008B4536 /* CompassView.swift */; };
 		806656201CB8768500378849 /* SettingsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8066561F1CB8768500378849 /* SettingsDataController.swift */; };
 		80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80685A041C7A7873000AAB9E /* ScoreBox.swift */; };
 		8072B9871CB9DD0A001D29D2 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072B9861CB9DD0A001D29D2 /* TimerLabel.swift */; };
 		8072B9891CB9F205001D29D2 /* DroidSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8072B9881CB9F074001D29D2 /* DroidSansMono.ttf */; };
+		8072B98B1CBA3D55001D29D2 /* HelpDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072B98A1CBA3D55001D29D2 /* HelpDataController.swift */; };
+		8072B98D1CBA444D001D29D2 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072B98C1CBA444D001D29D2 /* NSAttributedStringExtension.swift */; };
+		8072B98F1CBA4C33001D29D2 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 8072B98E1CBA4C33001D29D2 /* privacy.html */; };
+		8072B9921CBA5270001D29D2 /* tick-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8072B9901CBA5270001D29D2 /* tick-off.png */; };
+		8072B9931CBA5270001D29D2 /* tick-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8072B9911CBA5270001D29D2 /* tick-on.png */; };
 		807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */; };
 		8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */; };
 		809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866611BE9BE9C00B3FE9D /* MazeTile.swift */; };
@@ -173,7 +177,6 @@
 		8050663A1CB64C4E00C9C081 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		8050663C1CB6534D00C9C081 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		805066401CB672A700C9C081 /* EmoticonParticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonParticleView.swift; sourceTree = "<group>"; };
-		805066441CB6FFAD00C9C081 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		8050664A1CB7796E00C9C081 /* Thesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thesis-Bridging-Header.h"; sourceTree = "<group>"; };
 		8050664B1CB7C77900C9C081 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		805BCC131C9D28F1008B4536 /* CompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
@@ -181,6 +184,11 @@
 		80685A041C7A7873000AAB9E /* ScoreBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBox.swift; sourceTree = "<group>"; };
 		8072B9861CB9DD0A001D29D2 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		8072B9881CB9F074001D29D2 /* DroidSansMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansMono.ttf; sourceTree = "<group>"; };
+		8072B98A1CBA3D55001D29D2 /* HelpDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpDataController.swift; sourceTree = "<group>"; };
+		8072B98C1CBA444D001D29D2 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
+		8072B98E1CBA4C33001D29D2 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
+		8072B9901CBA5270001D29D2 /* tick-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-off.png"; sourceTree = "<group>"; };
+		8072B9911CBA5270001D29D2 /* tick-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick-on.png"; sourceTree = "<group>"; };
 		807ABCB01BD08598008D5B31 /* LevelPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelPickerViewController.swift; sourceTree = "<group>"; };
 		8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawGameController.swift; sourceTree = "<group>"; };
 		809866611BE9BE9C00B3FE9D /* MazeTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTile.swift; sourceTree = "<group>"; };
@@ -276,6 +284,9 @@
 				80BB26E21CB6038900C6EB3D /* SettingsTableViewController.swift */,
 				802769DC1CB4E145000F23B7 /* HelpViewController.swift */,
 				802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */,
+				8072B98E1CBA4C33001D29D2 /* privacy.html */,
+				8072B9901CBA5270001D29D2 /* tick-off.png */,
+				8072B9911CBA5270001D29D2 /* tick-on.png */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -336,7 +347,6 @@
 				80E05B291CA5040200EE96B3 /* FlipTransition.swift */,
 				8050663C1CB6534D00C9C081 /* FadeTransition.swift */,
 				804E11E61C9E22F800F57992 /* QCMethod.swift */,
-				805066441CB6FFAD00C9C081 /* File.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -350,6 +360,7 @@
 				80AE2AE41CA90D6A0033E48D /* UIImageExtensions.swift */,
 				80AE2AE01CA8C3F80033E48D /* UILabelExtensions.swift */,
 				805066251CB6355800C9C081 /* UIViewExtensions.swift */,
+				8072B98C1CBA444D001D29D2 /* NSAttributedStringExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -497,6 +508,7 @@
 				80ECB47D1C891CBC007559A8 /* AchievementDataController.swift */,
 				80AA55721CAD023000D6A81C /* HighScoreDataController.swift */,
 				8066561F1CB8768500378849 /* SettingsDataController.swift */,
+				8072B98A1CBA3D55001D29D2 /* HelpDataController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -624,10 +636,13 @@
 				802480881CACAA3000204F82 /* Info.plist in Resources */,
 				805066361CB64A9900C9C081 /* Raleway-Light.ttf in Resources */,
 				805066371CB64A9900C9C081 /* Raleway-Medium.ttf in Resources */,
+				8072B9921CBA5270001D29D2 /* tick-off.png in Resources */,
 				805066341CB64A9900C9C081 /* Raleway-ExtraBold.ttf in Resources */,
 				80ED1F0D1BB25A400011A410 /* Main.storyboard in Resources */,
+				8072B9931CBA5270001D29D2 /* tick-on.png in Resources */,
 				801E76D51C6805D40077A379 /* level1.plist in Resources */,
 				805066381CB64A9900C9C081 /* Raleway-Regular.ttf in Resources */,
+				8072B98F1CBA4C33001D29D2 /* privacy.html in Resources */,
 				805066321CB64A9500C9C081 /* Raleway-Black.ttf in Resources */,
 				8072B9891CB9F205001D29D2 /* DroidSansMono.ttf in Resources */,
 				80ED1F121BB25A400011A410 /* LaunchScreen.xib in Resources */,
@@ -715,6 +730,7 @@
 				80B195031BF5685F00B5C3CE /* Config.swift in Sources */,
 				80EB85951C8479F400AC37A7 /* Achievement.swift in Sources */,
 				80AA55731CAD023000D6A81C /* HighScoreDataController.swift in Sources */,
+				8072B98D1CBA444D001D29D2 /* NSAttributedStringExtension.swift in Sources */,
 				801590EC1C7FC0A70011872B /* LoginViewController.swift in Sources */,
 				80AE50511CA774A800050457 /* ProxyLevelCell.swift in Sources */,
 				809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */,
@@ -744,6 +760,7 @@
 				8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */,
 				80B6E4A81C9685E2002761D8 /* StageCompletedViewController.swift in Sources */,
 				80BE27E71BDC3580000E9F6C /* GenericLevelViewController.swift in Sources */,
+				8072B98B1CBA3D55001D29D2 /* HelpDataController.swift in Sources */,
 				806656201CB8768500378849 /* SettingsDataController.swift in Sources */,
 				80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */,
 				804455DA1CB2607A00924480 /* MazeData.swift in Sources */,
@@ -764,7 +781,6 @@
 				80B195011BF5645A00B5C3CE /* HangmanTile.swift in Sources */,
 				80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */,
 				8008EBA71BDB3FD5003F038E /* HangmanLevelViewController.swift in Sources */,
-				805066451CB6FFAD00C9C081 /* File.swift in Sources */,
 				80E05B2A1CA5040200EE96B3 /* FlipTransition.swift in Sources */,
 				80AA55791CAE276600D6A81C /* CLLocationExtensions.swift in Sources */,
 				80ED1F081BB25A400011A410 /* AppDelegate.swift in Sources */,
