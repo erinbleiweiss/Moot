@@ -53,10 +53,6 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         self.levelCollectionView.pagingEnabled = false
         
         LevelManager.sharedInstance.unlockLevel(1)
-        LevelManager.sharedInstance.unlockLevel(2)
-        LevelManager.sharedInstance.unlockLevel(3)
-        LevelManager.sharedInstance.unlockLevel(4)
-    
     }
     
 
