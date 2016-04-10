@@ -16,6 +16,8 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     var timerLabel: TimerLabel!
     var timer: NSTimer!
     
+    let motionManager: CMMotionManager = CMMotionManager()
+    var initialAttitude : CMAttitude!
 
     let controller: GeoDDRGameController
     required init?(coder aDecoder: NSCoder){
@@ -37,6 +39,39 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         self.view.addSubview(self.timerLabel)
         
         self.startTimer(20)
+        
+        
+        var prevX: Double = 1
+        var prevY: Double = 1
+        var prevZ: Double = 1
+        let threshhold = 0.015
+        if motionManager.deviceMotionAvailable {
+            //sleep(2)
+            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()){ data, error in
+                let magnitude = data!.acceleration
+                let x = magnitude.x
+                let y = magnitude.y
+                let z = magnitude.z
+                
+                let dx = x - prevX
+                let dy = y - prevY
+                let dz = z - prevZ
+               
+                if (dx <= threshhold && dy <= threshhold && dz <= threshhold){
+                    print("still")
+                } else {
+                    print("moved")
+                }
+                print("")
+                
+                prevX = x
+                prevY = y
+                prevZ = z
+
+            }
+        
+        }
+        
 
     }
     
@@ -60,8 +95,6 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(self.checkTime), userInfo: nil, repeats: true)
     }
     
-    
-
     
     override func viewDidDisappear(animated: Bool) {
 //        locationManager.stopUpdatingLocation()
