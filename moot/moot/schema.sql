@@ -55,6 +55,5 @@ INSERT INTO achievement (name, description) VALUES ('New Moot on the Block', 'Cr
 INSERT INTO achievement (name, description) VALUES ('Savings Account', 'Accumulate 1000 Moot Points');
 INSERT INTO achievement (name, description) VALUES ('Taste The Rainbow', 'Scan 8 different colored products');
 INSERT INTO achievement (name, description) VALUES ('Easy as ABC', 'Scan products beginning with every letter of the alphabet');
-INSERT INTO achievement (name, description) VALUES ('Overeager', 'Mess up the waiting level a lot');
 
 
