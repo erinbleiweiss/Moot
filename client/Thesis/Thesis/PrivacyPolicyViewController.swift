@@ -14,9 +14,8 @@ class PrivacyPolicyViewController: MootViewController {
         super.viewDidLoad()
         
         let topMargin = self.view.frame.height * 0.025
-        let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
 
-        let webView = UIWebView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - topMargin - tabBarHeight))
+        let webView = UIWebView(frame: CGRectMake(0, 0, ScreenWidth, ScreenHeight - topMargin - 50.0))
         self.view.addSubview(webView)
         
         // Load Webpage

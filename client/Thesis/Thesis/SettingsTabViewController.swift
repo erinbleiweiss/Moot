@@ -21,6 +21,8 @@ class SettingsTabViewController: MootViewController {
         super.viewDidLoad()
         self.view.backgroundColor = mootBlack
         
+        print(self.tabBarController?.tabBar.frame.height)
+        
         // Array to keep track of controllers in page menu
         var controllerArray : [UIViewController] = []
         
