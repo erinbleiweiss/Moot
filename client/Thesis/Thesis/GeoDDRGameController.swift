@@ -13,7 +13,8 @@ import SwiftyJSON
 
 class GeoDDRGameController: GenericGameController{
     
-    
+    var arrows = DDRArrowsView()
+
     
     
 }

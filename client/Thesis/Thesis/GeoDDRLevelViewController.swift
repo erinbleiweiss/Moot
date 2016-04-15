@@ -24,7 +24,20 @@ class GeoDDRLevelViewController: GenericLevelViewController {
         super.viewDidLoad()
         self.controller.level = 5
 
+        self.setUpArrows()
         // Do any additional setup after loading the view.
+    }
+    
+    func setUpArrows() {
+        let size = ScreenWidth * 0.95
+        let arrowsFrame = CGRect(
+            x: (ScreenWidth / 2) - (size / 2),
+            y: yOffset + (visibleHeight / 2) - (size / 2),
+            width: size,
+            height: size
+        )
+        self.controller.arrows = DDRArrowsView(frame: arrowsFrame)
+        self.view.addSubview(self.controller.arrows)
     }
 
     override func didReceiveMemoryWarning() {

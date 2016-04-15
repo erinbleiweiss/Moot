@@ -72,6 +72,7 @@
 		809BA71D1CC1787100D03CED /* MicLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA71C1CC1787100D03CED /* MicLevelViewController.swift */; };
 		809BA71F1CC1792E00D03CED /* GeoDDRGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA71E1CC1792E00D03CED /* GeoDDRGameController.swift */; };
 		809BA7211CC1793400D03CED /* MicGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA7201CC1793400D03CED /* MicGameController.swift */; };
+		809BA7231CC1841000D03CED /* DDRArrowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA7221CC1841000D03CED /* DDRArrowsView.swift */; };
 		80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5B5AC1CA4ED320074B48D /* LevelCell.swift */; };
 		80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */; };
 		80AA55711CACFC8C00D6A81C /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */; };
@@ -203,6 +204,7 @@
 		809BA71C1CC1787100D03CED /* MicLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicLevelViewController.swift; sourceTree = "<group>"; };
 		809BA71E1CC1792E00D03CED /* GeoDDRGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRGameController.swift; sourceTree = "<group>"; };
 		809BA7201CC1793400D03CED /* MicGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicGameController.swift; sourceTree = "<group>"; };
+		809BA7221CC1841000D03CED /* DDRArrowsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDRArrowsView.swift; sourceTree = "<group>"; };
 		80A5B5AC1CA4ED320074B48D /* LevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeGameController.swift; sourceTree = "<group>"; };
 		80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				804EF55A1BEFEDA00091ED22 /* QRTile.swift */,
 				804EF55C1BF001580091ED22 /* QRTileTarget.swift */,
 				805BCC131C9D28F1008B4536 /* CompassView.swift */,
+				809BA7221CC1841000D03CED /* DDRArrowsView.swift */,
 				80685A041C7A7873000AAB9E /* ScoreBox.swift */,
 				804927861C97BAD200410B1A /* LevelBadge.swift */,
 				80C8C74D1CA25EC300D632B5 /* CameraTabButton.swift */,
@@ -794,6 +797,7 @@
 				80F0DD4F1C5EBBB2002A8037 /* GenericGameController.swift in Sources */,
 				802769DD1CB4E145000F23B7 /* HelpViewController.swift in Sources */,
 				80685A051C7A7873000AAB9E /* ScoreBox.swift in Sources */,
+				809BA7231CC1841000D03CED /* DDRArrowsView.swift in Sources */,
 				80AE2ADF1CA8B6660033E48D /* MootHeader.swift in Sources */,
 				80B195081BF56CD900B5C3CE /* Level.swift in Sources */,
 				804455DE1CB2F0CC00924480 /* StringExtensions.swift in Sources */,
