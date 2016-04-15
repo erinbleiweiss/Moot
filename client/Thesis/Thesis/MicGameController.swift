@@ -1,5 +1,5 @@
 //
-//  GeoDDRGameController.swift
+//  MicGameController.swift
 //  Thesis
 //
 //  Created by Erin Bleiweiss on 4/15/16.
@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class GeoDDRGameController: GenericGameController{
+class MicGameController: GenericGameController{
     
     
     

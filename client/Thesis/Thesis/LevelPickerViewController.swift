@@ -23,7 +23,9 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         mootColors["blue"]!,
         mootColors["green"]!,
         mootColors["red"]!,
-        mootColors["yellow"]!
+        mootColors["yellow"]!,
+        mootColors["orange"]!,
+        mootColors["purple"]!
     ]
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -53,6 +55,11 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
         self.levelCollectionView.pagingEnabled = false
         
         LevelManager.sharedInstance.unlockLevel(1)
+        LevelManager.sharedInstance.unlockLevel(2)
+        LevelManager.sharedInstance.unlockLevel(3)
+        LevelManager.sharedInstance.unlockLevel(4)
+        LevelManager.sharedInstance.unlockLevel(5)
+        LevelManager.sharedInstance.unlockLevel(6)
     }
     
 
@@ -111,7 +118,7 @@ class LevelPickerViewController: MootViewController, UICollectionViewDataSource,
      */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = levelCollectionView.bounds.size.width/2
-        let height = levelCollectionView.bounds.size.height/2
+        let height = levelCollectionView.bounds.size.height/3
         return CGSize(width: width, height: height)
     }
 

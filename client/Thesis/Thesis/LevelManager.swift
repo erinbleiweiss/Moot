@@ -17,7 +17,9 @@ class LevelManager{
         Level(levelNumber: 1, VC: "Hangman", numStages: 3),
         Level(levelNumber: 2, VC: "Maze", numStages: 3),
         Level(levelNumber: 3, VC: "Jigsaw", numStages: 1),
-        Level(levelNumber: 4, VC: "GeoDDR", numStages: 1)
+        Level(levelNumber: 4, VC: "Wait", numStages: 1),
+        Level(levelNumber: 5, VC: "GeoDDR", numStages: 1),
+        Level(levelNumber: 6, VC: "Mic", numStages: 1)
     ]
     private var userLevels = [Level]()
     

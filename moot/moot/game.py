@@ -988,15 +988,22 @@ def about_moot():
     logger_header("/about_moot")
 
     description = "Moot is a puzzle game that explores various aspects of " \
-                  "digital culture.  The game requires users to execute " \
-                  "specific interactions with a digital space. Certain " \
-                  "levels of the game require users to scan product " \
-                  "barcodes in order to solve puzzles. Other levels require " \
-                  "a certain amount of disengagement with the mobile device, " \
-                  "such as stopping to plug it in or waiting for it to " \
-                  "charge. The common theme is that no puzzle can be solved " \
-                  "using the app alone. <br><br> For more information, visit " \
-                  "http://www.erinbleiweiss.com/moot"
+                  "digital culture. The game requires users to execute " \
+                  "specific interactions with a digital space in order to " \
+                  "solve puzzles. Other levels require a certain amount of " \
+                  "disengagement with the mobile device. The common theme is " \
+                  "that no puzzle can be solved using the app alone"
+
+    # description = "Moot is a puzzle game that explores various aspects of " \
+    #               "digital culture.  The game requires users to execute " \
+    #               "specific interactions with a digital space. Certain " \
+    #               "levels of the game require users to scan product " \
+    #               "barcodes in order to solve puzzles. Other levels require " \
+    #               "a certain amount of disengagement with the mobile device, " \
+    #               "such as stopping to plug it in or waiting for it to " \
+    #               "charge. The common theme is that no puzzle can be solved " \
+    #               "using the app alone. <br><br> For more information, visit " \
+    #               "http://www.erinbleiweiss.com/moot"
 
     response = {}
     response["description"] = description

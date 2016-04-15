@@ -20,8 +20,8 @@
 		802480851CACA91F00204F82 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802480821CACA91F00204F82 /* FBSDKLoginKit.framework */; };
 		802480861CACA91F00204F82 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802480831CACA91F00204F82 /* FBSDKShareKit.framework */; };
 		802480881CACAA3000204F82 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 802480871CACAA3000204F82 /* Info.plist */; };
-		8024808C1CACAD3400204F82 /* GeoDDRGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */; };
-		8024808E1CACAD9B00204F82 /* GeoDDRLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */; };
+		8024808C1CACAD3400204F82 /* WaitGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808B1CACAD3400204F82 /* WaitGameController.swift */; };
+		8024808E1CACAD9B00204F82 /* WaitLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8024808D1CACAD9B00204F82 /* WaitLevelViewController.swift */; };
 		8026AB011BDC525B00D0818F /* GenericCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */; };
 		802769D71CB4D518000F23B7 /* MootTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769D61CB4D518000F23B7 /* MootTextField.swift */; };
 		802769DB1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */; };
@@ -68,6 +68,10 @@
 		8095FE6B1C43006C00AADAF6 /* JigsawGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */; };
 		809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866611BE9BE9C00B3FE9D /* MazeTile.swift */; };
 		809866641BE9DC6400B3FE9D /* MazeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809866631BE9DC6400B3FE9D /* MazeToken.swift */; };
+		809BA71B1CC1786400D03CED /* GeoDDRLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA71A1CC1786400D03CED /* GeoDDRLevelViewController.swift */; };
+		809BA71D1CC1787100D03CED /* MicLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA71C1CC1787100D03CED /* MicLevelViewController.swift */; };
+		809BA71F1CC1792E00D03CED /* GeoDDRGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA71E1CC1792E00D03CED /* GeoDDRGameController.swift */; };
+		809BA7211CC1793400D03CED /* MicGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809BA7201CC1793400D03CED /* MicGameController.swift */; };
 		80A5B5AD1CA4ED320074B48D /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A5B5AC1CA4ED320074B48D /* LevelCell.swift */; };
 		80A8577D1C3CC8C0003F7BE8 /* MazeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */; };
 		80AA55711CACFC8C00D6A81C /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */; };
@@ -146,8 +150,8 @@
 		802480821CACA91F00204F82 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		802480831CACA91F00204F82 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		802480871CACAA3000204F82 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRGameController.swift; sourceTree = "<group>"; };
-		8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRLevelViewController.swift; sourceTree = "<group>"; };
+		8024808B1CACAD3400204F82 /* WaitGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitGameController.swift; sourceTree = "<group>"; };
+		8024808D1CACAD9B00204F82 /* WaitLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitLevelViewController.swift; sourceTree = "<group>"; };
 		8026AB001BDC525B00D0818F /* GenericCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCameraViewController.swift; sourceTree = "<group>"; };
 		802769D61CB4D518000F23B7 /* MootTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MootTextField.swift; sourceTree = "<group>"; };
 		802769DA1CB4E0A0000F23B7 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,10 @@
 		8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JigsawGameController.swift; sourceTree = "<group>"; };
 		809866611BE9BE9C00B3FE9D /* MazeTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeTile.swift; sourceTree = "<group>"; };
 		809866631BE9DC6400B3FE9D /* MazeToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeToken.swift; sourceTree = "<group>"; };
+		809BA71A1CC1786400D03CED /* GeoDDRLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRLevelViewController.swift; sourceTree = "<group>"; };
+		809BA71C1CC1787100D03CED /* MicLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicLevelViewController.swift; sourceTree = "<group>"; };
+		809BA71E1CC1792E00D03CED /* GeoDDRGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDDRGameController.swift; sourceTree = "<group>"; };
+		809BA7201CC1793400D03CED /* MicGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicGameController.swift; sourceTree = "<group>"; };
 		80A5B5AC1CA4ED320074B48D /* LevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeGameController.swift; sourceTree = "<group>"; };
 		80AA55701CACFC8C00D6A81C /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
@@ -309,7 +317,9 @@
 				8008EBA61BDB3FD5003F038E /* HangmanLevelViewController.swift */,
 				8008EBAA1BDB4177003F038E /* MazeLevelViewController.swift */,
 				804EF5531BEFE1610091ED22 /* JigsawLevelViewController.swift */,
-				8024808D1CACAD9B00204F82 /* GeoDDRLevelViewController.swift */,
+				8024808D1CACAD9B00204F82 /* WaitLevelViewController.swift */,
+				809BA71A1CC1786400D03CED /* GeoDDRLevelViewController.swift */,
+				809BA71C1CC1787100D03CED /* MicLevelViewController.swift */,
 			);
 			name = "Level Views";
 			sourceTree = "<group>";
@@ -321,7 +331,9 @@
 				80B195041BF56C4500B5C3CE /* HangmanGameController.swift */,
 				80A8577C1C3CC8C0003F7BE8 /* MazeGameController.swift */,
 				8095FE6A1C43006C00AADAF6 /* JigsawGameController.swift */,
-				8024808B1CACAD3400204F82 /* GeoDDRGameController.swift */,
+				8024808B1CACAD3400204F82 /* WaitGameController.swift */,
+				809BA71E1CC1792E00D03CED /* GeoDDRGameController.swift */,
+				809BA7201CC1793400D03CED /* MicGameController.swift */,
 			);
 			name = "Level Game Controllers";
 			sourceTree = "<group>";
@@ -716,15 +728,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8050664C1CB7C77900C9C081 /* Timer.swift in Sources */,
-				8024808C1CACAD3400204F82 /* GeoDDRGameController.swift in Sources */,
+				8024808C1CACAD3400204F82 /* WaitGameController.swift in Sources */,
 				80BB26E31CB6038900C6EB3D /* SettingsTableViewController.swift in Sources */,
 				809866621BE9BE9C00B3FE9D /* MazeTile.swift in Sources */,
+				809BA71B1CC1786400D03CED /* GeoDDRLevelViewController.swift in Sources */,
 				8024807E1CAB690700204F82 /* ColorExtensions.swift in Sources */,
 				804EF5541BEFE1610091ED22 /* JigsawLevelViewController.swift in Sources */,
 				804E11E71C9E22F800F57992 /* QCMethod.swift in Sources */,
 				80AE2AE11CA8C3F80033E48D /* UILabelExtensions.swift in Sources */,
-				8024808E1CACAD9B00204F82 /* GeoDDRLevelViewController.swift in Sources */,
+				8024808E1CACAD9B00204F82 /* WaitLevelViewController.swift in Sources */,
 				80AE50531CA780C900050457 /* LevelCollectionView.swift in Sources */,
+				809BA71D1CC1787100D03CED /* MicLevelViewController.swift in Sources */,
 				804EF5561BEFE1920091ED22 /* JigsawCameraViewController.swift in Sources */,
 				80131A8E1BD2F1E6004D1247 /* Networking.swift in Sources */,
 				802769E41CB4F3CC000F23B7 /* ScoreTableViewCell.swift in Sources */,
@@ -755,6 +769,7 @@
 				804EF55D1BF001580091ED22 /* QRTileTarget.swift in Sources */,
 				807ABCB11BD08598008D5B31 /* LevelPickerViewController.swift in Sources */,
 				80EB858F1C83ABC700AC37A7 /* MootViewController.swift in Sources */,
+				809BA71F1CC1792E00D03CED /* GeoDDRGameController.swift in Sources */,
 				802769DF1CB4E1C1000F23B7 /* SettingsTabViewController.swift in Sources */,
 				804927871C97BAD200410B1A /* LevelBadge.swift in Sources */,
 				802769E21CB4ECF7000F23B7 /* Score.swift in Sources */,
@@ -767,6 +782,7 @@
 				806656201CB8768500378849 /* SettingsDataController.swift in Sources */,
 				80C8C74E1CA25EC300D632B5 /* CameraTabButton.swift in Sources */,
 				804455DA1CB2607A00924480 /* MazeData.swift in Sources */,
+				809BA7211CC1793400D03CED /* MicGameController.swift in Sources */,
 				80ECB47E1C891CBC007559A8 /* AchievementDataController.swift in Sources */,
 				8008EBAB1BDB4177003F038E /* MazeLevelViewController.swift in Sources */,
 				80D69EC31CA1E9300076209C /* MootTabBarController.swift in Sources */,

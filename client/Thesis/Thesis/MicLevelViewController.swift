@@ -1,5 +1,5 @@
 //
-//  GeoDDRLevelViewController.swift
+//  MicLevelViewController.swift
 //  Thesis
 //
 //  Created by Erin Bleiweiss on 4/15/16.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class GeoDDRLevelViewController: GenericLevelViewController {
+class MicLevelViewController: GenericLevelViewController {
 
-    let controller: GeoDDRGameController
+    let controller: MicGameController
     required init?(coder aDecoder: NSCoder){
-        controller = GeoDDRGameController()
+        controller = MicGameController()
         super.init(coder: aDecoder)
     }
     
@@ -22,8 +22,8 @@ class GeoDDRLevelViewController: GenericLevelViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.controller.level = 5
-
+        self.controller.level = 6
+        
         // Do any additional setup after loading the view.
     }
 
