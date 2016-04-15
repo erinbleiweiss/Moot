@@ -52,6 +52,20 @@ class DDRArrowsView: UIView {
         
     }
     
+    func activateArrow(direction: String){
+        let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
+        layer.fillColor = greenFillColor
+        layer.strokeColor = greenStrokeColor
+        self.setNeedsDisplay()
+    }
+    
+    func deactivateArrow(direction: String){
+        let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
+        layer.fillColor = mootGray.CGColor
+        layer.strokeColor = mootGray.CGColor
+        self.setNeedsDisplay()
+    }
+    
     func setupLayers(){
         let northArrow = CAShapeLayer()
         self.layer.addSublayer(northArrow)
@@ -81,32 +95,32 @@ class DDRArrowsView: UIView {
             let northArrow = layers["northArrow"] as! CAShapeLayer
             northArrow.lineCap     = kCALineCapRound
             northArrow.lineJoin    = kCALineJoinRound
-            northArrow.fillColor   = greenFillColor
-            northArrow.strokeColor = greenStrokeColor
+            northArrow.fillColor   = mootGray.CGColor
+            northArrow.strokeColor = mootGray.CGColor
             northArrow.lineWidth   = 8
         }
         if layerIds == nil || layerIds.contains("southArrow"){
             let southArrow = layers["southArrow"] as! CAShapeLayer
             southArrow.lineCap     = kCALineCapRound
             southArrow.lineJoin    = kCALineJoinRound
-            southArrow.fillColor   = greenFillColor
-            southArrow.strokeColor = greenStrokeColor
+            southArrow.fillColor   = mootGray.CGColor
+            southArrow.strokeColor = mootGray.CGColor
             southArrow.lineWidth   = 8
         }
         if layerIds == nil || layerIds.contains("westArrow"){
             let westArrow = layers["westArrow"] as! CAShapeLayer
             westArrow.lineCap     = kCALineCapRound
             westArrow.lineJoin    = kCALineJoinRound
-            westArrow.fillColor   = greenFillColor
-            westArrow.strokeColor = greenStrokeColor
+            westArrow.fillColor   = mootGray.CGColor
+            westArrow.strokeColor = mootGray.CGColor
             westArrow.lineWidth   = 8
         }
         if layerIds == nil || layerIds.contains("eastArrow"){
             let eastArrow = layers["eastArrow"] as! CAShapeLayer
             eastArrow.lineCap     = kCALineCapRound
             eastArrow.lineJoin    = kCALineJoinRound
-            eastArrow.fillColor   = greenFillColor
-            eastArrow.strokeColor = greenStrokeColor
+            eastArrow.fillColor   = mootGray.CGColor
+            eastArrow.strokeColor = mootGray.CGColor
             eastArrow.lineWidth   = 8
         }
         
