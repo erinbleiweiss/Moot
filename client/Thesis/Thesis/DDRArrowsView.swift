@@ -55,8 +55,39 @@ class DDRArrowsView: UIView {
     func activateArrow(direction: String){
         let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
         layer.fillColor = greenFillColor
-        layer.strokeColor = greenStrokeColor
+        layer.strokeColor = greenFillColor
         self.setNeedsDisplay()
+    }
+    
+    func flashArrow(direction: String){
+        let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
+        let flashSpeed = 0.3
+        self.delay(flashSpeed){
+            layer.fillColor = self.greenFillColor
+            layer.strokeColor = self.greenStrokeColor
+            self.setNeedsDisplay()
+            self.delay(flashSpeed){
+                layer.fillColor = self.greenFillColor
+                layer.strokeColor = self.greenFillColor
+                self.setNeedsDisplay()
+                self.delay(flashSpeed){
+                    layer.fillColor = self.greenFillColor
+                    layer.strokeColor = self.greenStrokeColor
+                    self.setNeedsDisplay()
+                    self.delay(flashSpeed){
+                        layer.fillColor = self.greenFillColor
+                        layer.strokeColor = self.greenFillColor
+                        self.setNeedsDisplay()
+                        self.delay(flashSpeed){
+                            layer.fillColor = self.greenFillColor
+                            layer.strokeColor = self.greenStrokeColor
+                            self.setNeedsDisplay()
+                        }
+                    }
+                }
+            }
+        }
+
     }
     
     func deactivateArrow(direction: String){
@@ -297,6 +328,16 @@ class DDRArrowsView: UIView {
         return eastArrowPath;
     }
     
+    func delay(delay: Double, closure: ()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            closure
+        )
+    }
     
 }
 

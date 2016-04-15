@@ -26,10 +26,15 @@ class GeoDDRLevelViewController: GenericLevelViewController {
 
         self.setUpArrows()
         self.controller.arrows.activateArrow("east")
-        self.delay(2){
-            self.controller.arrows.deactivateArrow("east")
-            self.controller.arrows.activateArrow("north")
+        self.delay(3.5){
+            self.controller.arrows.flashArrow("east")
+            self.delay(2){
+                self.controller.arrows.deactivateArrow("east")
+                self.controller.arrows.activateArrow("north")
+            }
         }
+        
+
         // Do any additional setup after loading the view.
     }
     
