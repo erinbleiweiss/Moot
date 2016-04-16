@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 
-class GeoDDRLevelViewController: GenericLevelViewController {
+class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDelegate {
+    
+    var locManager: CLLocationManager!
 
+    
     let controller: GeoDDRGameController
     required init?(coder aDecoder: NSCoder){
         controller = GeoDDRGameController()
@@ -24,6 +28,12 @@ class GeoDDRLevelViewController: GenericLevelViewController {
         super.viewDidLoad()
         self.controller.level = 5
 
+        self.locManager = CLLocationManager()
+        self.locManager.delegate = self
+//        self.locManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locManager.requestAlwaysAuthorization()
+        self.locManager.startUpdatingHeading()
+        
         self.setUpArrows()
         self.controller.arrows.activateArrow("east")
         self.delay(3.5){
@@ -48,6 +58,22 @@ class GeoDDRLevelViewController: GenericLevelViewController {
         )
         self.controller.arrows = DDRArrowsView(frame: arrowsFrame)
         self.view.addSubview(self.controller.arrows)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        let dir = newHeading.magneticHeading
+        print(dir)
+
+        if (310...360 ~= dir) || (0...40 ~= dir) {
+            self.controller.arrows.outlineArrow("north")
+        } else if 40...140 ~= dir{
+            self.controller.arrows.outlineArrow("east")
+        } else if 140...220 ~= dir {
+            self.controller.arrows.outlineArrow("south")
+        } else if 220...310 ~= dir {
+            self.controller.arrows.outlineArrow("west")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

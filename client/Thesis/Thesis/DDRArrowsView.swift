@@ -52,12 +52,39 @@ class DDRArrowsView: UIView {
         
     }
     
+    let directions: [String] = [
+        "north",
+        "south",
+        "east",
+        "west"
+    ]
+    
     func activateArrow(direction: String){
+        for dir in directions {
+            if direction != dir {
+                self.deactivateArrow(dir)
+            }
+        }
+        
         let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
         layer.fillColor = greenFillColor
         layer.strokeColor = greenFillColor
         self.setNeedsDisplay()
     }
+    
+    
+    func outlineArrow(direction: String){
+        for dir in directions {
+            if direction != dir {
+                self.removeOutlineArrow(dir)
+            }
+        }
+        
+        let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
+        layer.strokeColor = greenFillColor
+        self.setNeedsDisplay()
+    }
+    
     
     func flashArrow(direction: String){
         let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
@@ -89,6 +116,14 @@ class DDRArrowsView: UIView {
         }
 
     }
+    
+    
+    func removeOutlineArrow(direction: String){
+        let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
+        layer.strokeColor = mootGray.CGColor
+        self.setNeedsDisplay()
+    }
+    
     
     func deactivateArrow(direction: String){
         let layer = self.layers["\(direction)Arrow"] as! CAShapeLayer
