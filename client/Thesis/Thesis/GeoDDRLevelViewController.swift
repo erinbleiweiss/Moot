@@ -27,6 +27,8 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.controller.level = 5
+        
+        self.setUpArrows()
 
         self.locManager = CLLocationManager()
         self.locManager.delegate = self
@@ -34,15 +36,14 @@ class GeoDDRLevelViewController: GenericLevelViewController, CLLocationManagerDe
         self.locManager.requestAlwaysAuthorization()
         self.locManager.startUpdatingHeading()
         
-        self.setUpArrows()
-        self.controller.arrows.activateArrow("east")
-        self.delay(3.5){
-            self.controller.arrows.flashArrow("east")
-            self.delay(2){
-                self.controller.arrows.deactivateArrow("east")
-                self.controller.arrows.activateArrow("north")
-            }
-        }
+//        self.controller.arrows.activateArrow("east")
+//        self.delay(3.5){
+//            self.controller.arrows.flashArrow("east")
+//            self.delay(2){
+//                self.controller.arrows.deactivateArrow("east")
+//                self.controller.arrows.activateArrow("north")
+//            }
+//        }
         
 
         // Do any additional setup after loading the view.
