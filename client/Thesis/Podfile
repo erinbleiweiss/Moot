@@ -1,0 +1,27 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'Alamofire', '~> 2.0'
+pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git', :tag => '2.3.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'SwiftHEXColors'
+
+pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
+pod 'RAMAnimatedTabBarController', :git=> 'https://github.com/erinbleiweiss/animated-tab-bar.git'
+pod 'SCLAlertView', :git=> 'https://github.com/erinbleiweiss/SCLAlertView-Swift.git'
+pod "PageMenu"
+pod 'DynamicColor', '~> 2.4.0'
+
+target 'Thesis' do
+
+end
+
+target 'ThesisTests' do
+
+end
+

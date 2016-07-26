@@ -1,8 +1,6 @@
 ThesisKey.pem
 ec2.txt
 
-client/Thesis/Podfile
-client/Thesis/Podfile.lock
 client/Thesis/Pods/*
 
 # Xcode
@@ -25,7 +23,6 @@ DerivedData
 *.xcuserstate
 .idea/
 # Pods - for those of you who use CocoaPods
-Pods
 
 *.pyc
 *.log
